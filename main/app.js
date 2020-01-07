@@ -19,7 +19,7 @@ dotenv.config();
 const app = express();
 
 app.get("/some", (req, res) => {
-    res.send("hello from node123!");
+    res.send("hello from node1235!");
 });
 
 // SECTION  Database
