@@ -18,16 +18,19 @@ dotenv.config();
 // SECTION  App
 const app = express();
 
+app.get("/some", (req, res) => {
+    res.send("hello from node123!");
+});
+
 // SECTION  Database
 mongoose
     .connect(process.env.DATABASE, {
-        useUnifiedTopology: true,
         useNewUrlParser: true,
         useCreateIndex: true
     })
-    .then(() => console.log('DB Connected'))
+    .then(() => console.log('DB Connected'));
 mongoose.connection.on('error', err => {
-    console.log(`DB connection error: ${err.message}`)
+        //console.log(`DB connection error: ${err.nessage}`);
 });
 
 // SECTION  Middlewares
@@ -44,7 +47,7 @@ mongoose.connection.on('error', err => {
 //app.use('/api', productRoutes);
 //app.use('/api', orderRoutes);
 
-const port = process.env.PORT || 49153; // NOTE 49154 is DEFAULT PORT
+const port = process.env.PORT || 49153; // NOTE 49153 is DEFAULT PORT
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
