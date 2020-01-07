@@ -10,7 +10,7 @@ dotenv.config();
 
 // SECTION  Routes
 //const authRoutes = require('./routes/auth');
-//const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
 //const categoryRoutes = require('./routes/category');
 //const productRoutes = require('./routes/product');
 //const orderRoutes = require('./routes/order');
@@ -18,8 +18,8 @@ dotenv.config();
 // SECTION  App
 const app = express();
 
-app.get("/some", (req, res) => {
-    res.send("hello from node eiei!");
+app.get("/", (req, res) => {
+    res.send("hello from node1235!");
 });
 
 // SECTION  Database
@@ -42,7 +42,7 @@ mongoose.connection.on('error', err => {
 
 // SECTION Routes middleware
 //app.use('/api', authRoutes);
-//app.use('/api', userRoutes);
+app.use('/api', userRoutes);
 //app.use('/api', categoryRoutes);
 //app.use('/api', productRoutes);
 //app.use('/api', orderRoutes);
