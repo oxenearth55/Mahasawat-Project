@@ -1,0 +1,101 @@
+footer{
+    margin-top:20vh;
+}
+.footer-nav {
+	list-style: none;
+	float: left;
+}
+
+
+.footer-nav li a {
+	color: orange;
+	font-size: 90%;
+
+
+}
+
+.social-icons {
+	life-style: none;
+	float: right;
+}
+
+
+
+.footer-nav li,
+.social-icons li {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.footer-nav li:last-child,
+.social-icons li:last-child {
+	margin-right: 0;
+}
+
+footer {
+	background-color: rgba(0, 0, 0, 0.78);
+	padding: 50px;
+}
+
+footer p {
+	color: #888;
+	font-weight: 200;
+	text-align: center;
+	font-size: 90%;
+	margin-top: 30px;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-icons li a:link,
+.social-icons li a:visited {
+
+	text-decoration: none;
+	border: 0;
+	color: #888;
+	-webkit-transition: color 0.2s;
+	transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+	color: #ddd;
+}
+
+.social-icons li a:link,
+.social-icons lia a:visited {
+	font-size: 170%;
+}
+
+.social-icons li a .facebook:hover {
+	color: #3b5998;
+}
+
+.social-icons a .twitter:hover {
+	color: #00aced;
+}
+
+.social-icons .google-plus:hover {
+	color: #dd4b39;
+
+}
+
+.social-icons .instagram:hover {
+	color: #517fa4;
+}
+
+
+.facebook,
+.twitter,
+.google-plus,
+.instagram {
+	-webkit-transition: color 0.2s;
+	transition: color 0.2s;
+
+}
+
+footer p{
+    padding-top: 50px;
+}
+
+
