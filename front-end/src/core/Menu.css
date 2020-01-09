@@ -1,76 +1,71 @@
-/* ANCHOR Menu */
+/*NOTE   import fronts from google fonts */
+@import url('https://fonts.googleapis.com/css?family=Anton|Gugi|Lato|Roboto|Sofia&display=swap');
 
-header {
-	display: flex;
-	width: 100%;
-	height: 10vh;
-	margin: auto;
-    align-items: center; 
-    background-color:rgba(219, 217, 217, 0.541);
-    
+:root{
+    --light-gray: #2b3032a1; 
+    --primary-color: #45ccb8; 
+    --border: #2b303218; 
+    --text-color: #ff686b; 
+    --roboto: "Roboto",sans-serif; 
+    --gugi: "Gugi",cursive; 
+    --sofia:"Sofia",cursive;
 }
 
-/* SECTION   Both logo and nav must be flex */
-.logo-container, .nav-links{
-    /* flex:1; */
-    padding-bottom: 0;
-
+.primary-color{
+    color:var(--primary-color);
 }
-.nav-links{
-    margin-bottom: 0;
+.bg-primary-color{
+    background-color:var(--primary-color)!important ;
 }
 
-/* SECTION  Logo section */
-
-.logo-container{
-    flex: 1;
+.text-color{
+    color:var(--text-color);
+}
+.front-roboto{
+    font-family:var(--roboto);
 }
 
-.logo-container img{
-    width: 35%;
+.lightblue{
+    color: lightblue;
 }
 
-/* SECTION  nav section */
-nav{
-    /* flex:1; */
-} 
+/* SECTION header */
 
-.nav-links{
-    justify-content: space-around;  /* NOTE  displays the flex items with space before, between, and after the lines */
-    list-style: none; 
-
-   
+header{
+    background-color:rgba(0, 0, 0, 0.78);
+    font-family: var(--roboto);
 }
 
-.nav-link{
-    font-size: 18px;
-    /* text-decoration: none; */
-
+header .site-title{
+    font-family: var(--gugi);
 }
 
-/*SECTION Link hover*/
-/*NOTE  Show line at the botom of link when point at it*/
-.nav-links li a:link,
-.nav-links li a:visited {
-    border-bottom: 2px solid transparent;
-    -webkit-transition: border-bottom 0.2s;
-    transition: border-bottom 0.2s;
-    
-
+.container .dropdown-toggle,
+.container .dropdown-item{
+    font-size:0.7em;
 }
 
-.nav-links li a:hover,
-.nav-links li a:active {
-    border-bottom: 2px solid #e67e22;
-    
+.header-links .text{
+    font-size: 0.9em;
+    text-decoration: none;
+    color: white;
 }
 
-.row{
-    /* display: inline-block; */ 
- 
+/* SECTION Navigation Menu */
+
+.navbar-nav{
+    padding:0.8em 0em;
 }
 
-nav{
-    background-color: black;
+.navbar-nav .nav-link{
+    font-size: 0.9em;
+    color: var(--light-gray)!important;
 }
 
+.navbar-nav .nav-item .nav-link{
+    padding: 0 1.2em;
+}
+
+.navbar-nav .cart-icon{
+    margin-right: 6.5rem !important;
+}
