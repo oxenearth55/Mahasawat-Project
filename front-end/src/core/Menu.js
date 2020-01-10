@@ -92,15 +92,12 @@ const Menu = () => (
            <li>
                 <Link className="nav-link" style={isActive(history,'/')} to="/">Home</Link>
             </li>
-
             <li >
                 <Link className="nav-link" style={isActive(history,'/signin')}  to="/signin">Sigin</Link>
             </li>
-
             <li>
                 <Link className="nav-link" style={isActive(history,'/signup')}  to="/signup">Signup</Link>
             </li> 
-
             </div>
         </ul>
        

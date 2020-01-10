@@ -6,7 +6,7 @@ const Layout = ({title = "Title", description = "Description", className, childr
 
 <div>
 <Menu /> 
-    <div > 
+    <div className ="container ml-4 my-4"> 
     <h2>{title}</h2>
     <p className = "lead"> {description} </p>
     </div> 
