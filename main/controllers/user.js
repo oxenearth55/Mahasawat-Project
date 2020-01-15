@@ -1,7 +1,22 @@
 const User = require('../models/user');
-const { Order } = require('../models/order');
-const { errorHandler } = require('../helpers/dbErrorHandler');
+//const { Order } = require('../models/order');
+//const { errorHandler } = require('../helpers/dbErrorHandler');
 
+exports.signup = (req, res) => {
+    console.log("req.body", req.body);
+    const user = new User(req.body);
+    user.save((err, user) => {
+        if (err) {
+            return res.status(400).json({
+                error
+            });
+        }
+        res.json({
+            user
+        });
+    });
+};
+/*
 exports.userById = (req, res, next, id) => {
     User.findById(id).exec((err, user) => {
         if (err || !user) {
@@ -19,6 +34,7 @@ exports.read = (req, res) => {
     req.profile.salt = undefined;
     return res.json(req.profile);
 };
+*/
 
 // exports.update = (req, res) => {
 //     console.log('user update', req.body);
@@ -35,6 +51,7 @@ exports.read = (req, res) => {
 //     });
 // };
 
+/*
 exports.update = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
     const { name, password } = req.body;
@@ -115,3 +132,4 @@ exports.purchaseHistory = (req, res) => {
             res.json(orders);
         });
 };
+*/
