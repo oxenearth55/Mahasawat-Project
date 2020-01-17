@@ -1,49 +1,63 @@
 import React, {useState} from 'react'; 
 import Layout from '../core/Layout';
-import {API} from '../Config';
+import {API} from '../config';
 import './Signup.css';
+// import { signup } from '../auth';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
-
-  const [values, setValue] = useState ({
+  
+  const [values, setValues] = useState ({
         name: '',
         email: '',
         password: '', 
         error: '',
         success: false
-})
+  });
 
-const {name, email , password} = values  // Grab these values from useState
+  const { name, email , password, success, error } = values; // Grab these values from useState
 
-const handleChange = name => event => {
-        setValue({...values,error:false, [name]: event.target.value}) // get value from input and store in [name]
-  }
-
-  const signup = user => {
-      // console.log(name,email,password);
-      fetch(' ${API}/signup' , {
-        method: "POST",
-        headers: {
-          Accepts: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-
-
-      } )
-      .then(response => {
-        return response.json()
-      })
-      .catch(err => {
-        console.log(err)
-      })
-   
+  const handleChange = name => event => {
+    setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-const clickSubmit = (event) => {
-  event.preventDefault() //Browser will not reload when submit button is clicked
-  signup({name,email,password});
-}
+  const signup = user => {
+    return fetch(`${API}/signup`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, error: false });
+    signup({ name, email, password }).then(data => {
+        if (data.error) {
+            setValues({ ...values, error: data.error, success: false });
+        } else {
+            setValues({
+                ...values,
+                name: '',
+                email: '',
+                password: '',
+                error: '',
+                success: true
+            });
+        }
+    });
+};
+
+
 
 // SECTION  HTML  
 
@@ -56,14 +70,13 @@ const clickSubmit = (event) => {
               <div className ="col-md-6 col-sm-12 two-input">
               {/* <label className = "text-muted">First Name</label> */}
               <input onChange = {handleChange('name')} type = "text" className = "form-control" 
-              placeholder ="First Name" >
-                </input> 
+              placeholder ="First Name" value={name}/>
               </div> 
 
               <div className ="col-md-6 col-sm-12 two-input">
               {/* <label className = "text-muted">Last Name</label> */}
-              <input onChange = {handleChange('name')} type = "text" className = "form-control" 
-              placeholder ="Last Name" ></input> 
+              <input onChange = {handleChange('')} type = "text" className = "form-control" 
+              placeholder ="Last Name" />
               </div> 
           </div>
 
@@ -71,7 +84,7 @@ const clickSubmit = (event) => {
             {/* <label className = "text-muted">Email</label> */}
             <div className ="col-md-12 col-sm-12 one-input">
             <input onChange = {handleChange('email')} type = "email" className = "form-control"  
-            placeholder ="Email"  ></input> 
+            placeholder ="Email" value={email} />
             </div>
           </div>
 
@@ -79,14 +92,14 @@ const clickSubmit = (event) => {
             {/* <label className = "text-muted">Password</label> */} 
             <div className="col-md-6 col-sm-12 two-input">
               <input onChange = {handleChange('password')} type = "password" className = "form-control" 
-              placeholder ="Password"  ></input> 
+              placeholder ="Password" value={password} />
               </div>
          
 
             {/* <label className = "text-muted">Password</label> */} 
             <div className="col-md-6 col-sm-12 two-input">
-              <input onChange = {handleChange('password')} type = "password" className = "form-control" 
-              placeholder ="Repeat Password"  ></input> 
+              <input onChange = {handleChange('')} type = "password" className = "form-control" 
+              placeholder ="Repeat Password"  />
               </div>
              
             
@@ -96,19 +109,32 @@ const clickSubmit = (event) => {
 
       </form>
   );
+
+  const showError = () => (
+    <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
+        {error}
+    </div>
+);
+
+const showSuccess = () => (
+    <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
+        New account is created. Please <Link to="/signin">Signin</Link>
+    </div>
+);
   
     
   return ( 
-       <Layout title = "Sign up" 
-       description = "Please, sign up if you don't have an account"
-       className = "container col-md-8 offset-md-2"> 
-        {API} 
-        {signUpForm()}
-        {/* {JSON.stringify(values)} */}
-   </Layout>
-  
-   
-
+    <Layout
+    title="Signup"
+    description="Signup to Node React E-commerce App"
+    className="container col-md-8 offset-md-2"
+>
+    {showSuccess()}
+    {showError()}
+    {signUpForm()}
+    {JSON.stringify(values)}
+  </Layout>
    );
-}
+};
+
 export default Signup;

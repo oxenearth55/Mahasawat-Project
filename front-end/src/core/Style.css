@@ -30,11 +30,6 @@ html{
 
 /* https://wi-images.condecdn.net/image/jjAAGJWy79x/crop/1620/f/pigbrain.jpg */
 
-.rows{
-	max-width: 1140px;
-	margin: 0 auto;
-	padding: 30px 0;
-}
 
 /*ANCHOR  Menu navigation bar*/
 
@@ -101,6 +96,10 @@ html{
     
 }
 
+.intro{
+    margin-top: 100px;
+}
+
 .intro-butt{
 	padding: 50px 0px 0px 0px;
 }
@@ -157,7 +156,7 @@ section{
 }
 .row{
     /* display:flex;  */
-    max-width: 1140px;
+    /* max-width: 1140px; */
     margin: 0 auto; /*Must determine width before using margin auto*/
 }
 .col{
@@ -206,6 +205,21 @@ p{
     font-family: sans-serif;
 }
 
-.sub-section1{
-    flex:1; 
+/* SECTION icon-intro */
+.section-icon i{
+    color: orange;
+}
+
+.icon-intro h4{
+    color: black;
+    margin-top: 20px;  
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;    
+    text-transform: uppercase;  
+    font-weight: 700;
+    
+}
+
+.content-intro{
+    font-size: 18px;
 }
