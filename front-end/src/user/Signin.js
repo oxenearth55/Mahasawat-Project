@@ -1,38 +1,114 @@
-import React from 'react'; 
-import Layout from '../core/Layout';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import Layout from "../core/Layout";
+import { signin, authenticate, isAuthenticated } from "../auth";
 
-const Signin = () => ( <div>
-    <Layout title = "Sign in" description = "Please Sign in to aceess your account">
+const Signin = () => {
+    const [values, setValues] = useState({
+        email: "ryan@gmail.com",
+        password: "rrrrrr9",
+        error: "",
+        loading: false,
+        redirectToReferrer: false
+    });
 
-   <form className ="container my-5">
-          <div className = "row">
+    const { email, password, loading, error, redirectToReferrer } = values;
+    const { user } = isAuthenticated();
 
-   <div className ="col-md-6 col-sm-12 two-input">
-              {/* <label className = "text-muted">First Name</label> */}
-              <input type = "email" className = "form-control" 
-              placeholder ="Email" />
-              </div> 
+    const handleChange = name => event => {
+        setValues({ ...values, error: false, [name]: event.target.value });
+    };
 
+    const clickSubmit = event => {
+        event.preventDefault();
+        setValues({ ...values, error: false, loading: true });
+        signin({ email, password }).then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error, loading: false });
+            } else {
+                authenticate(data, () => {
+                    setValues({
+                        ...values,
+                        redirectToReferrer: true
+                    });
+                });
+            }
+        });
+    };
+
+    const signUpForm = () => ( 
+    
+
+        <form className ="container my-5">
+               <div className = "row">
+     
+        <div className ="col-md-6 col-sm-12 two-input">
+                   {/* <label className = "text-muted">First Name</label> */}
+                   <input onChange={handleChange("email")}
+                    type = "email" className = "form-control" 
+                   placeholder ="Email" />
+                   </div> 
+     
+                   
+               </div>
+     
+     
+               <div className = "row"> 
+                 {/* <label className = "text-muted">Password</label> */} 
+                 <div className="col-md-6 col-sm-12 two-input">
+                   <input  onChange={handleChange("password")} 
+                   type = "password" className = "form-control" 
+                   placeholder ="Password"  />
+                   </div>
               
-          </div>
+               <button onClick={clickSubmit} className = "btn btn-outline-secondary btn-block mt-4">Log In</button>
+                 </div>
+             
+     
+           </form>
+    );
 
+    const showError = () => (
+        <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+        >
+            {error}
+        </div>
+    );
 
-          <div className = "row"> 
-            {/* <label className = "text-muted">Password</label> */} 
-            <div className="col-md-6 col-sm-12 two-input">
-              <input type = "password" className = "form-control" 
-              placeholder ="Password"  />
-              </div>
-         
-          <button className = "btn btn-outline-secondary btn-block mt-4">Log In</button>
+    const showLoading = () =>
+        loading && (
+            <div className="alert alert-info">
+                <h2>Loading...</h2>
             </div>
-        
+        );
 
-      </form>
+    const redirectUser = () => {
+        if (redirectToReferrer) {
+            if (user && user.role === 1) {
+                return <Redirect to="/admin/dashboard" />;
+            } else {
+                return <Redirect to="/user/dashboard" />;
+            }
+        }
+        if (isAuthenticated()) {
+            return <Redirect to="/" />;
+        }
+    };
 
-      </Layout>
-
-   </div>
-   );
+    return (
+        <Layout
+            title="Signin"
+            description="Signin to Node React E-commerce App"
+            className="container col-md-8 offset-md-2"
+        >
+            {showLoading()}
+            {showError()}
+            {signUpForm()}
+            {redirectUser()}
+        </Layout>
+    );
+};
 
 export default Signin;
