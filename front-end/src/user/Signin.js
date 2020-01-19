@@ -38,7 +38,6 @@ const Signin = () => {
 
     const signUpForm = () => ( 
     
-
         <form className ="container my-5">
                <div className = "row">
      
@@ -100,7 +99,7 @@ const Signin = () => {
     return (
         <Layout
             title="Signin"
-            description="Signin to Node React E-commerce App"
+            description="You can log in if you have an account."
             className="container col-md-8 offset-md-2"
         >
             {showLoading()}

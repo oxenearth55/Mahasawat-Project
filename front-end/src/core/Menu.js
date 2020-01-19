@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom' 
 import './Menu.css'
+import {signout, isAuthenticated} from '../auth' 
 
 
 
@@ -11,8 +12,9 @@ import './Menu.css'
 //         return {color: 'white'}
 //     }
 // }
+// const {history} = this.state.push
 
-const Menu = () => (
+const Menu = ({history}) => (
     
 <header>
     {/*SECTION First-nav */}
@@ -35,12 +37,40 @@ const Menu = () => (
             </div>
             <div className="col-md-4 col-12 text-right ">
                 <p className="my-md-4 header-links">
-                     <Link className="px-2 text" to="/signin">SignIn</Link>
-                     <Link className="px-2 text" to="/signup">Create an Account</Link>
+                   {/* NOTE  if user does not login, show SignIn and SignUp btn */}
+                    {!isAuthenticated() && (
+                        <div>
+                         {/* SECTION  SignIn */}
+                            <Link className="px-2 text" to="/signin">SignIn</Link>
 
+                         {/* SECTION  SignUp */}
+                            <Link className="px-2 text" to="/signup">Create an Account</Link>
+                    
+                        </div>
+
+                    )}
+                    {/* NOTE if user has already login, show only SignOut btn on nav */}
+                    {isAuthenticated() && (
+                       <div>   
+                    {/* SECTION  SignOut */}
+                     <span  onClick={() =>
+                        signout(() => {
+                          history.push("/");
+                        })
+                    }
+                    className="px-2 text" to="/signin" 
+                    style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
+                    </span>
+                    </div>  
+
+                    )}
+
+
+                  
+    
                 </p>
             </div>
-            
+           
         </div>
 
 

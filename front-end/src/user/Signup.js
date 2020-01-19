@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Signup = () => {
   
+  // NOTE  This is react state (Hook) to update properties 
   const [values, setValues] = useState ({
         name: '',
         email: '',
@@ -17,6 +18,7 @@ const Signup = () => {
 
   const { name, email , password, success, error } = values; // Grab these values from useState
 
+  // NOTE  Get value from input (name, email and password) from a user
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
@@ -39,12 +41,17 @@ const Signup = () => {
 };
 
   const clickSubmit = event => {
+    // NOTE Prevent reload of this page adter submit btn was clicked
     event.preventDefault();
     setValues({ ...values, error: false });
+    // Send Object which contains property (name, email and, password) to method signup as user
+    // And grab data as a Jason to check error from a user input
     signup({ name, email, password }).then(data => {
         if (data.error) {
+          // Set error and success if found error from user input
             setValues({ ...values, error: data.error, success: false });
         } else {
+          //If noting went wrong, Clear input in each input box (Default values)
             setValues({
                 ...values,
                 name: '',
@@ -56,7 +63,6 @@ const Signup = () => {
         }
     });
 };
-
 
 
 // SECTION  HTML  
@@ -109,26 +115,31 @@ const Signup = () => {
 
       </form>
   );
-
+  // SECTION  Show result after click submit btn
+  // NOTE  Check error from user input
   const showError = () => (
     <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-        {error}
+        {/* Show type of error on the screen after user types wrong a condition */}
+        {error} 
     </div>
 );
 
+// NOTE  Check Success Sign Up 
 const showSuccess = () => (
     <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
+      {/* Display this comment to the user */}
         New account is created. Please <Link to="/signin">Signin</Link>
     </div>
 );
   
-    
+  // SECTION render
   return ( 
     <Layout
     title="Signup"
-    description="Signup to Node React E-commerce App"
+    description="Please create your account "
     className="container col-md-8 offset-md-2"
 >
+  {/* NOTE  Call Method above */}
     {showSuccess()}
     {showError()}
     {signUpForm()}

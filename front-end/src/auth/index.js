@@ -33,16 +33,19 @@ export const signin = user => {
             console.log(err);
         });
 };
-
+// NOTE next is call back function
 export const authenticate = (data, next) => {
     if (typeof window !== 'undefined') {
+// NOTE Set anyting to local storage 
+// jwt is the key (name) of an item and data is a thing that we want to save with jwt key
         localStorage.setItem('jwt', JSON.stringify(data));
-        next();
+        next(); // redirecting the user to some other base clearing the state values
     }
 };
 
 export const signout = next => {
     if (typeof window !== 'undefined') {
+        // NOTE remove key (jwt) from local storage to sign out
         localStorage.removeItem('jwt');
         next();
         return fetch(`${API}/signout`, {
@@ -59,6 +62,7 @@ export const isAuthenticated = () => {
     if (typeof window == 'undefined') {
         return false;
     }
+    //NOTE to check that we have an item in local storage or not
     if (localStorage.getItem('jwt')) {
         return JSON.parse(localStorage.getItem('jwt'));
     } else {
