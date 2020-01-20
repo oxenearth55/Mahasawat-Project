@@ -3,7 +3,10 @@ import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import Signup from './user/Signup'
 import Signin from './user/Signin'
 import Home from './core/Home'
-
+import PrivateRoute from './auth/PrivateRoute'
+import Dashboard from './user/UserDashboard'
+import AdminRoute from './auth/AdminRoute'
+import AdminDashboard from './user/AdminDashboard'
 
 
 const Routes = () => {
@@ -16,6 +19,11 @@ const Routes = () => {
             <Route path="/signup" exact component={Signup}></Route>
 
             <Route path="/" exact component={Home}></Route>
+            {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
+            if not, user must go to sign in page */}
+            <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
+            <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+
 
 
 

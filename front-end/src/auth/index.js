@@ -37,7 +37,7 @@ export const signin = user => {
 export const authenticate = (data, next) => {
     if (typeof window !== 'undefined') {
 // NOTE Set anyting to local storage 
-// jwt is the key (name) of an item and data is a thing that we want to save with jwt key
+// jwt is the key (Token) of an item
         localStorage.setItem('jwt', JSON.stringify(data));
         next(); // redirecting the user to some other base clearing the state values
     }

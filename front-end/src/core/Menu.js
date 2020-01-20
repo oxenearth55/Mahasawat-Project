@@ -13,6 +13,8 @@ import {signout, isAuthenticated} from '../auth'
 //     }
 // }
 // const {history} = this.state.push
+const {user: {name}} = isAuthenticated()
+
 
 const Menu = ({history}) => (
     
@@ -38,6 +40,7 @@ const Menu = ({history}) => (
             <div className="col-md-4 col-12 text-right ">
                 <p className="my-md-4 header-links">
                    {/* NOTE  if user does not login, show SignIn and SignUp btn */}
+                   
                     {!isAuthenticated() && (
                         <div>
                          {/* SECTION  SignIn */}
@@ -49,20 +52,26 @@ const Menu = ({history}) => (
                         </div>
 
                     )}
+
+
                     {/* NOTE if user has already login, show only SignOut btn on nav */}
                     {isAuthenticated() && (
-                       <div>   
-                    {/* SECTION  SignOut */}
-                     <span  onClick={() =>
-                        signout(() => {
-                          history.push("/");
-                        })
-                    }
-                    className="px-2 text" to="/signin" 
-                    style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
-                    </span>
-                    </div>  
+                        
+                    <div className="row">   
+                        {/* NOTE Show user's name */}
+                        <div className="px-2 text col-8">{name}</div>
 
+                        {/* SECTION  SignOut */}
+                        <span  onClick={() =>
+                            signout(() => {
+                            history.push("/");
+                            })
+                        }
+                        className="px-2 text col-4" to="/signin" 
+                        style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
+                        </span>
+          
+                    </div>  
                     )}
 
 
@@ -88,11 +97,25 @@ const Menu = ({history}) => (
                     <li class="nav-item">
                     <Link className="nav-link" to="/">HOME</Link>
                     </li>
+                    {/* NOTE For normal user (user.role === 0) */}
+                    {isAuthenticated() && isAuthenticated().user.name !="admin123" &&(
+                        <li class="nav-item">
+                        <Link className="nav-link" to="/user/dashboard">DASHBOARD</Link>
+                        </li>
+
+                    )}
+                    
+                    {/* NOTE For admin user (user.role === 1) */}
+                    {isAuthenticated() && isAuthenticated().user.name =="admin123" &&(
+                        <li class="nav-item">
+                        <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
+                        </li>
+
+                    )}
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">COLLECTION</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">ABOUT US</a>

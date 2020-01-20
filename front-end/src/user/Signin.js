@@ -83,9 +83,11 @@ const Signin = () => {
             </div>
         );
 
+    // NOTE After user login, redirect to dashboard (up to role)
     const redirectUser = () => {
         if (redirectToReferrer) {
-            if (user && user.role === 1) {
+            // user.role = 1
+            if (user && user.name === "admin123") {
                 return <Redirect to="/admin/dashboard" />;
             } else {
                 return <Redirect to="/user/dashboard" />;
