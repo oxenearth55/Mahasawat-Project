@@ -58,6 +58,7 @@ export const signout = next => {
     }
 };
 
+// NOTE  
 export const isAuthenticated = () => {
     if (typeof window == 'undefined') {
         return false;

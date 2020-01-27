@@ -23,6 +23,7 @@ const Signin = () => {
         event.preventDefault();
         setValues({ ...values, error: false, loading: true });
         signin({ email, password }).then(data => {
+           
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
             } else {
@@ -87,7 +88,7 @@ const Signin = () => {
     const redirectUser = () => {
         if (redirectToReferrer) {
             // user.role = 1
-            if (user && user.name === "admin123") {
+            if (user && user.role === 1) {
                 return <Redirect to="/admin/dashboard" />;
             } else {
                 return <Redirect to="/user/dashboard" />;

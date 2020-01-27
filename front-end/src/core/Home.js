@@ -1,41 +1,46 @@
-import React from 'react'; 
+import React, {useState, useEffect} from 'react'; 
 import './Style.css';
 import Menu from './Menu';
 import Footer from './Footer';
+import {getProduct} from './apiCore';
 
-const Home = () => (
-
-<>
-<Menu/>
-
-<main>
-    <div className=" headerImg ">
-    <section className ="container">
-        <div className="intro">
-     <div className="row ">
-        <div className="col-12 intro-text">
-    <h1>Mahasawat Shopping</h1> 
-    </div>
-    </div>
-
-    <div className="col-8 intro-text">
-    <p>Our products are produced from natural material</p>
-    </div>
+const Home = () => {
 
 
-        
-            
-            <div className = "row intro-butt">
-                <div className="col-12">
-                    <button className = "show-more-butt">Show me more</button> 
-                <button className = "show-shop-butt">Shop now</button>
-                </div>
-                
+
+
+
+const headerIntro = () => (
+    
+    <div className="headerImg container-fluid">
+     <section>
+        <div className="row">
+            <div className="col-12 intro-text">
+                <h1 className="heading-font">Mahasawat Shopping</h1> 
             </div>
-            </div>
-
-        </section> 
         </div>
+
+        <div className="row">
+            <div className="col-6 intro-text">
+                <p className="detail-font">Our products are produced from natural material</p>
+            </div>
+        </div>     
+    
+        <div className="row mt-5">
+                <div className="col-md-2 col-sm-12">
+                <button type="button" class="btn-text btn-secondary btn-rounded py-2">More details</button>
+                </div>
+                <div className="col-md-2 col-sm-12">
+                <button type="button" class="btn-text btn btn-danger btn-rounded py-2">Shop now</button>
+            </div>
+        </div> 
+           
+    
+    </section> 
+    </div>
+        );
+
+const firstSection = () =>( 
     <section className ="container-fluid mx-auto">
 
         <div className ="row">
@@ -98,9 +103,17 @@ const Home = () => (
 
             </div>
     </section>
-</main>
-<Footer/>
-</>
-);
+    );
+
+    return(
+        <div>
+        <Menu/>
+        {headerIntro()}        
+        {firstSection()}
+        <Footer/>
+        </div>
+     );
+
+};
 
 export default Home; 

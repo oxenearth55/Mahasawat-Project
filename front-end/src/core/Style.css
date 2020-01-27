@@ -220,6 +220,19 @@ p{
     
 }
 
+/* SECTION Header section */
 .content-intro{
     font-size: 18px;
+}
+
+.heading-font{
+    font-size:6vw!important;
+}
+
+.detail-font{
+    font-size: 3vw!important;
+}
+
+.btn-text{
+    font-size:1.8vw!important;
 }

@@ -7,6 +7,8 @@ import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './user/UserDashboard'
 import AdminRoute from './auth/AdminRoute'
 import AdminDashboard from './user/AdminDashboard'
+import AddCategory from './admin/AddCategory'
+import AddProduct from './admin/AddProduct'
 
 
 const Routes = () => {
@@ -21,10 +23,16 @@ const Routes = () => {
             <Route path="/" exact component={Home}></Route>
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
             if not, user must go to sign in page */}
+          
+            {/* SECTION Normal user */}
             <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
+
+            {/* SECTION Admin */}
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
 
+            <AdminRoute path="/create/category" exact component={AddCategory} />
 
+            <AdminRoute path="/create/product" exact component={AddProduct} />
 
 
         </Switch>

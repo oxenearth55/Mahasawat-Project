@@ -13,7 +13,8 @@ const Signup = () => {
         email: '',
         password: '', 
         error: '',
-        success: false
+        success: false, 
+        role:1
   });
 
   const { name, email , password, success, error } = values; // Grab these values from useState
@@ -58,7 +59,7 @@ const Signup = () => {
                 email: '',
                 password: '',
                 error: '',
-                success: true
+                success: true,
             });
         }
     });

@@ -13,7 +13,9 @@ import {signout, isAuthenticated} from '../auth'
 //     }
 // }
 // const {history} = this.state.push
-const {user: {name}} = isAuthenticated()
+
+
+// var { user } = isAuthenticated();
 
 
 const Menu = ({history}) => (
@@ -59,7 +61,7 @@ const Menu = ({history}) => (
                         
                     <div className="row">   
                         {/* NOTE Show user's name */}
-                        <div className="px-2 text col-8">{name}</div>
+                    <div className="px-2 text col-8"></div>
 
                         {/* SECTION  SignOut */}
                         <span  onClick={() =>
@@ -98,7 +100,7 @@ const Menu = ({history}) => (
                     <Link className="nav-link" to="/">HOME</Link>
                     </li>
                     {/* NOTE For normal user (user.role === 0) */}
-                    {isAuthenticated() && isAuthenticated().user.name !="admin123" &&(
+                    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                         <li class="nav-item">
                         <Link className="nav-link" to="/user/dashboard">DASHBOARD</Link>
                         </li>
@@ -106,7 +108,7 @@ const Menu = ({history}) => (
                     )}
                     
                     {/* NOTE For admin user (user.role === 1) */}
-                    {isAuthenticated() && isAuthenticated().user.name =="admin123" &&(
+                    {isAuthenticated() && isAuthenticated().user.role === 1 &&(
                         <li class="nav-item">
                         <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
                         </li>
