@@ -2,6 +2,7 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom' 
 import './Menu.css'
 import {signout, isAuthenticated} from '../auth' 
+import Shop from './Shop'
 
 
 
@@ -117,7 +118,7 @@ const Menu = ({history}) => (
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/">SHOP</a>
+                    <Link className="nav-link" to="/shop">SHOP</Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">ABOUT US</a>

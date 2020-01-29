@@ -9,6 +9,7 @@ import AdminRoute from './auth/AdminRoute'
 import AdminDashboard from './user/AdminDashboard'
 import AddCategory from './admin/AddCategory'
 import AddProduct from './admin/AddProduct'
+import Shop from './core/Shop'
 
 
 const Routes = () => {
@@ -17,9 +18,8 @@ const Routes = () => {
    
         <Switch>
             <Route path="/signin" exact component={Signin}></Route>
-
             <Route path="/signup" exact component={Signup}></Route>
-
+            <Route path="/shop" exact component={Shop}></Route>
             <Route path="/" exact component={Home}></Route>
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
             if not, user must go to sign in page */}

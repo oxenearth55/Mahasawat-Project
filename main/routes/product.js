@@ -39,6 +39,7 @@ router.get("/products/search", listSearch);
 router.get("/products/related/:productId", listRelated);
 router.get("/products/categories", listCategories);
 router.post("/products/by/search", listBySearch);
+// NOTE Get product's photo from database
 router.get("/product/photo/:productId", photo);
 
 router.param("userId", userById);

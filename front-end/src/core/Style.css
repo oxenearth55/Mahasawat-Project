@@ -167,8 +167,8 @@ flex:1;
 }
 
 /*NOTE Header text of each section*/
-.head-section h2 {
-	color: rgb(154, 16, 16);
+.head-section {
+	color: rgb(154, 16, 16)!important;
 	margin-top: 20px;
 	font-size: 180%;
 	word-spacing: 2px;
@@ -180,7 +180,7 @@ flex:1;
 }
 
 /* NOTE Orange Line under the head-section */
-.head-section h2:after {
+.head-section:after {
 	display: block;
 	height: 5px;
 	background-color: rgba(255, 165, 0, 0.52);
@@ -235,4 +235,8 @@ p{
 
 .btn-text{
     font-size:1.8vw!important;
+}
+
+.show-product{
+    background-color: rgba(247, 247, 247, 0.959);
 }

@@ -2,12 +2,45 @@ import React, {useState, useEffect} from 'react';
 import './Style.css';
 import Menu from './Menu';
 import Footer from './Footer';
-import {getProduct} from './apiCore';
+import {getProducts} from './apiCore';
+import ProductImage from './ProductImage';
+import ShowProduct from './Home-components/ShowProduct'
 
 const Home = () => {
 
+    const [productsBySell, setProductsBySell] = useState([]);
+    const [productsByArrival, setProductsByArrival] = useState([]);
+    const [error, setError] = useState(false);
 
 
+    // SECTION Display bestseller and new arrival products
+    const loadProductsBySell = () => {
+        // NOTE get product by sold
+        getProducts('sold').then(data => {
+            if (data.error) {
+                setError(data.error);
+            } else {
+        // NOTE grab data as a object from backend then store in State (Array of Object)
+                setProductsBySell(data);
+            }
+        });
+    };
+
+    const loadProductsByArrival = () => {
+        // NOTE get product by date
+        getProducts('createdAt').then(data => {
+            console.log(data);
+            if (data.error) {
+                setError(data.error);
+            } else {
+                setProductsByArrival(data);
+            }
+        });
+    };
+    useEffect(() => {
+        loadProductsByArrival();
+        loadProductsBySell();
+    }, []);
 
 
 const headerIntro = () => (
@@ -105,10 +138,34 @@ const firstSection = () =>(
     </section>
     );
 
+    
+
+    
+
+
     return(
         <div>
         <Menu/>
-        {headerIntro()}        
+        {headerIntro()} 
+         {/* NOTE show best sellers */}
+         <div className="container-fluid show-product pt-2 pb-5">
+        <h2 className="head-section mb-4">Best Sellers</h2>
+        <div className="row"> 
+                {productsBySell.map((product,i) => (
+                <ShowProduct key={i} product={product}/>        
+                ))}
+        </div>
+       
+        {/* NOTE Show new arrivals */}
+        <h2 className="head-section mb-4">New Arrivals</h2>
+        <div className="row">
+                {/* NOTE show best sellers */}
+                {productsByArrival.map((product,i) => (
+                <ShowProduct key={i} product={product}/>        
+                ))}
+        </div>
+        </div>
+  
         {firstSection()}
         <Footer/>
         </div>
