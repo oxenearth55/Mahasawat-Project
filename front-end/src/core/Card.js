@@ -11,7 +11,8 @@ const Card = ({product}) => {
       <div className="card-body">
         <h5 className="card-title"/>
           {product.name} 
-          <p className="card-text">{product.description}</p> 
+          {/* NOTE Show description only 0 to .. character  */}
+          <p className="card-text">{product.description.substring(0,20)}</p> 
           <Link to="/shop">
             <button className="btn button-outline-primary">
               See Product

@@ -5,6 +5,7 @@ import Footer from './Footer';
 import {getProducts} from './apiCore';
 import ProductImage from './ProductImage';
 import ShowProduct from './Home-components/ShowProduct'
+import Search from './Search'
 
 const Home = () => {
 
@@ -146,6 +147,7 @@ const firstSection = () =>(
     return(
         <div>
         <Menu/>
+        <Search/>
         {headerIntro()} 
          {/* NOTE show best sellers */}
          <div className="container-fluid show-product pt-2 pb-5">
