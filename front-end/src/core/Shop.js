@@ -32,6 +32,7 @@ const Shop = () => {
             } else {
              setCategories(data)
             }
+      
         });
     };
     // NOTE Send result from Checkbox and RadioBox and send to backend
@@ -116,7 +117,9 @@ const Shop = () => {
             <h2 className="mb-4">Products</h2>
             <div className="row">
                 {filterResults.map((product,i) =>
-                        <Card key={i} product={product}/>
+                    <div className="col-4 mb-4">
+                        <Card key={i} product={product}/> 
+                    </div>
                 )}
             </div>
         </div>

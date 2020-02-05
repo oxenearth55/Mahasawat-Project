@@ -10,7 +10,7 @@ import AdminDashboard from './user/AdminDashboard'
 import AddCategory from './admin/AddCategory'
 import AddProduct from './admin/AddProduct'
 import Shop from './core/Shop'
-
+import Product from'./core/Product'
 
 const Routes = () => {
 
@@ -20,7 +20,9 @@ const Routes = () => {
             <Route path="/signin" exact component={Signin}></Route>
             <Route path="/signup" exact component={Signup}></Route>
             <Route path="/shop" exact component={Shop}></Route>
-            <Route path="/" exact component={Home}></Route>
+            <Route path="/" exact component={Home}></Route> 
+            <Route path="/product/:productId" exact component={Product}></Route> 
+
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
             if not, user must go to sign in page */}
           

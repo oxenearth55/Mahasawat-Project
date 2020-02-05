@@ -5,7 +5,6 @@ import ProductImage from './ProductImage';
 const Card = ({product}) => {
   return(
   
-  <div className="col-4 my-2"> 
     <div className="card">
       <ProductImage className="card-img-top" item={product} url="product"/>
       <div className="card-body">
@@ -13,7 +12,9 @@ const Card = ({product}) => {
           {product.name} 
           {/* NOTE Show description only 0 to .. character  */}
           <p className="card-text">{product.description.substring(0,20)}</p> 
-          <Link to="/shop">
+         
+          {/* NOTE Link to product that came from clicking */}
+          <Link to= {`/product/${product._id}`}>
             <button className="btn button-outline-primary">
               See Product
             </button>
@@ -28,7 +29,6 @@ const Card = ({product}) => {
          
       </div>
     </div>
-  </div> 
   );
 }
  
