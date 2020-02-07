@@ -116,9 +116,8 @@ const Menu = ({history}) => (
 
                     )}
 
-
                     <li class="nav-item">
-                    <Link className="nav-link" to="/shop">SHOP</Link>
+                    <Link className="nav-link" to="/shop/:searchResult">SHOP</Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">ABOUT US</a>

@@ -5,9 +5,15 @@ import {getCategories, getFilteredProducts} from "./apiCore"
 import Checkbox from './Checkbox'
 import {prices} from './fixedPrices'
 import RadioBox from './RadioBox'
+import Search from './Search'
+import {list} from './apiCore'
+import { getCategory } from '../admin/apiAdmin';
 
 
-const Shop = () => {
+
+const Shop = props => {
+
+  
 
     const [myFilters, setMyFilters] = useState({ // NOTE This State contain one property which is filters
         //NOTE filters contains two properties which are categories and price as array (sub properties of filters)
@@ -15,12 +21,23 @@ const Shop = () => {
 
     });
 
+    const [data, setData] = useState({
+        search: "",
+        results: [],
+        
+    });
+
+    const {searched, setSearched} = useState(false);
+    const { search, results  } = data;
+
+
     const [categories, setCategories] = useState([])
     const [error, setError] = useState(false)
     const [limit, setLimit] = useState(6) //NOTE limit product number at 6
     const [skip, setSkip] = useState(0)
     const [filterResults, setFilterResults] = useState([])
 
+  
 
     
 
@@ -32,7 +49,6 @@ const Shop = () => {
             } else {
              setCategories(data)
             }
-      
         });
     };
     // NOTE Send result from Checkbox and RadioBox and send to backend
@@ -49,10 +65,46 @@ const Shop = () => {
         })
     }
 
+   
+//ANCHOR -----------------------------------------------------------
     useEffect(()=>{
         init()
         loadFilteredResults(skip,limit,myFilters.filters) 
-    },[] )
+          //SECTION  URL from router 
+    const searchQuery = props.match.params.searchResult; //NOTE get searchQuery from URL
+    // const categoryQuery = props.match.params.categoryResult;   
+    // const trigger = props.match.params.trigger;
+    searchData(searchQuery);
+       
+
+ },[props] )
+
+
+  //---------------------------------------------------------------- 
+
+
+    // const triggerSearch = (trigger) => {
+    //     if(trigger == true){
+    //    return searchData(searchQuery,categoryQuery) 
+    //     }else{
+    //        return defaultDisplay();
+    //     }
+    // };
+
+    const searchData = (searchQuery, categoryQuery) => {
+     
+         console.log(`Intitial Object is ${ categoryQuery}`);
+            list({search: searchQuery || undefined }).then(
+                response => {
+                    if (response.error) {
+                        console.log(response.error);
+                    } else {
+                        setData({ ...data, results: response, searched: true}); //NOTE get result from backend and keep it in state
+                    }
+                }
+            );
+        
+    };
 
     // NOTE grab filter (category) id that was filtered by checkbox before sending it to backend
     // NOTE  this method is used to set state from others component(Checkbox)
@@ -82,6 +134,42 @@ const Shop = () => {
          return array;
      };
      
+   
+const shopDisplay = (results = [],search) => {
+    return(  
+        <div className="col-8">
+        <h2 className="mb-4">Products</h2>
+        <div className="row">
+            { results.map((product,i) => (
+                <div className="col-4 mb-4">
+                    <Card key={i} product={product}/> 
+                </div>
+            ))}
+        </div>
+    </div>
+    
+    );
+  
+              
+   
+};
+
+const defaultDisplay = () =>{
+    return(  
+        <div className="col-8">
+        <h2 className="mb-4">Products</h2>
+        <div className="row">
+            { filterResults.map((product,i) => (
+                <div className="col-4 mb-4">
+                    <Card key={i} product={product}/> 
+                </div>
+            ))}
+        </div>
+    </div>
+    
+    );
+
+};
 
     return(
     <Layout
@@ -89,6 +177,7 @@ const Shop = () => {
     description="Search and find product that you prefer"
     className="container-fluid">
        
+       <Search/>
     <div className="row">
 
         <div className="col-4">
@@ -109,20 +198,11 @@ const Shop = () => {
             }     
     />
         </div>
+        {/* {triggerSearch(trigger)} */}
 
 
+       {shopDisplay(results)}
 
-
-        <div className="col-8">
-            <h2 className="mb-4">Products</h2>
-            <div className="row">
-                {filterResults.map((product,i) =>
-                    <div className="col-4 mb-4">
-                        <Card key={i} product={product}/> 
-                    </div>
-                )}
-            </div>
-        </div>
     </div>
 
    
@@ -133,5 +213,6 @@ const Shop = () => {
 
     );
 }
+
 
 export default Shop;

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ProductImage from './ProductImage';
+import {addItem} from './cartHelpers'; 
+
 
 const Card = ({product}) => {
   return(

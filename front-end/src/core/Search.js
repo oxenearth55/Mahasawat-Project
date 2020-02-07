@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
+import {Link, withRouter} from 'react-router-dom' 
 import { getCategories, list } from "./apiCore";
 import Card from "./Card";
 
-const Search = () => {
+const Search = ({history,handleSearch}) => {
     const [data, setData] = useState({
         categories: [],
         category: "",
         search: "",
         results: [],
-        searched: false
+        searched: false,
+        trigger: false
     });
+
+    // const {trigger, setTrigger} = useState()
+    // const searchQuery = () => {
+    //     this.props.history.push(`/shop/${query}`);
+
+    // }
+
+    const query = () => {
+        return { search: {search} || undefined, category: category }
+    }
     
-    const { categories, category, search, results, searched } = data;
+    const { categories, category, search, results, searched, trigger} = data;
     // NOTE Get categories from backend via apiCore
     const loadCategories = () => {
         getCategories().then(data => {
@@ -25,6 +37,8 @@ const Search = () => {
 
     useEffect(() => {
         loadCategories();
+
+
     }, []);
 
     const searchData = () => {
@@ -35,20 +49,29 @@ const Search = () => {
                     if (response.error) {
                         console.log(response.error);
                     } else {
-                        setData({ ...data, results: response, searched: true }); //NOTE get result from backend and keep it in state
+                        setData({ ...data, results: response, searched: true, trigger: true }); //NOTE get result from backend and keep it in state
+                        // console.log(`Result from Search ${data}`)
                     }
                 }
             );
         }
     };
+   
 
     const searchSubmit = e => {
         e.preventDefault();
         searchData();
+        // console.log("check trigger " + trigger)
+
+        // history.push(`/shop/${search}/${category}/${trigger}`)
+        history.push(`/shop/${search}`)
+
+
+        // searchQuery();
     };
 
     const handleChange = name => event => {
-        setData({ ...data, [name]: event.target.value, searched: false });
+        setData({ ...data, [name]: event.target.value, searched: false,trigger: true });
     };
 
     const searchMessage = (searched, results) => {
@@ -67,13 +90,13 @@ const Search = () => {
                     {searchMessage(searched, results)}
                 </h2>
 
-                <div className="row">
+                {/* <div className="row">
                     {results.map((product, i) => (
                         <div className="col-4 mb-3">
                             <Card key={i} product={product} />
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         );
     };
@@ -114,14 +137,17 @@ const Search = () => {
         </form>
     );
 
+   
+
     return (
         <div className="row">
             <div className="container mb-3">{searchForm()}</div>
             <div className="container-fluid mb-3">
                 {searchedProducts(results)}
+        
             </div>
         </div>
     );
 };
 
-export default Search;
+export default withRouter(Search);

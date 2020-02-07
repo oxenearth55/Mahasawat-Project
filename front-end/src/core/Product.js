@@ -68,9 +68,14 @@ const Product = props => {
 <h3 className="" align="center">{product.name} </h3>
                      <div className="mx-4 mt-4 ">  <p>{product.description}</p></div>
                      <h4>{product.price} Bath</h4>
-                      
-
-                </div>          
+                     
+                     <button className="btn button-outline-warning">
+                              Add to Cart
+                     </button>     
+                
+                </div>     
+             
+         
                 </div>
             </div>
             <div className="row my-4">

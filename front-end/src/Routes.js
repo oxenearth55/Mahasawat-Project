@@ -19,9 +19,11 @@ const Routes = () => {
         <Switch>
             <Route path="/signin" exact component={Signin}></Route>
             <Route path="/signup" exact component={Signup}></Route>
-            <Route path="/shop" exact component={Shop}></Route>
             <Route path="/" exact component={Home}></Route> 
             <Route path="/product/:productId" exact component={Product}></Route> 
+
+            <Route path="/shop/:searchResult/" exact component={Shop}></Route>
+
 
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
             if not, user must go to sign in page */}
