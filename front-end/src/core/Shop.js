@@ -13,23 +13,17 @@ import { getCategory } from '../admin/apiAdmin';
 
 const Shop = props => {
 
-  
+    
+
+    //SECTION State 
+
+    //ANCHOR Filter
 
     const [myFilters, setMyFilters] = useState({ // NOTE This State contain one property which is filters
         //NOTE filters contains two properties which are categories and price as array (sub properties of filters)
         filters: {category: [], price:[]} 
 
     });
-
-    const [data, setData] = useState({
-        search: "",
-        results: [],
-        
-    });
-
-    const {searched, setSearched} = useState(false);
-    const { search, results  } = data;
-
 
     const [categories, setCategories] = useState([])
     const [error, setError] = useState(false)
@@ -39,7 +33,32 @@ const Shop = props => {
 
   
 
+    //ANCHOR Search 
+    const [data, setData] = useState({
+        search: "",
+        results: [],
+        
+    });
+
+
+
+    //ANCHOR ------------Life Cycle-----------------------------------------------
+   
+    useEffect(()=>{
+        init()
+        loadFilteredResults(skip,limit,myFilters.filters) 
+    //NOTE   URL from router 
+    const searchQuery = props.match.params.searchResult; //NOTE get searchQuery from URL
+    // const categoryQuery = props.match.params.categoryResult;   
+    // const trigger = props.match.params.trigger;
+    searchData(searchQuery);
+       
+ },[props] )
+  //----------------------------------------------------------------
+
     
+
+//SECTION Filters Method 
 
     //NOTE grab data from backend and keep it in state as an array
     const init = () => {
@@ -59,29 +78,8 @@ const Shop = props => {
             }else{
                 setFilterResults(data.data) //NOTE set product result in state
             }
-            
-            
-
         })
     }
-
-   
-//ANCHOR -----------------------------------------------------------
-    useEffect(()=>{
-        init()
-        loadFilteredResults(skip,limit,myFilters.filters) 
-          //SECTION  URL from router 
-    const searchQuery = props.match.params.searchResult; //NOTE get searchQuery from URL
-    // const categoryQuery = props.match.params.categoryResult;   
-    // const trigger = props.match.params.trigger;
-    searchData(searchQuery);
-       
-
- },[props] )
-
-
-  //---------------------------------------------------------------- 
-
 
     // const triggerSearch = (trigger) => {
     //     if(trigger == true){
@@ -90,21 +88,6 @@ const Shop = props => {
     //        return defaultDisplay();
     //     }
     // };
-
-    const searchData = (searchQuery, categoryQuery) => {
-     
-         console.log(`Intitial Object is ${ categoryQuery}`);
-            list({search: searchQuery || undefined }).then(
-                response => {
-                    if (response.error) {
-                        console.log(response.error);
-                    } else {
-                        setData({ ...data, results: response, searched: true}); //NOTE get result from backend and keep it in state
-                    }
-                }
-            );
-        
-    };
 
     // NOTE grab filter (category) id that was filtered by checkbox before sending it to backend
     // NOTE  this method is used to set state from others component(Checkbox)
@@ -134,26 +117,54 @@ const Shop = props => {
          return array;
      };
      
-   
-const shopDisplay = (results = [],search) => {
-    return(  
-        <div className="col-8">
-        <h2 className="mb-4">Products</h2>
-        <div className="row">
-            { results.map((product,i) => (
-                <div className="col-4 mb-4">
-                    <Card key={i} product={product}/> 
-                </div>
-            ))}
-        </div>
-    </div>
-    
-    );
-  
-              
-   
-};
 
+
+// SECTION Search Method
+     const searchData = (searchQuery, categoryQuery) => {
+     
+        console.log(`Intitial Object is ${ categoryQuery}`);
+           list({search: searchQuery || undefined }).then(
+               response => {
+                   if (response.error) {
+                       console.log(response.error);
+                   } else {
+                       setData({ ...data, results: response, searched: true}); //NOTE get result from backend and keep it in state
+                   }
+               }
+           );
+       
+   };
+
+   
+    //  const showSearchMessage = (results = [], searched) => {
+    //     if (searched && results.length > 0) { //NOTE if product was searched and at least 1 for product results
+    //         return `Found ${results.length} products`;
+    //     }
+    //     if (searched && results.length < 1) {
+    //         return `No products found`;
+    //     }
+    // };
+    
+    //NOTE Display when users searched
+    const shopDisplay = (results = []) => {
+        return(  
+    <div className="col-8">
+    <h2 className="mt-4 mb-4">
+            {/* {showSearchMessage(results, search)} */}
+            </h2>
+            <h2 className="mb-4">Products</h2>
+            <div className="row">
+                { results.map((product,i) => (
+                    <div className="col-4 mb-4">
+                        <Card key={i} product={product}/> 
+                    </div>
+                ))}
+            </div>
+        </div>      
+        );
+                };
+
+//NOTE Display when user access to shop page directly (by click)
 const defaultDisplay = () =>{
     return(  
         <div className="col-8">
@@ -177,7 +188,6 @@ const defaultDisplay = () =>{
     description="Search and find product that you prefer"
     className="container-fluid">
        
-       <Search/>
     <div className="row">
 
         <div className="col-4">
@@ -201,7 +211,9 @@ const defaultDisplay = () =>{
         {/* {triggerSearch(trigger)} */}
 
 
-       {shopDisplay(results)}
+         {defaultDisplay()}
+         {/* {shopDisplay(results)} */}
+
 
     </div>
 

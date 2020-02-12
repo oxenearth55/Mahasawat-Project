@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import './Signin.css';
+
 
 const Signin = () => {
     const [values, setValues] = useState({

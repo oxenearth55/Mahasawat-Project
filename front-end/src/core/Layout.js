@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from './Menu';
 import Footer from './Footer';
 
-const Layout = ({title = "Title", description = "Description", className, children }) => (
+const Layout = ({title = "Title", description = "Description", className, children}) => (
 
 <div>
 <Menu /> 
@@ -18,3 +18,6 @@ const Layout = ({title = "Title", description = "Description", className, childr
 </div>
 );
 export default Layout;
+
+
+

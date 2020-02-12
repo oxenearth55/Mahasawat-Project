@@ -1,14 +1,16 @@
 export const addItem = (item = [], count = 0, next = f => f) => {
     let cart = [];
     if (typeof window !== 'undefined') {
-        if (localStorage.getItem('cart')) {
+        if (localStorage.getItem('cart')) {  //If it has cart in local storage then ...
             //NOTE to convert json to object 
             // get product from local storage 
             cart = JSON.parse(localStorage.getItem('cart'));
         }
+
+        //NOTE store it as an Array of Object 
         cart.push({
             ...item,
-            count: 1
+            count: 1 // NOTE intitial count after item was added by a user is one
         });
         
         // remove duplicates
@@ -51,12 +53,12 @@ export const updateItem = (productId, count) => {
     let cart = [];
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('cart')) {
-            cart = JSON.parse(localStorage.getItem('cart'));
+            cart = JSON.parse(localStorage.getItem('cart')); //NOTE keep Object in cart Array 
         }
 
         cart.map((product, i) => {
             if (product._id === productId) {
-                cart[i].count = count;
+                cart[i].count = count; // NOTE Update count at index(i)
             }
         });
 
@@ -67,13 +69,13 @@ export const updateItem = (productId, count) => {
 export const removeItem = productId => {
     let cart = [];
     if (typeof window !== 'undefined') {
-        if (localStorage.getItem('cart')) {
+        if (localStorage.getItem('cart')) { 
             cart = JSON.parse(localStorage.getItem('cart'));
         }
 
         cart.map((product, i) => {
             if (product._id === productId) {
-                cart.splice(i, 1);
+                cart.splice(i, 1); //NOTE remove product that match with product._id; i is index, 1 is number that is removed
             }
         });
 

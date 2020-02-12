@@ -11,7 +11,7 @@ import AddCategory from './admin/AddCategory'
 import AddProduct from './admin/AddProduct'
 import Shop from './core/Shop'
 import Product from'./core/Product'
-
+import Cart from './core/Cart'
 const Routes = () => {
 
     return (<BrowserRouter>
@@ -21,8 +21,9 @@ const Routes = () => {
             <Route path="/signup" exact component={Signup}></Route>
             <Route path="/" exact component={Home}></Route> 
             <Route path="/product/:productId" exact component={Product}></Route> 
+            <Route path="/shop/:searchResult" exact component={Shop}></Route>
+            <Route path="/cart/" exact component={Cart}></Route>
 
-            <Route path="/shop/:searchResult/" exact component={Shop}></Route>
 
 
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 

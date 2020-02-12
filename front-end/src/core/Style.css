@@ -1,3 +1,7 @@
+
+.use-bootstrap {   
+    /* Paste bootstrap.min.css here */
+  }
 html{
     color: black;
     font-family: 'Lato', 'Arial';
@@ -7,9 +11,10 @@ html{
 }
 /* ANCHOR  Home page */
 .headerImg { 
+    /* https://wi-images.condecdn.net/image/jjAAGJWy79x/crop/1620/f/pigbrain.jpg */
     
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://wi-images.condecdn.net/image/jjAAGJWy79x/crop/1620/f/pigbrain.jpg);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://wi-images.condecdn.net/image/jjAAGJWy79x/crop/1620/f/pigbrain.jpg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://lh3.googleusercontent.com/proxy/V9LEEZqMCn1PWDXDVMjlLPxY6O4ldpzdfEir0i94wWhof8dd9iYLQKTfqFg9t0x8OH9JdW6YTNEBwhc01QY);
+	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://lh3.googleusercontent.com/proxy/V9LEEZqMCn1PWDXDVMjlLPxY6O4ldpzdfEir0i94wWhof8dd9iYLQKTfqFg9t0x8OH9JdW6YTNEBwhc01QY);
     height: 100vh;
     background-size: cover;
 	background-position: center;
@@ -239,4 +244,18 @@ p{
 
 .show-product{
     background-color: rgba(247, 247, 247, 0.959);
+}
+
+
+
+/*cart badge*/
+
+.cart-badge, .cart-badge:hover 
+{
+    /* border-radius:50%; */
+    /* color: black; */
+     padding: 3px;
+    font-size:2.5vh; 
+    font-style:italic;
+    /* background:rgb(189, 188, 188); */
 }

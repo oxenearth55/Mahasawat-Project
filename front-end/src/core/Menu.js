@@ -3,6 +3,8 @@ import {Link, withRouter} from 'react-router-dom'
 import './Menu.css'
 import {signout, isAuthenticated} from '../auth' 
 import Shop from './Shop'
+import Search from './Search'
+import {itemTotal} from './cartHelpers'
 
 
 
@@ -19,7 +21,7 @@ import Shop from './Shop'
 // var { user } = isAuthenticated();
 
 
-const Menu = ({history}) => (
+const Menu = ({history,handleSearch}) => (
     
 <header>
     {/*SECTION First-nav */}
@@ -122,17 +124,24 @@ const Menu = ({history}) => (
                     <li class="nav-item">
                         <a class="nav-link" href="/">ABOUT US</a>
                     </li>
+
                 </ul>
             </div>
-
+                    
             <div className="navbar-nav">
-                <li className="nav-item border rounded-circle mx-2 search-icon">
-                <i class="fas fa-search p-2"></i>
-                </li>
+                <Search />
 
-                <li className="nav-item border rounded-circle mx-2 cart-icon">
-                <i class="fas fa-shopping-cart p-2"></i>
+                <li className="nav-item mx-2 cart-icon">
+                <Link className="nav-link" to="/cart">
+                <i class="fas fa-2x fa-shopping-cart mx-2 my-2"></i>
+                {/*NOTE Show the number of product beside Cart icon */}
+                <sup>
+                    <small className="cart-badge ">{itemTotal()}</small>
+                </sup>
+               
+                </Link>
                 </li>
+             
             </div>
 
         </nav>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import {Link, withRouter} from 'react-router-dom' 
 import { getCategories, list } from "./apiCore";
 import Card from "./Card";
+import './Search.css';
+
 
 const Search = ({history,handleSearch}) => {
     const [data, setData] = useState({
@@ -37,6 +39,7 @@ const Search = ({history,handleSearch}) => {
 
     useEffect(() => {
         loadCategories();
+        
 
 
     }, []);
@@ -86,9 +89,8 @@ const Search = ({history,handleSearch}) => {
     const searchedProducts = (results = []) => { //NOTE defalut = empty array
         return (
             <div>
-                <h2 className="mt-4 mb-4">
-                    {searchMessage(searched, results)}
-                </h2>
+                {/* <h2 className="mt-4 mb-4">
+                </h2> */}
 
                 {/* <div className="row">
                     {results.map((product, i) => (
@@ -103,50 +105,31 @@ const Search = ({history,handleSearch}) => {
 
     const searchForm = () => (
         <form onSubmit={searchSubmit}>
-            <span className="input-group-text">
-                <div className="input-group input-group-lg">
-                    <div className="input-group-prepend">
-                        <select
-                            className="btn mr-2"
-                            onChange={handleChange("category")}
-                        >
-                            <option value="All">All</option>
-                            {/* NOTE grab categories from the state */}
-                            {categories.map((c, i) => (
-                                <option key={i} value={c._id}>
-                                    {c.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
 
-                    <input
-                        type="search"
-                        className="form-control"
-                        onChange={handleChange("search")}
-                        placeholder="Search by name"
-                    />
-                </div>
-                <div
-                    className="btn input-group-append"
-                    style={{ border: "none" }}
-                >
-                    <button className="input-group-text">Search</button>
-                </div>
-            </span>
-        </form>
+       <div class="container-fluid h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" onChange={handleChange("search")}
+ type="text" name="" placeholder="Search by name"/>
+       <div class="search_icon">
+           <div className="colorbtn">
+           <button>
+           <i class="fas fa-search"></i> 
+           </button>
+           </div>
+       </div>
+        </div>
+      </div>
+    </div>
+    </form>
     );
 
    
 
     return (
-        <div className="row">
-            <div className="container mb-3">{searchForm()}</div>
-            <div className="container-fluid mb-3">
-                {searchedProducts(results)}
-        
-            </div>
-        </div>
+    <div>  {searchForm()}</div>
+         
+           
     );
 };
 

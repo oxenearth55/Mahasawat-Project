@@ -5,7 +5,7 @@ import Footer from './Footer';
 import {getProducts} from './apiCore';
 import ProductImage from './ProductImage';
 import ShowProduct from './Home-components/ShowProduct'
-import Search from './Search'
+import eCommercePage from './Home-components/eCommercePage'
 
 const Home = () => {
 
@@ -61,9 +61,7 @@ const headerIntro = () => (
         </div>     
     
         <div className="row mt-5">
-                <div className="col-md-2 col-sm-12">
-                <button type="button" class="btn-text btn-secondary btn-rounded py-2">More details</button>
-                </div>
+              
                 <div className="col-md-2 col-sm-12">
                 <button type="button" class="btn-text btn btn-danger btn-rounded py-2">Shop now</button>
             </div>
@@ -147,7 +145,6 @@ const firstSection = () =>(
     return(
         <div>
         <Menu/>
-        <Search/>
         {headerIntro()} 
          {/* NOTE show best sellers */}
          <div className="container-fluid show-product pt-2 pb-5">
@@ -157,7 +154,8 @@ const firstSection = () =>(
                 <ShowProduct key={i} product={product}/>        
                 ))}
         </div>
-       
+     
+
         {/* NOTE Show new arrivals */}
         <h2 className="head-section mb-4">New Arrivals</h2>
         <div className="row">
