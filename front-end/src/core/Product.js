@@ -3,13 +3,31 @@ import Layout from './Layout';
 import { read, listRelated,getCategories } from './apiCore';
 import Card from './Card';
 import ProductImage from './ProductImage';
+import {addItem, updateItem,removeItem} from './cartHelpers'; 
+import { Link, Redirect } from 'react-router-dom';
+
+
 
 const Product = props => {
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [redirect, setRedirect] = useState(false);
+
   
+    
+
+    const addToCart = () => {
+        addItem(product, setRedirect(true));
+      };
+
+      const shouldRedirect = redirect => {
+        if(redirect){
+          return <Redirect to ="/cart" />
+        }
+      };
+
     const c = () => {
         getCategories().then(data => {
             if (data.error) {
@@ -19,6 +37,15 @@ const Product = props => {
             } 
             console.log(data)
         });
+    };
+
+
+    const deliveryStatus = () => {
+        
+    };
+
+    const ratting = () => {
+
     };
 
     const loadSingleProduct = productId => {
@@ -55,10 +82,10 @@ const Product = props => {
             description={product._id}
             className="container-fluid"
         >
+            {shouldRedirect(redirect)}
          <div className="container-fluid">
             <div className="row">
                 <div className="col-6">
-
                   <ProductImage  className="img-responsive" item={product} url="product"/>
 
                 </div> 
@@ -66,17 +93,26 @@ const Product = props => {
                 <div className="col-6" >
                     
 <h3 className="" align="center">{product.name} </h3>
-                     <div className="mx-4 mt-4 ">  <p>{product.description}</p></div>
-                     <h4>{product.price} Bath</h4>
+                     <div className="row mx-1 mt-4 "> 
+                      <p className="bg-dark text-white mr-4">Description:</p> 
                      
-                     <button className="btn button-outline-warning">
-                              Add to Cart
+                     <p className="bg-light text-dark">  {product.description}</p>
+                     
+                     </div>    
+
+                     <div className="row mx-1 mt-4 "> 
+                      <p className="bg-dark text-white mr-4">Price</p> 
+
+                     <h4 className =" ">฿ {product.price}</h4>
+                     
+                     </div>
+
+                     <button onClick = {addToCart} className="btn btn-danger mt-4">
+                           Add to Cart
                      </button>     
-                
-                </div>     
-             
-         
-                </div>
+                        
+                </div> 
+            </div> 
             </div>
             <div className="row my-4">
                     <h4>Related products</h4>

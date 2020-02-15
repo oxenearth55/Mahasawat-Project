@@ -5,37 +5,40 @@ import {addItem, updateItem,removeItem} from './cartHelpers';
 import { updateCategory } from '../admin/apiAdmin';
 
 
+
+
 const Card = ({
 
   product,cartUpdate = false,
   showAddToCartButton =true,
-  showRemoveProductButton = false
-
+  showRemoveProductButton = false, 
+  setRun = f => f, // NOTE default value of function 
+  run = undefined  // NOTE default value of undefined 
 }) => {
 
-  const {redirect, setRedirect} = useState(false)
+  const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
  
 
 
-  
-  const addToCart = () => {
-    //NOTE add Item to local storage
-    addItem(product, () => {
-      setRedirect(true)
-    })
-  }
+   const addToCart = () => {
+    // console.log('added');
+    addItem(product, setRedirect(true));
+  };
+
 //NOTE When user add product to cart, a page will display cart page automatically
   const shouldRedirect = redirect => {
     if(redirect){
-      return <Redirect to ="/cart"/>
+      return <Redirect to ="/cart" />
     }
   };
 
   
+  
 
   //NOTE grab product Id 
   const handleChange = productId => event => {
+    setRun(!run); //NOTE run useEffect in parent Cart
     //NOTE Make sure that value don't contain negative value
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if(event.target.value >= 1){
@@ -62,7 +65,7 @@ const showAddCartBtn = showAddToCartButton => {
   
   return (
       showAddToCartButton &&(
-        <button onClick = {addToCart} className="btn button-outline-warning">
+        <button onClick = {addToCart} className="btn btn-danger">
         Add to Cart
       </button>
       )
@@ -75,31 +78,53 @@ const showRemoveButton = showRemoveProductButton => {
   
   return (
       showRemoveProductButton &&(
-        <button onClick = {() => removeItem(product._id)} className="btn button-outline-warning">
+        <button onClick = {() => {removeItem(product._id); setRun(!run);}}
+        className="btn button-outline-warning">
 Remove       </button>
       )
     );
 };
 
+
+const showStock = quantity => {
+  return quantity > 0 ? (
+    <span className="badge badge-primary badge-pill">In Stock </span>
+  ) : (
+    <span className="badge bg-danger badge-primary badge-pill">Out of Stock </span>
+  );
+};   
+
   return(
     <div className="card">
-      {shouldRedirect(redirect)}
-      <ProductImage className="card-img-top" item={product} url="product"/>
+      <ProductImage className="card-img-top img-responsive " item={product} url="product"/>
       <div className="card-body">
-        <h5 className="card-title"/>
-          {product.name} 
+      {shouldRedirect(redirect)}
+
+        <h5 className="card-title">
+          {product.name}  </h5>
           {/* NOTE Show description only 0 to .. character  */}
-          <p className="card-text">{product.description.substring(0,20)}</p> 
-         
-          {/* NOTE Link to product that came from clicking */}
-         
+          <p className="card-text" style={{color: 'red'}} >฿ {product.price} </p> 
+       
+         <div className="row mb-3">
+          {showStock(product.quantity)}
+          </div>
+
+         <div className="row">
+              {/* NOTE Link to product that came from clicking */}
+         <div className="col-6">
           <Link to= {`/product/${product._id}`}>
-            <button className="btn button-outline-primary">
+            <button className="btn btn-outline-warning">
               See Product
             </button>
           </Link>
+          </div>
+
+          <div className="col-6">
+          {showAddCartBtn(showAddToCartButton)}
+          </div>
+
+         </div>
    
-           {showAddCartBtn(showAddToCartButton)}
  
           {showRemoveButton(showRemoveProductButton)}
           {showCartUpdateOptions(cartUpdate)}

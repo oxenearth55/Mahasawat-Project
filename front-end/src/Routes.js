@@ -22,7 +22,7 @@ const Routes = () => {
             <Route path="/" exact component={Home}></Route> 
             <Route path="/product/:productId" exact component={Product}></Route> 
             <Route path="/shop/:searchResult" exact component={Shop}></Route>
-            <Route path="/cart/" exact component={Cart}></Route>
+            <Route path="/cart" exact component={Cart}></Route>
 
 
 

@@ -56,8 +56,7 @@ const Shop = props => {
  },[props] )
   //----------------------------------------------------------------
 
-    
-
+ 
 //SECTION Filters Method 
 
     //NOTE grab data from backend and keep it in state as an array
@@ -152,7 +151,6 @@ const Shop = props => {
     <h2 className="mt-4 mb-4">
             {/* {showSearchMessage(results, search)} */}
             </h2>
-            <h2 className="mb-4">Products</h2>
             <div className="row">
                 { results.map((product,i) => (
                     <div className="col-4 mb-4">
@@ -168,10 +166,9 @@ const Shop = props => {
 const defaultDisplay = () =>{
     return(  
         <div className="col-8">
-        <h2 className="mb-4">Products</h2>
         <div className="row">
             { filterResults.map((product,i) => (
-                <div className="col-4 mb-4">
+                <div className="col-6 mb-4">
                     <Card key={i} product={product}/> 
                 </div>
             ))}
@@ -188,31 +185,33 @@ const defaultDisplay = () =>{
     description="Search and find product that you prefer"
     className="container-fluid">
        
-    <div className="row">
-
-        <div className="col-4">
-            
-            <h4>
+    <div className="row ">
+        <div className="col-4 ">
+         <h4 className="text-white bg-dark">
                Filter by categories
              </h4> 
+                <div className="mb-4 p-3 mb-2 bg-light text-dark">
              <Checkbox categories={categories} 
              handleFilters={filters => handleFilters(filters,"category")
             }     
     />
+    </div>
 
-             <h4>
+             <h4 className="text-white bg-dark">
                Filter by price range
              </h4> 
+           <div className="bg-light text-dark">
              <RadioBox prices={prices} 
              handleFilters={filters => handleFilters(filters,"price")
             }     
     />
         </div>
+        </div>
         {/* {triggerSearch(trigger)} */}
 
 
          {defaultDisplay()}
-         {/* {shopDisplay(results)} */}
+         {/* {shopDisplay(data.results)} */}
 
 
     </div>

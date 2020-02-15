@@ -21,14 +21,14 @@ const Checkbox = ({ categories, handleFilters }) => {
     };
 
     return categories.map((c, i) => (
-        <li key={i} className="list-unstyled">
+        <li key={i} className="list-unstyled ">
             <input
                 onChange={handleToggle(c._id)}
                 value={checked.indexOf(c._id === -1)}
                 type="checkbox"
-                className="form-check-input"
+                className="form-check-input ml-4"
             />
-            <label className="form-check-label">{c.name}</label>
+            <label className="form-check-label ml-5">{c.name}</label>
         </li>
     ));
 };

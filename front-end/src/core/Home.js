@@ -5,7 +5,7 @@ import Footer from './Footer';
 import {getProducts} from './apiCore';
 import ProductImage from './ProductImage';
 import ShowProduct from './Home-components/ShowProduct'
-import eCommercePage from './Home-components/eCommercePage'
+import Layout from './Layout'
 
 const Home = () => {
 
@@ -17,7 +17,7 @@ const Home = () => {
     // SECTION Display bestseller and new arrival products
     const loadProductsBySell = () => {
         // NOTE get product by sold
-        getProducts('sold').then(data => {
+        getProducts('sold',6).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
@@ -29,7 +29,7 @@ const Home = () => {
 
     const loadProductsByArrival = () => {
         // NOTE get product by date
-        getProducts('createdAt').then(data => {
+        getProducts('createdAt',3).then(data => {
             console.log(data);
             if (data.error) {
                 setError(data.error);
@@ -137,6 +137,17 @@ const firstSection = () =>(
     </section>
     );
 
+    const showArrival = () => (
+        <div>
+
+
+        </div>
+
+
+    );
+
+
+
     
 
     
@@ -147,13 +158,17 @@ const firstSection = () =>(
         <Menu/>
         {headerIntro()} 
          {/* NOTE show best sellers */}
-         <div className="container-fluid show-product pt-2 pb-5">
+        
+         <div className="container-fluid   show-product pt-1 pb-5">
         <h2 className="head-section mb-4">Best Sellers</h2>
         <div className="row"> 
                 {productsBySell.map((product,i) => (
-                <ShowProduct key={i} product={product}/>        
+              <div className="col-md-4 col-sm-12 mt-3 ">
+                <ShowProduct key={i} product={product}/>   
+             </div>
+     
                 ))}
-        </div>
+            </div>
      
 
         {/* NOTE Show new arrivals */}
@@ -161,9 +176,13 @@ const firstSection = () =>(
         <div className="row">
                 {/* NOTE show best sellers */}
                 {productsByArrival.map((product,i) => (
-                <ShowProduct key={i} product={product}/>        
+                <div className="col-md-4 col-sm-12 mt-3">
+                <ShowProduct key={i} product={product}/>     
+                </div>   
                 ))}
         </div>
+
+
         </div>
   
         {firstSection()}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {Link, withRouter} from 'react-router-dom' 
 import './Menu.css'
 import {signout, isAuthenticated} from '../auth' 
@@ -21,9 +21,28 @@ import {itemTotal} from './cartHelpers'
 // var { user } = isAuthenticated();
 
 
-const Menu = ({history,handleSearch}) => (
+const Menu = ({history,handleSearch}) => {
+
+    // const [totalCart, setTotalCart] = useState([]);
+
+    // useEffect(() => {
+    //     showCartTotal() //NOTE get object (cart) from local storage
+    // }, []);
+
+
+    const showCartTotal = () => {
+        return(
+            <sub>
+                  <small className="cart-badge ">{itemTotal()}</small>
+            </sub>
+          
+
+        ) 
+    };
+
+return(
     
-<header>
+<header className="menu-font">
     {/*SECTION First-nav */}
     <div className = "container p-0">
         <div className = "row">
@@ -135,10 +154,7 @@ const Menu = ({history,handleSearch}) => (
                 <Link className="nav-link" to="/cart">
                 <i class="fas fa-2x fa-shopping-cart mx-2 my-2"></i>
                 {/*NOTE Show the number of product beside Cart icon */}
-                <sup>
-                    <small className="cart-badge ">{itemTotal()}</small>
-                </sup>
-               
+                {showCartTotal()}            
                 </Link>
                 </li>
              
@@ -168,6 +184,6 @@ const Menu = ({history,handleSearch}) => (
 </nav> */}
 </header>
 
-); 
+); };
 
 export default withRouter(Menu);
