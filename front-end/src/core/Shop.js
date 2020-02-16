@@ -35,8 +35,8 @@ const Shop = props => {
 
     //ANCHOR Search 
     const [data, setData] = useState({
-        search: "",
-        results: [],
+        search: false,
+        results: []
         
     });
 
@@ -127,7 +127,7 @@ const Shop = props => {
                    if (response.error) {
                        console.log(response.error);
                    } else {
-                       setData({ ...data, results: response, searched: true}); //NOTE get result from backend and keep it in state
+                       setData({ ...data, results: response}); //NOTE get result from backend and keep it in state
                    }
                }
            );
@@ -167,6 +167,7 @@ const defaultDisplay = () =>{
     return(  
         <div className="col-8">
         <div className="row">
+       { console.log("Search result issss"+ data.search)}
             { filterResults.map((product,i) => (
                 <div className="col-6 mb-4">
                     <Card key={i} product={product}/> 
@@ -179,11 +180,21 @@ const defaultDisplay = () =>{
 
 };
 
+
+const handleSearch = (searchResult) =>{
+    const newSearch = {...data}
+    newSearch.search = searchResult
+    setData(newSearch)
+    console.log("Search result issss"+ newSearch.search)
+};
+
+
     return(
     <Layout
     title="Shop page"
     description="Search and find product that you prefer"
-    className="container-fluid">
+    className="container-fluid"
+    handleSearch ={search => handleSearch(search)}>
        
     <div className="row ">
         <div className="col-4 ">

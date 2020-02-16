@@ -23,12 +23,14 @@ import {itemTotal} from './cartHelpers'
 
 const Menu = ({history,handleSearch}) => {
 
-    // const [totalCart, setTotalCart] = useState([]);
+    // NOTE State to grab search trigger from Search component
+    const [data, setData] = useState({
+        search: false
+        });
 
     // useEffect(() => {
     //     showCartTotal() //NOTE get object (cart) from local storage
     // }, []);
-
 
     const showCartTotal = () => {
         return(
@@ -39,6 +41,14 @@ const Menu = ({history,handleSearch}) => {
 
         ) 
     };
+
+
+    // const handleSearch = (searchResult) =>{
+    //     const newSearch = {...data}
+    //     newSearch.search = searchResult
+    //     setData(newSearch)
+    //     console.log("Search result issss"+ newSearch.search)
+    // };
 
 return(
     
@@ -148,7 +158,7 @@ return(
             </div>
                     
             <div className="navbar-nav">
-                <Search />
+                <Search handleSearch ={search => handleSearch(search)}/>
 
                 <li className="nav-item mx-2 cart-icon">
                 <Link className="nav-link" to="/cart">

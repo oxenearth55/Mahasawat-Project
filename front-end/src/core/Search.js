@@ -68,6 +68,9 @@ const Search = ({history,handleSearch}) => {
 
         // history.push(`/shop/${search}/${category}/${trigger}`)
         history.push(`/shop/${search}`)
+        const newSearch = {...data}
+        newSearch.searched = true
+        handleSearch(newSearch.searched)
 
 
         // searchQuery();
