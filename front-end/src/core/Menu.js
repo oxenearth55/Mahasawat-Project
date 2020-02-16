@@ -28,9 +28,11 @@ const Menu = ({history,handleSearch}) => {
         search: false
         });
 
-    // useEffect(() => {
-    //     showCartTotal() //NOTE get object (cart) from local storage
-    // }, []);
+        const {search} = data
+
+    useEffect(() => {
+        // showCartTotal() //NOTE get object (cart) from local storage
+    }, []);
 
     const showCartTotal = () => {
         return(
@@ -42,19 +44,31 @@ const Menu = ({history,handleSearch}) => {
         ) 
     };
 
-
-    // const handleSearch = (searchResult) =>{
+    // const setSearch = (searchResult) => {
     //     const newSearch = {...data}
     //     newSearch.search = searchResult
-    //     setData(newSearch)
-    //     console.log("Search result issss"+ newSearch.search)
-    // };
+    //     handleSearched(newSearch.search)
+    // }
+
+
+
+    const handleSearched = (searchResult) =>{
+        const newSearch = {...data}
+        newSearch.search = searchResult
+        setData({...data, search: newSearch.search})
+        handleSearch(newSearch.search)
+        // setSearch(newSearch.search)
+        console.log("Search result issss"+ newSearch.search)
+    };
 
 return(
     
 <header className="menu-font">
     {/*SECTION First-nav */}
     <div className = "container p-0">
+        {        console.log("Search result is Menu333 " + data.search)
+}
+
         <div className = "row">
             <div className = "col-md-4 col-sm-12 col-12 ">
                 <div className = ".btn-grpup">
@@ -108,9 +122,7 @@ return(
                     </div>  
                     )}
 
-
-                  
-    
+  
                 </p>
             </div>
            
@@ -158,7 +170,10 @@ return(
             </div>
                     
             <div className="navbar-nav">
-                <Search handleSearch ={search => handleSearch(search)}/>
+                <Search handleSearch ={search => handleSearch(search)}
+                handleSearched ={search => handleSearched(search)}
+                
+                />
 
                 <li className="nav-item mx-2 cart-icon">
                 <Link className="nav-link" to="/cart">

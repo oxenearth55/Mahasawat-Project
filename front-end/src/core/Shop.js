@@ -8,6 +8,7 @@ import RadioBox from './RadioBox'
 import Search from './Search'
 import {list} from './apiCore'
 import { getCategory } from '../admin/apiAdmin';
+import ShowProduct from './Home-components/ShowProduct';
 
 
 
@@ -40,6 +41,7 @@ const Shop = props => {
         
     });
 
+    const {search, results} =data;
 
 
     //ANCHOR ------------Life Cycle-----------------------------------------------
@@ -52,6 +54,7 @@ const Shop = props => {
     // const categoryQuery = props.match.params.categoryResult;   
     // const trigger = props.match.params.trigger;
     searchData(searchQuery);
+    setData({...data, search: false})
        
  },[props] )
   //----------------------------------------------------------------
@@ -147,18 +150,15 @@ const Shop = props => {
     //NOTE Display when users searched
     const shopDisplay = (results = []) => {
         return(  
-    <div className="col-8">
-    <h2 className="mt-4 mb-4">
-            {/* {showSearchMessage(results, search)} */}
-            </h2>
+            <div className="col-8">
             <div className="row">
                 { results.map((product,i) => (
-                    <div className="col-4 mb-4">
+                    <div className="col-6 mb-4">
                         <Card key={i} product={product}/> 
                     </div>
                 ))}
             </div>
-        </div>      
+        </div>
         );
                 };
 
@@ -167,7 +167,6 @@ const defaultDisplay = () =>{
     return(  
         <div className="col-8">
         <div className="row">
-       { console.log("Search result issss"+ data.search)}
             { filterResults.map((product,i) => (
                 <div className="col-6 mb-4">
                     <Card key={i} product={product}/> 
@@ -180,14 +179,23 @@ const defaultDisplay = () =>{
 
 };
 
-
+// NOTE grab search trigger from Layout => Menu => Search component as (true condition)
 const handleSearch = (searchResult) =>{
     const newSearch = {...data}
     newSearch.search = searchResult
-    setData(newSearch)
-    console.log("Search result issss"+ newSearch.search)
+    setData({...data, search: newSearch.search})
 };
 
+
+
+const show = (search) =>{
+   
+    if(search){
+        return shopDisplay(results);
+    }else{
+        return defaultDisplay();
+    }
+}
 
     return(
     <Layout
@@ -195,7 +203,8 @@ const handleSearch = (searchResult) =>{
     description="Search and find product that you prefer"
     className="container-fluid"
     handleSearch ={search => handleSearch(search)}>
-       
+       {    console.log("Search result final is "+ data.search)
+}
     <div className="row ">
         <div className="col-4 ">
          <h4 className="text-white bg-dark">
@@ -221,7 +230,7 @@ const handleSearch = (searchResult) =>{
         {/* {triggerSearch(trigger)} */}
 
 
-         {defaultDisplay()}
+         {show(data.search)}
          {/* {shopDisplay(data.results)} */}
 
 
