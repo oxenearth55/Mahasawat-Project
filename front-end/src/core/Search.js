@@ -12,18 +12,8 @@ const Search = ({history,handleSearch}) => {
         search: "",
         results: [],
         searched: false,
-        trigger: false
+        trigger: "0"
     });
-
-    // const {trigger, setTrigger} = useState()
-    // const searchQuery = () => {
-    //     this.props.history.push(`/shop/${query}`);
-
-    // }
-
-    const query = () => {
-        return { search: {search} || undefined, category: category }
-    }
     
     const { categories, category, search, results, searched, trigger} = data;
     // NOTE Get categories from backend via apiCore
@@ -39,7 +29,7 @@ const Search = ({history,handleSearch}) => {
 
     useEffect(() => {
         loadCategories();
-        
+        searchForm();
 
 
     }, []);
@@ -52,7 +42,7 @@ const Search = ({history,handleSearch}) => {
                     if (response.error) {
                         console.log(response.error);
                     } else {
-                        setData({ ...data, results: response, searched: true, trigger: true }); //NOTE get result from backend and keep it in state
+                        setData({ ...data, results: response, searched: true, trigger: 1 }); //NOTE get result from backend and keep it in state
                         // console.log(`Result from Search ${data}`)
                     }
                 }
@@ -67,17 +57,25 @@ const Search = ({history,handleSearch}) => {
         // console.log("check trigger " + trigger)
 
         // history.push(`/shop/${search}/${category}/${trigger}`)
-        history.push(`/shop/${search}`)
+
+        //NOTE if input box is blank, when user click submit btn again, it will display default product
+        if(search.length >=1){
+        history.push(`/shop/${search}/${trigger}`)
+        }
+        else{
+            history.push(`/shop/:searchResult/:search`)
+        }
+
         const newSearch = {...data}
         newSearch.searched = true
-        handleSearch(newSearch.searched)
+        // handleSearch(newSearch.searched)
 
 
         // searchQuery();
     };
 
     const handleChange = name => event => {
-        setData({ ...data, [name]: event.target.value, searched: false,trigger: true });
+        setData({ ...data, [name]: event.target.value, searched: false,trigger: 1 });
     };
 
     const searchMessage = (searched, results) => {

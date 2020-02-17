@@ -43,6 +43,7 @@ const Shop = props => {
 
     const {search, results} =data;
 
+    const trigger = props.match.params.search;
 
     //ANCHOR ------------Life Cycle-----------------------------------------------
    
@@ -53,8 +54,8 @@ const Shop = props => {
     const searchQuery = props.match.params.searchResult; //NOTE get searchQuery from URL
     // const categoryQuery = props.match.params.categoryResult;   
     // const trigger = props.match.params.trigger;
+    
     searchData(searchQuery);
-    setData({...data, search: false})
        
  },[props] )
   //----------------------------------------------------------------
@@ -124,7 +125,6 @@ const Shop = props => {
 // SECTION Search Method
      const searchData = (searchQuery, categoryQuery) => {
      
-        console.log(`Intitial Object is ${ categoryQuery}`);
            list({search: searchQuery || undefined }).then(
                response => {
                    if (response.error) {
@@ -188,9 +188,9 @@ const handleSearch = (searchResult) =>{
 
 
 
-const show = (search) =>{
+const show = (trigger) =>{
    
-    if(search){
+    if(trigger == 1){
         return shopDisplay(results);
     }else{
         return defaultDisplay();
@@ -203,8 +203,7 @@ const show = (search) =>{
     description="Search and find product that you prefer"
     className="container-fluid"
     handleSearch ={search => handleSearch(search)}>
-       {    console.log("Search result final is "+ data.search)
-}
+     
     <div className="row ">
         <div className="col-4 ">
          <h4 className="text-white bg-dark">
@@ -230,7 +229,7 @@ const show = (search) =>{
         {/* {triggerSearch(trigger)} */}
 
 
-         {show(data.search)}
+         {show(trigger)}
          {/* {shopDisplay(data.results)} */}
 
 

@@ -160,7 +160,7 @@ return(
                     )}
 
                     <li class="nav-item">
-                    <Link className="nav-link" to="/shop/:searchResult">SHOP</Link>
+                    <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">ABOUT US</a>
@@ -170,11 +170,12 @@ return(
             </div>
                     
             <div className="navbar-nav">
-                <Search handleSearch ={search => handleSearch(search)}
-                handleSearched ={search => handleSearched(search)}
+                <Search 
+                
                 
                 />
 
+{/* handleSearch ={search => handleSearch(search) */}
                 <li className="nav-item mx-2 cart-icon">
                 <Link className="nav-link" to="/cart">
                 <i class="fas fa-2x fa-shopping-cart mx-2 my-2"></i>
