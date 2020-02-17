@@ -6,6 +6,8 @@ import {getProducts} from './apiCore';
 import ProductImage from './ProductImage';
 import ShowProduct from './Home-components/ShowProduct'
 import Layout from './Layout'
+import {Link} from 'react-router-dom'
+
 
 const Home = () => {
 
@@ -63,7 +65,12 @@ const headerIntro = () => (
         <div className="row mt-5">
               
                 <div className="col-md-2 col-sm-12">
+               
+                <Link to= {`/shop/:searchResult/:search`}>
+
                 <button type="button" class="btn-text btn btn-danger btn-rounded py-2">Shop now</button>
+
+                </Link>
             </div>
         </div> 
            
@@ -159,12 +166,12 @@ const firstSection = () =>(
         {headerIntro()} 
          {/* NOTE show best sellers */}
         
-         <div className="container-fluid   show-product pt-1 pb-5">
+         <div className="container-fluid pt-1 pb-4">
         <h2 className="head-section mb-4">Best Sellers</h2>
         <div className="row"> 
                 {productsBySell.map((product,i) => (
               <div className="col-md-4 col-sm-12 mt-3 ">
-                <ShowProduct key={i} product={product}/>   
+                <ShowProduct key={i} product={product} bestSeller={true}/>   
              </div>
      
                 ))}
@@ -172,16 +179,19 @@ const firstSection = () =>(
      
 
         {/* NOTE Show new arrivals */}
-        <h2 className="head-section mb-4">New Arrivals</h2>
-        <div className="row">
+        <div className="bg-light mt-4 pb-4">
+            <div className="">
+            <h2 className="head-section mb-4">New Arrivals</h2>
+            </div>
                 {/* NOTE show best sellers */}
+               
                 {productsByArrival.map((product,i) => (
-                <div className="col-md-4 col-sm-12 mt-3">
-                <ShowProduct key={i} product={product}/>     
+                 <div className ="">
+                <ShowProduct key={i} product={product} NewArrival={true}/>  
                 </div>   
                 ))}
+               
         </div>
-
 
         </div>
   

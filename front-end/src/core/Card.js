@@ -96,7 +96,7 @@ const showStock = quantity => {
 
   return(
     <div className="card">
-      <ProductImage className="card-img-top img-responsive " item={product} url="product"/>
+      <ProductImage className="card-img-top img-responsive img-card" item={product} url="product"/>
       <div className="card-body">
       {shouldRedirect(redirect)}
 

@@ -79,8 +79,9 @@ const Product = props => {
     return (
         <Layout
             title={product && product.name}
-            description={product._id}
+            description= "You can see product here"
             className="container-fluid"
+            headerImg="productImgLayout"
         >
             {shouldRedirect(redirect)}
          <div className="container-fluid">

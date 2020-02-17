@@ -2,15 +2,14 @@ import React from 'react';
 import ProductImage from '../ProductImage'
 import {Link} from 'react-router-dom'
 
-const ShowProduct = ({product}) => {
+const ShowProduct = ({product,newArrival=false, bestSeller =false}) => {
 
 
-    const imageOverlay = () => (
+    const showBestSeller = () => (
     
         // <div className="row">
         //     <div className="col-6">
-        
-        <div className="card " style={{width:"102%"}}>
+         <div className="card " style={{width:"102%"}}>
         <ProductImage className=" darkerImg  " style="" item={product} url="product"/>
         <div className="card-img-overlay text-center my-5" >
             <div className="align-middle" >
@@ -29,8 +28,48 @@ const ShowProduct = ({product}) => {
 
     );
 
+const showNewArrival = () => (
+    <div className ="container-fluid mx-0 px-0 my-4">
+        <div className="row">
+                <div class="col-md-6 col-sm-12">
+                <ProductImage className="" style="" item={product} url="product"/>
+                </div>
+                
+                <div className="col-6 bg-white text-dark">
+                    <h2 className="text-center mt-2">{product.name}</h2> 
+                    <p className="mt-4">{product.description.substring(0, 300)}</p>
+            
+                     <div className="text-center mt-md-4 mb-sm-4">
+                        <Link to= {`/product/${product._id}`}>
+                            <button className="btn btn-outline-dark">
+                            See Product
+                            </button>
+                        </Link>
+
+                    </div>
+
+                </div>
+
+             
+
+        </div>
+
+       
+        
+       
+
+    </div>
+);
 
 
+const showDisplay = () => {
+    if(bestSeller){
+        return showBestSeller();
+    }else{
+        return showNewArrival();
+    }
+
+};
     
 
 
@@ -54,7 +93,7 @@ const ShowProduct = ({product}) => {
     return(
        
        <div>
-           {imageOverlay()}
+           {showDisplay()}
        </div>
        
        

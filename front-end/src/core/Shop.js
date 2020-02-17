@@ -73,7 +73,7 @@ const Shop = props => {
             }
         });
     };
-    // NOTE Send result from Checkbox and RadioBox and send to backend
+    // NOTE Send result (categories ID and price range as Array) from Checkbox and RadioBox and send to backend
     const loadFilteredResults = (newFilters) =>{
         getFilteredProducts(skip, limit, newFilters).then(data => { //NOTE  this method will return result that match with filter
             if(data.error){
@@ -91,6 +91,8 @@ const Shop = props => {
     //        return defaultDisplay();
     //     }
     // };
+
+
 
     // NOTE grab filter (category) id that was filtered by checkbox before sending it to backend
     // NOTE  this method is used to set state from others component(Checkbox)
@@ -176,7 +178,6 @@ const defaultDisplay = () =>{
     </div>
     
     );
-
 };
 
 // NOTE grab search trigger from Layout => Menu => Search component as (true condition)
@@ -202,7 +203,8 @@ const show = (trigger) =>{
     title="Shop page"
     description="Search and find product that you prefer"
     className="container-fluid"
-    handleSearch ={search => handleSearch(search)}>
+    headerImg = "shopImgLayout"
+    >
      
     <div className="row ">
         <div className="col-4 ">
