@@ -139,6 +139,7 @@ const showSuccess = () => (
     title="Signup"
     description="Please create your account "
     className="container col-md-8 offset-md-2"
+    headerImg="dashBoardImgLayout"
 >
   {/* NOTE  Call Method above */}
     {showSuccess()}

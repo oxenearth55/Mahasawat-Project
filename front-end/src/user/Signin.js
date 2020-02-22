@@ -106,6 +106,7 @@ const Signin = () => {
             title="Signin"
             description="You can log in if you have an account."
             className="container col-md-8 offset-md-2"
+            headerImg="dashBoardImgLayout"
         >
             {showLoading()}
             {showError()}
