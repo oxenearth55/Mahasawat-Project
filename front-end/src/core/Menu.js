@@ -162,6 +162,15 @@ return(
                     <li class="nav-item">
                     <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>
                     </li>
+
+                    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
+                        <li class="nav-item">
+                        <Link className="nav-link" to="/SeeOrder">SEE ORDER</Link>
+                        </li>
+
+                    )}
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/">ABOUT US</a>
                     </li>

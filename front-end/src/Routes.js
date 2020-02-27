@@ -12,6 +12,8 @@ import AddProduct from './admin/AddProduct'
 import Shop from './core/Shop'
 import Product from'./core/Product'
 import Cart from './core/Cart'
+import Orders from './admin/Orders'
+import SeeOrder from'./core/SeeOrder'
 const Routes = () => {
 
     return (<BrowserRouter>
@@ -23,6 +25,8 @@ const Routes = () => {
             <Route path="/product/:productId" exact component={Product}></Route> 
             <Route path="/shop/:searchResult/:search" exact component={Shop}></Route>
             <Route path="/cart" exact component={Cart}></Route>
+            <Route path="/seeOrder" exact component={SeeOrder}></Route>
+
 
 
 
@@ -38,6 +42,9 @@ const Routes = () => {
             <AdminRoute path="/create/category" exact component={AddCategory} />
 
             <AdminRoute path="/create/product" exact component={AddProduct} />
+
+
+            <AdminRoute path="/admin/orders" exact component={Orders} />
 
 
         </Switch>

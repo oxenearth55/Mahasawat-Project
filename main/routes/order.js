@@ -21,14 +21,18 @@ router.post(
     create
 );
 
-router.get("/order/list/:userId", requireSignin, isAuth, isAdmin, listOrders);
+//NOTE Both user and admin can see order (Specific order will be provided in front end (Matching user ID with order))
+router.get("/order/list/:userId", requireSignin, isAuth, listOrders); //isAdmin
+
 router.get(
     "/order/status-values/:userId",
     requireSignin,
     isAuth,
-    isAdmin,
+    // isAdmin,
     getStatusValues
 );
+
+//NOTE Only admin can have a permission to implement on order status
 router.put(
     "/order/:orderId/status/:userId",
     requireSignin,

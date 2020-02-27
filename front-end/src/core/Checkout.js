@@ -16,8 +16,12 @@ const Checkout = ({products, setRun = f => f, run = undefined }) => {
         clientToken: null, 
         error: '', 
         instance: {},
-        address: ''
-    })
+        address: ""
+    });
+
+
+    const [customerAddress, setCustomerAddress] = useState('')
+
 
 //NOTE grab user data from isAuthenticated
 const userId = isAuthenticated() && isAuthenticated().user._id 
@@ -40,6 +44,11 @@ const getToken = (userId, token) => {
 useEffect(() => {
     getToken(userId, token)
 },[])
+
+
+
+//NOTE Rename of address from state => reduce confusing for using duplicated data (variable)
+// let deliveryAddress = data.address;
 
 const buy = () => {
     // setData({loading:true});
@@ -73,8 +82,8 @@ const buy = () => {
                 products: products,
                 transaction_id: response.transaction.id, // NOTE return from braintree
                 amount: response.transaction.amount, //NOTE  how much user pay for this order (return from braintree)
-                address: data.address
-            }
+                address: customerAddress
+            };
             //NOTE Then put it into database via createOrder method
             createOrder(userId,token,createOrderData)     
             setData({...data, success: response.success})
@@ -110,7 +119,7 @@ const buy = () => {
 
 // NOTE grab address from a user inputs
 const handleAddress = event => {
-    setData({ ...data, address: event.target.value });
+    setCustomerAddress(event.target.value );
 };
 
 
@@ -131,7 +140,7 @@ const showDropIn = () => (
                             placeholder="Type your delivery address here..."
                         />
                     </div>
-
+                {/* NOTE api from brain tree */}
                 <DropIn
                         options={{
                             authorization: data.clientToken,
