@@ -55,55 +55,122 @@ const SeeOrder = () => {
             if(orderStatus === 'Update Status'){
                 return (
 
-                    <div className="container-fluid">
+                    <div className="container-fluid border  border-dark">
                        
-                        <div className="row"> 
+                        <div className="row mt-4"> 
                                 <div className="col-3 text-center">
                                     <img className ="logo" src={waiting}></img>
                                     <p>Awaiting Confirmation</p>
                                 </div>
 
                                 <div className="col-3 text-center">
-                                    <img className ="logo ml-4" src={confirm}></img>
-                                    <p>Order Confirmation</p>
+                                    <img className ="logo ml-4 unStatus" src={confirm}></img>
+                                    <p className="unStatus">Order Confirmation</p>
                                 </div>    
 
                                 <div className="col-3 text-center">
-                                    <img className ="logo " src={packaging}></img>
-                                    <p>Packaging</p>
+                                    <img className ="logo unStatus" src={packaging}></img>
+                                    <p className="unStatus">Packaging</p>
                                 </div>    
 
                                 <div className="col-3 text-center">
-                                    <img className ="logo" src={delivery}></img>
-                                    <p>Shipping</p>
+                                    <img className ="logo unStatus" src={delivery}></img>
+                                    <p className="unStatus">Shipping</p>
                                 </div>        
 
                         </div>
                     </div>
                 )
-            }else if(orderStatus === 'Processing'){
+            }else if(orderStatus === 'Order Confirmation'){
                 return (
-                    <div>
-                        
+                    <div className="container-fluid border  border-dark">
+                       
+                    <div className="row mt-4"> 
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus" src={waiting}></img>
+                                <p className="unStatus">Awaiting Confirmation</p>
+                            </div>
+
+                            <div className="col-3 text-center">
+                                <img className ="logo ml-4" src={confirm}></img>
+                                <p>Order Confirmation</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus " src={packaging}></img>
+                                <p className="unStatus">Packaging</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus" src={delivery}></img>
+                                <p className="unStatus">Shipping</p>
+                            </div>        
+
                     </div>
-                )
-            }else if(orderStatus === 'Shipped'){
-                return (
-                    <div>
-                         <i class="fas fa-5x fa-shipping-fast"></i>
-                    </div>
+                </div>
                 )
 
-            }else if(orderStatus === 'Delivered'){
+            }else if(orderStatus === 'Packaging'){
                 return (
-                    <div>
+                    <div className="container-fluid border  border-dark">
+                       
+                    <div className="row mt-4"> 
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus" src={waiting}></img>
+                                <p className="unStatus">Awaiting Confirmation</p>
+                            </div>
+
+                            <div className="col-3 text-center">
+                                <img className ="logo ml-4 unStatus" src={confirm}></img>
+                                <p className="unStatus">Order Confirmation</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo " src={packaging}></img>
+                                <p>Packaging</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus" src={delivery}></img>
+                                <p className="unStatus">Shipping</p>
+                            </div>        
 
                     </div>
+                </div>
+                )
+
+            }else if(orderStatus === 'Shipping'){
+                return (
+                    <div className="container-fluid border  border-dark">
+                       
+                    <div className="row mt-4"> 
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus" src={waiting}></img>
+                                <p className="unStatus">Awaiting Confirmation</p>
+                            </div>
+
+                            <div className="col-3 text-center">
+                                <img className ="logo ml-4 unStatus" src={confirm}></img>
+                                <p className="unStatus">Order Confirmation</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus " src={packaging}></img>
+                                <p className="unStatus">Packaging</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo" src={delivery}></img>
+                                <p >Shipping</p>
+                            </div>        
+
+                    </div>
+                </div>
                 )
             }else if(orderStatus === 'Cancelled'){
                 return (
                     <div>
-
+                        <p>This order is Cancelled</p>
                     </div>
                 )
             }else{

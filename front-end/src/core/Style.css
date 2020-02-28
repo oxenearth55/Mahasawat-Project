@@ -321,10 +321,16 @@ p{
 
 }
 
+/* SECTION SeeOrder */
+
 .logo{
     height:150px; 
     width: 150px;
    
+}
+
+.unStatus{
+    opacity: 0.3;
 
 }
 
