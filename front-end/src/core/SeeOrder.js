@@ -4,6 +4,12 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders, getStatusValues, updateOrderStatus } from "../admin/apiAdmin";
 import moment from "moment";
+//Import logo.png
+import waiting from './Logo/waiting.png'
+import confirm from './Logo/confirmation.png'
+import payment from './Logo/payment.png'
+import packaging from './Logo/packaging.png'
+import delivery from './Logo/delivery.png'
 
 
 const SeeOrder = () => {
@@ -42,6 +48,72 @@ const SeeOrder = () => {
 
     }
 
+    //SECTION order status Icon
+
+    const statusIcon = (orderStatus) => { 
+
+            if(orderStatus === 'Update Status'){
+                return (
+
+                    <div className="container-fluid">
+                       
+                        <div className="row"> 
+                                <div className="col-3 text-center">
+                                    <img className ="logo" src={waiting}></img>
+                                    <p>Awaiting Confirmation</p>
+                                </div>
+
+                                <div className="col-3 text-center">
+                                    <img className ="logo ml-4" src={confirm}></img>
+                                    <p>Order Confirmation</p>
+                                </div>    
+
+                                <div className="col-3 text-center">
+                                    <img className ="logo " src={packaging}></img>
+                                    <p>Packaging</p>
+                                </div>    
+
+                                <div className="col-3 text-center">
+                                    <img className ="logo" src={delivery}></img>
+                                    <p>Shipping</p>
+                                </div>        
+
+                        </div>
+                    </div>
+                )
+            }else if(orderStatus === 'Processing'){
+                return (
+                    <div>
+                        
+                    </div>
+                )
+            }else if(orderStatus === 'Shipped'){
+                return (
+                    <div>
+                         <i class="fas fa-5x fa-shipping-fast"></i>
+                    </div>
+                )
+
+            }else if(orderStatus === 'Delivered'){
+                return (
+                    <div>
+
+                    </div>
+                )
+            }else if(orderStatus === 'Cancelled'){
+                return (
+                    <div>
+
+                    </div>
+                )
+            }else{
+                return  ''
+            }
+
+
+
+        }
+    
 
     const showOrders = () => (
         <div>
@@ -58,14 +130,22 @@ const SeeOrder = () => {
                     style={{ borderBottom: "5px solid indigo" }}
                 >
                     <h2 className="mb-5">
-                        <span className="bg-primary">
-                            Order ID: {o._id}
+                        <span>
+                            <div className="row">
+                           <div className="border text-white bg-dark"> Your Order ID: </div>
+                            <div className="col-5 border">{o._id}</div>
+                            </div>
                         </span>
-                    </h2>
-
-                    <ul className="list-group mb-2">
-                        <li className="list-group-item">
                         
+                    </h2>
+                    <h4 className="mb-4">Order Status</h4>
+                    {statusIcon(o.status)}
+                    
+
+
+                    <ul className="list-group mt-4 mb-2">
+                        <li className="list-group-item text-white bg-dark ">
+                            <h3 className="text-center ">Order Detail </h3>
                         </li>
                         <li className="list-group-item">
                             Transaction ID: {o.transaction_id}
@@ -118,8 +198,8 @@ const SeeOrder = () => {
 
     return(
         <Layout
-            title="Orders"
-            description={`G'day ${
+            title="See Your Orders"
+            description={`Hi ${
                 user.name
             }, you can see your order here`}
             className="container-fluid"
@@ -131,7 +211,6 @@ const SeeOrder = () => {
         </Layout>
 
     );
-
-}
+        };
 
 export default SeeOrder;
