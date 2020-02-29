@@ -59,12 +59,19 @@ const Search = ({history,handleSearch}) => {
         // history.push(`/shop/${search}/${category}/${trigger}`)
 
         //NOTE if input box is blank, when user click submit btn again, it will display default product
-        if(search.length >=1){
-        history.push(`/shop/${search}/${trigger}`)
+       
+        
+            if(trigger == 1){
+                if(search.length >= 1){
+                    history.push(`/shop/${search}/${trigger}`)
+                }
+                else{
+                    history.push(`/shop/:searchResult/:search`)
+                }
+            }else{
+                history.push(`/shop/:searchResult/:search`)
         }
-        else{
-            history.push(`/shop/:searchResult/:search`)
-        }
+       
 
         const newSearch = {...data}
         newSearch.searched = true
@@ -76,6 +83,7 @@ const Search = ({history,handleSearch}) => {
 
     const handleChange = name => event => {
         setData({ ...data, [name]: event.target.value, searched: false,trigger: 1 });
+        
     };
 
     const searchMessage = (searched, results) => {
