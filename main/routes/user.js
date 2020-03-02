@@ -13,9 +13,11 @@ router.get('/secret', requireSignin, (req, res) => {
         user: 'got here yay'
     });
 });
-
+//NOTE allow us to read a user 
 router.get('/user/:userId', requireSignin, isAuth, read);
+//NOTE allow us to update a user
 router.put('/user/:userId', requireSignin, isAuth, update);
+
 router.get('/orders/by/user/:userId', requireSignin, isAuth, purchaseHistory);
 
 router.param('userId', userById);

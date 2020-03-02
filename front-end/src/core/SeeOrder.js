@@ -55,7 +55,7 @@ const SeeOrder = () => {
 
     const statusIcon = (orderStatus) => { 
 
-            if(orderStatus === 'Update Status'){
+            if(orderStatus === 'Not processed' || orderStatus === 'Update Status'){
                 return (
 
                     <div className="container-fluid border  border-dark">
@@ -225,6 +225,7 @@ const SeeOrder = () => {
                     </h2>
                     <h4 className="mb-4">Order Status</h4>
                     {statusIcon(o.status)}
+                    {o.status}
                     
 
 

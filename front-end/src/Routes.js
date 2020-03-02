@@ -14,6 +14,8 @@ import Product from'./core/Product'
 import Cart from './core/Cart'
 import Orders from './admin/Orders'
 import SeeOrder from'./core/SeeOrder'
+import Profile from './user/Profile'
+
 const Routes = () => {
 
     return (<BrowserRouter>
@@ -35,6 +37,8 @@ const Routes = () => {
           
             {/* SECTION Normal user */}
             <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
+            <PrivateRoute path="/profile/:userId" exact component={Profile}/>
+
 
             {/* SECTION Admin */}
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
