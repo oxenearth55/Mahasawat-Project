@@ -149,6 +149,7 @@ export const deleteProduct = (productId, userId, token) => {
         .catch(err => console.log(err));
 };
 
+//NOTE Get single product
 export const getProduct = productId => {
     return fetch(`${API}/product/${productId}`, {
         method: 'GET'

@@ -103,6 +103,8 @@ const Dashboard = () => {
             title="Dashboard"
             description={`G'day ${name}!`}
             className="container-fluid"
+            headerImg="dashBoardImgLayout"
+
         >
             <div className="row">
                 <div className="col-3">{userLinks()}</div>
