@@ -17,6 +17,8 @@ import SeeOrder from'./core/SeeOrder'
 import Profile from './user/Profile'
 import ManageProducts from './admin/ManageProducts'
 import UpdateProduct from './admin/UpdateProduct'
+import Inventory from './admin/Inventory'
+import ShowOrders from './admin/ShowOrders'
 
 const Routes = () => {
 
@@ -49,11 +51,17 @@ const Routes = () => {
 
             <AdminRoute path="/create/product" exact component={AddProduct} />
 
-            <AdminRoute path="/admin/orders" exact component={Orders} />
+            <AdminRoute path="/admin/order/:orderID" exact component={Orders} />
+
+            <AdminRoute path="/admin/orders" exact component={ShowOrders} />
+
 
             <AdminRoute path="/admin/products" exact component={ManageProducts} />
 
             <AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct} />
+
+            <AdminRoute path="/admin/Inventory" exact component={Inventory}/>
+
 
 
 
