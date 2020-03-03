@@ -23,7 +23,7 @@ const OrderSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "Awaiting Confirmation",
-      enum: ["Order Confirmation", "Packaging", "Shipping", "Cancelled"] // enum means string objects
+      enum: ["Awaiting Confirmation", "Packaging", "Shipping", "Cancelled"] // enum means string objects
     },
     updated: Date,
     user: { type: ObjectId, ref: "User" }

@@ -55,7 +55,7 @@ const SeeOrder = () => {
 
     const statusIcon = (orderStatus) => { 
 
-            if(orderStatus === 'Not processed' || orderStatus === 'Update Status'){
+            if(orderStatus === 'Awaiting Confirmation' || orderStatus === 'Not processed'){
                 return (
 
                     <div className="container-fluid border  border-dark">
