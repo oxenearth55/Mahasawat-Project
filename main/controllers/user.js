@@ -35,6 +35,18 @@ exports.read = (req, res) => {
     return res.json(req.profile);
 };
 
+// NOTE Grab users from DB 
+exports.list = (req, res) => {
+    User.find().exec((err, data) => {
+        if (err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            });
+        }
+        res.json(data);
+    });
+};
+
 
 // exports.update = (req, res) => {
 //     console.log('user update', req.body);
@@ -50,6 +62,38 @@ exports.read = (req, res) => {
 //         res.json(user);
 //     });
 // };
+
+//NOTE give permission to user (Update role)
+exports.updateRole = (req, res) => {
+    const { role } = req.body;
+    User.findOne({ _id: req.profile._id }, (err, user) => {
+        if (err || !user) {
+            return res.status(400).json({
+                error: 'User not found'
+            });
+        }
+        if (!role) {
+            return res.status(400).json({
+                error: 'role is required'
+            });
+        } else {
+            user.role = role;
+        }
+        user.save((err, updatedUser) => {
+            if (err) {
+                console.log('USER UPDATE ERROR', err);
+                return res.status(400).json({
+                    error: 'User update failed'
+                });
+            }
+            // updatedUser.hashed_password = undefined;
+            // updatedUser.salt = undefined;
+            res.json(updatedUser);
+        });
+    });
+};
+   
+
 
 
 exports.update = (req, res) => {

@@ -20,7 +20,7 @@ const { userById } = require("../controllers/user");
 router.get("/product/:productId", read);
 router.post("/product/create/:userId", requireSignin, isAuth, isAdmin, create);
 router.delete(
-    "/product/:productId/:userId",
+    "/product/:orderId/:userId",
     requireSignin,
     isAuth,
     isAdmin,

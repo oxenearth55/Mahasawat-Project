@@ -116,6 +116,9 @@ export const updateOrderStatus = (userId, token, orderId, status) => {
         .catch(err => console.log(err));
 };
 
+
+
+
 /**
  * to perform crud on product
  * get all products
@@ -149,6 +152,22 @@ export const deleteProduct = (productId, userId, token) => {
         .catch(err => console.log(err));
 };
 
+//NOTE Delete Order 
+export const deleteOrder = (orderId, userId, token) => {
+    return fetch(`${API}/order/${orderId}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 //NOTE Get single product
 export const getProduct = productId => {
     return fetch(`${API}/product/${productId}`, {
@@ -168,6 +187,37 @@ export const updateProduct = (productId, userId, token, product) => {
             Authorization: `Bearer ${token}`
         },
         body: product
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+//NOTE retrive user Object from backend 
+export const getUsers = () => {
+    return fetch(`${API}/users`, {
+        method: 'GET'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+//NOTE Update admin role 
+
+export const updateUserRole = (userId, token, uId, role) => {
+    return fetch(`${API}/user/${uId}/${role}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ role, uId })
     })
         .then(response => {
             return response.json();

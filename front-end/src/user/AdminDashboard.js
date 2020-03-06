@@ -34,11 +34,27 @@ const AdminDashboard = () => {
                         </Link>
                     </li>
 
+                    <li className="list-group-item">
+                            {adminGivePermission()}
+                    </li>
+
                     
                 </ul>
             </div>
         );
     };
+
+    //NOTE this function is for Admin of the system to provide permission of merchant role 
+    const adminGivePermission = () => {
+  
+        if(role === 2){
+            return(
+                <Link className="nav-link" to="/admin/manage/permission">
+                    Manage Permission
+            </Link>
+            )
+        }
+    }
 
     const adminInfo = () => {
         return (
@@ -48,7 +64,7 @@ const AdminDashboard = () => {
                     <li className="list-group-item">{name}</li>
                     <li className="list-group-item">{email}</li>
                     <li className="list-group-item">
-                        {role === 1 ? "Admin" : "Registered User"}
+                        {role === 1 || role === 2 ? "Admin" : "Registered User"}
                     </li>
                 </ul>
             </div>

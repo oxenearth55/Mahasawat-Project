@@ -8,15 +8,13 @@ const expressValidator = require('express-validator');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// SECTION Braintree
-const braintreeRoutes = require("./routes/braintree")
-
 // SECTION  Routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const orderRoutes = require('./routes/order');
+const shopRoutes = require('./routes/shop');
 
 // SECTION  App
 const app = express();
@@ -48,8 +46,8 @@ app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
-app.use('/api', braintreeRoutes);
 app.use('/api', orderRoutes);
+app.use('/shop', shopRoutes)
 
 const port = process.env.PORT || 49153; // NOTE 49153 is DEFAULT PORT
 

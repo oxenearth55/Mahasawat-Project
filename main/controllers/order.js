@@ -18,6 +18,23 @@ exports.orderById = (req, res, next, id) => {
         });
 };
 
+//NOTE remove order from backend 
+exports.remove = (req, res) => {
+    let order = req.order;
+    order.remove((err, deletedOrder) => {
+        if (err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            });
+        }
+        res.json({
+            message: 'Order deleted successfully'
+        });
+    });
+};
+
+
+
 exports.create = (req, res) => {
     console.log('CREATE ORDER: ', req.body);
     req.body.order.user = req.profile;

@@ -8,7 +8,8 @@ const {
     listOrders,
     getStatusValues,
     orderById,
-    updateOrderStatus
+    updateOrderStatus,
+    remove
 } = require("../controllers/order");
 const { decreaseQuantity } = require("../controllers/product");
 
@@ -20,6 +21,13 @@ router.post(
     decreaseQuantity,
     create
 );
+router.delete(
+    "/order/:orderId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    remove
+)
 
 //NOTE Both user and admin can see order (Specific order will be provided in front end (Matching user ID with order))
 router.get("/order/list/:userId", requireSignin, isAuth, listOrders); //isAdmin

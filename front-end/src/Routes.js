@@ -19,6 +19,7 @@ import ManageProducts from './admin/ManageProducts'
 import UpdateProduct from './admin/UpdateProduct'
 import Inventory from './admin/Inventory'
 import ShowOrders from './admin/ShowOrders'
+import ManagePermission from './admin/MangePermission'
 
 const Routes = () => {
 
@@ -59,6 +60,9 @@ const Routes = () => {
             <AdminRoute path="/admin/products" exact component={ManageProducts} />
 
             <AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct} />
+
+            <AdminRoute path="/admin/manage/permission" exact component={ManagePermission} />
+
 
             <AdminRoute path="/admin/Inventory" exact component={Inventory}/>
 

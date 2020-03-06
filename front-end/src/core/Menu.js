@@ -152,7 +152,7 @@ return(
                     )}
                     
                     {/* NOTE For admin user (user.role === 1) */}
-                    {isAuthenticated() && isAuthenticated().user.role === 1 &&(
+                    {isAuthenticated() && isAuthenticated().user.role === 1 || isAuthenticated() && isAuthenticated().user.role === 2 &&(
                         <li class="nav-item">
                         <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
                         </li>

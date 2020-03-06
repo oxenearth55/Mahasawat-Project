@@ -39,18 +39,7 @@ const Orders = ({match}) => {
         loadStatusValues();
     }, []);
 
-    //NOTE show number of Order at the heading
-    const showOrdersLength = () => {
-        if (orders.length > 0) {
-            return (
-                <h1 className="text-danger display-2">
-                    Total orders: {orders.length}
-                </h1>
-            );
-        } else {
-            return <h1 className="text-danger">No orders</h1>;
-        }
-    };
+   
 
     // NOTE Reuse these style for each products in Order
     const showInput = (key, value) => (
@@ -100,7 +89,7 @@ const Orders = ({match}) => {
     const showOrder = (orderId) => (
         <div className="row">
         <div className="col-md-8 offset-md-2">
-            {showOrdersLength()}
+         
 
             {orders.map((o, oIndex) => {
 
