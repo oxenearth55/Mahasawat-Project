@@ -224,3 +224,19 @@ export const updateUserRole = (userId, token, uId, role) => {
         })
         .catch(err => console.log(err));
 };
+
+
+//NOTE get shop name 
+export const getShopList = (userId, token) => {
+    return fetch(`${API}/shop/shop-name/${userId}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

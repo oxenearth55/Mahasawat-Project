@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
+import { getShopList } from "../admin/apiAdmin";
+
 
 const AdminDashboard = () => {
     const {
-        user: { _id, name, email, role }
+        user: { _id, name, email, role,token }
     } = isAuthenticated();
+
+
+
+    const [shopName, setShopName] = useState([])
+
+    // const loadShopList = () => {
+    //     getShopList(_id, token).then(data => {
+    //         if (data.error) {
+    //             console.log(data.error);
+    //         } else {
+    //             setShopName(data);
+    //         }
+    //     });
+    // };
+
+
+    // useEffect(() => {
+    //     loadShopList();
+    // }, []);
+
 
     const adminLinks = () => {
         return (
@@ -83,6 +105,13 @@ const AdminDashboard = () => {
                 <div className="col-3">{adminLinks()}</div>
                 <div className="col-9">{adminInfo()}</div>
             </div>
+{/* 
+            <div className="row">
+            {shopName.map((n, index) => (
+                   {n}
+                ))}
+            </div> */}
+
         </Layout>
     );
 };

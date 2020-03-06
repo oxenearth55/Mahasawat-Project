@@ -15,6 +15,8 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const orderRoutes = require('./routes/order');
 const shopRoutes = require('./routes/shop');
+const braintreeRoutes = require('./routes/braintree');
+
 
 // SECTION  App
 const app = express();
@@ -47,7 +49,9 @@ app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', orderRoutes);
-app.use('/shop', shopRoutes)
+app.use('/shop', shopRoutes);
+app.use('/api', braintreeRoutes);
+
 
 const port = process.env.PORT || 49153; // NOTE 49153 is DEFAULT PORT
 

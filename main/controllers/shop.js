@@ -1,5 +1,7 @@
 const { Shop } = require('../models/shop');
 const { errorHandler } = require('../helpers/dbErrorHandler');
+
+
 exports.shopById = (req, res, next, id) => {
     Shop.findById(id)
         .exec((err, shop) => {
@@ -13,4 +15,8 @@ exports.shopById = (req, res, next, id) => {
         });
 };
 
+
+exports.getShop = (req, res) => {
+    res.json(Shop.schema.path('name').enumValues);
+};
 

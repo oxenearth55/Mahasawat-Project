@@ -23,7 +23,12 @@ const shopSchema = new mongoose.Schema({
         user: { type: ObjectId, ref: "User"},
         product: { type: ObjectId, ref: "Product"}
     },
+    
     { timestamps: true }
+
 );
+
+
+
 
 module.exports = mongoose.model("Shop", shopSchema);

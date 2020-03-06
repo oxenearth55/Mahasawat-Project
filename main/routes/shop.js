@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
+const { getShop } = require("../controllers/shop");
 
 const {
     shopById
@@ -7,4 +9,14 @@ const {
 
 router.param("shopId", shopById);
 
-module.exports = router;
+module.exports = router; 
+
+
+
+router.get(
+    "/shop/shop-name/:userId",
+    // requireSignin,
+    // isAuth,
+    // isAdmin,
+    getShop
+);
