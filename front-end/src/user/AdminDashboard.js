@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { getShopList } from "../admin/apiAdmin";
+import { getShopList,createShop } from "../admin/apiAdmin";
 
 
 const AdminDashboard = () => {
@@ -14,20 +14,20 @@ const AdminDashboard = () => {
 
     const [shopName, setShopName] = useState([])
 
-    // const loadShopList = () => {
-    //     getShopList(_id, token).then(data => {
-    //         if (data.error) {
-    //             console.log(data.error);
-    //         } else {
-    //             setShopName(data);
-    //         }
-    //     });
-    // };
+    const loadShopList = () => {
+        getShopList(_id, token).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setShopName(data);
+            }
+        });
+    };
 
 
-    // useEffect(() => {
-    //     loadShopList();
-    // }, []);
+    useEffect(() => {
+        // loadShopList();
+    }, []);
 
 
     const adminLinks = () => {

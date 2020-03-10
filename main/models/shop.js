@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
+const Schema = mongoose.Schema;
+
 
 const shopSchema = new mongoose.Schema({
         description: {
@@ -29,6 +31,8 @@ const shopSchema = new mongoose.Schema({
 );
 
 
+const Shop = mongoose.model("Shop", shopSchema);
 
 
-module.exports = mongoose.model("Shop", shopSchema);
+// module.exports = mongoose.model("Shop", shopSchema);
+module.exports = {Shop};

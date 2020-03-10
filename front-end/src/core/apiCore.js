@@ -121,3 +121,19 @@ export const createOrder = (userId, token, createOrderData) => {
         })
         .catch(err => console.log(err));
 };
+
+export const createShop = (userId, token, description) => {
+    return fetch(`${API}/shop/create/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(description)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

@@ -49,7 +49,7 @@ app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', orderRoutes);
-app.use('/shop', shopRoutes);
+app.use('/api', shopRoutes);
 app.use('/api', braintreeRoutes);
 
 

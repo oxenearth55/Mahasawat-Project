@@ -16,6 +16,21 @@ exports.shopById = (req, res, next, id) => {
 };
 
 
+exports.create = (req, res) => {
+    console.log('CREATE SHOP: ', req.body);
+    shop.save((error, data) => {
+        if (error) {
+            return res.status(400).json({
+                error: errorHandler(error)
+            });
+        }
+        
+       
+        res.json(data);
+    });
+};
+
+
 exports.getShop = (req, res) => {
     res.json(Shop.schema.path('name').enumValues);
 };
