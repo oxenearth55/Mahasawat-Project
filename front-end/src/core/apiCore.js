@@ -122,18 +122,32 @@ export const createOrder = (userId, token, createOrderData) => {
         .catch(err => console.log(err));
 };
 
-export const createShop = (userId, token, description) => {
-    return fetch(`${API}/shop/create/${userId}`, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(description)
+//SECTION Individual Shop
+
+//get Shop Object from backend 
+export const readShop = shopID => {
+    return fetch(`${API}/shop/${shopID}`, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
         })
         .catch(err => console.log(err));
 };
+
+
+export const getShop = (userId, token) => {
+    return fetch(`${API}/shop/shop-name/${userId}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+

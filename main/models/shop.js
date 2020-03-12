@@ -3,21 +3,29 @@ const { ObjectId } = mongoose.Schema;
 const Schema = mongoose.Schema;
 
 
+
+
 const shopSchema = new mongoose.Schema({
-        description: {
+    name: {
+        type: String,
+        trim: true,
+        required: true,
+        maxlength: 32
+    },   
+    description: {
             type: String,
             trim: true,
             maxlength: 2000
         },
-        name: {
-            type: String,
-            default: "Not Registered",
-            // Boonlert's Orchard (Jaew Aunt)
-            // Kanitha's Gac House
-            // Jam Uncle Lotus Field
-            // Soi's Orchid Farm
-            enum: ["Not Registered", "Orchid", "Gac", "EarthPavilion", "Lotus", "Orchard"]
-        },
+        // name: {
+        //     type: String,
+        //     default: "Not Registered",
+        //     // Boonlert's Orchard (Jaew Aunt)
+        //     // Kanitha's Gac House
+        //     // Jam Uncle Lotus Field
+        //     // Soi's Orchid Farm
+        //     enum: ["Not Registered", "Orchid", "Gac", "EarthPavilion", "Lotus", "Orchard"]
+        // },
         image: {
             data: Buffer,
             contentType: String

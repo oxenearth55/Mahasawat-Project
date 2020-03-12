@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-import { createProduct, getCategories } from './apiAdmin';
+import { createProduct, getCategories,getShop } from './apiAdmin';
 
 const AddProduct = () => {
      // NOTE Product properties (This is a react hook)
@@ -19,6 +19,7 @@ const AddProduct = () => {
         error: '',
         createdProduct: '',
         redirectToProfile: false,
+        shopObject: [],
         formData: ''
     });
     //NOTE grab user info and token from admin
@@ -36,8 +37,22 @@ const AddProduct = () => {
         error,
         createdProduct,
         redirectToProfile,
+        // shopObject,
         formData
     } = values;
+
+    const [shopObject, setShopObject] = useState([])
+
+    const getShopObject = () => {
+        getShop().then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error });
+             } 
+            else {
+                setShopObject(data);
+            }
+        });
+    };
 
     //NOTE load categories and set form data
     const init = () => {
@@ -48,18 +63,31 @@ const AddProduct = () => {
                 setValues({
                     ...values,
                     //NOTE get categories from Database 
-                    categories: data,
+                    categories: data, formData: new FormData() 
     //NOTE we have to set defult FormData at the begining or after complete submition data 
-                    formData: new FormData() 
-                   
+
                 });
             }
         });
+
+        // getShop().then(data => {
+        //     if (data.error) {
+        //         setValues({ ...values, error: data.error });
+        //      } 
+        //     else {
+        //         setValues({ ...values, shopObject: data,formData: new FormData() 
+        //         });
+        //     }
+        // });
+    
     };
 
     useEffect(() => {
         init();
+        getShopObject();
     }, []);
+
+    
 
     const handleChange = name => event => {
         // NOTE Check input (Grab data from photo must use different method like target,files)
@@ -118,6 +146,19 @@ const AddProduct = () => {
             </div>
 
             <div className="form-group">
+                <label className="text-muted">Shop Name</label>
+                <select onChange={handleChange('shop')} className="form-control">
+                    <option>Please select</option>
+                    {shopObject &&
+                        shopObject.map((s, i) => (
+                            <option key={i} value={s._id}>
+                                {s.name}
+                            </option>
+                        ))}
+                </select>
+            </div>
+
+            <div className="form-group">
                 <label className="text-muted">Category</label>
                 <select onChange={handleChange('category')} className="form-control">
                     <option>Please select</option>
@@ -129,6 +170,9 @@ const AddProduct = () => {
                         ))}
                 </select>
             </div>
+
+
+
 
             <div className="form-group">
                 <label className="text-muted">Shipping</label>
@@ -182,5 +226,5 @@ const AddProduct = () => {
         </Layout>
     );
 };
-
+        
 export default AddProduct;

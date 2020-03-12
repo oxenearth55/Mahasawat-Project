@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import Layout from "./Layout"
 import Card from "./Card"
-import {getCategories, getFilteredProducts} from "./apiCore"
+import {getCategories, getFilteredProducts, getShop} from "./apiCore"
 import Checkbox from './Checkbox'
 import {prices} from './fixedPrices'
 import RadioBox from './RadioBox'
@@ -9,12 +9,19 @@ import Search from './Search'
 import {list} from './apiCore'
 import { getCategory } from '../admin/apiAdmin';
 import ShowProduct from './Home-components/ShowProduct';
+import { Link, Redirect } from 'react-router-dom';
+
+import { isAuthenticated } from "../auth";
+
+
+
 
 
 
 const Shop = props => {
 
     
+    const { user, token } = isAuthenticated();
 
     //SECTION State 
 
@@ -43,7 +50,11 @@ const Shop = props => {
 
     const {search, results} =data;
 
+
     const trigger = props.match.params.search;
+
+
+    
 
     //ANCHOR ------------Life Cycle-----------------------------------------------
    
@@ -54,7 +65,6 @@ const Shop = props => {
     const searchQuery = props.match.params.searchResult; //NOTE get searchQuery from URL
     // const categoryQuery = props.match.params.categoryResult;   
     // const trigger = props.match.params.trigger;
-    
     searchData(searchQuery);
        
  },[props] )
@@ -70,6 +80,7 @@ const Shop = props => {
                 setError(data.error);
             } else {
              setCategories(data)
+             
             }
         });
     };
@@ -227,6 +238,21 @@ const show = (trigger) =>{
             }     
     />
         </div>
+
+
+        <h4 className="text-white bg-dark">
+                Related Shop   
+             </h4> 
+           <div className="bg-light text-dark">
+         
+           {/* {speShop.map((s, index) => (
+           <Link to= {`/specific/shop/${Shop._id}`}>       
+                {s.name}
+          </Link>
+           ))
+           } */}
+        </div>
+    
         </div>
         {/* {triggerSearch(trigger)} */}
 

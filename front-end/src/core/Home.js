@@ -144,15 +144,9 @@ const firstSection = () =>(
     </section>
     );
 
-    const showArrival = () => (
-        <div>
-
-
-        </div>
-
-
-    );
-
+    const showShops = () => {
+        
+    }
 
 
     

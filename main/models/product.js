@@ -23,6 +23,11 @@ const productSchema = new mongoose.Schema(
         category: {
             type: ObjectId,
             ref: "Category",
+            required: false
+        },
+        shop: {
+            type: ObjectId,
+            ref: "Shop",
             required: true
         },
         quantity: {

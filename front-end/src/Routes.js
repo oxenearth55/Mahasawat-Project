@@ -20,6 +20,8 @@ import UpdateProduct from './admin/UpdateProduct'
 import Inventory from './admin/Inventory'
 import ShowOrders from './admin/ShowOrders'
 import ManagePermission from './admin/MangePermission'
+import CreateShop from './admin/CreateShop'
+import EachShop from './Shop/EachShop'
 
 const Routes = () => {
 
@@ -33,6 +35,10 @@ const Routes = () => {
             <Route path="/shop/:searchResult/:search" exact component={Shop}></Route>
             <Route path="/cart" exact component={Cart}></Route>
             <Route path="/seeOrder" exact component={SeeOrder}></Route>
+
+
+            <Route path="/specific/shop/:shopId" exact component={EachShop}></Route>
+
 
 
 
@@ -62,6 +68,8 @@ const Routes = () => {
             <AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct} />
 
             <AdminRoute path="/admin/manage/permission" exact component={ManagePermission} />
+
+            <AdminRoute path="/admin/create/shop" exact component={CreateShop} />
 
 
             <AdminRoute path="/admin/Inventory" exact component={Inventory}/>

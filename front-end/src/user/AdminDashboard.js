@@ -57,9 +57,14 @@ const AdminDashboard = () => {
                     </li>
 
                     <li className="list-group-item">
-                            {adminGivePermission()}
+                        <Link className="nav-link" to="/admin/create/shop">
+                        Create Shop                       
+                        </Link>
                     </li>
 
+                    
+                            {adminGivePermission()}
+                   
                     
                 </ul>
             </div>
@@ -71,9 +76,11 @@ const AdminDashboard = () => {
   
         if(role === 2){
             return(
+                <li className="list-group-item">
                 <Link className="nav-link" to="/admin/manage/permission">
                     Manage Permission
             </Link>
+             </li>
             )
         }
     }
@@ -105,8 +112,8 @@ const AdminDashboard = () => {
                 <div className="col-3">{adminLinks()}</div>
                 <div className="col-9">{adminInfo()}</div>
             </div>
-{/* 
-            <div className="row">
+
+            {/* <div className="row">
             {shopName.map((n, index) => (
                    {n}
                 ))}

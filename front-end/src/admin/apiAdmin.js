@@ -242,18 +242,28 @@ export const getShopList = (userId, token) => {
 };
 
 
-export const createShop = (userId, token, description) => {
+export const createShop = (userId, token, shop) => {
     return fetch(`${API}/shop/create/${userId}`, {
-        method: "POST",
+        method: 'POST',
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(description)
+        body:shop
     })
         .then(response => {
             return response.json();
         })
         .catch(err => console.log(err));
 };
+
+export const getShop = () => {
+    return fetch(`${API}/shop/get`, {
+        method: 'GET'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+

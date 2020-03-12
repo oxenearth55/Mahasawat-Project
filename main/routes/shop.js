@@ -1,18 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
-const { getShop,create} = require("../controllers/shop");
+const { userById} = require("../controllers/user");
 
 const {
-    shopById
+    shopById,
+    getShop,
+    create,
+    listShop
 } = require("../controllers/shop");
-
-router.param("shopId", shopById);
-
 
 router.post(
     "/shop/create/:userId",
-    create,
+     requireSignin, 
+     isAuth, 
+     isAdmin,
+    create
    
 );
 
@@ -23,5 +26,11 @@ router.get(
     isAdmin,
     getShop
 );
+
+//NOTE get Shop Object
+router.get('/shop/get', listShop);
+
+router.param("userId", userById);
+router.param("shopId", shopById);
 
 module.exports = router; 
