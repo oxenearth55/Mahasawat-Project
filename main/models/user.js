@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const uuidv1 = require('uuid/v1');
+const { ObjectId } = mongoose.Schema;
+
 
 const userSchema = new mongoose.Schema(
     {
@@ -20,6 +22,13 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+
+        shop: {
+            type: ObjectId,
+            ref: "Shop",
+            default: '5e6b55661e7f9809f1f3b8cd'
+       },
+
         about: {
             type: String,
             trim: true

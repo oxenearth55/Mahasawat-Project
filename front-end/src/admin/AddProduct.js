@@ -41,6 +41,7 @@ const AddProduct = () => {
         formData
     } = values;
 
+    //NOTE State for shop selection
     const [shopObject, setShopObject] = useState([])
 
     const getShopObject = () => {
@@ -70,15 +71,6 @@ const AddProduct = () => {
             }
         });
 
-        // getShop().then(data => {
-        //     if (data.error) {
-        //         setValues({ ...values, error: data.error });
-        //      } 
-        //     else {
-        //         setValues({ ...values, shopObject: data,formData: new FormData() 
-        //         });
-        //     }
-        // });
     
     };
 
@@ -87,7 +79,6 @@ const AddProduct = () => {
         getShopObject();
     }, []);
 
-    
 
     const handleChange = name => event => {
         // NOTE Check input (Grab data from photo must use different method like target,files)
@@ -120,7 +111,7 @@ const AddProduct = () => {
             }
         });
     };
-
+    //NOTE value is a thing that is sent to backend 
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
             <h4>Upload Product Photo</h4>

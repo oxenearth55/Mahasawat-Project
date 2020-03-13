@@ -98,7 +98,7 @@ exports.updateRole = (req, res) => {
 
 exports.update = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
-    const { name, password } = req.body;
+    const { name, password, shopObjectID } = req.body;
 
     User.findOne({ _id: req.profile._id }, (err, user) => {
         if (err || !user) {
@@ -113,6 +113,16 @@ exports.update = (req, res) => {
         } else {
             user.name = name;
         }
+
+
+        if (!shopObjectID) {
+            return res.status(400).json({
+                error: 'Role is required'
+            });
+        } else {
+            user.shop = shopObjectID;
+        }
+
 
         if (password) {
             if (password.length < 6) {

@@ -101,6 +101,8 @@ const CreateShop = () => {
                     <option>Please select</option>
                     <option value="นาบัวลุงแจ่ม">นาบัวลุงแจ่ม</option>
                     <option value="บ้านฟักข้าวคุณขนิษฐา">บ้านฟักข้าวคุณขนิษฐา</option>
+                    {/* <option value="undefine">Unshop</option> */}
+
                     
                 </select>
             </div>

@@ -61,6 +61,11 @@ const AdminDashboard = () => {
                         Create Shop                       
                         </Link>
                     </li>
+                    <li className="list-group-item">
+                        <Link className="nav-link" to={`/profile/${_id}`}>
+                            Update Profile
+                        </Link>
+                    </li>
 
                     
                             {adminGivePermission()}

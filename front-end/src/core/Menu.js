@@ -151,13 +151,24 @@ return(
 
                     )}
                     
-                    {/* NOTE For admin user (user.role === 1) */}
-                    {isAuthenticated() && isAuthenticated().user.role === 1 || isAuthenticated() && isAuthenticated().user.role === 2 &&(
+                    {/* NOTE For Merchant user (user.role === 1) */}
+                    {isAuthenticated() && isAuthenticated().user.role === 1 &&(
                         <li class="nav-item">
                         <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
                         </li>
 
                     )}
+
+                     {/* NOTE For Admin user (user.role === 2) */}
+
+                    {isAuthenticated() && isAuthenticated().user.role === 2 &&(
+                        <li class="nav-item">
+                        <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
+                        </li>
+
+                    )}
+
+
 
                     <li class="nav-item">
                     <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>

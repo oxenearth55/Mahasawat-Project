@@ -39,6 +39,7 @@ const Routes = () => {
 
             <Route path="/specific/shop/:shopId" exact component={EachShop}></Route>
 
+            <Route path="/profile/:userId" exact component={Profile}></Route>
 
 
 
@@ -48,7 +49,7 @@ const Routes = () => {
           
             {/* SECTION Normal user */}
             <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
-            <PrivateRoute path="/profile/:userId" exact component={Profile}/>
+            {/* <PrivateRoute path="/profile/:userId" exact component={Profile}/> */}
 
 
             {/* SECTION Admin */}
