@@ -7,6 +7,7 @@ import ProductImage from './ProductImage';
 import ShowProduct from './Home-components/ShowProduct'
 import Layout from './Layout'
 import {Link} from 'react-router-dom'
+import Slide from './slide'
 
 
 const Home = () => {
@@ -47,9 +48,12 @@ const Home = () => {
 
 
 const headerIntro = () => (
-    
-    <div className="headerImg container-fluid">
+
+    <div className="headerImg container-fluid img-fluid ">
+  
+
      <section>
+
         <div className="row">
             <div className="col-12 intro-text">
                 <h1 className="heading-font">Mahasawat Shopping</h1> 
@@ -64,14 +68,14 @@ const headerIntro = () => (
     
         <div className="row mt-5">
               
-                <div className="col-md-2 col-sm-12">
+                {/* <div className="col-md-2 col-sm-12">
                
                 <Link to= {`/shop/:searchResult/:search`}>
 
                 <button type="button" class="btn-text btn btn-danger btn-rounded py-2">Shop now</button>
 
                 </Link>
-            </div>
+            </div> */}
         </div> 
            
     
@@ -144,11 +148,7 @@ const firstSection = () =>(
     </section>
     );
 
-    const showShops = () => {
-        
-    }
-
-
+   
     
 
     
@@ -156,8 +156,15 @@ const firstSection = () =>(
 
     return(
         <div>
+        
+
         <Menu/>
-        {headerIntro()} 
+
+        <Slide/>
+        <div className ="row">  {headerIntro()} </div>
+
+
+      
          {/* NOTE show best sellers */}
         
          <div className="container-fluid pt-1 pb-4">
@@ -182,14 +189,15 @@ const firstSection = () =>(
                 {productsByArrival.map((product,i) => (
                  <div className ="">
                 <ShowProduct key={i} product={product} NewArrival={true}/>  
+
                 </div>   
                 ))}
                
         </div>
 
         </div>
-  
         {firstSection()}
+
         <Footer/>
         </div>
      );

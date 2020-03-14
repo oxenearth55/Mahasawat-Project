@@ -69,3 +69,11 @@ header .site-title{
 .navbar-nav .cart-icon{
     margin-right: 6.5rem !important;
 }
+
+.cart{
+    color: var(--light-gray)!important;
+
+}
+.cart-badge {
+    color: black!important;
+}

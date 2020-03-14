@@ -21,7 +21,9 @@ import Inventory from './admin/Inventory'
 import ShowOrders from './admin/ShowOrders'
 import ManagePermission from './admin/MangePermission'
 import CreateShop from './admin/CreateShop'
-import EachShop from './Shop/EachShop'
+import BanFakkhaw from './Shop/BanFakkhaw'
+import Nabua from './Shop/Nabua'
+
 
 const Routes = () => {
 
@@ -35,11 +37,12 @@ const Routes = () => {
             <Route path="/shop/:searchResult/:search" exact component={Shop}></Route>
             <Route path="/cart" exact component={Cart}></Route>
             <Route path="/seeOrder" exact component={SeeOrder}></Route>
-
-
-            <Route path="/specific/shop/:shopId" exact component={EachShop}></Route>
-
             <Route path="/profile/:userId" exact component={Profile}></Route>
+            <Route path="/shop/banfakkhaw" exact component={BanFakkhaw}></Route>
+            <Route path="/shop/nabua" exact component={Nabua}></Route>
+
+
+
 
 
 

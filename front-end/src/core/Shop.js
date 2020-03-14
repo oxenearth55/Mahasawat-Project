@@ -39,6 +39,7 @@ const Shop = props => {
     const [skip, setSkip] = useState(0)
     const [filterResults, setFilterResults] = useState([])
 
+
   
 
     //ANCHOR Search 
@@ -209,6 +210,10 @@ const show = (trigger) =>{
     }
 }
 
+// SECTION Link Shop name
+
+
+
     return(
     <Layout
     title="Shop page"
@@ -245,13 +250,18 @@ const show = (trigger) =>{
              </h4> 
            <div className="bg-light text-dark">
          
-           {/* {speShop.map((s, index) => (
-           <Link to= {`/specific/shop/${Shop._id}`}>       
-                {s.name}
-          </Link>
-           ))
-           } */}
+          
+        <Link to= {`/shop/banfakkhaw`}>       
+            บ้านฟักข้าว
+        </Link>
+
+       
+       
         </div>
+
+        <Link to= {`/shop/nabua`}>       
+            นาบัวลุงแจ่ม
+        </Link>
     
         </div>
         {/* {triggerSearch(trigger)} */}

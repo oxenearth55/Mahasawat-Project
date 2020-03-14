@@ -113,23 +113,11 @@ const Search = ({history,handleSearch}) => {
     };
 
     const searchForm = () => (
-        <form onSubmit={searchSubmit}>
 
-       <div class="container-fluid h-100">
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="search_input" onChange={handleChange("search")}
- type="text" name="" placeholder="Search by name"/>
-       <div class="search_icon">
-           <div className="colorbtn">
-           <button>
-           <i class="fas fa-search"></i> 
-           </button>
-           </div>
-       </div>
-        </div>
-      </div>
-    </div>
+        <form class="form-inline my-2 my-lg-0" onSubmit={searchSubmit}>
+      <input class="form-control mr-sm-2" onChange={handleChange("search")} type="text" placeholder="Search by name" name=""
+       aria-label="Search"/>
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
     </form>
     );
 

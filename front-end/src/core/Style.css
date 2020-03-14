@@ -16,7 +16,7 @@ html{
     
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://i.ytimg.com/vi/__CuYb8gciw/maxresdefault.jpg);
 	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://i.ytimg.com/vi/__CuYb8gciw/maxresdefault.jpg);
-    height: 75vh;
+    height: 100%;
     background-size: cover;
 	background-position: center;
     background-attachment: fixed;

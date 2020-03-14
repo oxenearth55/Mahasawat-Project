@@ -61,11 +61,15 @@ const Menu = ({history,handleSearch}) => {
         console.log("Search result issss"+ newSearch.search)
     };
 
+    
+
+    
+
 return(
     
 <header className="menu-font">
     {/*SECTION First-nav */}
-    <div className = "container p-0">
+    <div className = "container p-0 h-1">
         {        console.log("Search result is Menu333 " + data.search)
 }
 
@@ -131,28 +135,23 @@ return(
 
     </div>
 
-    {/* SECTION Second Nav */}
-
-    <div className = "container-fluid p-0">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <Link className="nav-link" to="/">HOME</Link>
-                    </li>
-                    {/* NOTE For normal user (user.role === 0) */}
-                    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
+ {/* SECTION second nav */}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      <Link className="nav-link" to="/">HOME</Link>
+      </li>
+       {/* NOTE For normal user (user.role === 0) */}
+       {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                         <li class="nav-item">
                         <Link className="nav-link" to="/user/dashboard">DASHBOARD</Link>
                         </li>
 
                     )}
-                    
-                    {/* NOTE For Merchant user (user.role === 1) */}
-                    {isAuthenticated() && isAuthenticated().user.role === 1 &&(
+
+        {/* NOTE For Merchant user (user.role === 1) */}
+        {isAuthenticated() && isAuthenticated().user.role === 1 &&(
                         <li class="nav-item">
                         <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
                         </li>
@@ -167,47 +166,38 @@ return(
                         </li>
 
                     )}
-
-
-
-                    <li class="nav-item">
-                    <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>
-                    </li>
-
-                    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
-                        <li class="nav-item">
-                        <Link className="nav-link" to="/SeeOrder">SEE ORDER</Link>
+                      <li class="nav-item">
+                        <Link className="nav-link" to="/user/dashboard">ABOUT US</Link>
                         </li>
 
-                    )}
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">ABOUT US</a>
-                    </li>
-
-                </ul>
-            </div>
-                    
-            <div className="navbar-nav">
-                <Search 
-                
-                
-                />
-
-{/* handleSearch ={search => handleSearch(search) */}
-                <li className="nav-item mx-2 cart-icon">
+        
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+     
+    </ul>
+   <Search/>
+    
+    <li className="nav-item mx-2 cart-icon navbar-light nav ">
                 <Link className="nav-link" to="/cart">
-                <i class="fas fa-2x fa-shopping-cart mx-2 my-2"></i>
+                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2"></i>
                 {/*NOTE Show the number of product beside Cart icon */}
                 {showCartTotal()}            
                 </Link>
-                </li>
+    </li>
              
-            </div>
+  </div>
 
-        </nav>
-    </div>
+
+</nav>
 
 
     {/* NOTE Links to other pages */}
