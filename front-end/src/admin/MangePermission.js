@@ -123,9 +123,12 @@ return(
         <td>{u.email}</td>
         <td>{showRole(u.role)}</td>
         <td>
+        {/* NOTE Go to this page with this user ID */}
+        <Link to= {`/admin/update/${u._id}`}>
+
             <button className="btn btn-warning btn-sm text-white">Click</button>
             {/* <input type="text" onChange={handleChange(u._id)} className="form-control" v/> */}
-            
+        </Link>
             </td>
         <td><button className="btn btn-danger btn-sm">Delete</button></td>
     </tr>

@@ -11,6 +11,26 @@ const AdminDashboard = () => {
     } = isAuthenticated();
 
 
+    const showRole = (role) => {
+        if(role === 0){
+            return(
+                <div>Customer</div>
+            )}
+            else if(role === 1){
+                return(
+                <div>Merchant</div>
+                )}
+                else if(role === 2){
+                    return(
+                        <div>Admin</div>
+                    )
+                }else{
+                    return(
+                    <div>Please Submit Change</div>
+                    )
+                }
+    
+            };
 
     const [shopName, setShopName] = useState([])
 
@@ -33,7 +53,7 @@ const AdminDashboard = () => {
     const adminLinks = () => {
         return (
             <div className="card">
-                <h4 className="card-header">Admin Links</h4>
+                <h5 className="card-header"> Links</h5>
                 <ul className="list-group">
                     <li className="list-group-item">
                         <Link className="nav-link" to="/create/category">
@@ -56,11 +76,13 @@ const AdminDashboard = () => {
                         </Link>
                     </li>
 
-                    <li className="list-group-item">
+                    {/* <li className="list-group-item">
                         <Link className="nav-link" to="/admin/create/shop">
                         Create Shop                       
                         </Link>
-                    </li>
+                    </li> */}
+
+
                     <li className="list-group-item">
                         <Link className="nav-link" to={`/profile/${_id}`}>
                             Update Profile
@@ -98,7 +120,7 @@ const AdminDashboard = () => {
                     <li className="list-group-item">{name}</li>
                     <li className="list-group-item">{email}</li>
                     <li className="list-group-item">
-                        {role === 1 || role === 2 ? "Admin" : "Registered User"}
+                    {showRole(role)}
                     </li>
                 </ul>
             </div>

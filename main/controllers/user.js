@@ -93,12 +93,55 @@ exports.updateRole = (req, res) => {
     });
 };
    
+exports.updateOther = (req, res) => {
+    // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
+    const {shopObjectID, role } = req.body;
+
+    User.findOne({ _id: req.profile._id }, (err, user) => {
+        if (err || !user) {
+            return res.status(400).json({
+                error: 'User not found'
+            });
+        }
+    
+
+        if (!shopObjectID) {
+            return res.status(400).json({
+                error: 'Shop is required'
+            });
+        } else {
+            user.shop = shopObjectID;
+        }
+
+        if (!role) {
+            return res.status(400).json({
+                error: 'Role is required'
+            });
+        } else {
+            user.role = role;
+        }
+
+      
+
+        user.save((err, updatedUser) => {
+            if (err) {
+                console.log('USER UPDATE ERROR', err);
+                return res.status(400).json({
+                    error: 'User update failed'
+                });
+            }
+            // updatedUser.hashed_password = undefined;
+            // updatedUser.salt = undefined;
+            res.json(updatedUser);
+        });
+    });
+};
 
 
 
 exports.update = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
-    const { name, password, shopObjectID } = req.body;
+    const { name, password, shopObjectID, role } = req.body;
 
     User.findOne({ _id: req.profile._id }, (err, user) => {
         if (err || !user) {
@@ -115,13 +158,7 @@ exports.update = (req, res) => {
         }
 
 
-        if (!shopObjectID) {
-            return res.status(400).json({
-                error: 'Role is required'
-            });
-        } else {
-            user.shop = shopObjectID;
-        }
+
 
 
         if (password) {

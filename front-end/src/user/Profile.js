@@ -20,7 +20,6 @@ const Profile = ({ match }) => {
 
     
     const [shopObject, setShopObject] = useState([])
-    const [shopObjectID, setShopObjectID] = useState('')
 
 
     //SECTION Update Shop for Admin only
@@ -43,7 +42,7 @@ const Profile = ({ match }) => {
                 if(s._id === user.shop){
                     return(
                     <div className ="row my-4 "> 
-                       <h4 className="text-white bg-dark px-3 py-3">  ร้านค้าของคุณคือ</h4><h4 className="border px-3 py-3">  {s.name}</h4> 
+                       <h4 className="text-white bg-dark px-3 py-3">ร้านค้าของคุณคือ</h4><h4 className="border px-3 py-3">  {s.name}</h4> 
                        </div>
                     );
                 }
@@ -56,30 +55,7 @@ const Profile = ({ match }) => {
     }
     }
 
-    const selectShop = () =>{
-       
-   
-        if(user.role===1 || user.role===2  ){
-            return (
-                <div className="form-group">
-                <label className="text-muted">Shop Name </label>
-                <select onChange={handleShop} className="form-control">
-                    <option  >Please select</option>
-                    
-                    {shopObject &&
-                        shopObject.map((s, i) => (
-                            <option key={i} value={s._id}>
-                                {s.name}
-                            </option>
-                        ))}
-                </select>
-            </div>
-
-
-            );
-        }
     
-    }
 
     // SECTION Update profile
 
@@ -91,7 +67,6 @@ const Profile = ({ match }) => {
                 setValues({ ...values, error: true });
             } else {
                 setValues({ ...values, name: data.name, email: data.email, password: data.password}); //NOTE 
-                setShopObjectID(data.shop);
             }
         });
     };
@@ -111,14 +86,9 @@ const Profile = ({ match }) => {
       
     };
 
-  const handleShop = e => {
-        setShopObjectID(e.target.value);
-
-    };
-
     const clickSubmit = e => {
         e.preventDefault();
-        update(match.params.userId, token, { name, email, password, shopObjectID }).then(data => {
+        update(match.params.userId, token, { name, email, password }).then(data => {
             if (data.error) {
                 // console.log(data.error);
                 alert(data.error);
@@ -130,7 +100,6 @@ const Profile = ({ match }) => {
                         email: data.email,                     
                         success: true
                     });
-                    setShopObjectID(data);
 
                 }
                 
@@ -161,7 +130,6 @@ const Profile = ({ match }) => {
                 <label className="text-muted">Password</label>
                 <input type="password" onChange={handleChange('password')} className="form-control" value={password} />
             </div>
-            {selectShop()}
 
             <button onClick={clickSubmit} className="btn btn-primary">
                 Submit

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { requireSignin, isAuth, isAdmin } = require('../controllers/auth');
 
-const { userById, read, update, purchaseHistory, signup, list,updateRole } = require('../controllers/user');
+const { userById, read, update, purchaseHistory, signup, list,updateRole, updateOther } = require('../controllers/user');
 
 router.post('/signup', signup);
 
@@ -14,9 +14,15 @@ router.get('/secret', requireSignin, (req, res) => {
     });
 });
 //NOTE allow us to read a user 
-router.get('/user/:userId', requireSignin, isAuth, read);
+router.get('/user/:userId', requireSignin, read);
+
+
 //NOTE allow us to update a user
 router.put('/user/:userId', requireSignin, isAuth, update);
+//NOTE allow admin to update other users
+
+router.put('/user/other/:userId', requireSignin, updateOther);
+
 
 router.put('user/:uId/:role/:userId', requireSignin, isAuth, updateRole)
 

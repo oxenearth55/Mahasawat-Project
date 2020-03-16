@@ -23,7 +23,7 @@ import ManagePermission from './admin/MangePermission'
 import CreateShop from './admin/CreateShop'
 import BanFakkhaw from './Shop/BanFakkhaw'
 import Nabua from './Shop/Nabua'
-
+import UpdateMer from './admin/UpdateMer'
 
 const Routes = () => {
 
@@ -72,6 +72,9 @@ const Routes = () => {
             <AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct} />
 
             <AdminRoute path="/admin/manage/permission" exact component={ManagePermission} />
+
+            <AdminRoute path="/admin/update/:userId" exact component={UpdateMer} />
+
 
             <AdminRoute path="/admin/create/shop" exact component={CreateShop} />
 
