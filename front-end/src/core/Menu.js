@@ -178,9 +178,12 @@ return(
                         <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>
                     </li>
 
+                    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                     <li class="nav-item">
                         <Link className="nav-link" to="/seeOrder">SEE ORDER</Link>
                     </li>
+                                        )}
+
 
 
                     <li class="nav-item">

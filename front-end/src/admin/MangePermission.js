@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import { getUsers, updateUserRole } from "./apiAdmin";
 import {update} from '../user/apiUser'
 
@@ -90,6 +90,14 @@ const ManagePermission = () => {
     //     ))}
     // </select>
     // )
+
+    //NOTE Prevent others user 
+
+    const precentPermission = () => {
+        if (user.role!=2) {
+            return <Redirect to="/" />;
+        }
+    };
         
     
 
@@ -102,6 +110,8 @@ const ManagePermission = () => {
 
 
         >
+
+            {precentPermission()}
           <table class="table table-hover">
   <thead>
     <tr>

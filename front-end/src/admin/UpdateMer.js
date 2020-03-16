@@ -10,7 +10,7 @@ import { read, updateOther, updateUser } from '../user/apiUser';
 
 const UpdateMer = props =>{
     
-    const {token} = isAuthenticated();
+    const {user,token} = isAuthenticated();
     const [shopObject, setShopObject] = useState([])
     const [shopObjectID, setShopObjectID] = useState('')
     const [values, setValues] = useState({
@@ -211,6 +211,13 @@ const redirectUser = success => {
         showRole();
     }, [props]);
 
+//NOTE Prevent others user 
+
+const preventPermission = () => {
+    if (user.role!=2) {
+        return <Redirect to="/" />;
+    }
+};
 
     return(
         <Layout
@@ -219,6 +226,8 @@ const redirectUser = success => {
         className="container-fluid"
         headerImg="productImgLayout"
     >
+
+        {preventPermission()}
 
 <h2 className="mb-4">Profile update</h2>
             {profileUpdate(name, email, role)}
