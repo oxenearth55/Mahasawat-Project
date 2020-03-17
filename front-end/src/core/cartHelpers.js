@@ -49,6 +49,55 @@ export const getCart = () => {
     return [];
 };
 
+//SECTION Nabua's products 
+export const getNabuaProducts = () => {
+    let cart =[];
+    let nabua =[];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart')); 
+        }
+
+        cart.map((c, i) => {
+            if(c.shop === '5e6a17a35c566806d6a101dd') {
+                nabua.push(c);
+            }
+        });
+        // NOTE push nabua's product to Local storage
+        localStorage.setItem('nabua', JSON.stringify(nabua));
+
+    }
+    return  JSON.parse(localStorage.getItem('nabua'));
+
+};
+
+
+//SECTION Frakhaw's products 
+export const getfakkhawProducts = () => {
+    let cart =[];
+    let fakkhaw =[];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart')); 
+        }
+
+        cart.map((c, i) => {
+            if(c.shop === '5e6a17ac5c566806d6a101de') {
+                fakkhaw.push(c);
+            }
+        });
+        // NOTE push nabua's product to Local storage
+        localStorage.setItem('fakkhaw', JSON.stringify(fakkhaw));
+
+    }
+    return  JSON.parse(localStorage.getItem('fakkhaw'));
+
+};
+
+
+
+
+
 export const updateItem = (productId, count) => {
     let cart = [];
     if (typeof window !== 'undefined') {
