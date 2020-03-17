@@ -79,7 +79,7 @@ const showRemoveButton = showRemoveProductButton => {
   return (
       showRemoveProductButton &&(
         <button onClick = {() => {removeItem(product._id); setRun(!run);}}
-        className="btn button-outline-warning">
+        className="btn btn-danger">
 Remove       </button>
       )
     );
@@ -93,6 +93,28 @@ const showStock = quantity => {
     <span className="badge bg-danger badge-primary badge-pill">Out of Stock </span>
   );
 };   
+
+const showAddandRemmoveBtn = () =>{
+  if(showRemoveProductButton){
+    return(
+      <div className="col-6">
+      {showRemoveButton(showRemoveProductButton)}
+      </div>
+    )
+  
+  }
+    
+    else if(showAddToCartButton){
+      return(
+        <div className="col-6">
+          { showAddCartBtn(showAddToCartButton)}
+        </div>
+      );
+    }
+   
+    
+  };
+
 
   return(
     <div className="card">
@@ -119,14 +141,17 @@ const showStock = quantity => {
           </Link>
           </div>
 
-          <div className="col-6">
-          {showAddCartBtn(showAddToCartButton)}
-          </div>
+          {showAddandRemmoveBtn()}
+        
+
+          
+
+
+        
 
          </div>
    
  
-          {showRemoveButton(showRemoveProductButton)}
           {showCartUpdateOptions(cartUpdate)}
          
       </div>
