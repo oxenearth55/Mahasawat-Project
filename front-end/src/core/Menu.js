@@ -110,17 +110,17 @@ const Menu = ({history,handleSearch}) => {
                         
                     <MDBRow>   
                         {/* NOTE Show user's name */}
-                    <div className="px-2 text col-8"></div>
+                  
 
                         {/* SECTION  SignOut */}
-                        <span  onClick={() =>
+                        <div  onClick={() =>
                             signout(() => {
                             history.push("/");
                             })
                         }
-                        className="px-2 text col-4" to="/signin" 
+                         to="/signin" 
                         style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
-                        </span>
+                        </div>
           
                     </MDBRow>  
                     )}
@@ -151,8 +151,8 @@ return(
 
   <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0  ">
-      <li class="nav-item active ">
-      <Link className="nav-link text-white " to="/"><div className="text-white text-op">HOME </div><span class="sr-only">(current)</span></Link>
+      <li class="nav-item  ">
+      <Link className="nav-link text-white " to="/"><div className="text-white text-op">HOME </div></Link>
       </li>
      
     {/* NOTE For normal user (user.role === 0) */}
@@ -216,9 +216,45 @@ return(
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+        
+        
+        
+
+
+          {!isAuthenticated() && (
+         <>
+        <Link class="dropdown-item" to="/signin">
+             Sign In
+        </Link>
+
+        <Link class="dropdown-item" to="/signup">
+            Sign Up
+        </Link>
+              </>         
+         
+        
+                    )}
+
+           {isAuthenticated() && (
+                        
+                        <a class="dropdown-item" href="#">  
+                            {/* NOTE Show user's name */}
+                      
+    
+                            {/* SECTION  SignOut */}
+                            <div  onClick={() =>
+                                signout(() => {
+                                history.push("/");
+                                })
+                            }
+                             to="/signin" 
+                            >Sign Out
+                            </div>
+              
+                            </a>
+                        )}
+                       
+
         </div>
       </li>
       </div>

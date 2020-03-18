@@ -3,6 +3,8 @@ import {Link, withRouter} from 'react-router-dom'
 import { getCategories, list } from "./apiCore";
 import Card from "./Card";
 import './Search.css';
+import { MDBNavbar, MDBCol, MDBIcon, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBMask, MDBView, MDBRow } from 'mdbreact';
+
 
 
 const Search = ({history,handleSearch}) => {
@@ -121,6 +123,7 @@ const Search = ({history,handleSearch}) => {
     </form>
     );
 
+  
    
 
     return (
