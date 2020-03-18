@@ -158,9 +158,9 @@ const firstSection = () =>(
         <div>
         
 
-        <Menu/>
-{/* <Intro/> */}
-        <Slide/>
+        {/* <Menu/> */}
+<Intro/>
+        {/* <Slide/> */}
         <BlogPage/>
         <div className ="row">  {headerIntro()} </div>
 

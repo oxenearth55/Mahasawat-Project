@@ -117,7 +117,7 @@ const Search = ({history,handleSearch}) => {
         <form class="form-inline my-2 my-lg-0" onSubmit={searchSubmit}>
       <input class="form-control mr-sm-2" onChange={handleChange("search")} type="text" placeholder="Search by name" name=""
        aria-label="Search"/>
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-white my-2 my-sm-0 " type="submit">Search</button>
     </form>
     );
 

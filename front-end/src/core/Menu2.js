@@ -71,83 +71,62 @@ const Menu = ({history,handleSearch}) => {
 
 return(
     
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="mb-1 navbar navbar-expand-lg  default-color op-color">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">ds</a>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      <Link className="nav-link" to="/">HOME <span class="sr-only">(current)</span></Link>
+      <Link className="nav-link text-white " to="/"><div className="text-white text-op">HOME </div><span class="sr-only">(current)</span></Link>
+
       </li>
-     
-    {/* NOTE For normal user (user.role === 0) */}
-    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
-                        <li class="nav-item">
-                        <Link className="nav-link" to="/user/dashboard">DASHBOARD</Link>
-                        </li>
-
-                    )}
-
- {/* NOTE For Merchant user (user.role === 1) */}
- {isAuthenticated() && isAuthenticated().user.role === 1 &&(
-                        <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
-                        </li>
-
-                    )}
-
-                     {/* NOTE For Admin user (user.role === 2) */}
-
-                    {isAuthenticated() && isAuthenticated().user.role === 2 &&(
-                        <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
-                        </li>
-
-                    )}
-
-<li class="nav-item">
-                        <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>
-                    </li>
-
-
-                    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
-                    <li class="nav-item">
-                        <Link className="nav-link" to="/seeOrder">SEE ORDER</Link>
-                    </li>
-                                        )}
-
-
-
-    
-    </ul>
-    <Search/>
-
-    <li className="nav-item mx-2 cart-icon navbar-light nav ">
-                <Link className="nav-link" to="/cart">
-                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2"></i>
-                {/*NOTE Show the number of product beside Cart icon */}
-                {showCartTotal()}            
-                </Link>
-    </li>
-    <ul class="navbar-nav mr-2 mt-2 mt-lg-0">
-
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Dropdown
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-      </ul>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">
+          <i class="fab fa-google-plus-g"></i>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
 
+    
   </div>
-  
 </nav>
 
 ); };

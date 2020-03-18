@@ -340,3 +340,10 @@ p{
     height:150px; 
     width: 150px;
 }
+
+ .op-color{
+    /* opacity: 0.5; */
+    background-color:red!important;
+
+}
+

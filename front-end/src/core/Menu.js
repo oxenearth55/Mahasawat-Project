@@ -41,7 +41,7 @@ const Menu = ({history,handleSearch}) => {
     const showCartTotal = () => {
         return(
             <sub>
-                  <small className="cart-badge ">{itemTotal()}</small>
+                  <small className="cart-badge text-light ">{itemTotal()}</small>
             </sub>
           
 
@@ -65,12 +65,7 @@ const Menu = ({history,handleSearch}) => {
         console.log("Search result issss"+ newSearch.search)
     };
 
-    
-
-    
-
-return(
-    
+    const topMenu = () =>(
 <header className="menu-font">
     {/*SECTION First-nav */}
     <MDBContainer className = "p-0 h-1">
@@ -139,23 +134,31 @@ return(
 
     </MDBContainer>
 
+</header>
+    );
+
+    
+
+return(
+    
+<header>
  {/* SECTION second nav */}
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+ <nav class="navbar navbar-expand-lg op-colorn navbar-dark">
+  <button class="navbar-toggler  " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon "></span>
   </button>
   <a class="navbar-brand" href="#"></a>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-      <Link className="nav-link" to="/">HOME <span class="sr-only">(current)</span></Link>
+  <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0  ">
+      <li class="nav-item active ">
+      <Link className="nav-link text-white " to="/"><div className="text-white text-op">HOME </div><span class="sr-only">(current)</span></Link>
       </li>
      
     {/* NOTE For normal user (user.role === 0) */}
     {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                         <li class="nav-item">
-                        <Link className="nav-link" to="/user/dashboard">DASHBOARD</Link>
+                        <Link className="nav-link " to="/user/dashboard"><div className="text-white">DASHBOARD</div></Link>
                         </li>
 
                     )}
@@ -163,7 +166,7 @@ return(
  {/* NOTE For Merchant user (user.role === 1) */}
  {isAuthenticated() && isAuthenticated().user.role === 1 &&(
                         <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
+                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">DASHBOARD</div></Link>
                         </li>
 
                     )}
@@ -172,19 +175,19 @@ return(
 
                     {isAuthenticated() && isAuthenticated().user.role === 2 &&(
                         <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard">DASHBOARD</Link>
+                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">DASHBOARD</div></Link>
                         </li>
 
                     )}
 
 <li class="nav-item">
-                        <Link className="nav-link" to="/shop/:searchResult/:search">SHOP</Link>
+                        <Link className="nav-link" to="/shop/:searchResult/:search"><div className="text-white">SHOP</div></Link>
                     </li>
 
 
                     {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                     <li class="nav-item">
-                        <Link className="nav-link" to="/seeOrder">SEE ORDER</Link>
+                        <Link className="nav-link" to="/seeOrder"><div className="text-white">SEE ORDER</div></Link>
                     </li>
                                         )}
 
@@ -192,17 +195,33 @@ return(
 
     
     </ul>
-    <Search/>
+<div className="mx-auto">
+
+<Search/>
+</div>
+  
 
     <li className="nav-item mx-2 cart-icon navbar-light nav ">
                 <Link className="nav-link" to="/cart">
-                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2"></i>
+                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 text-light "></i>
                 {/*NOTE Show the number of product beside Cart icon */}
-                {showCartTotal()}            
+               {showCartTotal()}        
                 </Link>
     </li>
-   
-  </div>
+
+    <li class="nav-item dropdown mr-auto nav mx-4">
+        <a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-1.5x fa-user text-white "></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      </div>
   
 </nav>
 
