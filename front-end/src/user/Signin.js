@@ -3,6 +3,9 @@ import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
 import './Signin.css';
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+
+
 
 
 const Signin = () => {
@@ -38,6 +41,32 @@ const Signin = () => {
             }
         });
     };
+
+    const signUpFormTest =() =>(
+        <div>
+ <MDBContainer >
+  <MDBRow>
+    <MDBCol md="12">
+      <form className="">
+        <p className="h5 text-center mb-4">Sign in</p>
+        <div className="grey-text">
+          <MDBInput onChange={handleChange("email")}
+           label="Type your email" icon="envelope" group type="email" validate error="wrong"
+            success="right" />
+          <MDBInput onChange={handleChange("password")}
+           label="Type your password" icon="lock" group type="password" validate />
+        </div>
+        <div className="text-center">
+          <MDBBtn  onClick={clickSubmit}>Login</MDBBtn>
+        </div>
+      </form>
+    </MDBCol>
+  </MDBRow>
+</MDBContainer>
+
+        </div>
+
+    );
 
     const signUpForm = () => ( 
     
@@ -110,7 +139,8 @@ const Signin = () => {
         >
             {showLoading()}
             {showError()}
-            {signUpForm()}
+            {/* {signUpForm()} */}
+            {signUpFormTest()}
             {redirectUser()}
         </Layout>
     );

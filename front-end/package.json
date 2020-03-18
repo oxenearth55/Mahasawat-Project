@@ -8,12 +8,14 @@
     "@testing-library/user-event": "^7.2.1",
     "boostrap": "^2.0.0",
     "i": "^0.3.6",
+    "mdbreact": "^4.25.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "mdbreact": "git+https://oauth2:YOUR_TOKEN_GOES_HERE@git.mdbootstrap.com/mdb/react/re-pro.git#4.11.1"
   },
   "scripts": {
     "start": "react-scripts start",

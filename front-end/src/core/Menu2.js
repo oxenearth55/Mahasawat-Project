@@ -71,80 +71,11 @@ const Menu = ({history,handleSearch}) => {
 
 return(
     
-<header className="menu-font">
-    {/*SECTION First-nav */}
-    <MDBContainer className = "p-0 h-1">
-        {        console.log("Search result is Menu333 " + data.search)
-}
-
-        <MDBRow>
-            <div className = "col-md-4 col-sm-12 col-12 ">
-                <div className = ".btn-grpup">
-                    <button className="btn border dropdown-toggle my-md-4 my-2 text-white"
-                     data-toggle="dropdown"
-                     aria-haspopup="true"
-                     aria-expanded="false">EN</button>
-
-                     <div className="dropdown-menu">
-                         <a href="/" className="dropdown-item">TH - Thai</a>
-                     </div>
-                </div>
-            </div>
-            <div className="col-md-4 col-12 text-center site-title  ">
-                <h3 className="my-md-3 text-white">Mahasawat Store</h3>
-            </div>
-            <div className="col-md-4 col-12 text-right ">
-                <p className="my-md-4 header-links">
-                   {/* NOTE  if user does not login, show SignIn and SignUp btn */}
-                   
-                    {!isAuthenticated() && (
-                        <div>
-                         {/* SECTION  SignIn */}
-                            <Link className="px-2 text" to="/signin">SignIn</Link>
-
-                         {/* SECTION  SignUp */}
-                            <Link className="px-2 text" to="/signup">Create an Account</Link>
-                    
-                        </div>
-
-                    )}
-
-
-                    {/* NOTE if user has already login, show only SignOut btn on nav */}
-                    {isAuthenticated() && (
-                        
-                    <MDBRow>   
-                        {/* NOTE Show user's name */}
-                    <div className="px-2 text col-8"></div>
-
-                        {/* SECTION  SignOut */}
-                        <span  onClick={() =>
-                            signout(() => {
-                            history.push("/");
-                            })
-                        }
-                        className="px-2 text col-4" to="/signin" 
-                        style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
-                        </span>
-          
-                    </MDBRow>  
-                    )}
-
-  
-                </p>
-            </div>
-           
-        </MDBRow>
-
-
-    </MDBContainer>
-
- {/* SECTION second nav */}
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#"></a>
+  <a class="navbar-brand" href="#">ds</a>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -201,31 +132,23 @@ return(
                 {showCartTotal()}            
                 </Link>
     </li>
-   
+    <ul class="navbar-nav mr-2 mt-2 mt-lg-0">
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      </ul>
+
   </div>
   
 </nav>
-
-
-    {/* NOTE Links to other pages */}
-    {/* <nav >
-        
-         <ul className="nav-links"> 
-         <div className ="row">
-           <li>
-                <Link className="nav-link" style={isActive(history,'/')} to="/">Home</Link>
-            </li>
-            <li >
-                <Link className="nav-link" style={isActive(history,'/signin')}  to="/signin">Sigin</Link>
-            </li>
-            <li>
-                <Link className="nav-link" style={isActive(history,'/signup')}  to="/signup">Signup</Link>
-            </li> 
-            </div>
-        </ul>
-       
-</nav> */}
-</header>
 
 ); };
 

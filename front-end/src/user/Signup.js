@@ -4,6 +4,8 @@ import {API} from '../config';
 import './Signup.css';
 // import { signup } from '../auth';
 import { Link } from 'react-router-dom';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+
 
 const Signup = () => {
   
@@ -67,6 +69,33 @@ const Signup = () => {
 
 
 // SECTION  HTML  
+
+const signUpformNew = () => (
+<div>
+<MDBContainer>
+  <MDBRow>
+    <MDBCol md="12">
+      <form>
+        <p className="h5 text-center mb-4">Sign up</p>
+        <div className="grey-text">
+          <MDBInput onChange = {handleChange('name')} label="Your name" icon="user" group type="text" validate error="wrong"
+            success="right" />
+          <MDBInput  onChange = {handleChange('email')} label="Your email" icon="envelope" group type="email" validate error="wrong"
+            success="right" />
+          {/* <MDBInput label="Confirm your email" icon="exclamation-triangle" group type="text" validate
+            error="wrong" success="right" /> */}
+          <MDBInput onChange = {handleChange('password')} label="Your password" icon="lock" group type="password" validate />
+        </div>
+        <div className="text-center">
+          <MDBBtn onClick = {clickSubmit} color="primary">Register</MDBBtn>
+        </div>
+      </form>
+    </MDBCol>
+  </MDBRow>
+</MDBContainer>
+</div>
+
+);
 
   const signUpForm = () => ( 
    
@@ -144,8 +173,9 @@ const showSuccess = () => (
   {/* NOTE  Call Method above */}
     {showSuccess()}
     {showError()}
-    {signUpForm()}
-    {JSON.stringify(values)}
+    {/* {signUpForm()} */}
+    {signUpformNew()}
+    {/* {JSON.stringify(values)} */}
   </Layout>
    );
 };

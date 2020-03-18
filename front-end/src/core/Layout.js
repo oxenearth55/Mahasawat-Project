@@ -30,6 +30,3 @@ const Layout = ({title = "Title", description = "Description", className, childr
 </div>
 );
 export default Layout;
-
-
-

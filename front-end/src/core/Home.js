@@ -8,7 +8,9 @@ import ShowProduct from './Home-components/ShowProduct'
 import Layout from './Layout'
 import {Link} from 'react-router-dom'
 import Slide from './slide'
+import Intro from './Home-components/intro'
 
+import BlogPage from './Home-components/blog'
 
 const Home = () => {
 
@@ -71,9 +73,7 @@ const headerIntro = () => (
                 {/* <div className="col-md-2 col-sm-12">
                
                 <Link to= {`/shop/:searchResult/:search`}>
-
                 <button type="button" class="btn-text btn btn-danger btn-rounded py-2">Shop now</button>
-
                 </Link>
             </div> */}
         </div> 
@@ -159,8 +159,9 @@ const firstSection = () =>(
         
 
         <Menu/>
-
+{/* <Intro/> */}
         <Slide/>
+        <BlogPage/>
         <div className ="row">  {headerIntro()} </div>
 
 

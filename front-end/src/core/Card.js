@@ -3,6 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import ProductImage from './ProductImage';
 import {addItem, updateItem,removeItem} from './cartHelpers'; 
 import { updateCategory } from '../admin/apiAdmin';
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBCard, MDBCardTitle, MDBBtn, MDBCardGroup, MDBCardImage, MDBCardText, MDBCardBody } from "mdbreact";
+
 
 
 
@@ -115,6 +118,34 @@ const showAddandRemmoveBtn = () =>{
     
   };
 
+  const showCard = () =>{
+    return(
+<MDBCardGroup>
+      <MDBCard>
+      <ProductImage className="card-img-top img-responsive img-card" item={product} url="product"/>
+        <MDBCardBody>
+          <MDBCardTitle tag="h5"> {product.name} </MDBCardTitle>
+          <MDBCardText>
+            Some quick example text to build on the card title and make up
+            the bulk of the card's content.
+          </MDBCardText>
+          <Link to= {`/product/${product._id}`}>
+          <MDBBtn color="primary" size="md">
+            read more
+          </MDBBtn>
+</Link>
+          <MDBBtn color="primary" size="md">
+            read more
+          </MDBBtn>
+
+
+        </MDBCardBody>
+      </MDBCard>
+      </MDBCardGroup>
+
+
+    );
+  }
 
   return(
     <div className="card">
