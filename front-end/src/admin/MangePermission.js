@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link,Redirect } from "react-router-dom";
-import { getUsers, updateUserRole } from "./apiAdmin";
+import { getUsers, updateUserRole,deleteOther } from "./apiAdmin";
 import {update} from '../user/apiUser'
 
 const ManagePermission = () => {
@@ -93,11 +93,22 @@ const ManagePermission = () => {
 
     //NOTE Prevent others user 
 
-    const precentPermission = () => {
+    const preventPermission = () => {
         if (user.role!=2) {
             return <Redirect to="/" />;
         }
     };
+
+    //NOTE DELETE User
+const destroy = otherId => {
+    deleteOther(otherId, user._id, token).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            getUserObjects();
+        }
+    });
+};
         
     
 
@@ -111,7 +122,7 @@ const ManagePermission = () => {
 
         >
 
-            {precentPermission()}
+            {preventPermission()}
           <table class="table table-hover">
   <thead>
     <tr>
@@ -140,7 +151,7 @@ return(
             {/* <input type="text" onChange={handleChange(u._id)} className="form-control" v/> */}
         </Link>
             </td>
-        <td><button className="btn btn-danger btn-sm">Delete</button></td>
+        <td><button onClick={() => destroy(u._id)} className="btn btn-danger btn-sm">Delete</button></td>
     </tr>
    
   </tbody>

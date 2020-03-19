@@ -1,7 +1,11 @@
 import React from "react";
 import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBIcon, MDBView, MDBBtn } from "mdbreact";
 // import location1 from '../location1.jpg';
-import Pig from '../pig.jpg';
+import Handwash from './picture/handwash.jpg';
+import tea from './picture/tea.jpg';
+
+
+
 import Nabualo from '../location1.jpg';
 
 
@@ -21,7 +25,7 @@ const BlogPage = () => {
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
               <img
                 className="img-fluid"
-                src= {Pig}
+                src= {Handwash}
                 alt=""
               />
               <a href="#!">
@@ -107,7 +111,7 @@ const BlogPage = () => {
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
               <img
                 className="img-fluid"
-                src="https://mdbootstrap.com/img/Photos/Others/img (28).jpg"
+                src={tea}
                 alt=""
               />
               <a href="#!">

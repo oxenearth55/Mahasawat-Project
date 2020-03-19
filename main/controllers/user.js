@@ -223,3 +223,18 @@ exports.purchaseHistory = (req, res) => {
             res.json(orders);
         });
 };
+
+//NOTE remove order from backend 
+exports.remove = (req, res) => {
+    let user = req.user;
+    user.remove((err, deletedUser) => {
+        if (err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            });
+        }
+        res.json({
+            message: 'User deleted successfully'
+        });
+    });
+};

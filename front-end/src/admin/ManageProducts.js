@@ -31,6 +31,8 @@ const ManageProducts = () => {
         });
     };
 
+    
+
     useEffect(() => {
         loadProducts();
     }, []);

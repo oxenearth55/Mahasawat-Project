@@ -267,3 +267,19 @@ export const getShop = () => {
         .catch(err => console.log(err));
 };
 
+
+
+export const deleteOther = (otherId, userId, token) => {
+    return fetch(`${API}/user/${otherId}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

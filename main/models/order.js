@@ -28,6 +28,10 @@ const OrderSchema = new mongoose.Schema(
       type: ObjectId,
       ref: "Shop"
   },
+  photo: {
+    data: Buffer,
+    contentType: String
+},
     status: {
       type: String,
       default: "Awaiting Confirmation",

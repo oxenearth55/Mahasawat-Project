@@ -168,13 +168,23 @@ const clickSubmit = e => {
             // console.log(data.error);
             alert(data.error);
         } else {
-           
+            updateUser(data, () => {
                 setValues({
                     ...values,
-                    role: data.role,                  
+                    role: data.role,
+                    shop: data.shop,                     
                     success: true
                 });
-                setShopObjectID(data);
+
+            }
+            
+            );
+                // setValues({
+                //     ...values,
+                //     role: data.role,                  
+                //     success: true
+                // });
+                // setShopObjectID(data);
 
             
             

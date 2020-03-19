@@ -194,8 +194,13 @@ const exute =() =>(
             {/* <h2>Total: ${getTotal()}</h2> */}
 
      
-           { exute()}
-    
+           {isAuthenticated() ? (
+            <div>{ exute()} </div>
+    ): (
+        <Link to="/signin">
+        <button className="btn btn-primary">Please, Sign in to Checkout</button> 
+        </Link>
+    )}
     
         </div>
 

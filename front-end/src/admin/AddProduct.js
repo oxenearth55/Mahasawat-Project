@@ -105,9 +105,12 @@ const AddProduct = () => {
                     photo: '',
                     price: '',
                     quantity: '',
+                    category:'',
                     loading: false,
+                    
                     createdProduct: data.name
                 });
+                // setShopObject(shopObject);
             }
         });
     };

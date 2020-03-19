@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { requireSignin, isAuth, isAdmin } = require('../controllers/auth');
 
-const { userById, read, update, purchaseHistory, signup, list,updateRole, updateOther } = require('../controllers/user');
+const { userById, read, update, purchaseHistory, signup, list,updateRole, updateOther,remove } = require('../controllers/user');
 
 router.post('/signup', signup);
 
@@ -31,6 +31,15 @@ router.get('/orders/by/user/:userId', requireSignin, isAuth, purchaseHistory);
 router.param('userId', userById);
 // NOTE grab all of user objects from DB
 router.get('/users', list);
+
+router.delete(
+    "/user/:otherId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    remove
+)
+
 
 
 module.exports = router;
