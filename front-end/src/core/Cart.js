@@ -59,13 +59,18 @@ const Cart = () => {
 
         }else{
             return(
-                <div>
-                  {/* <div className="col-6">{items.length > 0 ? showItems(items) : noItemsMessage()}</div> */}
-                  <h2 className="mb-4">Your cart summary</h2>
-                  <hr />
-                  <Checkout products={items} setRun={setRun} run={run} />
-                  </div>
-
+            <>
+             <Checkout 
+                  
+                  nabuaProducts={nabuaProducts}
+                  nabuaTotal={getTotalNabua()}
+                  fakkhawProducts={fakkhawProducts}
+                  fakkhawTotal={getTotalFakkhaw()}
+                   setRun={setRun} 
+                   run={run}
+                   
+                   />
+            </>
             );
         }
     
@@ -144,9 +149,14 @@ const diplayFakkhawProducts = () =>{
 
    </div>
 
-      
+          <div>
+                  {/* <div className="col-6">{items.length > 0 ? showItems(items) : noItemsMessage()}</div> */}
+                  <h2 className="mb-4">Your cart summary</h2>
+                  <hr />
+                 
+                  </div>
 
-              
+
 
         </Layout>
     );

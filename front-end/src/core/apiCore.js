@@ -122,6 +122,7 @@ export const createOrder = (userId, token, createOrderData) => {
         .catch(err => console.log(err));
 };
 
+
 //SECTION Individual Shop
 
 //get Shop Object from backend 

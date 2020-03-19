@@ -11,6 +11,12 @@ import Slide from './slide'
 import Intro from './Home-components/intro'
 
 import BlogPage from './Home-components/blog'
+import EcommercePage from './Home-components/ShowCard'
+import { MDBRow ,MDBCol} from 'mdbreact';
+
+import CardList from './Home-components/cardList'
+import Test from './Home-components/test'
+
 
 const Home = () => {
 
@@ -22,7 +28,7 @@ const Home = () => {
     // SECTION Display bestseller and new arrival products
     const loadProductsBySell = () => {
         // NOTE get product by sold
-        getProducts('sold',6).then(data => {
+        getProducts('sold',3).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
@@ -149,7 +155,16 @@ const firstSection = () =>(
     );
 
    
-    
+    const showBestSeller = () => (
+    <MDBRow>
+        {productsBySell.map((product,i) => (
+        <EcommercePage key={i} product={product}/>
+   
+              ))}
+
+</MDBRow>
+
+    )
 
     
 
@@ -162,11 +177,25 @@ const firstSection = () =>(
 <Intro/>
         {/* <Slide/> */}
         <BlogPage/>
-        <div className ="row">  {headerIntro()} </div>
+        {/* <CardList/> */}
 
-
+        <section className="text-center my-5">
+      <h2 className="h1-responsive font-weight-bold text-center my-5">
+        Our bestsellers
+      </h2>
+      <p className="grey-text text-center w-responsive mx-auto mb-5">
+        สินค้าของเราเป็นทืี่ชื่นชอบมากทั้งในหมู่คนไทยและคนต่างชาติ เพราะสินค้าที่นี่ ผลิตจาก ธรรมชาติ
+      </p>
+    
+  {/* NOTE show best sellers */}
+    {showBestSeller()}
       
-         {/* NOTE show best sellers */}
+
+        </section>
+
+        <div className ="row">  {headerIntro()} </div>
+      
+       
         
          <div className="container-fluid pt-1 pb-4">
         <h2 className="head-section mb-4">Best Sellers</h2>

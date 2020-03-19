@@ -14,7 +14,8 @@ import {
   MDBFormInline,
   MDBBtn,
   MDBView,
-  MDBContainer
+  MDBContainer,
+  MDBAnimation
 } from 'mdbreact';
 import Menu from '../Menu';
 import Menu2 from '../Menu2';
@@ -30,12 +31,14 @@ const Intro = () => (
           <Menu/>
 
           <MDBContainer
-            className='d-flex justify-content-center align-items-center'
+            className='d-flex justify-content-center align-items-center '
             style={{ height: '100%', width: '100%', paddingTop: '17rem' }}
           >
 
-            <MDBRow>
+            <MDBRow className=" mb-5  ">
               <MDBCol md='12' className='mb-4 white-text text-center'>
+              <MDBAnimation reveal type="fadeInUp">
+
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
                   Mahasawat Shopping
                 </h1>
@@ -50,6 +53,7 @@ const Intro = () => (
                 <MDBBtn outline color='white'>
                   About me
                 </MDBBtn>
+                </MDBAnimation>
               </MDBCol>
             </MDBRow>
           </MDBContainer>

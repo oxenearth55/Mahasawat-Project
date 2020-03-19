@@ -7,7 +7,11 @@ const CartItemSchema = new mongoose.Schema(
     product: { type: ObjectId, ref: "Product" },
     name: String,
     price: Number,
-    count: Number
+    count: Number, 
+    shop: {
+      type: ObjectId,
+      ref: "Shop"
+  },
   },
   { timestamps: true }
 );
@@ -20,6 +24,10 @@ const OrderSchema = new mongoose.Schema(
     transaction_id: {},
     amount: { type: Number },
     address: String,
+    shop: {
+      type: ObjectId,
+      ref: "Shop"
+  },
     status: {
       type: String,
       default: "Awaiting Confirmation",
