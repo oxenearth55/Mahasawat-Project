@@ -176,6 +176,7 @@ const firstSection = () =>(
         {/* <Menu/> */}
 <Intro/>
         {/* <Slide/> */}
+        <Test/>
         <BlogPage/>
         {/* <CardList/> */}
 

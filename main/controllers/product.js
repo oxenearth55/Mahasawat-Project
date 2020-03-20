@@ -33,9 +33,9 @@ exports.create = (req, res) => {
             });
         }
         // check for all fields
-        const { name, description, price, category, quantity, shipping, shop} = fields;
+        const { name, description, price, category, quantity, shipping, shop,detail} = fields;
 
-        if (!name || !description || !price || !category || !quantity || !shipping || !shop) {
+        if (!name || !description || !price || !category || !quantity || !shipping || !shop ||!detail) {
             return res.status(400).json({
                 error: 'All fields are required'
             });
@@ -48,9 +48,9 @@ exports.create = (req, res) => {
 
         if (files.photo) {
             // console.log("FILES PHOTO: ", files.photo);
-            if (files.photo.size > 3000000) {
+            if (files.photo.size > 10000000) {
                 return res.status(400).json({
-                    error: 'Image should be less than 1mb in size'
+                    error: 'Image should be less than 10mb in size'
                 });
             }
             product.photo.data = fs.readFileSync(files.photo.path);
@@ -104,9 +104,9 @@ exports.update = (req, res) => {
 
         if (files.photo) {
             // console.log("FILES PHOTO: ", files.photo);
-            if (files.photo.size > 3000000) {
+            if (files.photo.size > 10000000) {
                 return res.status(400).json({
-                    error: 'Image should be less than 1mb in size'
+                    error: 'Image should be less than 10mb in size'
                 });
             }
             product.photo.data = fs.readFileSync(files.photo.path);
@@ -157,7 +157,7 @@ exports.list = (req, res) => {
  */
 
 exports.listRelated = (req, res) => {
-    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 3;
 
     Product.find({ _id: { $ne: req.product }, category: req.product.category })
         .limit(limit)

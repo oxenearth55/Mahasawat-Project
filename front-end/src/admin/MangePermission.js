@@ -109,8 +109,7 @@ const destroy = otherId => {
         }
     });
 };
-        
-    
+         
 
     return (
         <Layout

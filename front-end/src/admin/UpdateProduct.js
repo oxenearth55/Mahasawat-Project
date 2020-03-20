@@ -13,6 +13,7 @@ const UpdateProduct = ({ match }) => {
         category: '',
         shipping: '',
         quantity: '',
+        detail:'',
         photo: '',
         loading: false,
         error: false,
@@ -31,6 +32,7 @@ const UpdateProduct = ({ match }) => {
         category,
         shipping,
         quantity,
+        detail,
         loading,
         error,
         createdProduct,
@@ -49,6 +51,7 @@ const UpdateProduct = ({ match }) => {
                     ...values,
                     name: data.name,
                     description: data.description,
+                    detail:data.detail,
                     price: data.price,
                     category: data.category._id,
                     shipping: data.shipping,
@@ -97,6 +100,7 @@ const UpdateProduct = ({ match }) => {
                     photo: '',
                     price: '',
                     quantity: '',
+                    detail:'',
                     loading: false,
                     error: false,
                     redirectToProfile: true,
@@ -123,6 +127,11 @@ const UpdateProduct = ({ match }) => {
             <div className="form-group">
                 <label className="text-muted">Description</label>
                 <textarea onChange={handleChange('description')} className="form-control" value={description} />
+            </div>
+
+            <div className="form-group">
+                <label className="text-muted">Detail</label>
+                <textarea onChange={handleChange('detail')} className="form-control" value={detail} />
             </div>
 
             <div className="form-group">

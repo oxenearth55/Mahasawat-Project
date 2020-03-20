@@ -5,6 +5,8 @@ import Card from './Card';
 import ProductImage from './ProductImage';
 import {addItem, updateItem,removeItem} from './cartHelpers'; 
 import { Link, Redirect } from 'react-router-dom';
+import CardProduct from './CardProduct'
+import RelatedProduct from './RelatedProduct'
 
 
 
@@ -21,6 +23,8 @@ const Product = props => {
     const addToCart = () => {
         addItem(product, setRedirect(true));
       };
+
+    
 
       const shouldRedirect = redirect => {
         if(redirect){
@@ -75,6 +79,35 @@ const Product = props => {
     }, [props]);
 
 
+     //SECTION Show related Product 
+const showRelated = () => (
+    <div class="container my-5 py-5">
+   
+       {/* <!--Section: Content--> */}
+       <section class="text-center">
+   
+   
+         {/* <!--Grid row--> */}
+         <div class="row">
+   
+         {relatedProduct.map((r, i) => (
+           
+           <>
+             <RelatedProduct r={r}/>
+           </>
+         ))}    
+   
+   {/* <!--Grid column--> */}
+           
+   
+   </div>
+       </section>
+       {/* <!--Section: Content--> */}
+   
+   
+     </div>
+   
+   )
 
     return (
         <Layout
@@ -84,38 +117,12 @@ const Product = props => {
             headerImg="productImgLayout"
         >
             {shouldRedirect(redirect)}
-         <div className="container-fluid">
-            <div className="row">
-                <div className="col-6">
-                  <ProductImage  className="img-responsive" item={product} url="product"/>
+        
 
-                </div> 
-                
-                <div className="col-6" >
-                    
-<h3 className="" align="center">{product.name} </h3>
-                     <div className="row mx-1 mt-4 "> 
-                      <p className="bg-dark text-white mr-4">Description:</p> 
-                     
-                     <p className="bg-light text-dark">  {product.description}</p>
-                     
-                     </div>    
+            <CardProduct product={product} addCart={addToCart} relatedProduct={relatedProduct}/>
 
-                     <div className="row mx-1 mt-4 "> 
-                      <p className="bg-dark text-white mr-4">Price</p> 
-
-                     <h4 className =" ">฿ {product.price}</h4>
-                     
-                     </div>
-
-                     <button onClick = {addToCart} className="btn btn-danger mt-4">
-                           Add to Cart
-                     </button>     
-                        
-                </div> 
-            </div> 
-            </div>
-            <div className="row my-4">
+{showRelated()}
+            {/* <div className="row my-4">
                     <h4>Related products</h4>
                     <div className="row">
                     {relatedProduct.map((p, i) => (
@@ -124,7 +131,8 @@ const Product = props => {
                         </div>                   
                     ))}    
 </div>            
-</div>
+</div> */}
+
 
          </Layout>
     );

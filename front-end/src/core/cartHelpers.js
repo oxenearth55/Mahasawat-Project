@@ -136,6 +136,9 @@ export const removeItem = productId => {
 export const emptyCart = next => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('cart');
+        localStorage.removeItem('nabua');
+        localStorage.removeItem('fakkhaw');
         next();
     }
 };
+

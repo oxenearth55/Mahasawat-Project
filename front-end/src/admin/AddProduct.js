@@ -12,6 +12,7 @@ const AddProduct = () => {
         price: '',
         categories: [],
         category: '',
+        detail:'',
         shipping: '',
         quantity: '',
         photo: '',
@@ -37,6 +38,7 @@ const AddProduct = () => {
         error,
         createdProduct,
         redirectToProfile,
+        detail,
         // shopObject,
         formData
     } = values;
@@ -106,6 +108,7 @@ const AddProduct = () => {
                     price: '',
                     quantity: '',
                     category:'',
+                    detail:'',
                     loading: false,
                     
                     createdProduct: data.name
@@ -132,6 +135,11 @@ const AddProduct = () => {
             <div className="form-group">
                 <label className="text-muted">Description</label>
                 <textarea onChange={handleChange('description')} className="form-control" value={description} />
+            </div>
+
+            <div className="form-group">
+                <label className="text-muted">Detail</label>
+                <textarea onChange={handleChange('detail')} className="form-control" value={detail} />
             </div>
 
             <div className="form-group">

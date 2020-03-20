@@ -50,7 +50,7 @@ const Cart = () => {
     };
 //NOTE if not have anything in localsotage (cart)
     const noItemsMessage = () => {
-        if(items <=0){
+        if(items.length <=0){
         return(    
             <h2>
                 Your cart is empty. <br /> <Link to="/shop/:searchResult/:search">Continue shopping</Link>
