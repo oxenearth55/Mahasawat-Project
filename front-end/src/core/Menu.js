@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import {Link, withRouter} from 'react-router-dom' 
 import './Menu.css'
 import {signout, isAuthenticated} from '../auth' 
 import Shop from './Shop'
 import Search from './Search'
-import {itemTotal} from './cartHelpers'
+import {itemTotal,getCart} from './cartHelpers'
 
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBMask, MDBView, MDBRow } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -25,7 +25,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 // var { user } = isAuthenticated();
 
 
-const Menu = ({history,handleSearch}) => {
+const Menu = ({history,handleSearch
+  }) => {
+    const value = useContext(itemTotal());
+    const [items,setItems] = ([]);
+    const [run, setRun] = useState(false);
+
 
     // NOTE State to grab search trigger from Search component
     const [data, setData] = useState({
@@ -35,7 +40,10 @@ const Menu = ({history,handleSearch}) => {
         const {search} = data
 
     useEffect(() => {
-        // showCartTotal() //NOTE get object (cart) from local storage
+        // showCartTotal()
+        showCartTotal()
+        getCart()
+        //NOTE get object (cart) from local storage
     }, []);
 
     const showCartTotal = () => {

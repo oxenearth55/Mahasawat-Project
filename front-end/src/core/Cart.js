@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import { getCart, getNabuaProducts,getfakkhawProducts } from './cartHelpers';
+import {addItem, updateItem,removeItem} from './cartHelpers'; 
 import Card from './Card';
 import Checkout from './Checkout';
+import {API} from '../config' 
+import CartAdjust from './CartAdjust'
+
 
 const Cart = () => {
     //NOTE items contain products that was selected from local storage
@@ -12,6 +16,8 @@ const Cart = () => {
     const [run, setRun] = useState(false);
     const [nabuaProducts,setNabuaProducts] = useState([]);
     const [fakkhawProducts,setFakkhawProducts] = useState([]);
+    const [shop,setShop] = useState('');
+
 
     
 
@@ -24,27 +30,229 @@ const Cart = () => {
         setFakkhawProducts(getfakkhawProducts());
     }, [run]);
 
-    //SECTION Display products from local storage 
-    const showItems = (items) => {
-        return (
-    
-                <div className="row">
+    //SECTION Display Cart 
 
-                {items.map((product, i) => (                    
-                   <div className="col-4 my-4">
-                        <Card
-                            key={i}
-                            product={product}
-                            showAddToCartButton={false}
-                            cartUpdate={true}
-                            showRemoveProductButton={true}
-                            setRun={setRun}
-                            run={run} 
-                        />
-                    </div>
-                    ))}
-               
-               </div>
+   const showItemsFakkhaw = (items) =>{
+    return (
+        <div class="container my-5 py-3 z-depth-1 rounded">
+
+        
+        {/* <!--Section: Content--> */}
+        <section class="dark-grey-text">
+      
+          {/* <!-- Shopping Cart table --> */}
+          <div class="table-responsive">
+      
+            <table class="table product-table mb-0">
+      
+              {/* <!-- Table head --> */}
+              <thead class="mdb-color lighten-5">
+                <tr>
+                  <th></th>
+                  <th class="font-weight-bold">
+                    <strong>Product</strong>
+                  </th>
+                 
+                  
+                  <th class="font-weight-bold">
+                    <strong>Price</strong>
+                  </th>
+                  <th class="font-weight-bold">
+                    <strong>QTY</strong>
+                  </th>
+                  {/* <th class="font-weight-bold">
+                    <strong>Amount</strong>
+                  </th> */}
+                   <th class="font-weight-bold">
+                    <strong>Remove</strong>
+                  </th>
+                  <th></th>
+                </tr>
+              </thead>
+              {/* <!-- /.Table head --> */}
+      
+              {/* <!-- Table body --> */}
+             
+        
+        {/* //ANCHOR Table body */}
+        <tbody>
+            {items.map((product, i) => {  
+              
+                return(
+        <tr>
+        <th scope="row">
+          <img src={`${API}/product/photo/${product._id}`} alt="" class="img-fluid z-depth-0 cartPhoto" />
+        </th>
+        <td>
+          <h5>
+            <strong class="mt-3">{product.name}</strong>
+          </h5>
+          {/* <p class="text-muted">Apple</p> */}
+        </td>
+       
+        
+        <td>฿{product.price}</td>
+        <td>
+    <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
+    setRun={setRun} run={run} 
+/>           
+</td>
+        {/* <td class="font-weight-bold">
+            <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}
+    
+/>           </strong>
+        </td> */}
+        <td>
+            
+          <button onClick = {() => {removeItem(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+            title="Remove item">X
+          </button>
+        </td>
+      </tr>      
+                )})}
+           <tr>
+      <td colspan="3"></td>
+      <td>
+        <h4 class="mt-2">
+          <strong>Total</strong>
+        </h4>
+      </td>
+      <td class="text-right">
+        <h4 class="mt-2">
+          <strong>฿{getTotalFakkhaw()}</strong>
+        </h4>
+      </td>
+      <td colspan="3" class="text-right">
+      
+      </td>
+    </tr>
+           </tbody>
+              {/* //ANCHOR Table body */}
+              </table>
+
+</div>
+{/* <!-- /.Shopping Cart table --> */}
+
+</section>
+{/* <!--Section: Content--> */}
+
+
+</div>
+
+
+    );
+
+   }
+
+    //SECTION Display products from local storage 
+    const showItemsNabua = (items) => {
+      
+        return (
+            <div class="container my-5 py-3 z-depth-1 rounded">
+
+            
+            {/* <!--Section: Content--> */}
+            <section class="dark-grey-text">
+          
+              {/* <!-- Shopping Cart table --> */}
+              <div class="table-responsive">
+          
+                <table class="table product-table mb-0">
+          
+                  {/* <!-- Table head --> */}
+                  <thead class="mdb-color lighten-5">
+                    <tr>
+                      <th></th>
+                      <th class="font-weight-bold">
+                        <strong>Product</strong>
+                      </th>
+                     
+                      
+                      <th class="font-weight-bold">
+                        <strong>Price</strong>
+                      </th>
+                      <th class="font-weight-bold">
+                        <strong>QTY</strong>
+                      </th>
+                      {/* <th class="font-weight-bold">
+                        <strong>Amount</strong>
+                      </th> */}
+                       <th class="font-weight-bold">
+                        <strong>Remove</strong>
+                      </th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  {/* <!-- /.Table head --> */}
+          
+                  {/* <!-- Table body --> */}
+                 
+            
+            {/* //ANCHOR Table body */}
+            <tbody>
+                {items.map((product, i) => {  
+                  
+                    return(
+            <tr>
+            <th scope="row">
+              <img src={`${API}/product/photo/${product._id}`} alt="" class="img-fluid z-depth-0 cartPhoto"/>
+            </th>
+            <td>
+              <h5>
+                <strong class="mt-3">{product.name}</strong>
+              </h5>
+              {/* <p class="text-muted">Apple</p> */}
+            </td>
+           
+            
+            <td>฿{product.price}</td>
+            <td>
+        <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
+        setRun={setRun} run={run} 
+/>           
+ </td>
+            {/* <td class="font-weight-bold">
+                <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}
+        
+/>           </strong>
+            </td> */}
+            <td>
+                
+              <button onClick = {() => {removeItem(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+                title="Remove item">X
+              </button>
+            </td>
+          </tr>      
+                    )})}
+               <tr>
+          <td colspan="3"></td>
+          <td>
+            <h4 class="mt-2">
+              <strong>Total</strong>
+            </h4>
+          </td>
+          <td class="text-right">
+            <h4 class="mt-2">
+              <strong>฿{getTotalNabua()}</strong>
+            </h4>
+          </td>
+          <td colspan="3" class="text-right">
+          
+          </td>
+        </tr>
+               </tbody>
+                  {/* //ANCHOR Table body */}
+                  </table>
+
+</div>
+{/* <!-- /.Shopping Cart table --> */}
+
+</section>
+{/* <!--Section: Content--> */}
+
+
+</div>
+
 
         );
     };
@@ -83,8 +291,30 @@ const [showfakkhawProducts,setShowFakkhawProducts] =useState(false);
 
 
 
+ 
+
 
 //SECTION show total from each shop
+
+const showTotal = () => {
+    //Nbbua
+    if(shop === 'nabua'){
+        return(
+            <>
+            {getTotalNabua()}
+            </>
+        )
+        //Fakkhaw
+    }else if(shop === 'fakkhaw'){
+            return(
+                <>
+                {getTotalFakkhaw()}
+                </>
+            )
+    }
+}
+   
+
 
 const getTotalNabua = () => {
        
@@ -107,8 +337,8 @@ const displayNabuaProducts = () =>{
         return(
     <div>
         <h2 className="text-white bg-dark text-center">สินค้าของร้านนาบัวลุงแจ่ม</h2>
-        <h2 className="border rounded-lg col-2 bg-dark text-white">Total: ${getTotalNabua()}</h2>    
-        {showItems(nabuaProducts)} 
+        {/* <h2 className="border rounded-lg col-2 bg-dark text-white">Total: ${getTotalNabua()}</h2>     */}
+        {showItemsNabua(nabuaProducts)} 
     </div>
         );
     } 
@@ -119,11 +349,11 @@ const displayNabuaProducts = () =>{
 const diplayFakkhawProducts = () =>{
     if(fakkhawProducts.length > 0 ){
         return(
-        <div>
+        <>
             <h2 className="text-white bg-dark text-center">สินค้าของร้านฟักข้าว</h2>
-            <h2>Total: ${getTotalFakkhaw()}</h2> 
-            {showItems(fakkhawProducts)}
-        </div>
+            {/* <h2>Total: ${getTotalFakkhaw()}</h2>  */}
+            {showItemsFakkhaw(fakkhawProducts)}
+        </>
 
         );
     }
@@ -140,23 +370,17 @@ const diplayFakkhawProducts = () =>{
             headerImg="cartImgLayout"
         >
 
-   <div>
+   <>
         {displayNabuaProducts()}
         {diplayFakkhawProducts()}
 
         {noItemsMessage()}
 
 
-   </div>
-
-          <div>
-                  {/* <div className="col-6">{items.length > 0 ? showItems(items) : noItemsMessage()}</div> */}
-                  <h2 className="mb-4">Your cart summary</h2>
-                  <hr />
-                 
-                  </div>
+   </>
 
 
+              
 
         </Layout>
     );

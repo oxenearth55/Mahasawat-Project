@@ -6,6 +6,9 @@ import {getProducts} from './apiCore';
 import { getShop } from '../admin/apiAdmin';
 import {addItem} from './cartHelpers'; 
 import RelatedProduct from './RelatedProduct';
+import PopUpCart from './PopUpCart';
+import {getCart} from './cartHelpers'; 
+
 
 
 
@@ -15,10 +18,15 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
     const [shopObject, setShopObject] = useState([])
     const [redirect, setRedirect] = useState(false);
     const [error , setError] = useState([]);
+    const [run, setRun] = useState(false);
+
 
     useEffect(() => {
         loadProductsBySell();
         getShopObject();
+        getCart()
+
+
     },[]);
 
   
@@ -88,6 +96,7 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
 
     }
 
+
     const displayIcons = () => (
         <div className="row">
 
@@ -140,10 +149,16 @@ const showRelated = () => (
 
 )
 
+   
+
+
+
+
     //SECTION Render
 
 return(
   <>
+  
 <div class="container my-5 py-5 z-depth-1">
 
 
@@ -287,8 +302,10 @@ return(
 
           <div class="row mt-3">
             <div class="col-md-12 text-center text-md-left text-md-right">
-              <button onClick={addCart} class="btn btn-primary btn-rounded">
-                <i class="fas fa-cart-plus mr-2"  aria-hidden="true"></i> Add to cart</button>
+              <button type="button" onClick={() => {addCart(); setRun(!run);}} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
+                <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> Add to cart</button>
+                <PopUpCart/>
+           
             </div>
           </div>
         </div>

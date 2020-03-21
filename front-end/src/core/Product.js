@@ -10,6 +10,7 @@ import RelatedProduct from './RelatedProduct'
 
 
 
+
 const Product = props => {
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProduct] = useState([]);
@@ -21,16 +22,16 @@ const Product = props => {
     
 
     const addToCart = () => {
-        addItem(product, setRedirect(true));
+        addItem(product);
       };
 
     
 
-      const shouldRedirect = redirect => {
-        if(redirect){
-          return <Redirect to ="/cart" />
-        }
-      };
+    //   const shouldRedirect = redirect => {
+    //     if(redirect){
+    //       return <Redirect to ="/cart" />
+    //     }
+    //   };
 
     const c = () => {
         getCategories().then(data => {
@@ -76,6 +77,7 @@ const Product = props => {
         c()
         const productId = props.match.params.productId;
         loadSingleProduct(productId); 
+     
     }, [props]);
 
 
@@ -116,7 +118,7 @@ const showRelated = () => (
             className="container-fluid"
             headerImg="productImgLayout"
         >
-            {shouldRedirect(redirect)}
+            {/* {shouldRedirect(redirect)} */}
         
 
             <CardProduct product={product} addCart={addToCart} relatedProduct={relatedProduct}/>

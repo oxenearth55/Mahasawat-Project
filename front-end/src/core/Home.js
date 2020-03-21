@@ -16,6 +16,10 @@ import { MDBRow ,MDBCol} from 'mdbreact';
 
 import CardList from './Home-components/cardList'
 import Test from './Home-components/test'
+import Test2 from './Home-components/test2'
+import Test3 from './Home-components/test3'
+
+
 
 
 const Home = () => {
@@ -176,6 +180,7 @@ const firstSection = () =>(
         {/* <Menu/> */}
 <Intro/>
         {/* <Slide/> */}
+        <Test3/>
         <Test/>
         <BlogPage/>
         {/* <CardList/> */}
