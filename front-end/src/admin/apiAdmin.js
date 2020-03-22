@@ -194,6 +194,22 @@ export const updateProduct = (productId, userId, token, product) => {
         .catch(err => console.log(err));
 };
 
+export const uploadSlip = (orderId, userId, token, slip) => {
+    return fetch(`${API}/order/${orderId}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: slip
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
 
 //NOTE retrive user Object from backend 
 export const getUsers = () => {

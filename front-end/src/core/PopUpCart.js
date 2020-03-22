@@ -4,6 +4,10 @@ import { Link, Redirect } from 'react-router-dom';
 
 const PopUpCart = () => {
 
+ 
+  
+
+
 
     return(
 //   {/* //ANCHOR pop Up */}

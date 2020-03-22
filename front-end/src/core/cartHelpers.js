@@ -1,3 +1,6 @@
+
+
+
 export const addItem = (item = [], count = 0, next = f => f) => {
     let cart = [];
     if (typeof window !== 'undefined') {
@@ -32,9 +35,12 @@ export const addItem = (item = [], count = 0, next = f => f) => {
 };
 
 export const itemTotal = () => {
+  
+    
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('cart')) {
-            return JSON.parse(localStorage.getItem('cart')).length;
+           
+            return  JSON.parse(localStorage.getItem('cart')).length;
         }
     }
     return 0;

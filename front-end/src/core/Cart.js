@@ -107,6 +107,9 @@ const Cart = () => {
           <button onClick = {() => {removeItem(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
             title="Remove item">X
           </button>
+          
+
+
         </td>
       </tr>      
                 )})}
@@ -207,9 +210,7 @@ const Cart = () => {
             
             <td>฿{product.price}</td>
             <td>
-        <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
-        setRun={setRun} run={run} 
-/>           
+
  </td>
             {/* <td class="font-weight-bold">
                 <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}

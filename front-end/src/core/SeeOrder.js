@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { listOrders, getStatusValues, updateOrderStatus } from "../admin/apiAdmin";
+import { listOrders, getStatusValues, updateOrderStatus, uploadSlip } from "../admin/apiAdmin";
 import moment from "moment";
 //Import logo.png
 import waiting from './Logo/waiting.png'
@@ -19,6 +19,38 @@ const SeeOrder = () => {
 
     const [orders, setOrders] = useState([]);
     const { user, token } = isAuthenticated();
+    const [slip,setSlip] =useState('');
+    const [error,setError] =useState('');
+    const [success,setSuccess] =useState(false);
+
+    const showUpSlip = () =>
+(
+    <label className="btn btn-secondary">
+    <input onChange={handleChange} type="file" name="photo" accept="image/*" />
+    <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button>
+
+</label>
+)
+
+const clickSubmit = event =>{
+    event.preventDefault();
+    uploadSlip(user._id, token, slip).then(data => {
+        if (data.error) {
+            setError(data.error);
+        } else {
+            setSuccess(true);
+
+}
+    })
+
+}
+
+const handleChange = event => {
+ 
+    setSlip( event.target.files[0]  );
+};
+
+
 
 
     const loadOrders = () => {
@@ -214,6 +246,7 @@ const SeeOrder = () => {
                     key={oIndex}
                     style={{ borderBottom: "5px solid indigo" }}
                 >
+                    {showUpSlip()}
                     <h2 className="mb-5">
                         <span>
                             <div className="row">

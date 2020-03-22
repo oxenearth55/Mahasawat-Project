@@ -27,7 +27,7 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
         getCart()
 
 
-    },[]);
+    },[run]);
 
   
     //SECTION Load shop

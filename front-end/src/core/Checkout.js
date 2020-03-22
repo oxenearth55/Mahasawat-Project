@@ -162,7 +162,7 @@ const showAddressForm = () => {
         <>
        
     
-    //   {/* // <!--Main layout--> */}
+      {/* // <!--Main layout--> */}
       <main class="mt-5 pt-4">
         <div class="container wow fadeIn">
     
@@ -189,7 +189,7 @@ const showAddressForm = () => {
     
                       {/* <!--firstName--> */}
                       <div class="md-form ">
-                        <input type="text" id="firstName" class="form-control"/>
+                        <input onChange={handleAddress}value={customerAddress} type="text" id="firstName" class="form-control"/>
                         <label for="firstName" class="">First name</label>
                       </div>
     
@@ -201,7 +201,7 @@ const showAddressForm = () => {
     
                       {/* <!--lastName--> */}
                       <div class="md-form">
-                        <input type="text" id="lastName" class="form-control"/>
+                        <input  type="text" id="lastName" class="form-control"/>
                         <label for="lastName" class="">Last name</label>
                       </div>
     
@@ -346,7 +346,7 @@ const showAddressForm = () => {
     
                
                   <hr class="mb-4"/>
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                  <button onClick={buy} class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
     
                 </form>
     
@@ -400,7 +400,11 @@ const exute =() =>(
 
      
            {isAuthenticated() ? (
-            <div>{ exute()} </div>
+            <div>
+            {showAddressForm()}
+            
+            {/* { exute()}  */}
+            </div>
     ): (
         <Link to="/signin">
         <button className="btn btn-primary">Please, Sign in to Checkout</button> 

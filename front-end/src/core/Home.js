@@ -180,7 +180,7 @@ const firstSection = () =>(
         {/* <Menu/> */}
 <Intro/>
         {/* <Slide/> */}
-        <Test3/>
+        {/* <Test3/> */}
         <Test/>
         <BlogPage/>
         {/* <CardList/> */}

@@ -9,9 +9,22 @@ const {
     getStatusValues,
     orderById,
     updateOrderStatus,
-    remove
+    remove,
+    uploadImage,
+    read,
+    
 } = require("../controllers/order");
 const { decreaseQuantity } = require("../controllers/product");
+
+
+
+router.put(
+    "/order/:orderId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    uploadImage
+    );
 
 router.post(
     "/order/create/:userId",

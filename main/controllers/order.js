@@ -4,6 +4,49 @@ const { errorHandler } = require('../helpers/dbErrorHandler');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
+
+
+
+exports.read = (req, res) => {
+    req.order.photo = undefined;
+    return res.json(req.order);
+};
+ 
+exports.photo = (req, res, next) => {
+    if (req.product.photo.data) {
+        res.set('Content-Type', req.product.photo.contentType);
+        return res.send(req.product.photo.data);
+    }
+    next();
+};
+exports.uploadImage = (req, res) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'Image could not be uploaded'
+            });
+        }
+ 
+        // 1kb = 1000
+        // 1mb = 1000000
+ 
+        if (files.photo) {
+            // console.log("FILES PHOTO: ", files.photo);
+            if (files.photo.size > 10000000) {
+                return res.status(400).json({
+                    error: 'Image should be less than 1mb in size'
+                });
+            }
+            order.photo.data = fs.readFileSync(files.photo.path);
+            order.photo.contentType = files.photo.type;
+        }
+ 
+        res.json(result);
+    });
+};
+
 exports.orderById = (req, res, next, id) => {
     Order.findById(id)
         .populate('products.product', 'name price')

@@ -11,7 +11,7 @@ import RelatedProduct from './RelatedProduct'
 
 
 
-const Product = props => {
+const Product = (props) => {
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);

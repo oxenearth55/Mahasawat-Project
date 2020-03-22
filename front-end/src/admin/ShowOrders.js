@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { listOrders, deleteOrder,getShop} from "./apiAdmin";
+import { listOrders, deleteOrder,getShop,uploadSlip} from "./apiAdmin";
 import moment from "moment";
 
 
@@ -12,9 +12,11 @@ const ShowOrders = () => {
     // const [statusValues, setStatusValues] = useState([]);
     const [shopObject, setShopObject] = useState([]);
 
-    const [error, setError] = useState(false);
 
     const { user, token } = isAuthenticated();
+    
+    const [error,setError] =useState('');
+
 
     const loadOrders = () => {
         //NOTE Get orders from backend
@@ -84,6 +86,11 @@ const showOrdersTable = () => {
         }
     )
     }
+
+
+
+
+
 
 return(
     <div>  {showOrdersLength(number.length)}
