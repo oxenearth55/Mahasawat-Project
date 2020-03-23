@@ -33,7 +33,8 @@ router.put(
     requireSignin,
     isAuth,
     isAdmin,
-    update
+    update,
+    read
 );
 
 router.get("/products", list);

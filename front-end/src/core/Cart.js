@@ -210,8 +210,12 @@ const Cart = () => {
             
             <td>฿{product.price}</td>
             <td>
+            
+    <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
+    setRun={setRun} run={run} 
+/>           
+</td>
 
- </td>
             {/* <td class="font-weight-bold">
                 <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}
         

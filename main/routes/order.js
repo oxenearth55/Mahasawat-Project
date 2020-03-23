@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
 const { userById, addOrderToUserHistory } = require("../controllers/user");
 const {
@@ -11,19 +12,22 @@ const {
     updateOrderStatus,
     remove,
     uploadImage,
-    read,
+    readOrder,
     
 } = require("../controllers/order");
 const { decreaseQuantity } = require("../controllers/product");
 
 
+router.get(
+    "/order/:orderId",
+readOrder
+);
 
 router.put(
     "/order/:orderId/:userId",
     requireSignin,
     isAuth,
-    isAdmin,
-    uploadImage
+    uploadImage,
     );
 
 router.post(
@@ -38,7 +42,7 @@ router.delete(
     "/order/:orderId/:userId",
     requireSignin,
     isAuth,
-    isAdmin,
+    
     remove
 )
 

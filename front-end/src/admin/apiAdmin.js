@@ -202,6 +202,7 @@ export const uploadSlip = (orderId, userId, token, slip) => {
             Authorization: `Bearer ${token}`
         },
         body: slip
+
     })
         .then(response => {
             return response.json();

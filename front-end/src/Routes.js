@@ -24,6 +24,7 @@ import CreateShop from './admin/CreateShop'
 import BanFakkhaw from './Shop/BanFakkhaw'
 import Nabua from './Shop/Nabua'
 import UpdateMer from './admin/UpdateMer'
+import SeeOrderCus from './core/SeeOrderCus'
 
 const Routes = () => {
 
@@ -36,10 +37,13 @@ const Routes = () => {
             <Route path="/product/:productId" exact component={Product}></Route> 
             <Route path="/shop/:searchResult/:search" exact component={Shop}></Route>
             <Route path="/cart" exact component={Cart}></Route>
-            <Route path="/seeOrder" exact component={SeeOrder}></Route>
+            <Route path="/order/:orderId" exact component={SeeOrder}></Route>
             <Route path="/profile/:userId" exact component={Profile}></Route>
             <Route path="/shop/banfakkhaw" exact component={BanFakkhaw}></Route>
             <Route path="/shop/nabua" exact component={Nabua}></Route>
+
+            <Route path="/order" exact component={SeeOrderCus}></Route>
+
 
 
 

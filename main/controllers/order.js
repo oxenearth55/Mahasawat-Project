@@ -3,11 +3,16 @@ const { errorHandler } = require('../helpers/dbErrorHandler');
 // sendgrid for email npm i @sendgrid/mail
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
+const formidable = require('formidable');
+const fs = require('fs');
+const _ = require('lodash');
 
 
 
 
-exports.read = (req, res) => {
+
+
+exports.readOrder = (req, res) => {
     req.order.photo = undefined;
     return res.json(req.order);
 };
@@ -28,9 +33,10 @@ exports.uploadImage = (req, res) => {
                 error: 'Image could not be uploaded'
             });
         }
- 
         // 1kb = 1000
         // 1mb = 1000000
+        let order = req.order;
+        order = _.extend(order, fields);
  
         if (files.photo) {
             // console.log("FILES PHOTO: ", files.photo);
@@ -39,11 +45,17 @@ exports.uploadImage = (req, res) => {
                     error: 'Image should be less than 1mb in size'
                 });
             }
-            order.photo.data = fs.readFileSync(files.photo.path);
-            order.photo.contentType = files.photo.type;
-        }
- 
-        res.json(result);
+            files.photo.data = fs.readFileSync(files.photo.path);
+            files.photo.contentType = files.photo.type;
+        }     
+        order.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                });
+            }
+            res.json(result);
+        });
     });
 };
 

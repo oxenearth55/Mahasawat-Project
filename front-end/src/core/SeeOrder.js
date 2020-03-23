@@ -12,29 +12,42 @@ import packaging from './Logo/packaging.png'
 import delivery from './Logo/delivery.png'
 import ProductImage from './ProductImage'
 import Card from './Card'
+import {readOrder} from './apiCore'
 
 
 
-const SeeOrder = () => {
+const SeeOrder = (props) => {
 
     const [orders, setOrders] = useState([]);
     const { user, token } = isAuthenticated();
     const [slip,setSlip] =useState('');
     const [error,setError] =useState('');
     const [success,setSuccess] =useState(false);
+    const [order,setOrder] =useState([]);
+    const [products, setProducts] =useState([]);
+
+    const [values, setValues] = useState({    
+        photo: '',    
+        error: '',
+        address:'',
+        formData: ''
+    });
+
+    const {photo,formData,address} =  values;
+
 
     const showUpSlip = () =>
 (
     <label className="btn btn-secondary">
-    <input onChange={handleChange} type="file" name="photo" accept="image/*" />
-    <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button>
+    <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
+    <input onChange={handleChange('address')} type="text" className="form-control"  />
+
 
 </label>
 )
 
-const clickSubmit = event =>{
-    event.preventDefault();
-    uploadSlip(user._id, token, slip).then(data => {
+const clickSubmit = () =>{
+    uploadSlip(order._id,user._id, token, formData).then(data => {
         if (data.error) {
             setError(data.error);
         } else {
@@ -45,43 +58,41 @@ const clickSubmit = event =>{
 
 }
 
-const handleChange = event => {
- 
-    setSlip( event.target.files[0]  );
+const handleChange = name => event => {
+    const value = name === 'photo' ? event.target.files[0] : event.target.value;
+    formData.set(name, value);
+    setValues({ ...values, [name]: value });
 };
 
 
 
-
-    const loadOrders = () => {
+    const loadOrders = orderId => {
         //NOTE Get orders from backend
-        listOrders(user._id, token).then(data => {
+        readOrder(orderId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
-                setOrders(data);
+                setOrder(data)
+                setProducts(data.products)
+                setValues({
+                    ...values,                   
+                    formData: new FormData()
+                });
+
             }
         });
     };
 
 
     useEffect(() => {
-        loadOrders();
+        const orderId = props.match.params.orderId;
+
+        loadOrders(orderId);
        
     }, []);
 
 
-    const showStatus = () => {
-        {orders.map((o, oIndex) => {
-        if(2 == 2){
-            return(
-                <div key={oIndex}>  {o.products.length} </div>
-              
-            )
-        }
-    })}
-
-    }
+   
 
     //SECTION order status Icon
 
@@ -233,32 +244,32 @@ const handleChange = event => {
     
 
     const showOrders = () => (
-        <div>
-        {orders.map((o, oIndex) => {
+        
 
-            //NOTE use this condition to match which order came from this user
+             //NOTE use this condition to match which order came from this user
              // orders contains properties such as user Object 
-             // Inside user object contain _id as a property
-            if(o.user._id == user._id){   
-            return (
+             // Inside user object contain _id as a property 
+         <>
                 <div
                     className="mt-5"
-                    key={oIndex}
+                    
                     style={{ borderBottom: "5px solid indigo" }}
                 >
                     {showUpSlip()}
+                    <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button>
+
                     <h2 className="mb-5">
                         <span>
                             <div className="row">
                            <div className="border text-white bg-dark"> Your Order ID: </div>
-                            <div className="col-5 border">{o._id}</div>
+                            <div className="col-5 border">{order._id}</div>
                             </div>
                         </span>
                         
                     </h2>
                     <h4 className="mb-4">Order Status</h4>
-                    {statusIcon(o.status)}
-                    {o.status}
+                    {statusIcon(order.status)}
+                    {order.status}
                     
 
 
@@ -267,30 +278,30 @@ const handleChange = event => {
                             <h3 className="text-center ">Order Detail </h3>
                         </li>
                         <li className="list-group-item">
-                            Transaction ID: {o.transaction_id}
+                            Transaction ID: {order.transaction_id}
                         </li>
                         <li className="list-group-item">
-                            Amount: ฿{o.amount}
+                            Amount: ฿{order.amount}
                         </li>
                         <li className="list-group-item">
-                            Ordered by: {o.user.name}
+                            Ordered by: {user.name}
                         </li>
                         <li className="list-group-item">
                             Ordered on:{" "}
                             {/* NOTE  use moment to format the date */}
-                            {moment(o.createdAt).fromNow()} 
+                            {moment(order.createdAt).fromNow()} 
                         </li>
                         <li className="list-group-item">
-                            Delivery address: {o.address}
+                            Delivery address: {order.address}
                         </li>
                     </ul>
 
                     <h3 className="mt-4 mb-4 font-italic">
                         Total products in the order:{" "}
-                        {o.products.length}
+                        {products.length}
                     </h3>
 
-                    {o.products.map((p, pIndex) => (
+                    {products.map((p, pIndex) => (
                         <div
                             className="mb-4 "
                             key={pIndex}
@@ -308,9 +319,8 @@ const handleChange = event => {
                         </div>
                     ))}
                 </div>
-            );}
-        })}
-        </div>
+   
+        </>
         
      
 
@@ -330,7 +340,7 @@ const handleChange = event => {
             headerImg="dashBoardImgLayout"
         > 
             {showOrders()}
-            {showStatus()}
+            {/* {showStatus()} */}
 
         </Layout>
 

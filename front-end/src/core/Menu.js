@@ -5,10 +5,7 @@ import {signout, isAuthenticated} from '../auth'
 import Shop from './Shop'
 import Search from './Search'
 import {itemTotal,getCart} from './cartHelpers'
-
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBMask, MDBView, MDBRow } from 'mdbreact';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { MDBContainer,MDBRow } from 'mdbreact';
 
 
 
@@ -195,7 +192,7 @@ return(
 
                     {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                     <li class="nav-item">
-                        <Link className="nav-link" to="/seeOrder"><div className="text-white">SEE ORDER</div></Link>
+                        <Link className="nav-link" to="/order"><div className="text-white">SEE ORDER</div></Link>
                     </li>
                                         )}
 

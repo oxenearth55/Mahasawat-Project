@@ -30,7 +30,7 @@ const OrderSchema = new mongoose.Schema(
   },
   photo: {
     data: Buffer,
-    contentType: String
+    contentType: String,
 },
     status: {
       type: String,
