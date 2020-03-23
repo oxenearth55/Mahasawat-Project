@@ -4,6 +4,7 @@ import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import { createProduct, getCategories,getShop } from './apiAdmin';
 
+
 const AddProduct = () => {
      // NOTE Product properties (This is a react hook)
     const [values, setValues] = useState({

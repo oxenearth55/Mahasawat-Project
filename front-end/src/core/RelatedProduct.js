@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { MDBAnimation, MDBRow, MDBCol } from "mdbreact";
 import {API} from '../config' 
-import {getProducts} from './apiCore';
-import { getShop } from '../admin/apiAdmin';
 import {addItem} from './cartHelpers'; 
+import PopUpCart from './PopUpCart';
 
 
 const RelatedProduct = ({r}) => {
     
-    const [redirect, setRedirect] = useState(false);
-    const [error , setError] = useState([]);
-
+    
 
     const addToCartRelated = () => {
-        addItem(r, setRedirect(true));
+        addItem(r);
 
     };
-
-      //NOTE When user add product to cart, a page will display cart page automatically
-  const shouldRedirect = redirect => {
-    if(redirect){
-      return <Redirect to ="/cart" />
-    }
-  };
 
 
  //SECTION Show related Product 
@@ -53,7 +42,9 @@ const RelatedProduct = ({r}) => {
          <i class="far fa-star"></i>
        </div> */}
    
-       <button  onClick ={addToCartRelated} type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
+       <button  onClick ={addToCartRelated} data-toggle="modal" data-target="#modalAbandonedCart"  type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
+       <PopUpCart/>
+
        <Link to= {`/product/${r._id}`}>
        <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
        </Link>
@@ -83,7 +74,6 @@ const RelatedProduct = ({r}) => {
    return(
     <>
     {showRelated()}
-    {shouldRedirect(redirect)}
 
     </>
   )   

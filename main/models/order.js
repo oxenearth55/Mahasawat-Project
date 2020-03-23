@@ -23,14 +23,25 @@ const OrderSchema = new mongoose.Schema(
     products: [CartItemSchema],
     transaction_id: {},
     amount: { type: Number },
-    address: String,
+    address: {
+      name:String,
+      phoneNumber:String,      
+      houseNumber: String,
+      village: String,
+      province: String,
+      streetName: String,
+      lane: String, // Soi
+      district: String,
+      subDistrict: String,
+      postalNo: String
+    },
     shop: {
       type: ObjectId,
       ref: "Shop"
   },
   photo: {
     data: Buffer,
-    contentType: String,
+    contentType: String
 },
     status: {
       type: String,

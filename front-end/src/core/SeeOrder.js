@@ -25,22 +25,23 @@ const SeeOrder = (props) => {
     const [success,setSuccess] =useState(false);
     const [order,setOrder] =useState([]);
     const [products, setProducts] =useState([]);
+    const [address , setAddress] = useState([]);
+
 
     const [values, setValues] = useState({    
         photo: '',    
         error: '',
-        address:'',
         formData: ''
     });
 
-    const {photo,formData,address} =  values;
+    const {photo,formData,} =  values;
 
 
     const showUpSlip = () =>
 (
     <label className="btn btn-secondary">
     <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
-    <input onChange={handleChange('address')} type="text" className="form-control"  />
+    {/* <input onChange={handleChange('address')} type="text" className="form-control"  /> */}
 
 
 </label>
@@ -62,11 +63,18 @@ const handleChange = name => event => {
     const value = name === 'photo' ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
+    console.log('Form is '+value);
+
+    formData.append(name, value);
+// Log the key/value pairs
+for (var pair of formData.entries()) {
+    console.log(pair[0]+ ' - ' + pair[1]); 
+
 };
 
+}
 
-
-    const loadOrders = orderId => {
+    const loadOrder = orderId => {
         //NOTE Get orders from backend
         readOrder(orderId).then(data => {
             if (data.error) {
@@ -74,6 +82,8 @@ const handleChange = name => event => {
             } else {
                 setOrder(data)
                 setProducts(data.products)
+                setAddress(data.address)
+
                 setValues({
                     ...values,                   
                     formData: new FormData()
@@ -87,7 +97,7 @@ const handleChange = name => event => {
     useEffect(() => {
         const orderId = props.match.params.orderId;
 
-        loadOrders(orderId);
+        loadOrder(orderId);
        
     }, []);
 
@@ -291,9 +301,7 @@ const handleChange = name => event => {
                             {/* NOTE  use moment to format the date */}
                             {moment(order.createdAt).fromNow()} 
                         </li>
-                        <li className="list-group-item">
-                            Delivery address: {order.address}
-                        </li>
+                       
                     </ul>
 
                     <h3 className="mt-4 mb-4 font-italic">
@@ -327,7 +335,26 @@ const handleChange = name => event => {
 
     );
 
-    
+
+const showAddress = () => (
+       <>
+ <h4 className="mt-4">ที่อยู่ของลูกค้า</h4>
+<div className="mb-4 mt-4" style={{  padding: "20px",border: "1px solid indigo"}}
+                            >
+{showInput("ชื่อ-สกุล",address.name )}
+{showInput("เบอร์ติดต่อ",address.phoneNumber )}
+{showInput("บ้านเลขที่",address.houseNumber )}
+{showInput("หมู่บ้าน",address.village)}
+{showInput("ซอย",address.streetName)}
+{showInput("ถนน",address.lane)}
+{showInput("ตำบล",address.subDistrict)}
+{showInput("อำเภอ",address.district)}
+{showInput("จังหวัด",address.province)}
+{showInput("รหัสไปรษณี",address.postalNo)}
+
+</div>
+</>
+    );
 
 
     return(
@@ -340,6 +367,7 @@ const handleChange = name => event => {
             headerImg="dashBoardImgLayout"
         > 
             {showOrders()}
+            {showAddress()}
             {/* {showStatus()} */}
 
         </Layout>

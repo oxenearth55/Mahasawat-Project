@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './Layout';
-import { read, listRelated,getCategories } from './apiCore';
+import { read, listRelated,getCategories,getAllProducts} from './apiCore';
 import Card from './Card';
 import ProductImage from './ProductImage';
 import {addItem, updateItem,removeItem} from './cartHelpers'; 
@@ -12,7 +12,8 @@ import RelatedProduct from './RelatedProduct'
 
 
 const Product = (props) => {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
+    const [allProducts,setAllProducts] = useState([]);
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
     const [categories, setCategories] = useState([]);
@@ -33,7 +34,7 @@ const Product = (props) => {
     //     }
     //   };
 
-    const c = () => {
+    const loadCategories = () => {
         getCategories().then(data => {
             if (data.error) {
                 setError(data.error);
@@ -45,13 +46,7 @@ const Product = (props) => {
     };
 
 
-    const deliveryStatus = () => {
-        
-    };
-
-    const ratting = () => {
-
-    };
+    
 
     const loadSingleProduct = productId => {
         //NOTE  use read method from apiCore to get single product that related to productId
@@ -72,11 +67,23 @@ const Product = (props) => {
         });
     };
 
+    const loadAllProducts = () =>{
+        getAllProducts().then(data => {
+            if (data.error) {
+                setError(data.error);
+            } else {
+             setAllProducts(data)
+             
+            }
+        });
+    }
+
     useEffect(() => {
         //NOTE grab productId from Routes
-        c()
+        loadCategories()
         const productId = props.match.params.productId;
         loadSingleProduct(productId); 
+        loadAllProducts();
      
     }, [props]);
 
@@ -92,12 +99,16 @@ const showRelated = () => (
          {/* <!--Grid row--> */}
          <div class="row">
    
-         {relatedProduct.map((r, i) => (
-           
+         {allProducts.map((p, i) => {
+             if(p.categories === product.categories){
+
+             
+           return(
            <>
-             <RelatedProduct r={r}/>
+             <RelatedProduct r={p}/>
            </>
-         ))}    
+         )}}) 
+           }    
    
    {/* <!--Grid column--> */}
            
@@ -123,7 +134,8 @@ const showRelated = () => (
 
             <CardProduct product={product} addCart={addToCart} relatedProduct={relatedProduct}/>
 
-{showRelated()}
+            {showRelated()}
+            
             {/* <div className="row my-4">
                     <h4>Related products</h4>
                     <div className="row">

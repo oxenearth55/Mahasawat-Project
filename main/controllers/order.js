@@ -18,13 +18,15 @@ exports.readOrder = (req, res) => {
 };
  
 exports.photo = (req, res, next) => {
-    if (req.product.photo.data) {
-        res.set('Content-Type', req.product.photo.contentType);
-        return res.send(req.product.photo.data);
+    if (req.order.photo.data) {
+        res.set('Content-Type', req.order.photo.contentType);
+        return res.send(req.order.photo.data);
     }
     next();
 };
+
 exports.uploadImage = (req, res) => {
+    console.log('UPDATE IMAGE:',req.body)
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, files) => {
@@ -88,8 +90,6 @@ exports.remove = (req, res) => {
     });
 };
 
-
-
 exports.create = (req, res) => {
     console.log('CREATE ORDER: ', req.body);
     req.body.order.user = req.profile;
@@ -119,6 +119,51 @@ exports.create = (req, res) => {
         res.json(data);
     });
 };
+
+// exports.create = (req, res) => {
+//     console.log('CREATE ORDER: ', req.body);
+//     req.body.order.user = req.profile;
+//     const order = new Order(req.body.order);
+//     order.save((error, data) => {
+//         if (error) {
+//             return res.status(400).json({
+//                 error: errorHandler(error)
+//             });
+//         }
+
+//         if (order.photo) {
+//             // console.log("FILES PHOTO: ", files.photo);
+//             if (order.photo.size > 10000000) {
+//                 return res.status(400).json({
+//                     error: 'Image should be less than 10mb in size'
+//                 });
+//             }
+//             // order.photo.data = fs.readFileSync(order.photo.path);
+//             order.photo.contentType = order.photo.type;
+//         }
+
+//         // send email alert to admin
+//         // order.address
+//         // order.products.length
+//         // order.amount
+//         const emailData = {
+//             to: 'kaloraat@gmail.com',
+//             from: 'noreply@ecommerce.com',
+//             subject: `A new order is received`,
+//             html: `
+//             <p>Customer name:</p>
+//             <p>Total products: ${order.products.length}</p>
+//             <p>Total cost: ${order.amount}</p>
+//             <p>Login to dashboard to the order in detail.</p>
+//         `
+//         };
+//         sgMail.send(emailData);
+//         res.json(data);
+//     });
+// };
+
+
+
 
 exports.listOrders = (req, res) => {
     Order.find()

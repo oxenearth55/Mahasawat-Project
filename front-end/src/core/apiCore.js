@@ -11,6 +11,16 @@ export const getProducts = (sortBy,amount) => {
         .catch(err => console.log(err));
 };
 
+export const getAllProducts = () => {
+    return fetch(`${API}/products?limit=3`, {
+        method: 'GET'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 export const getCategories = () => {
     return fetch(`${API}/categories`, {
         method: "GET"

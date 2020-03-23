@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { MDBAnimation, MDBRow, MDBCol } from "mdbreact";
+import { MDBAnimation } from "mdbreact";
 import {API} from '../config' 
 import {getProducts} from './apiCore';
 import { getShop } from '../admin/apiAdmin';
-import {addItem} from './cartHelpers'; 
 import RelatedProduct from './RelatedProduct';
 import PopUpCart from './PopUpCart';
 import {getCart} from './cartHelpers'; 
@@ -16,7 +14,6 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
 
     const [productsBySell, setProductsBySell] = useState([]);
     const [shopObject, setShopObject] = useState([])
-    const [redirect, setRedirect] = useState(false);
     const [error , setError] = useState([]);
     const [run, setRun] = useState(false);
 

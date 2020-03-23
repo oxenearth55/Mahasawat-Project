@@ -4,24 +4,34 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
+import {readOrder} from '../core/apiCore'
+
 
 const Orders = ({match}) => {
-    const [orders, setOrders] = useState([]);
+    const [order, setOrder] = useState([]);
+    const [products, setProducts] = useState([]);
     const [statusValues, setStatusValues] = useState([]);
   
     const { user, token } = isAuthenticated();
 
-    const loadOrders = () => {
+    const [address , setAddress] = useState([]);
+
+    
+
+    const loadOrder = orderId => {
         //NOTE Get orders from backend
-        listOrders(user._id, token).then(data => {
+        readOrder(orderId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
-                setOrders(data);
+                setOrder(data)
+                setProducts(data.products)
+                setAddress(data.address)
+              
+
             }
         });
     };
-
 
     //NOTE load status from order  
     const loadStatusValues = () => {
@@ -35,8 +45,11 @@ const Orders = ({match}) => {
     };
 
     useEffect(() => {
-        loadOrders();
+        loadOrder(match.params.orderID);
         loadStatusValues();
+        // setAddress({...address, lastName:order.address.lastName})
+        console.log('address is '+address.lastName)
+
     }, []);
 
    
@@ -57,24 +70,25 @@ const Orders = ({match}) => {
     );
 
     //NOTE orderId is used to check which order that we're going to set status
-    const handleStatusChange = (e, orderId) => {
-        updateOrderStatus(user._id, token, orderId, e.target.value).then(
+    const handleStatusChange = (e) => {
+        updateOrderStatus(user._id, token, order._id, e.target.value).then(
             data => {
                 if (data.error) {
                     console.log("Status update failed");
                 } else {
-                    loadOrders();
+                    console.log('address is '+ order.address.firstName)
+
                 }
             }
         );
     };
 
-    const showStatus = o => (
+    const showStatus = ()=> (
         <div className="form-group">
-            <h3 className="mark mb-4">Status: {o.status}</h3>
+            <h3 className="mark mb-4">Status: {order.status}</h3>
             <select
                 className="form-control"
-                onChange={e => handleStatusChange(e, o._id)}
+                onChange={e => handleStatusChange(e,order._id)}
             >
                 <option>Not processed</option>
                 {statusValues.map((status, index) => (
@@ -86,55 +100,45 @@ const Orders = ({match}) => {
         </div>
     );
 
-    const showOrder = (orderId) => (
+    const showOrder = () => (
         <div className="row">
         <div className="col-md-8 offset-md-2">
          
-
-            {orders.map((o, oIndex) => {
-
-                if(orderId === o._id){
-                return (
                     <div
                         className="mt-5"
-                        key={oIndex}
                         style={{ borderBottom: "5px solid indigo" }}
                     >
                         <h2 className="mb-5">
                             <span className="bg-primary">
-                                Order ID: {o._id}
+                                Order ID: {order._id}
                             </span>
                         </h2>
 
                         <ul className="list-group mb-2">
                             <li className="list-group-item">
-                                {showStatus(o)}
+                                {showStatus()}
+                            </li>
+                         
+                            <li className="list-group-item">
+                                Amount: ฿{order.amount}
                             </li>
                             <li className="list-group-item">
-                                Transaction ID: {o.transaction_id}
-                            </li>
-                            <li className="list-group-item">
-                                Amount: ฿{o.amount}
-                            </li>
-                            <li className="list-group-item">
-                                Ordered by: {o.user.name}
+                                Ordered by: {user.name}
                             </li>
                             <li className="list-group-item">
                                 Ordered on:{" "}
                                 {/* NOTE  use moment to format the date */}
-                                {moment(o.createdAt).fromNow()} 
+                                {moment(order.createdAt).fromNow()} 
                             </li>
-                            <li className="list-group-item">
-                                Delivery address: {o.address}
-                            </li>
+                           
                         </ul>
 
                         <h3 className="mt-4 mb-4 font-italic">
                             Total products in the order:{" "}
-                            {o.products.length}
+                            {products.length}
                         </h3>
 
-                        {o.products.map((p, pIndex) => (
+                        {products.map((p, pIndex) => (
                             <div
                                 className="mb-4"
                                 key={pIndex}
@@ -147,16 +151,42 @@ const Orders = ({match}) => {
                                 {showInput("Product price", p.price)}
                                 {showInput("Product total", p.count)}
                                 {showInput("Product Id", p._id)}
+
                             </div>
+
+
                         ))}
-                    </div>
-                );}
-            })}
+                       
         </div>
+       
+                    </div>
     </div>
 
 
     )
+
+    const showAddress = () => (
+        <>
+ <h4 className="mt-4">ที่อยู่ของลูกค้า</h4>
+<div className="mb-4 mt-4" style={{  padding: "20px",border: "1px solid indigo"}}
+                            >
+{showInput("ชื่อ-สกุล",address.name )}
+{showInput("เบอร์ติดต่อ",address.phoneNumber )}
+{showInput("บ้านเลขที่",address.houseNumber )}
+{showInput("หมู่บ้าน",address.village)}
+{showInput("ซอย",address.streetName)}
+{showInput("ถนน",address.lane)}
+{showInput("ตำบล",address.subDistrict)}
+{showInput("อำเภอ",address.district)}
+{showInput("จังหวัด",address.province)}
+{showInput("รหัสไปรษณี",address.postalNo)}
+
+</div>
+
+</>
+    )
+
+    
 
     return (
         <Layout
@@ -167,8 +197,11 @@ const Orders = ({match}) => {
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
-           {showOrder(match.params.orderID)}
-        </Layout>
+           {showOrder()}
+           {showAddress()}
+
+           
+             </Layout>
     );
 };
 

@@ -4,13 +4,11 @@ import { emptyCart } from './cartHelpers';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 import {isAuthenticated} from '../auth'; 
-import PopUpWarn from './PopUpWarn';
-
 
 
 
 // SECTION state to handle braintree
-const Checkout = (
+const Checkout2 = (
     {products, 
         nabuaProducts,
         fakkhawProducts,
@@ -23,34 +21,39 @@ const Checkout = (
 
 
 }) => {
-    const [data, setData] = useState({
-        loading: false,
-        success: false, 
-        // clientToken: null, 
-        error: '', 
-        instance: {}
+    const [valuesFakkhaw, setValuesFakkhaw] = useState({
+       
+        address: '',
+        products:[],
+        amount:'',
+        shop:'',
+        formData:''
+
+
     });
 
-    const [address, setAddress] = useState({
-      firstName:'',
-      lastName:'',
-      phoneNumber:'',
-      village:'',
-      villageNo:'',
-      province:'' ,
-      streetName:'',
-      lane:'',
-      district:'',
-      subDistrict:'',
-      postalNo:''
+    const [error, setError] = (false)
+    const [success, setSucess] = (false)
 
-    }); 
 
-    const {village, villageNo, province, streetName, lane, district, subDistrict, postalNo } = address;
+    const [valuesNabua, setValuesNabua] = useState({
+       
+        address: "",
+        products:[],
+        amount:'',
+        shop:'',
+        formData:''
+    });
+
 
     
+   
 
     useEffect(() => {
+        setValuesFakkhaw({ ...valuesNabua,  products:fakkhawProducts,amount:fakkhawTotal,shop:'5e6a17ac5c566806d6a101de', formData: new FormData()
+    });
+        setValuesNabua({...valuesFakkhaw,  products:nabuaProducts,amount:nabuaTotal,shop:'5e6a17a35c566806d6a101dd',formData: new FormData()})
+        
     }, []);
 
     const [customerAddress, setCustomerAddress] = useState('')
@@ -86,20 +89,18 @@ const { user, token } = isAuthenticated();
 const buy = () => {
 
 if(nabuaProducts.lenght !=0){
-    const createOrderData ={ //NOTE keep it as Object before storing in Datase
-        products: nabuaProducts,
-        amount: nabuaTotal,
-        shop:'5e6a17a35c566806d6a101dd',
-        address: address
-        
-    };
+    valuesFakkhaw.formData.set(valuesFakkhaw.shop);
+    valuesFakkhaw.formData.set(valuesFakkhaw.products);
+    valuesFakkhaw.formData.set(valuesFakkhaw.amount);
 
-    createOrder(user._id, token, createOrderData).then(data => {
+
+
+    createOrder(user._id, token, valuesFakkhaw.formData).then(data => {
         if (data.error) {
-            setData({ ...data, error: data.error });
+            setError(data.error);
         } else {
 
-            setData({...data, success: data.success}) 
+            setSucess(setSucess);
 
 
         }
@@ -109,21 +110,16 @@ if(nabuaProducts.lenght !=0){
 
 
 if(fakkhawProducts.lenght !=0){
-    const createOrderData ={ //NOTE keep it as Object before storing in Datase
-        products: fakkhawProducts,
-        amount: fakkhawTotal,
-        shop:'5e6a17ac5c566806d6a101de',
-        address: address
-    };
+    valuesNabua.formData.set(valuesNabua.shop);
+    valuesNabua.formData.set(valuesNabua.products);
+    valuesNabua.formData.set(valuesNabua.amount);
 
-    createOrder(user._id, token, createOrderData).then(data => {
+
+    createOrder(user._id, token, valuesNabua.formData).then(data => {
         if (data.error) {
-            setData({ ...data, error: data.error });
+            setError(data.error);
         } else {
-
-            setData({...data, success: data.success}) 
-
-
+            setSucess(setSucess);
         }
     });
 }
@@ -131,11 +127,7 @@ if(fakkhawProducts.lenght !=0){
 //  NOTE After finished create order, remove every thing on cart page by default
 emptyCart(()=>{
     setRun(!run);                
-    setData({
-        loading: false,
-        success: true
-
-    });
+   setSucess(true);
 }) 
 
 };
@@ -167,8 +159,8 @@ emptyCart(()=>{
 //SECTION Address handle
 
 // NOTE grab address from a user inputs
-const handleAddress = name => event => {
-  setAddress({ ...address, [name]: event.target.value });
+const handleAddress = event => {
+    setCustomerAddress(event.target.value );
 };
 
 const showAddressForm = () => {
@@ -196,80 +188,64 @@ const showAddressForm = () => {
                 <form class="card-body">
     
                   {/* <!--Grid row--> */}
+                  <div class="row">
     
                     {/* <!--Grid column--> */}
-                 
+                    <div class="col-md-6 mb-2">
     
                       {/* <!--firstName--> */}
-                      <div class="md-form mb-5">
-                  <p for="name" class="">ชื่อ-สกุล</p>
-                  <input onChange={handleAddress('name')} type="text" id="name" class="form-control" placeholder="ชื่อ-สกุล"/>
+                      <div class="md-form ">
+                        <input onChange={handleAddress}value={customerAddress} type="text" id="firstName" class="form-control"/>
+                        <label for="firstName" class="">First name</label>
+                      </div>
+    
+                    </div>
+                    {/* <!--Grid column--> */}
+    
+                    {/* <!--Grid column--> */}
+                    <div class="col-md-6 mb-2">
+    
+                      {/* <!--lastName--> */}
+                      <div class="md-form">
+                        <input  type="text" id="lastName" class="form-control"/>
+                        <label for="lastName" class="">Last name</label>
+                      </div>
+    
+                    </div>
+                    {/* <!--Grid column--> */}
+    
                   </div>
-    
-                  
-                    {/* <!--Grid column--> */}
-    
-                    {/* <!--Grid column--> */}
-                
-                    {/* <!--Grid column--> */}
-    
                   {/* <!--Grid row--> */}
     
-                  <div class="md-form mb-5">
-                  <p for="address" class="">เบอร์โทรศัพท์</p>
-                  <input onChange={handleAddress('phoneNumber')} type="text" id="phone" class="form-control" placeholder="08X-"/>
-                  </div>
             
-               
+                  {/* <!--email--> */}
+                  <div class="md-form mb-5">
+                    <p for="email" class="">Email (optional)</p>
+                    <input type="text" id="email" class="form-control" placeholder="youremail@example.com"/>
+    
+                  </div>
+    
                   {/* <!--address--> */}
                   <div class="md-form mb-5">
-                  <p for="address" class="">บ้านเลขที่</p>
-                  <input onChange={handleAddress('houseNumber')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <p for="address" class="">Address</p>
+                  <input type="text" id="address" class="form-control" placeholder="1234 Main St"/>
                   </div>
-
-                   {/* <!--address--> */}
-                   <div class="md-form mb-5">
-                  <p for="address" class="">หมู่บ้าน</p>
-                  <input  onChange={handleAddress('village')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <div class="md-form mb-5">
+                  <p for="address" class="">Phone Number</p>
+                  <input type="text" id="phone" class="form-control" placeholder="08X-"/>
                   </div>
-
-                   {/* <!--address--> */}
-                   <div class="md-form mb-5">
-                  <p for="address" class="">ซอย</p>
-                  <input onChange={handleAddress('lane')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
-                  </div>
-
-
-                   {/* <!--address--> */}
-                   <div class="md-form mb-5">
-                  <p for="address" class="">ถนน</p>
-                  <input onChange={handleAddress('streetName')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
-                  </div>
-
-                   {/* <!--address--> */}
-                   <div class="md-form mb-5">
-                  <p for="address" class="">ตำบล</p>
-                  <input onChange={handleAddress('subDistrict')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
-                  </div>
-
-                   {/* <!--address--> */}
-                   <div class="md-form mb-5">
-                  <p for="address" class="">อำเภอ</p>
-                  <input onChange={handleAddress('district')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
-                  </div>
-
-              
-
             
     
                   {/* <!--Grid row--> */}
-                  <div class="row">             
+                  <div class="row">
+    
+                   
     
                     {/* <!--Grid column--> */}
                     <div class="col-lg-4 col-md-6 mb-4">
     
-                      <label for="state">จังหวัด</label>
-                      <select onChange={handleAddress('province')}  class="custom-select d-block w-100" id="state" required>
+                      <label for="state">State</label>
+                      <select class="custom-select d-block w-100" id="state" required>
                       <option value="" selected>--------- เลือกจังหวัด ---------</option>
           <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
           <option value="กระบี่">กระบี่ </option>
@@ -360,8 +336,8 @@ const showAddressForm = () => {
                     {/* <!--Grid column--> */}
                     <div class="col-lg-4 col-md-6 mb-4">
     
-                      <label for="zip">รหัสไปรษณี</label>
-                      <input onChange={handleAddress('postalNo')} type="text" class="form-control" id="zip" placeholder="" required/>
+                      <label for="zip">Zip</label>
+                      <input type="text" class="form-control" id="zip" placeholder="" required/>
                       <div class="invalid-feedback">
                         Zip code required.
                       </div>
@@ -376,10 +352,8 @@ const showAddressForm = () => {
     
                
                   <hr class="mb-4"/>
-
-                  <button class="btn btn-primary btn-lg btn-block" type="button"
-                  data-toggle="modal" data-target="#centralModalWarning">Continue to checkout</button>
-          <PopUpWarn checkout={buy}/>
+                  <button onClick={buy} class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+    
                 </form>
     
               </div>
@@ -449,5 +423,5 @@ const exute =() =>(
 }
 
 
-export default Checkout;
+export default Checkout2;
 

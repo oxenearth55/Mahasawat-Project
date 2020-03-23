@@ -7,6 +7,8 @@ import Card from './Card';
 import Checkout from './Checkout';
 import {API} from '../config' 
 import CartAdjust from './CartAdjust'
+import Checkout2 from './CheckOut2';
+
 
 
 const Cart = () => {
@@ -273,7 +275,7 @@ const Cart = () => {
         }else{
             return(
             <>
-             <Checkout 
+             <Checkout
                   
                   nabuaProducts={nabuaProducts}
                   nabuaTotal={getTotalNabua()}
@@ -283,6 +285,8 @@ const Cart = () => {
                    run={run}
                    
                    />
+
+
             </>
             );
         }

@@ -13,6 +13,7 @@ const {
     remove,
     uploadImage,
     readOrder,
+    photo
     
 } = require("../controllers/order");
 const { decreaseQuantity } = require("../controllers/product");
@@ -27,8 +28,8 @@ router.put(
     "/order/:orderId/:userId",
     requireSignin,
     isAuth,
-    uploadImage,
-    );
+    uploadImage
+        );
 
 router.post(
     "/order/create/:userId",
@@ -38,13 +39,18 @@ router.post(
     decreaseQuantity,
     create
 );
+
 router.delete(
     "/order/:orderId/:userId",
     requireSignin,
-    isAuth,
-    
+    isAuth,   
     remove
 )
+
+
+// NOTE Get order's photo from database
+router.get("/order/photo/:orderId", photo);
+
 
 //NOTE Both user and admin can see order (Specific order will be provided in front end (Matching user ID with order))
 router.get("/order/list/:userId", requireSignin, isAuth, listOrders); //isAdmin
