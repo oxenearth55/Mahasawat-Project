@@ -186,7 +186,7 @@ return(
                     )}
 
 <li class="nav-item">
-                        <Link className="nav-link" to="/shop/:searchResult/:search"><div className="text-white">SHOP</div></Link>
+                        <Link className="nav-link" to="/select/shop"><div className="text-white">SHOP</div></Link>
                     </li>
 
 

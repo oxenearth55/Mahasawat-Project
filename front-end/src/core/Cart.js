@@ -267,9 +267,14 @@ const Cart = () => {
     const noItemsMessage = () => {
         if(items.length <=0){
         return(    
+          <div>
             <h2>
-                Your cart is empty. <br /> <Link to="/shop/:searchResult/:search">Continue shopping</Link>
+                Your cart is empty. <br /> 
             </h2>
+            <div className="row">
+<Link to="/shop/:searchResult/:search"><h3>Continue shopping</h3></Link>
+            </div>
+            </div>
         );
 
         }else{
@@ -382,7 +387,6 @@ const diplayFakkhawProducts = () =>{
    <>
         {displayNabuaProducts()}
         {diplayFakkhawProducts()}
-
         {noItemsMessage()}
 
 

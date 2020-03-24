@@ -12,7 +12,7 @@ export const getProducts = (sortBy,amount) => {
 };
 
 export const getAllProducts = () => {
-    return fetch(`${API}/products?limit=3`, {
+    return fetch(`${API}/products?limit=undefined`, {
         method: 'GET'
     })
         .then(response => {

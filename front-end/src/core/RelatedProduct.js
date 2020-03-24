@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {API} from '../config' 
 import {addItem} from './cartHelpers'; 
 import PopUpCart from './PopUpCart';

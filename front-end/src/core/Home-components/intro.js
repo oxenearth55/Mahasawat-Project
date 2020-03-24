@@ -18,7 +18,6 @@ import {
   MDBAnimation
 } from 'mdbreact';
 import Menu from '../Menu';
-import Menu2 from '../Menu2';
 
 import {Link} from 'react-router-dom' 
 
@@ -26,13 +25,13 @@ import {Link} from 'react-router-dom'
 
 const Intro = () => (
 
-<MDBView src='https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'>
+<MDBView  src='https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'>
           <MDBMask className='rgba-black-light' />
           <Menu/>
 
           <MDBContainer
             className='d-flex justify-content-center align-items-center '
-            style={{ height: '100%', width: '100%', paddingTop: '17rem' }}
+            style={{ height: '100%', width: '100%', paddingTop: '2rem' }}
           >
 
             <MDBRow className=" mb-5  ">

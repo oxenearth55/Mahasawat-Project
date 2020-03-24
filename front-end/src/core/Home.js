@@ -15,9 +15,8 @@ import EcommercePage from './Home-components/ShowCard'
 import { MDBRow ,MDBCol} from 'mdbreact';
 
 import CardList from './Home-components/cardList'
-import Test from './Home-components/test'
-import Test2 from './Home-components/test2'
-import Test3 from './Home-components/test3'
+import ShowExample from './Home-components/Example'
+import ShowShop from './Home-components/ShowShop'
 
 
 
@@ -178,10 +177,11 @@ const firstSection = () =>(
         
 
         {/* <Menu/> */}
-<Intro/>
+<Intro photo={'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'}/>
         {/* <Slide/> */}
         {/* <Test3/> */}
-        <Test/>
+        <ShowShop/>
+        {/* <ShowExample/> */}
         <BlogPage/>
         {/* <CardList/> */}
 
@@ -199,40 +199,7 @@ const firstSection = () =>(
 
         </section>
 
-        <div className ="row">  {headerIntro()} </div>
-      
        
-        
-         <div className="container-fluid pt-1 pb-4">
-        <h2 className="head-section mb-4">Best Sellers</h2>
-        <div className="row"> 
-                {productsBySell.map((product,i) => (
-              <div className="col-md-4 col-sm-12 mt-3 ">
-                <ShowProduct key={i} product={product} bestSeller={true}/>   
-             </div>
-     
-                ))}
-            </div>
-     
-
-        {/* NOTE Show new arrivals */}
-        <div className="bg-light mt-4 pb-4">
-            <div className="">
-            <h2 className="head-section mb-4">New Arrivals</h2>
-            </div>
-                {/* NOTE show best sellers */}
-               
-                {productsByArrival.map((product,i) => (
-                 <div className ="">
-                <ShowProduct key={i} product={product} NewArrival={true}/>  
-
-                </div>   
-                ))}
-               
-        </div>
-
-        </div>
-        {firstSection()}
 
         <Footer/>
         </div>

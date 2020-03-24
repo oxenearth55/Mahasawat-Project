@@ -14,7 +14,7 @@ import RelatedProduct from './RelatedProduct'
 const Product = (props) => {
     const [product, setProduct] = useState([]);
     const [allProducts,setAllProducts] = useState([]);
-    const [relatedProduct, setRelatedProduct] = useState([]);
+    // const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
     const [categories, setCategories] = useState([]);
     const [redirect, setRedirect] = useState(false);
@@ -60,7 +60,7 @@ const Product = (props) => {
                     if (data.error) {
                         setError(data.error);
                     } else {
-                        setRelatedProduct(data);
+                        // setRelatedProduct(data);
                     }
                 });
             }
@@ -132,7 +132,7 @@ const showRelated = () => (
             {/* {shouldRedirect(redirect)} */}
         
 
-            <CardProduct product={product} addCart={addToCart} relatedProduct={relatedProduct}/>
+            <CardProduct product={product} addCart={addToCart} />
 
             {showRelated()}
             

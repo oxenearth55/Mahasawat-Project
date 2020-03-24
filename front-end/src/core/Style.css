@@ -22,6 +22,8 @@ html{
     background-size: cover;
 	background-position: center;
     background-attachment: fixed;
+
+
 }
 
 .shopImgLayout {
@@ -315,7 +317,6 @@ p{
 
 
 
-
 /* SECTION Menu */
 
 .menu-font{
@@ -347,16 +348,31 @@ p{
 
 }
 
+/* SECTION VIEDEP Select */
+
+
 /* Extra small devices (phones, up to 480px) */
 @media screen and (max-width: 767px) {
     .textDash { font-size: 2vmin; }
+    /* SECTION Cart */
     .cartPhoto { width: 150px; }
+    /* SECTION Layout */
+    .title-header{font-size: 8vmin;}
+    .description-header{font-size: 4vmin;}
+    /* .title-header{margin-bottom: 50px!important;} */
+    /* SECTION SelectShop */
+    .text-head{font-size: 6vmin;}
+    .button-text{font-size:4vmin;}
+    .shop-button{margin-bottom: 40px!important;}
 
 
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) {
     .cartPhoto { width: 170px; }
+    /* .title-header{font-size: 2vmin;} */
+
+
 
 }
 /* tablets/desktops and up ----------- */

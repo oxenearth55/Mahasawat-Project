@@ -25,6 +25,8 @@ import BanFakkhaw from './Shop/BanFakkhaw'
 import Nabua from './Shop/Nabua'
 import UpdateMer from './admin/UpdateMer'
 import SeeOrderCus from './core/SeeOrderCus'
+import SelectShop from './Shop/SelectShop'
+
 
 const Routes = () => {
 
@@ -43,6 +45,8 @@ const Routes = () => {
             <Route path="/shop/nabua" exact component={Nabua}></Route>
 
             <Route path="/order" exact component={SeeOrderCus}></Route>
+            <Route path="/select/shop" exact component={SelectShop}></Route>
+
 
 
 
