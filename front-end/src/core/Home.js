@@ -17,6 +17,9 @@ import { MDBRow ,MDBCol} from 'mdbreact';
 import CardList from './Home-components/cardList'
 import ShowExample from './Home-components/Example'
 import ShowShop from './Home-components/ShowShop'
+import AllShop from './AllShop'
+
+import Test2 from './Home-components/test2'
 
 
 
@@ -179,7 +182,8 @@ const firstSection = () =>(
         {/* <Menu/> */}
 <Intro photo={'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'}/>
         {/* <Slide/> */}
-        {/* <Test3/> */}
+        {/* <Test2/> */}
+        {/* <AllShop/> */}
         <ShowShop/>
         {/* <ShowExample/> */}
         <BlogPage/>

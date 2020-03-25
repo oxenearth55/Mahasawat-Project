@@ -11,16 +11,30 @@ import RelatedProduct from './RelatedProduct'
 
 
 
+
 const Product = (props) => {
     const [product, setProduct] = useState([]);
     const [allProducts,setAllProducts] = useState([]);
-    // const [relatedProduct, setRelatedProduct] = useState([]);
+    const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
     const [categories, setCategories] = useState([]);
     const [redirect, setRedirect] = useState(false);
+    const [productCat, setProductCat] = useState('');
 
-  
-    
+
+    //NOTE Seperate product from each Shop
+    const [nabuaProduct, setNabuaProduct] = useState([]); 
+    const [fakkhawProduct, setFakkhawProduct] = useState([]); 
+
+    const manageProduct = (allProducts) => {
+        allProducts.map((p, i) => {
+            if(p.shop === productCat === p.category.name){
+
+            }
+
+        })
+        
+    }
 
     const addToCart = () => {
         addItem(product);
@@ -55,12 +69,13 @@ const Product = (props) => {
                 setError(data.error);
             } else {
                 setProduct(data);
+                setProductCat(data.category.name);
                 // fetch related products
                 listRelated(data._id).then(data => {
                     if (data.error) {
                         setError(data.error);
                     } else {
-                        // setRelatedProduct(data);
+                        setRelatedProduct(data);
                     }
                 });
             }
@@ -84,6 +99,7 @@ const Product = (props) => {
         const productId = props.match.params.productId;
         loadSingleProduct(productId); 
         loadAllProducts();
+        // showRelated();
      
     }, [props]);
 
@@ -100,8 +116,7 @@ const showRelated = () => (
          <div class="row">
    
          {allProducts.map((p, i) => {
-             if(p.categories === product.categories){
-
+             if(productCat=== p.category.name && product._id != p._id ){
              
            return(
            <>

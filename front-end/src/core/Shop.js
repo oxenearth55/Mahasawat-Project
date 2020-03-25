@@ -12,7 +12,8 @@ import ShowProduct from './Home-components/ShowProduct';
 import { Link, Redirect } from 'react-router-dom';
 
 import { isAuthenticated } from "../auth";
-
+import AllShop from './AllShop';
+ 
 
 
 
@@ -168,7 +169,7 @@ const Shop = props => {
             <div className="row">
                 { results.map((product,i) => (
                     <div className="col-6 mb-4">
-                        <Card key={i} product={product}/> 
+                        <AllShop  product={product}/> 
                     </div>
                 ))}
             </div>
@@ -179,15 +180,10 @@ const Shop = props => {
 //NOTE Display when user access to shop page directly (by click)
 const defaultDisplay = () =>{
     return(  
-        <div className="col-8">
-        <div className="row">
-            { filterResults.map((product,i) => (
-                <div className="col-6 mb-4">
-                    <Card key={i} product={product}/> 
-                </div>
-            ))}
-        </div>
-    </div>
+       
+        <>
+                    <AllShop product={filterResults}/> 
+        </>
     
     );
 };
@@ -267,13 +263,13 @@ const show = (trigger) =>{
         {/* {triggerSearch(trigger)} */}
 
 
-         {show(trigger)}
          {/* {shopDisplay(data.results)} */}
 
 
     </div>
 
-   
+    {show(trigger)}
+
    
      </Layout>
 

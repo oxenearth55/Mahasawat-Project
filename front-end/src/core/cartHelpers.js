@@ -67,6 +67,8 @@ export const getNabuaProducts = () => {
         cart.map((c, i) => {
             if(c.shop === '5e6a17a35c566806d6a101dd') {
                 nabua.push(c);
+
+
             }
         });
         // NOTE push nabua's product to Local storage

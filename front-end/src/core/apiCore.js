@@ -86,6 +86,8 @@ export const readOrder = orderId => {
 };
 
 
+
+
 export const listRelated = productId => {
     return fetch(`${API}/products/related/${productId}`, {
         method: "GET"
@@ -95,6 +97,9 @@ export const listRelated = productId => {
         })
         .catch(err => console.log(err));
 };
+
+
+
 
 export const getBraintreeClientToken = (userId, token) => {
     return fetch(`${API}/braintree/getToken/${userId}`, {

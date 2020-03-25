@@ -33,9 +33,13 @@ const Layout = ({title = "Title", description = "Description", className, childr
         </div> 
     </div>
 
-<div className = {className}> {children} </div>
-<div className="mt-5"><Footer/>
+<div className = {className}> {children} 
+
 </div>
+<div className="mt-5">
+<Footer/>
+</div>
+
 
 </div>
 );

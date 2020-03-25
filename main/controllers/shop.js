@@ -101,4 +101,3 @@ exports.listShop = (req, res) => {
 exports.getShop = (req, res) => {
     res.json(Shop.schema.path('name').enumValues);
 };
-

@@ -8,6 +8,7 @@ import Checkout from './Checkout';
 import {API} from '../config' 
 import CartAdjust from './CartAdjust'
 import Checkout2 from './CheckOut2';
+import Footer from './Footer'
 
 
 
@@ -272,7 +273,13 @@ const Cart = () => {
                 Your cart is empty. <br /> 
             </h2>
             <div className="row">
-<Link to="/shop/:searchResult/:search"><h3>Continue shopping</h3></Link>
+<Link to="/shop/:searchResult/:search">
+  <br/>
+  <br/>
+   <h3>Continue shopping</h3></Link>
+   <br/>  
+
+
             </div>
             </div>
         );
@@ -375,6 +382,7 @@ const diplayFakkhawProducts = () =>{
 
 
 
+
 //SECTION Render 
     return (
         <Layout
@@ -384,16 +392,12 @@ const diplayFakkhawProducts = () =>{
             headerImg="cartImgLayout"
         >
 
-   <>
         {displayNabuaProducts()}
         {diplayFakkhawProducts()}
         {noItemsMessage()}
 
 
-   </>
-
-
-              
+        
 
         </Layout>
     );
