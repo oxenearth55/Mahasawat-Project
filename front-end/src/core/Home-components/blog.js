@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBIcon, MDBView, MDBBtn } from "mdbreact";
 // import location1 from '../location1.jpg';
 import Handwash from './picture/handwash.jpg';
@@ -54,10 +55,11 @@ const BlogPage = () => {
                 <strong> บ้านฟักข้าว</strong>
               </a>
             </p>
-         
-            <MDBBtn color="success" size="md" className="waves-light  mt-md-4  ">
+         <Link to ='product/5e747ef041341508681a4661'>
+         <button type="button" class="btn px-3 py-2  btn-default">
               Read more
-            </MDBBtn>
+            </button>
+          </Link>
           </MDBCol>
         </MDBRow>
         <hr className="my-5" />
@@ -84,13 +86,11 @@ const BlogPage = () => {
               </a>
             </p>
           
-            <MDBBtn
-              color="pink"
-              size="md"
-              className="mb-lg-0 mb-4 waves-light mt-md-4 "
-            >
+            <Link to ='product/5e74cc6b87d18b1180d8d7f2'>
+         <button type="button" class="btn px-3 py-2 btn-danger">
               Read more
-            </MDBBtn>
+            </button>
+          </Link>
           </MDBCol>
           <MDBCol lg="5">
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
@@ -142,9 +142,12 @@ const BlogPage = () => {
               </a>
             </p>
           
-            <MDBBtn color="indigo" size="md" className="waves-light  mt-md-4  ">
+            <Link to='product/5e73a300706ed211419762a1'>
+            <button type="button" class="btn px-3 py-2  btn-info">
               Read more
-            </MDBBtn>
+            </button>
+          </Link>
+
           </MDBCol>
         </MDBRow>
       </MDBCardBody>

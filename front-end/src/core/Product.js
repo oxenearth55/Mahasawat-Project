@@ -17,50 +17,14 @@ const Product = (props) => {
     const [allProducts,setAllProducts] = useState([]);
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
-    const [categories, setCategories] = useState([]);
-    const [redirect, setRedirect] = useState(false);
+
     const [productCat, setProductCat] = useState('');
 
-
-    //NOTE Seperate product from each Shop
-    const [nabuaProduct, setNabuaProduct] = useState([]); 
-    const [fakkhawProduct, setFakkhawProduct] = useState([]); 
-
-    const manageProduct = (allProducts) => {
-        allProducts.map((p, i) => {
-            if(p.shop === productCat === p.category.name){
-
-            }
-
-        })
-        
-    }
-
+    
     const addToCart = () => {
         addItem(product);
       };
 
-    
-
-    //   const shouldRedirect = redirect => {
-    //     if(redirect){
-    //       return <Redirect to ="/cart" />
-    //     }
-    //   };
-
-    const loadCategories = () => {
-        getCategories().then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-             setCategories(data)
-            } 
-            console.log(data)
-        });
-    };
-
-
-    
 
     const loadSingleProduct = productId => {
         //NOTE  use read method from apiCore to get single product that related to productId
@@ -95,12 +59,10 @@ const Product = (props) => {
 
     useEffect(() => {
         //NOTE grab productId from Routes
-        loadCategories()
         const productId = props.match.params.productId;
         loadSingleProduct(productId); 
         loadAllProducts();
-        // showRelated();
-     
+        window.scrollTo(0, 0)     
     }, [props]);
 
 

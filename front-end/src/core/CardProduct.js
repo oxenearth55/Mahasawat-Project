@@ -294,12 +294,12 @@ return(
       {/* <!--/.Accordion wrapper--> */}
 
       {/* <!-- Add to Cart --> */}
-      <section class="color">
+      <section >
        <div>
 
           <div class="row mt-3">
             <div class="col-md-12 text-center text-md-left text-md-right">
-              <button type="button" onClick={() => {addCart(); setRun(!run);}} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
+              <button type="button" onClick={() => {addCart(); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
                 <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> Add to cart</button>
                 <PopUpCart/>
            

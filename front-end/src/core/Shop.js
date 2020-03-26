@@ -36,7 +36,7 @@ const Shop = props => {
 
     const [categories, setCategories] = useState([])
     const [error, setError] = useState(false)
-    const [limit, setLimit] = useState(6) //NOTE limit product number at 6
+    const [limit, setLimit] = useState() //NOTE limit product number at 6
     const [skip, setSkip] = useState(0)
     const [filterResults, setFilterResults] = useState([])
 

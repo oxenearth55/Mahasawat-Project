@@ -67,7 +67,7 @@ const intro = () => (
 
             <MDBRow className=" mb-5  ">
               <MDBCol md='12' className='mb-4 white-text text-center'>
-              <MDBAnimation reveal type="fadeInUp">
+              <MDBAnimation reveal type="">
 
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 text-head '>
                   คูณสามารถเลือกดูสินค้าจากร้านค้าต่างๆได้ในหน้านี้

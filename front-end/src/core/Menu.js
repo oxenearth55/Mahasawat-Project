@@ -38,8 +38,7 @@ const Menu = ({history,handleSearch
 
     useEffect(() => {
         // showCartTotal()
-        showCartTotal()
-        getCart()
+     
         //NOTE get object (cart) from local storage
     }, []);
 
@@ -73,11 +72,11 @@ const Menu = ({history,handleSearch
     const topMenu = () =>(
 <header className="menu-font">
     {/*SECTION First-nav */}
-    <MDBContainer className = "p-0 h-1">
+    <div className = "container p-0 h-1">
         {        console.log("Search result is Menu333 " + data.search)
 }
 
-        <MDBRow>
+        <div className="row">
             <div className = "col-md-4 col-sm-12 col-12 ">
                 <div className = ".btn-grpup">
                     <button className="btn border dropdown-toggle my-md-4 my-2 text-white"
@@ -113,7 +112,7 @@ const Menu = ({history,handleSearch
                     {/* NOTE if user has already login, show only SignOut btn on nav */}
                     {isAuthenticated() && (
                         
-                    <MDBRow>   
+                    <div className="row">   
                         {/* NOTE Show user's name */}
                   
 
@@ -127,17 +126,17 @@ const Menu = ({history,handleSearch
                         style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
                         </div>
           
-                    </MDBRow>  
+                    </div>  
                     )}
 
   
                 </p>
             </div>
            
-        </MDBRow>
+        </div>
 
 
-    </MDBContainer>
+    </div>
 
 </header>
     );

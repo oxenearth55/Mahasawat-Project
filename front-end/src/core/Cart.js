@@ -7,7 +7,6 @@ import Card from './Card';
 import Checkout from './Checkout';
 import {API} from '../config' 
 import CartAdjust from './CartAdjust'
-import Checkout2 from './CheckOut2';
 import Footer from './Footer'
 
 
@@ -28,7 +27,7 @@ const Cart = () => {
 
     //SECTION useEffect 
     useEffect(() => {
-        setItems(getCart()); //NOTE get object (cart) from local storage
+        setItems(getCart()); //NOTE get object (cart) from local storage; To show that there are any product in Cart or not
         setNabuaProducts(getNabuaProducts());
         setFakkhawProducts(getfakkhawProducts());
     }, [run]);
