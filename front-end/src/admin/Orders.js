@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
+import {API} from '../config' 
 
 
 const Orders = ({match}) => {
@@ -186,7 +187,14 @@ const Orders = ({match}) => {
 </>
     )
 
-    
+    const showSlip = () =>
+    {
+        return(
+            <>
+        <img src={`${API}/order/slip/${order._id}`}/>
+            </>
+        )
+    }
 
     return (
         <Layout
@@ -198,6 +206,7 @@ const Orders = ({match}) => {
             headerImg="dashBoardImgLayout"
         >
            {showOrder()}
+           {showSlip()}
            {showAddress()}
 
            

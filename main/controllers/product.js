@@ -7,6 +7,8 @@ const { errorHandler } = require('../helpers/dbErrorHandler');
 exports.productById = (req, res, next, id) => {
     Product.findById(id)
         .populate('category')
+        .populate('shop')
+
         .exec((err, product) => {
             if (err || !product) {
                 return res.status(400).json({
@@ -19,7 +21,7 @@ exports.productById = (req, res, next, id) => {
 };
 
 exports.read = (req, res) => {
-    req.product.photo = undefined;
+    req.product.photo = undefined;  
     return res.json(req.product);
 };
 
@@ -139,6 +141,8 @@ exports.list = (req, res) => {
     Product.find()
         .select('-photo')
         .populate('category')
+        .populate('shop')
+
         .sort([[sortBy, order]])
         .limit(limit)
         .exec((err, products) => {
@@ -164,6 +168,8 @@ exports.listRelated = (req, res) => {
     Product.find({ _id: { $ne: req.product }, category: req.product.category })
         .limit(limit)
         .populate('category', '_id name')
+        .populate('shop')
+
         .exec((err, products) => {
             if (err) {
                 return res.status(400).json({
@@ -221,6 +227,7 @@ exports.listBySearch = (req, res) => {
     Product.find(findArgs)
         .select('-photo')
         .populate('category')
+        .populate('shop')
         .sort([[sortBy, order]])
         .skip(skip)
         .limit(limit)

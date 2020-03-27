@@ -24,6 +24,8 @@ router.get(
 readOrder
 );
 
+
+
 router.put(
     "/order/:orderId/:userId",
     requireSignin,
@@ -38,6 +40,7 @@ router.post(
     addOrderToUserHistory,
     decreaseQuantity,
     create
+    // saveImage
 );
 
 router.delete(
@@ -71,6 +74,8 @@ router.put(
     isAdmin,
     updateOrderStatus
 );
+//NOTE Get photo (slip) from order 
+router.get("/order/slip/:orderId", photo);
 
 router.param("userId", userById);
 router.param("orderId", orderById);

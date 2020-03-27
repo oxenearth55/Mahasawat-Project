@@ -39,6 +39,7 @@ const Shop = props => {
     const [limit, setLimit] = useState() //NOTE limit product number at 6
     const [skip, setSkip] = useState(0)
     const [filterResults, setFilterResults] = useState([])
+    const [searchResults, setSearchResults] = useState([])
 
 
   
@@ -93,6 +94,7 @@ const Shop = props => {
                 setError(data.error)
             }else{
                 setFilterResults(data.data) //NOTE set product result in state
+                
             }
         })
     }
@@ -165,20 +167,15 @@ const Shop = props => {
     //NOTE Display when users searched
     const shopDisplay = (results = []) => {
         return(  
-            <div className="col-8">
-            <div className="row">
-                { results.map((product,i) => (
-                    <div className="col-6 mb-4">
-                        <AllShop  product={product}/> 
-                    </div>
-                ))}
-            </div>
-        </div>
+           
+            <AllShop  product={results} search={true} filter ={myFilters}/> 
+                   
+            
         );
                 };
 
 //NOTE Display when user access to shop page directly (by click)
-const defaultDisplay = () =>{
+const defaultDisplay = () => {
     return(  
        
         <>

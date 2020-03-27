@@ -18,6 +18,8 @@ const CartItemSchema = new mongoose.Schema(
 
 const CartItem = mongoose.model("CartItem", CartItemSchema);
 
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+
 const OrderSchema = new mongoose.Schema(
   {
     products: [CartItemSchema],
@@ -39,10 +41,19 @@ const OrderSchema = new mongoose.Schema(
       type: ObjectId,
       ref: "Shop"
   },
+
   photo: {
     data: Buffer,
     contentType: String
 },
+
+  
+  // slipImage: {
+  //   type: Buffer
+  // },
+  // slipImageType: {
+  //   type: String
+  // },
     status: {
       type: String,
       default: "Awaiting Confirmation",
@@ -55,5 +66,9 @@ const OrderSchema = new mongoose.Schema(
 );
 
 const Order = mongoose.model("Order", OrderSchema);
+
+
+
+
 
 module.exports = { Order, CartItem };

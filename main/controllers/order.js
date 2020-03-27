@@ -42,13 +42,13 @@ exports.uploadImage = (req, res) => {
  
         if (files.photo) {
             // console.log("FILES PHOTO: ", files.photo);
-            if (files.photo.size > 10000000) {
+            if (files.photo.photo > 10000000) {
                 return res.status(400).json({
                     error: 'Image should be less than 1mb in size'
                 });
             }
-            files.photo.data = fs.readFileSync(files.photo.path);
-            files.photo.contentType = files.photo.type;
+            order.photo.data = fs.readFileSync(files.photo.path);
+            order.photo.contentType = files.photo.type;
         }     
         order.save((err, result) => {
             if (err) {
@@ -94,6 +94,10 @@ exports.create = (req, res) => {
     console.log('CREATE ORDER: ', req.body);
     req.body.order.user = req.profile;
     const order = new Order(req.body.order);
+    // saveImage(order, req.body.image);
+   
+   
+      
     order.save((error, data) => {
         if (error) {
             return res.status(400).json({
@@ -115,6 +119,10 @@ exports.create = (req, res) => {
             <p>Login to dashboard to the order in detail.</p>
         `
         };
+
+    
+          
+
         sgMail.send(emailData);
         res.json(data);
     });
@@ -193,3 +201,14 @@ exports.updateOrderStatus = (req, res) => {
         res.json(order);
     });
 };
+
+
+// exports.saveImage = (order, imageEncoded) =>{
+//     if (imageEncoded == null) return
+//     const image = JSON.parse(imageEncoded)
+//     if (order != null && imageMimeTypes.includes(order.type)) {
+//       order.slipImage = new Buffer.from(order.data, 'base64')
+//       order.slipImageType = order.type
+//     }
+//   };
+

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 
 const Checkbox = ({ categories, handleFilters }) => {
     const [checked, setCheked] = useState([]);
+  
+  
 
     const handleToggle = c => () => { //NOTE c is categories
         // return the first index or -1

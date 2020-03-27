@@ -45,10 +45,11 @@ const Intro = () => (
                 <h5 className='text-uppercase mb-4 white-text '>
                   <strong>Naturally products & Healthy</strong>
                 </h5>
+                <Link to="/shop/:searchResult/:search">
                 <MDBBtn outline color='white'>
-                <Link to="/shop/:searchResult/:search"><div className="text-white">SHOP</div></Link>
-              
+                <div className="text-white">SHOP</div>
                 </MDBBtn>
+                </Link>
                 <MDBBtn outline color='white'>
                   About me
                 </MDBBtn>

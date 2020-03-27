@@ -2,17 +2,21 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { listOrders, getStatusValues, updateOrderStatus, uploadSlip } from "../admin/apiAdmin";
+import { uploadSlip } from "../admin/apiAdmin";
 import moment from "moment";
-//Import logo.png
 import waiting from './Logo/waiting.png'
 import confirm from './Logo/confirmation.png'
-import payment from './Logo/payment.png'
 import packaging from './Logo/packaging.png'
 import delivery from './Logo/delivery.png'
-import ProductImage from './ProductImage'
-import Card from './Card'
 import {readOrder} from './apiCore'
+
+
+// Import React FilePond
+import { FilePond, registerPlugin } from 'react-filepond';
+
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css';
+
 
 
 
@@ -26,6 +30,8 @@ const SeeOrder = (props) => {
     const [order,setOrder] =useState([]);
     const [products, setProducts] =useState([]);
     const [address , setAddress] = useState([]);
+    const [empty , setEmpty] = useState(true);
+
 
 
     const [values, setValues] = useState({    
@@ -34,35 +40,66 @@ const SeeOrder = (props) => {
         formData: ''
     });
 
-    const {photo,formData,} =  values;
+    const {photo,formData,} =  values; 
+
+
+    const checkUpLoad = () =>
+    { if(success){
+        // setEmpty(false);
+        return(
+        
+        <>
+        <div className="alert alert-success" role="alert">
+            <h5 className="text-center ">อัพโหลดการยืนยันรายการสำเร็จ</h5>
+        </div>
+        </>)
+        }else if(empty&& !order.photo){
+            return(
+        <div className="alert alert-primary" role="alert">
+            <h5 className="text-center ">กรุณาอัพโหลดสลิป</h5>
+        </div>
+
+            )
+        }
+    }
 
 
     const showUpSlip = () =>
 (
-    <label className="btn btn-secondary">
+    <form className="mb-3" onSubmit={clickSubmit}>
+           <label className="btn btn-outline-info waves-effect">
     <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
+            </label>
     {/* <input onChange={handleChange('address')} type="text" className="form-control"  /> */}
 
+    <button className="btn btn-outline-primary"><span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Upload Slip</span></button>
 
-</label>
+</form>
+
 )
 
-const clickSubmit = () =>{
+const clickSubmit = event =>{
+    event.preventDefault();
+if(!empty){
     uploadSlip(order._id,user._id, token, formData).then(data => {
         if (data.error) {
             setError(data.error);
         } else {
             setSuccess(true);
-
 }
     })
-
+}else{
+    setEmpty(true)
 }
-
+}
 const handleChange = name => event => {
     const value = name === 'photo' ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
+    if(name === 'photo'){
+        setEmpty(false)
+    }
+
     console.log('Form is '+value);
 
     formData.append(name, value);
@@ -111,27 +148,27 @@ for (var pair of formData.entries()) {
             if(orderStatus === 'Awaiting Confirmation' || orderStatus === 'Not processed'){
                 return (
 
-                    <div className="container-fluid border  border-dark">
+                    <div className="container-fluid border  border-dark ">
                        
                         <div className="row mt-4"> 
-                                <div className="col-3 text-center">
-                                    <img className ="logo" src={waiting}></img>
-                                    <p>Awaiting Confirmation</p>
+                                <div className="col-3 text-center ">
+                                    <img className ="logo order-status-icon" src={waiting}></img>
+                                    <p className="order-status-text">Awaiting Confirmation</p>
                                 </div>
 
                                 <div className="col-3 text-center">
-                                    <img className ="logo ml-4 unStatus" src={confirm}></img>
-                                    <p className="unStatus">Order Confirmation</p>
+                                    <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
+                                    <p className="unStatus order-status-text ">Order Confirmation</p>
                                 </div>    
 
                                 <div className="col-3 text-center">
-                                    <img className ="logo unStatus" src={packaging}></img>
-                                    <p className="unStatus">Packaging</p>
+                                    <img className ="logo unStatus order-status-icon" src={packaging}></img>
+                                    <p className="unStatus order-status-text">Packaging</p>
                                 </div>    
 
                                 <div className="col-3 text-center">
-                                    <img className ="logo unStatus" src={delivery}></img>
-                                    <p className="unStatus">Shipping</p>
+                                    <img className ="logo unStatus order-status-icon" src={delivery}></img>
+                                    <p className="unStatus order-status-text">Shipping</p>
                                 </div>        
 
                         </div>
@@ -143,23 +180,23 @@ for (var pair of formData.entries()) {
                        
                     <div className="row mt-4"> 
                             <div className="col-3 text-center">
-                                <img className ="logo unStatus" src={waiting}></img>
-                                <p className="unStatus">Awaiting Confirmation</p>
+                                <img className ="logo unStatus order-status-icon" src={waiting}></img>
+                                <p className="unStatus order-status-text">Awaiting Confirmation</p>
                             </div>
 
                             <div className="col-3 text-center">
-                                <img className ="logo ml-4" src={confirm}></img>
-                                <p>Order Confirmation</p>
+                                <img className ="logo ml-4 order-status-icon order-confirm-icon" src={confirm}></img>
+                                <p className="order-status-text">Order Confirmation</p>
                             </div>    
 
                             <div className="col-3 text-center">
-                                <img className ="logo unStatus " src={packaging}></img>
-                                <p className="unStatus">Packaging</p>
+                                <img className ="logo unStatus order-status-icon" src={packaging}></img>
+                                <p className="unStatus order-status-text">Packaging</p>
                             </div>    
 
                             <div className="col-3 text-center">
-                                <img className ="logo unStatus" src={delivery}></img>
-                                <p className="unStatus">Shipping</p>
+                                <img className ="logo unStatus order-status-icon" src={delivery}></img>
+                                <p className="unStatus order-status-text">Shipping</p>
                             </div>        
 
                     </div>
@@ -172,23 +209,23 @@ for (var pair of formData.entries()) {
                        
                     <div className="row mt-4"> 
                             <div className="col-3 text-center">
-                                <img className ="logo unStatus" src={waiting}></img>
-                                <p className="unStatus">Awaiting Confirmation</p>
+                                <img className ="logo unStatus order-status-icon" src={waiting}></img>
+                                <p className="unStatus order-status-text">Awaiting Confirmation</p>
                             </div>
 
-                            <div className="col-3 text-center">
-                                <img className ="logo ml-4 unStatus" src={confirm}></img>
-                                <p className="unStatus">Order Confirmation</p>
+                            <div className="col-3 text-center order-confirm-icon">
+                                <img className ="logo ml-4 unStatus order-status-icon" src={confirm}></img>
+                                <p className="unStatus order-status-text">Order Confirmation</p>
+                            </div>    
+
+                            <div className="col-3 text-center ">
+                                <img className ="logo order-status-icon " src={packaging}></img>
+                                <p className="order-status-text">Packaging</p>
                             </div>    
 
                             <div className="col-3 text-center">
-                                <img className ="logo " src={packaging}></img>
-                                <p>Packaging</p>
-                            </div>    
-
-                            <div className="col-3 text-center">
-                                <img className ="logo unStatus" src={delivery}></img>
-                                <p className="unStatus">Shipping</p>
+                                <img className ="logo unStatus order-status-icon" src={delivery}></img>
+                                <p className="unStatus order-status-text">Shipping</p>
                             </div>        
 
                     </div>
@@ -201,23 +238,23 @@ for (var pair of formData.entries()) {
                        
                     <div className="row mt-4"> 
                             <div className="col-3 text-center">
-                                <img className ="logo unStatus " src={waiting}></img>
-                                <p className="unStatus">Awaiting Confirmation</p>
+                                <img className ="logo unStatus order-status-icon " src={waiting}></img>
+                                <p className="unStatus order-status-text">Awaiting Confirmation</p>
                             </div>
 
                             <div className="col-3 text-center">
-                                <img className ="logo ml-4 unStatus" src={confirm}></img>
-                                <p className="unStatus">Order Confirmation</p>
+                                <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
+                                <p className="unStatus order-status-text">Order Confirmation</p>
                             </div>    
 
                             <div className="col-3 text-center">
-                                <img className ="logo unStatus " src={packaging}></img>
-                                <p className="unStatus">Packaging</p>
+                                <img className ="logo unStatus order-status-icon" src={packaging}></img>
+                                <p className="unStatus order-status-text">Packaging</p>
                             </div>    
 
                             <div className="col-3 text-center">
-                                <img className ="logo" src={delivery}></img>
-                                <p >Shipping</p>
+                                <img className ="logo order-status-icon" src={delivery}></img>
+                                <p className="order-status-text" >Shipping</p>
                             </div>        
 
                     </div>
@@ -266,13 +303,13 @@ for (var pair of formData.entries()) {
                     style={{ borderBottom: "5px solid indigo" }}
                 >
                     {showUpSlip()}
-                    <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button>
+                    {/* <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button> */}
 
                     <h2 className="mb-5">
                         <span>
                             <div className="row">
-                           <div className="border text-white bg-dark"> Your Order ID: </div>
-                            <div className="col-5 border">{order._id}</div>
+                           <div className="border text-white bg-dark order-id-title"> Your Order ID: </div>
+                            <div className="col-5  order-id">{order._id}</div>
                             </div>
                         </span>
                         
@@ -366,6 +403,7 @@ const showAddress = () => (
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         > 
+            {checkUpLoad()}
             {showOrders()}
             {showAddress()}
             {/* {showStatus()} */}

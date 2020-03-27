@@ -77,16 +77,22 @@ const intro = () => (
                   <strong>ชุมชนมหาสวัสดิ์</strong>
                 </h5>
                 <ul class="smooth-scroll list-unstyled text-head">
+                <a href="#nabua">
                 <MDBBtn outline color='white' className="shop-button" >
-                <a href="#nabua"> <div className="text-white button-text">นาบัวลุงแจ่ม</div></a>
-              
+                <div className="text-white button-text">นาบัวลุงแจ่ม</div>
                 </MDBBtn>
+                </a>
+                <a href="#fakkhaw">
                 <MDBBtn outline color='white' className="shop-button">
-                <a href="#fakkhaw"> <div className="text-white button-text">บ้านฟักข้าว</div></a>               
+                 <div className="text-white button-text">บ้านฟักข้าว</div>             
                  </MDBBtn>
+                 </a>  
+                 <a href="#others">
                 <MDBBtn outline color='white' className="shop-button">
-                <a href="#others"> <div className="text-white button-text">สินค้าทั้งหมด</div></a>               
+                 <div className="text-white button-text">สินค้าทั้งหมด</div>             
                 </MDBBtn>
+                </a>  
+
                 </ul>
                 </MDBAnimation>
               </MDBCol>
@@ -118,10 +124,12 @@ const nabuaShop = () => (
                 <h5 className='text-uppercase mb-4 white-text '>
                   <strong>รับชมสินค้าจากทางร้าน</strong>
                 </h5>
+                <Link to="/shop/nabua">
                 <MDBBtn outline color='white'>
-                <Link to="/shop/nabua"><div className="text-white">รับชมสินค้า</div></Link>
+                <div className="text-white">รับชมสินค้า</div>
               
                 </MDBBtn>
+                </Link>
               
                 </MDBAnimation>
               </MDBCol>
@@ -156,10 +164,12 @@ const nabuaShop = () => (
                 <h5 className='text-uppercase mb-4 white-text '>
                   <strong>รับชมสินค้าของทั้งสอนร้าน</strong>
                 </h5>
+                <Link to="/shop/:searchResult/:search">
                 <MDBBtn outline color='white'>
-                <Link to="/shop/:searchResult/:search"><div className="text-white">รับชมสินค้า</div></Link>
+                <div className="text-white">รับชมสินค้า</div>
               
                 </MDBBtn>
+                </Link>
               
                 </MDBAnimation>
               </MDBCol>
@@ -198,10 +208,12 @@ const nabuaShop = () => (
                 <h5 className='text-uppercase mb-4 white-text '>
                   <strong>รับชมสินค้าจากทางร้าน</strong>
                 </h5>
+                <Link to="/shop/banfakkhaw">
                 <MDBBtn outline color='white'>
-                <Link to="/shop/banfakkhaw"><div className="text-white">รับชมสินค้า</div></Link>
-              
+                <div className="text-white">รับชมสินค้า</div>
+
                 </MDBBtn>
+                </Link>
               
                 </MDBAnimation>
               </MDBCol>

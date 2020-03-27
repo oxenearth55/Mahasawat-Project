@@ -65,7 +65,7 @@ export const getNabuaProducts = () => {
         }
 
         cart.map((c, i) => {
-            if(c.shop === '5e6a17a35c566806d6a101dd') {
+            if(c.shop._id === '5e6a17a35c566806d6a101dd') {
                 nabua.push(c);
 
 
@@ -90,7 +90,7 @@ export const getfakkhawProducts = () => {
         }
 
         cart.map((c, i) => {
-            if(c.shop === '5e6a17ac5c566806d6a101de') {
+            if(c.shop._id === '5e6a17ac5c566806d6a101de') {
                 fakkhaw.push(c);
             }
         });

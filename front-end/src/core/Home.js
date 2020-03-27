@@ -30,6 +30,10 @@ const Home = () => {
     const [productsByArrival, setProductsByArrival] = useState([]);
     const [error, setError] = useState(false);
 
+    const showImage = () =>{
+        // <img height="150" width="100" src="<%= order.photoPath %>"/>
+    }
+
 
     // SECTION Display bestseller and new arrival products
     const loadProductsBySell = () => {

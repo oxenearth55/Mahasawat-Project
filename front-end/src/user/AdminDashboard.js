@@ -130,9 +130,9 @@ const info = () =>(
 <MDBContainer>
   <MDBListGroup >
     <MDBListGroupItem  className="bg-dark text-white">User Information</MDBListGroupItem>
-    <MDBListGroupItem >{name}</MDBListGroupItem>
-    <MDBListGroupItem >{email}</MDBListGroupItem>
-    <MDBListGroupItem >{showRole(role)}</MDBListGroupItem>
+    <MDBListGroupItem  ><p className="dash-info">{name}</p></MDBListGroupItem>
+    <MDBListGroupItem   ><p className="dash-info">{email}</p></MDBListGroupItem>
+    <MDBListGroupItem   ><p className="dash-info">{showRole(role)}</p></MDBListGroupItem>
   </MDBListGroup>
 </MDBContainer>
 );
@@ -206,12 +206,12 @@ const links = () => (
             </div> */}
 
 <MDBRow>
-<MDBCol size='4'>
+<MDBCol size='6'>
     {links()}
 
 </MDBCol>
 
-<MDBCol size='8'>
+<MDBCol size='6'>
     {info()}
 
 </MDBCol>

@@ -2,20 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import {API} from '../config' 
 import {addItem} from './cartHelpers'; 
-import PopUpCart from './PopUpCart';
-import {getProducts} from './apiCore';
+import ShowIcon from './ShowIcon';
 
 
 
-const RelatedProduct = ({product,props}) => {
+const RelatedProduct = ({product,search=false,filter}) => {
     
-    const [productsBySell, setProductsBySell] = useState([]);
-    const [error, setError] = useState(false);
+    //SECTION State
     const [cartRedirect, setCartRedirect] = useState(false);
     const [productRedirect, setProductRedirect] = useState(false);
     const [selectProduct, setSelectProduct] = useState([]);
-
-
 
 
     const addToCart = (p) => {
@@ -23,79 +19,18 @@ const RelatedProduct = ({product,props}) => {
 
     };
 
-    // SECTION Load bestseller 
-    const loadProductsBySell = () => {
-        // NOTE get product by sold
-        getProducts('sold',3).then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-        // NOTE grab data as a object from backend then store in State (Array of Object)
-                setProductsBySell(data);
-            }
-        });
-    };
+    const notFoundProduct = (product) =>{
+      if(product.length == 0){
+        return(
+          <h5 className="text-center alert alert-warning">ไม่พบสินค้าที่ท่านต้องการ</h5>
 
-    useEffect(() => {
-        loadProductsBySell();
-        window.scrollTo(0, 0)
+        )
+      }
 
-    },[]);
-
- //SECTION Show Icon 
-
- const showBestSeller = (product) =>
- {
-     return(
-         <div>
-             
-     {
-     productsBySell.map((p,i) => {
-          if(p._id === product._id){
-            
-             return(
-               
-                  <span class="badge badge-danger mb-2 mr-1">
-                    สินค้าขายดี
-                    </span>
-             )}
-            
-
-     })}</div>
+    }
 
 
-     );
-
- };
-
- const showNabuaIcon = (product) =>{
-     
-    if(product.shop === '5e6a17a35c566806d6a101dd'){
-        return(<span class="badge badge-info mb-2 mr-1">
-            นาบัวลุงแจ่ม
-        </span>)
-    }  
-}
-
-
-const showFakkIcon = (product) =>{
-     
-    if(product.shop === '5e6a17ac5c566806d6a101de'){
-        return(<span class="badge badge-info mb-2 mr-1">
-            บ้านฟักข้าว
-        </span>)
-    }  
-}
-const displayIcon = (product) =>(
-    <>
-    {showBestSeller(product)}
-    {showNabuaIcon(product)}
-    {showFakkIcon(product)}
-    </>
-
-);
-
-//SECTION set Modal
+//SECTION Set Modal
 const convert  = (index) => {
  const number = index
  
@@ -143,9 +78,6 @@ const goToDetail = (p) =>{
   setSelectProduct(p);
 }
 
-
-
-
 const Card =() =>(
 
         <>
@@ -155,6 +87,7 @@ const Card =() =>(
 <section>
   
   <h3 class="font-weight-bold text-center dark-grey-text mb-5">สินค้า</h3>
+  {notFoundProduct(product)}
 
   {/* <!-- Grid row --> */}
   <div class="row">
@@ -203,7 +136,7 @@ const Card =() =>(
                   class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
                   <strong className="mt-5">{p.name}</strong>
                 </h2>
-                <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
+                <ShowIcon product={p}/>
                 <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
                   <span class="red-text font-weight-bold">
                 <strong>฿{p.price}</strong>
@@ -349,13 +282,7 @@ const Card =() =>(
 
 
                {/* {ANCHOR pop Up} */}
-
-
-
-
-
-
-                          {/* Pop Up Cart */}
+                     {/* Pop Up Cart */}
 
 
                      
@@ -390,7 +317,7 @@ const Card =() =>(
   <div className="row">
   {/* <span class="badge grey mb-2 mr-1">best rated</span>
         <span class="badge badge-info mb-2 mr-1">{p.category.name}</span> */}
-{displayIcon(p)}        </div>
+ <ShowIcon product={p}/>  </div>
 
 
           {/* <ul class="rating">
