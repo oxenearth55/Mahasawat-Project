@@ -92,6 +92,7 @@ const showOrdersTable = () => {
 
 
 
+
 return(
     <div>  {showOrdersLength(number.length)}
   
@@ -115,7 +116,7 @@ return(
     <tbody>
         <tr>
             <th scope="row">{o._id}</th>
-            <td>{o.user.name}</td>
+            <td>{o.shop.name}</td>
             <td>{o.amount}</td>
             <td>{o.status}</td>
             

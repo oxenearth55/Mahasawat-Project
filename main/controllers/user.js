@@ -103,7 +103,6 @@ exports.updateOther = (req, res) => {
                 error: 'User not found'
             });
         }
-    
 
         if (!shopObjectID) {
             return res.status(400).json({

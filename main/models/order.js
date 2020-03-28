@@ -47,17 +47,16 @@ const OrderSchema = new mongoose.Schema(
     contentType: String
 },
 
-  
-  // slipImage: {
-  //   type: Buffer
-  // },
-  // slipImageType: {
-  //   type: String
-  // },
+upload: {
+  type: Boolean,
+  default:false
+   
+},
+
     status: {
       type: String,
       default: "Awaiting Confirmation",
-      enum: ["Awaiting Confirmation", "Packaging", "Shipping", "Cancelled"] // enum means string objects
+      enum: ["Awaiting Confirmation","Order Confirmation", "Packaging", "Shipping", "Cancelled"] // enum means string objects
     },
     updated: Date,
     user: { type: ObjectId, ref: "User" }

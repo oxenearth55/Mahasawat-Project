@@ -26,7 +26,7 @@ import Nabua from './Shop/Nabua'
 import UpdateMer from './admin/UpdateMer'
 import SeeOrderCus from './core/SeeOrderCus'
 import SelectShop from './Shop/SelectShop'
-
+import ManageShop from './admin/ManageShop'
 
 const Routes = () => {
 
@@ -88,6 +88,9 @@ const Routes = () => {
 
 
             <AdminRoute path="/admin/Inventory" exact component={Inventory}/>
+
+            <AdminRoute path="/admin/manage/shop" exact component={ManageShop}/>
+
 
 
 

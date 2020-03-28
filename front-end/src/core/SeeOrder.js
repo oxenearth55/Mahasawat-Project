@@ -11,18 +11,10 @@ import delivery from './Logo/delivery.png'
 import {readOrder} from './apiCore'
 
 
-// Import React FilePond
-import { FilePond, registerPlugin } from 'react-filepond';
-
-// Import FilePond styles
-import 'filepond/dist/filepond.min.css';
-
-
 
 
 const SeeOrder = (props) => {
 
-    const [orders, setOrders] = useState([]);
     const { user, token } = isAuthenticated();
     const [slip,setSlip] =useState('');
     const [error,setError] =useState('');
@@ -53,13 +45,19 @@ const SeeOrder = (props) => {
             <h5 className="text-center ">อัพโหลดการยืนยันรายการสำเร็จ</h5>
         </div>
         </>)
-        }else if(empty&& !order.photo){
+        }else if(empty&& !order.photo &&order.upload==false){
             return(
         <div className="alert alert-primary" role="alert">
             <h5 className="text-center ">กรุณาอัพโหลดสลิป</h5>
         </div>
 
             )
+        }else if(order.upload == true){
+            return(
+            <div className="alert alert-success" role="alert">
+                <h5 className="text-center ">คุณอัพโหลดรายการนี้ไปแล้ว</h5>
+            </div>
+            );
         }
     }
 
@@ -98,6 +96,7 @@ const handleChange = name => event => {
     setValues({ ...values, [name]: value });
     if(name === 'photo'){
         setEmpty(false)
+        formData.set('upload', true);
     }
 
     console.log('Form is '+value);
@@ -213,14 +212,14 @@ for (var pair of formData.entries()) {
                                 <p className="unStatus order-status-text">Awaiting Confirmation</p>
                             </div>
 
-                            <div className="col-3 text-center order-confirm-icon">
-                                <img className ="logo ml-4 unStatus order-status-icon" src={confirm}></img>
-                                <p className="unStatus order-status-text">Order Confirmation</p>
-                            </div>    
+                            <div className="col-3 text-center">
+                                    <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
+                                    <p className="unStatus order-status-text ">Order Confirmation</p>
+                                </div>    
 
-                            <div className="col-3 text-center ">
-                                <img className ="logo order-status-icon " src={packaging}></img>
-                                <p className="order-status-text">Packaging</p>
+                            <div className="col-3 text-center">
+                                <img className ="logo  order-status-icon" src={packaging}></img>
+                                <p className=" order-status-text">Packaging</p>
                             </div>    
 
                             <div className="col-3 text-center">
@@ -316,7 +315,6 @@ for (var pair of formData.entries()) {
                     </h2>
                     <h4 className="mb-4">Order Status</h4>
                     {statusIcon(order.status)}
-                    {order.status}
                     
 
 

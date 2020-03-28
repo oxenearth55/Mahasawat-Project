@@ -17,10 +17,7 @@ const Profile = ({ match }) => {
 
     const { user, token } = isAuthenticated();
     const { name, email, password, error, success } = values;
-
-    
     const [shopObject, setShopObject] = useState([])
-
 
     //SECTION Update Shop for Admin only
     const getShopObject = () => {

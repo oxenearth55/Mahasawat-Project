@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
-import {API} from '../config' 
+import PopUpSlip from '../core/PopUpSlip'
 
 
 const Orders = ({match}) => {
@@ -16,6 +16,8 @@ const Orders = ({match}) => {
     const { user, token } = isAuthenticated();
 
     const [address , setAddress] = useState([]);
+    const [photo , setPhoto] = useState([]);
+
 
     
 
@@ -28,6 +30,7 @@ const Orders = ({match}) => {
                 setOrder(data)
                 setProducts(data.products)
                 setAddress(data.address)
+                setPhoto(data.photo)
               
 
             }
@@ -49,7 +52,7 @@ const Orders = ({match}) => {
         loadOrder(match.params.orderID);
         loadStatusValues();
         // setAddress({...address, lastName:order.address.lastName})
-        console.log('address is '+address.lastName)
+        console.log('photo is '+photo.contentType)
 
     }, []);
 
@@ -77,7 +80,7 @@ const Orders = ({match}) => {
                 if (data.error) {
                     console.log("Status update failed");
                 } else {
-                    console.log('address is '+ order.address.firstName)
+                    console.log('photo is '+order.photo)
 
                 }
             }
@@ -109,10 +112,13 @@ const Orders = ({match}) => {
                         className="mt-5"
                         style={{ borderBottom: "5px solid indigo" }}
                     >
-                        <h2 className="mb-5">
-                            <span className="bg-primary">
-                                Order ID: {order._id}
-                            </span>
+                       <h2 className="mb-5">
+                        <span>
+                            <div className="row">
+                           <div className="border text-white bg-dark order-id-title">Order ID: </div>
+                            <div className="col-5  order-id">{order._id}</div>
+                            </div>
+                        </span>
                         </h2>
 
                         <ul className="list-group mb-2">
@@ -189,11 +195,30 @@ const Orders = ({match}) => {
 
     const showSlip = () =>
     {
+        if(order.upload == true){
         return(
-            <>
-        <img src={`${API}/order/slip/${order._id}`}/>
-            </>
+        <>
+            <div className="alert alert-success" role="alert">
+
+                <h5 className="text-center order-aleart-slip">ลูกค้าท่านนี้อัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h5>
+            </div>
+            <button class="btn btn-outline-cyan btn-block" data-toggle="modal" data-target="#centralModalInfo">
+                See slip<i class="fas fa-image pl-1"></i>
+            </button>
+            <PopUpSlip order = {order}/>
+        </>
         )
+        }else if(order.upload ==false){
+            return(
+                <>
+                    <div className="alert alert-warning" role="alert">
+                        <h5 className="text-center">ลูกค้าท่านนี้ยังไม่ได้อัพโหลดหลักฐานการโอนเงิน</h5>
+                    </div>
+                </>
+
+            )
+
+        }
     }
 
     return (
@@ -205,8 +230,9 @@ const Orders = ({match}) => {
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
-           {showOrder()}
            {showSlip()}
+           {showOrder()}
+         
            {showAddress()}
 
            

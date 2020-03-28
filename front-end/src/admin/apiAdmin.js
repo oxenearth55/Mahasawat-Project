@@ -194,6 +194,8 @@ export const updateProduct = (productId, userId, token, product) => {
         .catch(err => console.log(err));
 };
 
+
+
 export const uploadSlip = (orderId, userId, token, slip) => {
     return fetch(`${API}/order/${orderId}/${userId}`, {
         method: 'PUT',
@@ -243,20 +245,7 @@ export const updateUserRole = (userId, token, uId, role) => {
 };
 
 
-//NOTE get shop name 
-export const getShopList = (userId, token) => {
-    return fetch(`${API}/shop/shop-name/${userId}`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`
-        }
-    })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
-};
+
 
 
 export const createShop = (userId, token, shop) => {
@@ -267,6 +256,77 @@ export const createShop = (userId, token, shop) => {
             Authorization: `Bearer ${token}`
         },
         body:shop
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+
+
+export const deleteOther = (otherId, userId, token) => {
+    return fetch(`${API}/user/${otherId}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+
+//SECTION Shop
+// export const updateShop = (shopId,token, formData) => {
+//     return fetch(`${API}/shop/update/${shopId}`, {
+//         method: 'PUT',
+//         headers: {
+//             Accept: 'application/json',
+//             Authorization: `Bearer ${token}`
+//         },
+//         body: formData
+
+//     })
+//         .then(response => {
+//             return response.json();
+//         })
+//         .catch(err => console.log(err));
+// };
+
+
+export const updateShop = (shopId,userId, token, bankinfo) => {
+    return fetch(`${API}/shop/update/${shopId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(bankinfo)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+
+//NOTE get shop name 
+export const getShopList = (userId, token) => {
+    return fetch(`${API}/shop/shop-name/${userId}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
     })
         .then(response => {
             return response.json();
@@ -286,14 +346,10 @@ export const getShop = () => {
 
 
 
-export const deleteOther = (otherId, userId, token) => {
-    return fetch(`${API}/user/${otherId}/${userId}`, {
-        method: 'DELETE',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-        }
+//NOTE Get Shop information
+export const getSpecificShop = shopId => {
+    return fetch(`${API}/shop/${shopId}`, {
+        method: 'GET'
     })
         .then(response => {
             return response.json();

@@ -81,7 +81,7 @@ const destroy = orderId => {
 const showOrdersTable = () => {
     const number =[];
     {orders.map((o, oIndex) => {
-        if(user.shop === o.shop){
+        if(user.shop === o.shop._id){
             number.push(o.shop)}
         }
     )
@@ -109,7 +109,7 @@ return(
         </tr>
     </thead>
     {orders.map((o, oIndex) => {
-        if(user.shop === o.shop){
+        if(user.shop === o.shop._id){
             number.push(o.shop)
                 return (
     <tbody>

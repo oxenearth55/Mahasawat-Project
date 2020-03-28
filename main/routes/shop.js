@@ -7,7 +7,9 @@ const {
     shopById,
     getShop,
     create,
-    listShop
+    listShop,
+    update,
+    read
 } = require("../controllers/shop");
 
 router.post(
@@ -18,6 +20,14 @@ router.post(
     create
    
 );
+router.put(
+    "/shop/update/:shopId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    update
+
+)
 
 router.get(
     "/shop/shop-name/:userId",
@@ -26,6 +36,12 @@ router.get(
     isAdmin,
     getShop
 );
+
+router.get(
+    "/shop/:shopId", 
+    read
+);
+
 
 //NOTE get Shop Object
 router.get('/shop/get', listShop);

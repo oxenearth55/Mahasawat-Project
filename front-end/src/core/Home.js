@@ -19,7 +19,6 @@ import ShowExample from './Home-components/Example'
 import ShowShop from './Home-components/ShowShop'
 import AllShop from './AllShop'
 
-import Test2 from './Home-components/test2'
 
 
 

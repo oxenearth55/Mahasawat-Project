@@ -30,9 +30,18 @@ const shopSchema = new mongoose.Schema({
             data: Buffer,
             contentType: String
         },
+
+        bankAccount: {
+            personName:String,
+            bankName:String,      
+            accountNumber: String,
+          },
+
+
         user: { type: ObjectId, ref: "User"},
         product: { type: ObjectId, ref: "Product"}
     },
+
     
     { timestamps: true }
 

@@ -373,6 +373,9 @@ p{
     .order-status-text{font-size:11px!important;}
     .order-confirm-icon{margin-left: 6px!important;}
 
+    /* SECTION See Order (Customer) */
+    .order-aleart-slip{font-size: 12px;}
+
 
 
 }

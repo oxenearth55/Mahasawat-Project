@@ -172,6 +172,12 @@ const links = () => (
         </Link>      
     </MDBListGroupItem>
 
+    <MDBListGroupItem hover>
+        <Link className="nav-link textDash" to="/admin/manage/shop">
+            Manage Shop
+        </Link>      
+    </MDBListGroupItem>
+
     <MDBListGroupItem  hover>
         {adminGivePermission()}     
     </MDBListGroupItem>
