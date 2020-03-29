@@ -48,7 +48,7 @@ const AddProduct = () => {
     const [shopObject, setShopObject] = useState([])
 
     const getShopObject = () => {
-        getShop().then(data => {
+        getShop(user._id,token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
              } 

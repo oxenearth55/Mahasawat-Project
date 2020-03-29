@@ -3,7 +3,6 @@ import Layout from "./Layout"
 import Card from "./Card"
 import {getCategories, getFilteredProducts, getShop} from "./apiCore"
 import Checkbox from './Checkbox'
-import {prices} from './fixedPrices'
 import RadioBox from './RadioBox'
 import Search from './Search'
 import {list} from './apiCore'
@@ -29,8 +28,8 @@ const Shop = props => {
     //ANCHOR Filter
 
     const [myFilters, setMyFilters] = useState({ // NOTE This State contain one property which is filters
-        //NOTE filters contains two properties which are categories and price as array (sub properties of filters)
-        filters: {category: [], price:[]} 
+        //NOTE filters contains one properties which is categories  as array (sub properties of filters)
+        filters: {category: []} 
 
     });
 
@@ -87,7 +86,7 @@ const Shop = props => {
             }
         });
     };
-    // NOTE Send result (categories ID and price range as Array) from Checkbox and RadioBox and send to backend
+    // NOTE Send result (categories ID as Array) from Checkbox and RadioBox and send to backend
     const loadFilteredResults = (newFilters) =>{
         getFilteredProducts(skip, limit, newFilters).then(data => { //NOTE  this method will return result that match with filter
             if(data.error){
@@ -115,27 +114,12 @@ const Shop = props => {
         const newFilters = {...myFilters}
         // NOTE filters came from Checkbox component
         newFilters.filters[filterBy] = filters //this == categories that was checked
-        if(filterBy =="price"){
-            
-            newFilters.filters[filterBy] = handlePrice(filters) // this == price from radio btn
-            //NOTE now newFilters keep Array of prices 
-        }
-        loadFilteredResults(myFilters.filters) //NOTE grab both category and prices from the state and send these to backend
+       
+        loadFilteredResults(myFilters.filters) //NOTE grab category from the state and send these to backend
         setMyFilters(newFilters)
 
     };
-     //NOTE grab array from prices before sending to backend 
-     const handlePrice = value => { //NOTE this parameter (value) gets prices.id
-         const data = prices;
-         let array = []
-         for(let key in data){ // NOTE use key to access current btn that was clicked 
-             if(data[key]._id === parseInt(value)){ //NOTE parseInt is invert a string into a number
-                array = data[key].array
-             } 
-
-         }
-         return array;
-     };
+   
      
 
 
@@ -179,7 +163,7 @@ const defaultDisplay = () => {
     return(  
        
         <>
-                    <AllShop product={filterResults}/> 
+            <AllShop product={filterResults}/> 
         </>
     
     );
@@ -227,15 +211,7 @@ const show = (trigger) =>{
     />
     </div>
 
-             <h4 className="text-white bg-dark">
-               Filter by price range
-             </h4> 
-           <div className="bg-light text-dark">
-             <RadioBox prices={prices} 
-             handleFilters={filters => handleFilters(filters,"price")
-            }     
-    />
-        </div>
+            
 
 
         <h4 className="text-white bg-dark">

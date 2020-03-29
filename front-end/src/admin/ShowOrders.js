@@ -87,7 +87,20 @@ const showOrdersTable = () => {
     )
     }
 
+const showUploadStatus = (upload) => {
 
+if(upload){
+    return(
+        <>
+        <p>Yes</p>
+        </>
+    );
+}else{
+    return(
+    <p>No</p>
+    );
+}
+}
 
 
 
@@ -102,6 +115,8 @@ return(
         <th scope="col">Name</th>
         <th scope="col">Total</th>
         <th scope="col">Status</th>
+        <th scope="col">SlipUpload</th>
+
         <th scope="col">See details</th>
         <th scope="col">Delete order</th>
 
@@ -118,6 +133,8 @@ return(
             <td>{o.user.name}</td>
             <td>{o.amount}</td>
             <td>{o.status}</td>
+            <td>{showUploadStatus(o.upload)}</td>
+
             
             <td> 
                 <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/order/${o._id}`}>

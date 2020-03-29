@@ -56,7 +56,7 @@ const headerViedeo = () => (
 
 const intro = () => (
         
-<MDBView src='https://i1.wp.com/www.anneatnight.com/wp-content/uploads/2020/03/pigbrain.jpg?fit=1620%2C1079'  >
+<MDBView src='https://subwallpaper.com/Widescreen-Wallpapers/sci-fi-abstract-wallpaper-photo-For-Widescreen-Wallpaper.jpg'  >
 
 <MDBMask className='rgba-black-light' />
 <Menu/>   
