@@ -42,7 +42,7 @@ const grabUserInfo = (userId) => {
 
 //SECTION Update Shop for Admin only
 const getShopObject = () => {
-    getShop().then(data => {
+    getShop(user._id,token).then(data => {
         if (data.error) {
             setValues({ ...values, error: data.error });
          } 

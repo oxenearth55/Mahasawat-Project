@@ -19,6 +19,8 @@ const ManageShop = () => {
     const { user, token } = isAuthenticated(); //NOTE Grab use info from jwt 
     const [shopID, setShopID] = useState([]);
     const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+
 
 
     // const {shopInfo, setShopInfo} = ([]);
@@ -42,7 +44,7 @@ const ManageShop = () => {
         });
     };
 
-     // NOTE get product from backend by senind product ID from params
+     // NOTE get the shop from backend
      const getShopInfo = shopId => {
         getSpecificShop(shopId).then(data => {
             if (data.error) {
@@ -51,9 +53,9 @@ const ManageShop = () => {
                 // populate the state
                 setBankinfo({
                     ...bankinfo,
-                    personName: data.personName,
-                    bankName: data.bankName,
-                    accountNumber: data.accountNumber                       
+                    personName: data.bankAccount.personName,
+                    bankName: data.bankAccount.bankName,
+                    accountNumber: data.bankAccount.accountNumber                       
                 });
                 setShopID(data._id)
         
@@ -76,29 +78,29 @@ const ManageShop = () => {
 
 
     //NOTE Display shop name 
-    const shopName = () => {
-        if(user.role === 1 || user.role === 2){
-            return (
+    // const shopName = () => {
+    //     if(user.role === 1 || user.role === 2){
+    //         return (
             
-            shopObject.map((s, i) => {
-                if(s._id === user.shop){
-                    return(
-                    <div className ="row my-4 "> 
-                       <h4 className="text-white bg-dark px-3 py-3">ร้านค้าของคุณคือ</h4><h4 className="border px-3 py-3">  {s.name}</h4> 
-                       </div>
-                    );
-                }
-            }
+    //         shopObject.map((s, i) => {
+    //             if(s._id === user.shop){
+    //                 return(
+    //                 <div className ="row my-4 "> 
+    //                    <h4 className="text-white bg-dark px-3 py-3">ร้านค้าของคุณคือ</h4><h4 className="border px-3 py-3">  {s.name}</h4> 
+    //                    </div>
+    //                 );
+    //             }
+    //         }
                   
-            )
-            );
-    }
-    }
+    //         )
+    //         );
+    // }
+    // }
 
     // SECTION Update Form 
     const handleChange = name => event => {
 
-      
+      console.log('shop id is '+ shopID)
         setBankinfo({ ...bankinfo, [name]: event.target.value });
 
     };
@@ -116,6 +118,7 @@ const ManageShop = () => {
                         bankName: data.bankName,                     
                         accountNumber: data.accountNumber
                     });
+                    setSuccess(true);
             }
         });
     };
@@ -136,12 +139,7 @@ const ManageShop = () => {
                 <label className="text-muted">หมายเลขบัญชี</label>
                 <input type="text" onChange={handleChange('accountNumber')} className="form-control" value={accountNumber} />
             </div>
-
-
-            <div className="form-group">
-                <label className="text-muted">description</label>
-                <input type="text" onChange={handleChange('description')} className="form-control" value={accountNumber} />
-            </div>
+    
             <button  className="btn btn-primary">
                 Submit
             </button>
@@ -149,6 +147,17 @@ const ManageShop = () => {
     );
 
 
+    const showSuccess = success => {
+        if(success){
+            return(
+                <>
+                <div class="alert alert-success" role="alert">
+                     อัพเดทบัญชีสำเร็จ
+                </div>
+                </>
+            )
+        }
+    }
 
 
     return(
@@ -159,14 +168,10 @@ const ManageShop = () => {
     description={`คุณสามาระตั้งค่าร้านค้าของคุณได้ที่นี่`}
     headerImg="dashBoardImgLayout"
 >
-    <>
-
-    {shopName()}
-    {bankUpdate()}
-
-
-{user.shop}
-    </>
+    <div className="container">
+    {showSuccess(success)}
+    {bankUpdate(personName, bankName, accountNumber)}
+    </div>
                 
 
 </Layout>

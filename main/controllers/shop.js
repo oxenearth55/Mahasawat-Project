@@ -145,8 +145,8 @@ exports.getShop = (req, res) => {
 exports.update = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
     const {bankinfo} = req.body;
-
-    Shop.findOne( (err, shop) => {
+    //NOTE findOne is use to check which shop that we are going to update
+    Shop.findOne({ _id: req.shop._id },  (err, shop) => {
       
         if (!bankinfo) {
             return res.status(400).json({

@@ -44,7 +44,12 @@ router.get(
 
 
 //NOTE get Shop Object
-router.get('/shop/get', listShop);
+router.get('/shop/get/:userId', 
+
+requireSignin,
+isAuth,
+isAdmin,
+listShop);
 
 router.param("userId", userById);
 router.param("shopId", shopById);

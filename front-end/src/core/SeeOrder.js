@@ -9,6 +9,8 @@ import confirm from './Logo/confirmation.png'
 import packaging from './Logo/packaging.png'
 import delivery from './Logo/delivery.png'
 import {readOrder} from './apiCore'
+import PopUpBank from '../core/PopUpBank'
+import {getSpecificShop} from '../admin/apiAdmin'
 
 
 
@@ -23,6 +25,8 @@ const SeeOrder = (props) => {
     const [products, setProducts] =useState([]);
     const [address , setAddress] = useState([]);
     const [empty , setEmpty] = useState(true);
+    const [shopInfo,setShopInfo] = useState([]);
+    const [bankAccount, setBankAccount] = useState([]);
 
 
 
@@ -33,6 +37,20 @@ const SeeOrder = (props) => {
     });
 
     const {photo,formData,} =  values; 
+
+     // NOTE get the shop from backend
+     const getShopInfo = shopId => {
+        getSpecificShop(shopId).then(data => {
+            if (data.error) {
+                setError(true)
+            } else {
+                // populate the state
+                setShopInfo(data)
+                setBankAccount(data.bankAccount)
+               
+            }
+        });
+    };
 
 
     const checkUpLoad = () =>
@@ -99,14 +117,8 @@ const handleChange = name => event => {
         formData.set('upload', true);
     }
 
-    console.log('Form is '+value);
+    console.log('Shop id is'+bankAccount.name)
 
-    formData.append(name, value);
-// Log the key/value pairs
-for (var pair of formData.entries()) {
-    console.log(pair[0]+ ' - ' + pair[1]); 
-
-};
 
 }
 
@@ -119,11 +131,12 @@ for (var pair of formData.entries()) {
                 setOrder(data)
                 setProducts(data.products)
                 setAddress(data.address)
-
                 setValues({
                     ...values,                   
                     formData: new FormData()
+                    
                 });
+                getShopInfo(data.shop)
 
             }
         });
@@ -132,7 +145,6 @@ for (var pair of formData.entries()) {
 
     useEffect(() => {
         const orderId = props.match.params.orderId;
-
         loadOrder(orderId);
        
     }, []);
@@ -308,7 +320,8 @@ for (var pair of formData.entries()) {
                         <span>
                             <div className="row">
                            <div className="border text-white bg-dark order-id-title"> Your Order ID: </div>
-                            <div className="col-5  order-id">{order._id}</div>
+                            <div className="col-5  order-id">{order._id}
+                            </div>
                             </div>
                         </span>
                         
@@ -391,6 +404,30 @@ const showAddress = () => (
 </>
     );
 
+    const showBankAccount = () =>{
+        return(<>
+        
+        <button data-toggle="modal" data-target="#centralModalInfo" 
+        class="btn btn-orange">โอนเงินไปที่ 
+        <i class="fas  fa-university pl-1"></i>
+        
+        </button>
+
+        <PopUpBank bank={bankAccount}/>
+        
+        </>)
+    }
+
+
+    const showShopName = () =>(
+        <div className="bg-dark border py-2 mb-3 t">
+            <h3 className="text-center text-white">  {shopInfo.name}
+</h3>
+
+       
+
+        </div>
+    )
 
     return(
         <Layout
@@ -401,7 +438,9 @@ const showAddress = () => (
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         > 
+            {showShopName()}
             {checkUpLoad()}
+            {showBankAccount()}
             {showOrders()}
             {showAddress()}
             {/* {showStatus()} */}
