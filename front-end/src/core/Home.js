@@ -61,6 +61,8 @@ const Home = () => {
     useEffect(() => {
         loadProductsByArrival();
         loadProductsBySell();
+        window.scrollTo(0, 0)     
+
     }, []);
 
 

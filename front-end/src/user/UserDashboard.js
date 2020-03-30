@@ -4,6 +4,8 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { getPurchaseHistory } from "./apiUser";
 import moment from "moment";
+import { MDBListGroup, MDBListGroupItem, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+
 
 const Dashboard = () => {
     const [history, setHistory] = useState([]);
@@ -28,75 +30,90 @@ const Dashboard = () => {
         init(_id, token);
     }, []);
 
-    const userLinks = () => {
-        return (
-            <div className="card">
-                <h4 className="card-header">User Links</h4>
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <Link className="nav-link" to="/cart">
+    
+
+    // const purchaseHistory = history => {
+    //     return (
+    //         <div className="card mb-5">
+    //             <h3 className="card-header">Purchase history</h3>
+    //             <ul className="list-group">
+    //                 <li className="list-group-item">
+    //                     {history.map((h, i) => {
+    //                         return (
+    //                             <div>
+    //                                 <hr />
+    //                                 {h.products.map((p, i) => {
+    //                                     return (
+    //                                         <div key={i}>
+    //                                             <h6>Product name: {p.name}</h6>
+    //                                             <h6>
+    //                                                 Product price: ${p.price}
+    //                                             </h6>
+    //                                             <h6>
+    //                                                 Purchased date:{" "}
+    //                                                 {moment(
+    //                                                     p.createdAt
+    //                                                 ).fromNow()}
+    //                                             </h6>
+    //                                         </div>
+    //                                     );
+    //                                 })}
+    //                             </div>
+    //                         );
+    //                     })}
+    //                 </li>
+    //             </ul>
+    //         </div>
+    //     );
+    // };
+
+
+
+
+
+    const links = () => (
+        <MDBContainer  className="mx-0 px-auto">
+        
+        
+        
+          <MDBListGroup >
+        
+        
+            <MDBListGroupItem hover >  
+            <Link className="nav-link" to="/cart">
                             My Cart
                         </Link>
-                    </li>
-                    <li className="list-group-item">
-                        <Link className="nav-link" to={`/profile/${_id}`}>
+                                
+            </MDBListGroupItem>
+            <MDBListGroupItem hover>
+                
+            <Link className="nav-link" to={`/profile/${_id}`}>
                             Update Profile
                         </Link>
-                    </li>
-                </ul>
-            </div>
-        );
-    };
+            
+            </MDBListGroupItem>
+           
+        
+        
+          </MDBListGroup>
+          
+        
+        </MDBContainer>
+        
+          
+        
+            );
 
-    const userInfo = () => {
-        return (
-            <div className="card mb-5">
-                <h3 className="card-header">User Information</h3>
-                <ul className="list-group">
-                    <li className="list-group-item">{name}</li>
-                    <li className="list-group-item">{email}</li>
-                    <li className="list-group-item">
-                        {role === 1 ? "Admin" : "Registered User"}
-                    </li>
-                </ul>
-            </div>
-        );
-    };
-
-    const purchaseHistory = history => {
-        return (
-            <div className="card mb-5">
-                <h3 className="card-header">Purchase history</h3>
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        {history.map((h, i) => {
-                            return (
-                                <div>
-                                    <hr />
-                                    {h.products.map((p, i) => {
-                                        return (
-                                            <div key={i}>
-                                                <h6>Product name: {p.name}</h6>
-                                                <h6>
-                                                    Product price: ${p.price}
-                                                </h6>
-                                                <h6>
-                                                    Purchased date:{" "}
-                                                    {moment(
-                                                        p.createdAt
-                                                    ).fromNow()}
-                                                </h6>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            );
-                        })}
-                    </li>
-                </ul>
-            </div>
-        );
-    };
+            const info = () =>(
+                <MDBContainer>
+                  <MDBListGroup >
+                    <MDBListGroupItem  className="bg-dark text-white">User Information</MDBListGroupItem>
+                    <MDBListGroupItem  ><p className="dash-info">{name}</p></MDBListGroupItem>
+                    <MDBListGroupItem   ><p className="dash-info">{email}</p></MDBListGroupItem>
+                    <MDBListGroupItem   ><p className="dash-info"> {role === 1 ? "Admin" : "Registered User"}</p></MDBListGroupItem>
+                  </MDBListGroup>
+                </MDBContainer>
+                );
 
     return (
         <Layout
@@ -106,13 +123,22 @@ const Dashboard = () => {
             headerImg="dashBoardImgLayout"
 
         >
-            <div className="row">
-                <div className="col-3">{userLinks()}</div>
-                <div className="col-9">
-                    {userInfo()}
-                    {purchaseHistory(history)}
-                </div>
-            </div>
+           
+
+<MDBRow>
+<MDBCol size='6'>
+    {links()}
+
+</MDBCol>
+
+<MDBCol size='6'>
+{info()}
+
+</MDBCol>
+
+
+
+</MDBRow>
         </Layout>
     );
 };

@@ -14,9 +14,13 @@ import {
   import Layout from '../core/Layout'
   import nabuaPhoto from '../photo/nabuaLocation.jpeg'
   import fakkhawPhoto from '../photo/fakkhawLocation.jpg'
-
+  import intropic from '../photo/intropic.jpg' 
 
   const SelectShop = () => {
+
+    useEffect(() => {
+      window.scrollTo(0, 0)     
+  }, []);
     
 const headerViedeo = () => (
 
@@ -188,7 +192,7 @@ const nabuaShop = () => (
 
     const FakkhawShop = () => (
         <>
-        <MDBView src={fakkhawPhoto}  id="fakkhaw" >
+        <MDBView src={intropic}  id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 

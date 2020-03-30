@@ -181,9 +181,8 @@ const AddProduct = () => {
                 <label className="text-muted">Shipping</label>
                 <select onChange={handleChange('shipping')} className="form-control">
                     <option>Please select</option>
-                    <option value="0">EMS</option>
-                    <option value="1">Mahasawat area</option>
-                    <option value="2">EMS and Mahasawat area</option>
+                    <option value="EMS">EMS</option>
+                    <option value="Kerry">Kerry</option>
                 </select>
             </div>
 

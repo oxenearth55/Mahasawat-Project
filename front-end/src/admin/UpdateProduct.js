@@ -156,8 +156,8 @@ const UpdateProduct = ({ match }) => {
                 <label className="text-muted">Shipping</label>
                 <select onChange={handleChange('shipping')} className="form-control">
                     <option>Please select</option>
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
+                    <option value="EMS">EMS</option>
+                    <option value="Kerry">Kerry</option>
                 </select>
             </div>
 

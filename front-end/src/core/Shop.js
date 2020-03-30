@@ -54,6 +54,8 @@ const Shop = props => {
 
 
     const trigger = props.match.params.search;
+    const searchInput = props.match.params.searchResult;
+
 
 
     
@@ -68,6 +70,8 @@ const Shop = props => {
     // const categoryQuery = props.match.params.categoryResult;   
     // const trigger = props.match.params.trigger;
     searchData(searchQuery);
+    window.scrollTo(0, 0)     
+
        
  },[props] )
   //----------------------------------------------------------------
@@ -152,7 +156,7 @@ const Shop = props => {
     const shopDisplay = (results = []) => {
         return(  
            
-            <AllShop  product={results} search={true} filter ={myFilters}/> 
+            <AllShop  product={results} search={true} filter ={myFilters} searchInput={searchInput}/> 
                    
             
         );
@@ -199,12 +203,10 @@ const show = (trigger) =>{
     headerImg = "shopImgLayout"
     >
      
-    <div className="row ">
-        <div className="col-4 ">
-         <h4 className="text-white bg-dark">
+         <h4 className="text-white text-center rgba-stylish-strong">
                Filter by categories
              </h4> 
-                <div className="mb-4 p-3 mb-2 bg-light text-dark">
+                <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
              <Checkbox categories={categories} 
              handleFilters={filters => handleFilters(filters,"category")
             }     
@@ -214,7 +216,7 @@ const show = (trigger) =>{
             
 
 
-        <h4 className="text-white bg-dark">
+        {/* <h4 className="text-white bg-dark">
                 Related Shop   
              </h4> 
            <div className="bg-light text-dark">
@@ -230,16 +232,14 @@ const show = (trigger) =>{
 
         <Link to= {`/shop/nabua`}>       
             นาบัวลุงแจ่ม
-        </Link>
+        </Link> */}
     
-        </div>
         {/* {triggerSearch(trigger)} */}
 
 
          {/* {shopDisplay(data.results)} */}
 
 
-    </div>
 
     {show(trigger)}
 

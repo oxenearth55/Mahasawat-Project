@@ -296,4 +296,30 @@ exports.decreaseQuantity = (req, res, next) => {
         }
         next();
     });
+
+
+    
 };
+
+// exports.addComment = (req, res, next) => {
+//     let comments = [];
+
+//     req.body.product.comment(item => {
+//         comments.push({
+//             userName: item.name,
+//             content: item.content
+          
+//         });
+//     });
+
+//     Product.findOneAndUpdate({ _id: req.profile._id }, { $push: { comments: comments } }, { new: true }, (error, data) => {
+//         if (error) {
+//             return res.status(400).json({
+//                 error: 'Could not update user purchase history'
+//             });
+//         }
+//         next();
+//     });
+// }
+
+

@@ -53,7 +53,9 @@ const ManageProducts = () => {
                     </h2>
                     <hr />
                     <ul className="list-group">
-                        {products.map((p, i) => (
+                        {products.map((p, i) => {
+                        if(p.shop._id == user.shop){
+                        return(
                             <li
                                 key={i}
                                 className="list-group-item d-flex justify-content-between align-items-center"
@@ -71,7 +73,7 @@ const ManageProducts = () => {
                                     Delete
                                 </span>
                             </li>
-                        ))}
+                        )}})}
                     </ul>
                     <br />
                 </div>

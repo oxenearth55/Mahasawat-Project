@@ -115,10 +115,10 @@ return(
         <th scope="col">Name</th>
         <th scope="col">Total</th>
         <th scope="col">Status</th>
-        <th scope="col">SlipUpload</th>
+        <th scope="col">Slip Status</th>
 
-        <th scope="col">See details</th>
-        <th scope="col">Delete order</th>
+        <th scope="col">See Details</th>
+        <th scope="col">Delete Order</th>
 
 
         </tr>

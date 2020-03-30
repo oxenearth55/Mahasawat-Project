@@ -21,10 +21,10 @@ const RelatedProduct = ({r}) => {
            <>
    <div class="col-lg-4 col-md-4 mb-4">
    
-   <a href="" class="waves-effect waves-light"><img
+   <div class="waves-effect waves-light"><img
        src={`${API}/product/photo/${r._id}`}
        class="img-fluid"
-       alt=""/></a>
+       alt=""/></div>
    
    <div class="card">
      <div class="card-body">

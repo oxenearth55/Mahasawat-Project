@@ -8,7 +8,7 @@ import CardShop from './CardShop';
 
 
 
-const AllShop = ({product,search=false,filter}) => {
+const AllShop = ({product,search=false,filter,searchInput}) => {
     
     //SECTION State
     const [cartRedirect, setCartRedirect] = useState(false);
@@ -28,6 +28,18 @@ const AllShop = ({product,search=false,filter}) => {
 
         )
       }
+
+    }
+
+    const showSearchResult = () => {
+      return(<>
+<div class="alert alert-secondary" role="alert">
+
+ <h4 className="text-center">ผลลัพธ์การค้นหา: {searchInput}</h4>     
+
+      </div>
+        </>
+      )
 
     }
 
@@ -91,7 +103,9 @@ const searchShow =() => {
 <section>
   
   <h3 class="font-weight-bold text-center dark-grey-text mb-5">สินค้า</h3>
+  {showSearchResult()}
   {notFoundProduct(product)}
+
 
   {/* <!-- Grid row --> */}
   <div class="row">
@@ -99,17 +113,25 @@ const searchShow =() => {
   { product.map((p,index) => {
     for (var i=0; i < filter.filters.category.length; i++) {
   if(p.category == filter.filters.category[i]){
+
   return(
       <>
+
 <CardShop p={p} index={index} convert={convert} goToDetail={goToDetail} 
       addToCart={addToCart} goToCart={goToCart} convert2={convert2} />
    </>
      )
      
     
-    }} if(filter.filters.category.length==0){
+    }
+  
+  }
+    
+    
+    if(filter.filters.category.length==0){
         return(
         <>
+
 <CardShop p={p} index={index} convert={convert} goToDetail={goToDetail} 
       addToCart={addToCart} goToCart={goToCart} convert2={convert2} />
         </>
