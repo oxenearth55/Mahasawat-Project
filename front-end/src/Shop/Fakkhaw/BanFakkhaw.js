@@ -97,7 +97,6 @@ setFakkhawProducts(array)
 
 useEffect(()=>{
     loadAllProducts();
-    console.log('fakkhawProducts is' + fakkhawProducts)
     window.scrollTo(0, 0)     
 
   

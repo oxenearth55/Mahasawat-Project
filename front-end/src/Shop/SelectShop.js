@@ -239,8 +239,9 @@ const nabuaShop = () => (
     <div className='rgba-black-light'>
 
     {intro()}
-    {nabuaShop()}
     {FakkhawShop()}
+
+    {nabuaShop()}
     {allShop()}
     
     </div>
