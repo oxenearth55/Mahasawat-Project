@@ -1,8 +1,11 @@
 import React from 'react';
+import { MDBAnimation } from 'mdbreact';
 
 const BlogHeader = () => (
 
 <>
+<MDBAnimation reveal type="zoomIn">
+
 <div class="container my-5">
 
  
@@ -16,7 +19,7 @@ const BlogHeader = () => (
 
 
 </div>
-
+</MDBAnimation>
 </>
 );
 

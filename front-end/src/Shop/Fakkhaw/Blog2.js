@@ -1,5 +1,7 @@
 import React from 'react';
 import Fakkhaw from './Fakk_Photo/fakkhaw.jpg';
+import { MDBAnimation } from 'mdbreact';
+
 
 
 
@@ -28,13 +30,14 @@ const Blog2 = () => (
           <h3 class="font-weight-bold">แปรรูปได้หลากหลาย   <i class="fas fa-exchange-alt blue-text ml-3"></i> </h3>
 
           <p class="font-weight-bold">ฟักข้าวผลสารประโยชน์</p>
+          <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
 
           <p class="text-muted">
             บ้านฟักข้าวได้มีการริเริ่มนำผลฟักข้าวมาแปรรูปหลากหลายรูปแบบ อาทิเช่น 
             การทำหมี่กรอบ คุกกี้ สบู่ โลชั่นจากฟักข้าว เจลล้างมือ และ ซอสที่ใช้ทำก๋วยเตี๋ยวเย็นตาโฟ เป็นต้น
-            เพื่อให้ผู้บริโภคได้สัมผัสถึงคุณค่าทางโภชนาการที่มากมายของผลฟักข้าว
+            เพื่อให้ผู้บริโภคได้สัมผัสถึงคุณค่าทางโภชนาการที่มากมายของผลฟักข้าวอย่างหลากหลายรูปแบบ
           </p>
-
+          </MDBAnimation>
 
         </div>
         {/* <!--Grid column--> */}

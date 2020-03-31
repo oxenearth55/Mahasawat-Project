@@ -13,6 +13,7 @@ import bodywash from '../../photo/bodywash.jpeg'
 import yamong from '../../photo/yamong.jpeg'
 import {getAllProducts} from '../apiCore'
 import {API} from '../../config' 
+import Shop from '../../Shop/Fakkhaw/Fakk_Photo/shop.jpg'
 
 
 
@@ -30,23 +31,7 @@ const ShowShop = () => {
 
 
 
-  const loadAllProducts = () =>{
-    getAllProducts().then(data => {
-        if (data.error) {
-            setError(data.error);
-        } else {
-         setAllProducts(data)
-         
-        }
-    });
-}
-
-useEffect(() => {
-    //NOTE grab product
-    loadAllProducts();
- 
-}, []);
-
+  
 
   
   const showShop = () =>(
@@ -75,7 +60,7 @@ useEffect(() => {
 
         {/* <!-- Image --> */}
         <div class="view overlay rounded z-depth-1-half mb-4 mr-0 ">
-          <img class="img-fluid " src='https://lh3.googleusercontent.com/proxy/NL0iloXcxi76iLxDFDINQHsz5Ee9vDXv7KxIjHHm1sclD900gZ4lTfAQTqTeJkpNbfTbJFDawWPCk-mm2UovScsAuPNASnAsnAITSaT0uPApukjWhTq3IoX2'alt="Sample image"
+          <img class="img-fluid " src={Shop} alt="Fakkhaw image"
          />
           <a>
             <div class="mask rgba-white-slight"></div>
@@ -92,7 +77,7 @@ useEffect(() => {
         {/* <!-- Excerpt --> */}
         <h3 class="font-weight-bold dark-grey-text mb-3"><a>บ้านฟักข้าวคุณขนิษฐา</a></h3>
         <p class="dark-grey-text">สินค้าของเราแปรรูปมาจากฟักข้าว ซึ่งให้สรรพคุณมากมาย อาทิเช่น 
-        ลดริ้วรอย และ ทำให้ผิวดูอ่อนกว่าวัย และ อื่นๆอีกมากมาย
+        ลดริ้วรอย และ ทำให้ผิวดูอ่อนกว่าวัย และ อื่นๆอีกมากมาย 
 </p>
 
   </div>
@@ -357,7 +342,7 @@ useEffect(() => {
 
           {/* <!-- Image --> */}
           <div class="view overlay rounded z-depth-1-half mb-4 mr-0 ">
-            <img class="img-fluid " src='https://lh3.googleusercontent.com/proxy/NL0iloXcxi76iLxDFDINQHsz5Ee9vDXv7KxIjHHm1sclD900gZ4lTfAQTqTeJkpNbfTbJFDawWPCk-mm2UovScsAuPNASnAsnAITSaT0uPApukjWhTq3IoX2'alt="Sample image"
+            <img class="img-fluid " src={Shop} alt="Sample image"
            />
             <a>
               <div class="mask rgba-white-slight"></div>

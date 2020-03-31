@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Garden from './Fakk_Photo/garden.jpg';
+import Shop from './Fakk_Photo/shop.jpg';
 import Fakkhaws from './Fakk_Photo/fakkhaws.jpg';
+import { MDBAnimation } from 'mdbreact';
 
 const Blog1 =()=>(
 
     <>
+              <MDBAnimation reveal type="fadeInUp">
+
     <div class="container my-5 py-5 z-depth-1">
 
 
@@ -20,10 +23,10 @@ const Blog1 =()=>(
     <div class="col-md-6 mb-4">
       
       <div class="view mb-5">
-        <img src={Garden} class="img-fluid" alt="smaple image"/>
+        <img src={Shop} class="img-fluid" alt="smaple image"/>
       </div>
 
-      <h5 class="font-weight-normal text-muted">ผลของฟักข้าวมีสีที่แตกต่างกันออกไปตามฤดูกาล</h5>
+      <h5 class="font-weight-normal text-muted">บ้านฟักข้าวได้นำองค์ความรู้ต่างๆมาพัฒนาสินค้าคุณภาพ</h5>
 
        </div>
        <div class="col-md-6 mb-4">
@@ -33,7 +36,7 @@ const Blog1 =()=>(
       </div>
 
       <h5 class="font-weight-normal text-muted">
-          ผลที่เริ่มสุกจะเริ่มเปลี่ยนสีจากสีเขียวเป็นสีส้มอมเหลือง จนเมื่อแก่จัดจะเปลี่ยนเป็นสีแดงสด
+      ผลิตภัณฑ์ส่วนใหญ่ของเราผลิตมาจากผลฟักข้าว
       </h5>
       {/* บ้านฟักข้าวได้นำผลฟักข้าวมาแปรรูปเป็นสินค้าที่มีคุณค่าทางโภชนาการมากมาย */}
     </div>
@@ -45,7 +48,7 @@ const Blog1 =()=>(
 
 </div>
 
-
+</MDBAnimation>
 
     </>
 

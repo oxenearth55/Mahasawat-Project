@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
+import Menu from './Menu'
+import Footer from './Footer'
 import { read, listRelated,getCategories,getAllProducts} from './apiCore';
 import Card from './Card';
 import ProductImage from './ProductImage';
@@ -7,6 +8,7 @@ import {addItem, updateItem,removeItem} from './cartHelpers';
 import { Link, Redirect } from 'react-router-dom';
 import CardProduct from './CardProduct'
 import RelatedProduct from './RelatedProduct'
+import Handwash from '../Shop/Fakkhaw/StoryHandwash/Handwash'
 
 
 
@@ -17,15 +19,26 @@ const Product = (props) => {
     const [allProducts,setAllProducts] = useState([]);
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
-
     const [productCat, setProductCat] = useState('');
+    const [productShop, setProductShop] = useState([]);
+
+
 
     
     const addToCart = () => {
         addItem(product);
       };
 
-
+    const showStory = () => {
+        if(productCat == 'เจลล้างมือ' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+            // if(1==1){
+            return(
+                <>
+                <Handwash/>
+                </>
+            )
+        }
+    }
     const loadSingleProduct = productId => {
         //NOTE  use read method from apiCore to get single product that related to productId
         read(productId).then(data => {
@@ -34,6 +47,7 @@ const Product = (props) => {
             } else {
                 setProduct(data);
                 setProductCat(data.category.name);
+                setProductShop(data.shop.name)
                 // fetch related products
                 listRelated(data._id).then(data => {
                     if (data.error) {
@@ -62,7 +76,6 @@ const Product = (props) => {
         const productId = props.match.params.productId;
         loadSingleProduct(productId); 
         loadAllProducts();
-        window.scrollTo(0, 0)     
     }, [props]);
 
 
@@ -100,12 +113,10 @@ const showRelated = () => (
    )
 
     return (
-        <Layout
-            title={product && product.name}
-            description= "You can see product here"
-            className="container-fluid"
-            headerImg="productImgLayout"
-        >
+       
+       <>
+       <Menu/>
+            {showStory()}
             {/* {shouldRedirect(redirect)} */}
         
 
@@ -124,8 +135,8 @@ const showRelated = () => (
 </div>            
 </div> */}
 
-
-         </Layout>
+    <Footer/>
+         </>
     );
 };
 
