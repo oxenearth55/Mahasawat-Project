@@ -9,6 +9,8 @@ import { Link, Redirect } from 'react-router-dom';
 import CardProduct from './CardProduct'
 import RelatedProduct from './RelatedProduct'
 import Handwash from '../Shop/Fakkhaw/StoryHandwash/Handwash'
+import FakkSoap from '../Shop/Fakkhaw/StoryHandwash/FakkSoap'
+
 
 
 
@@ -37,7 +39,18 @@ const Product = (props) => {
                 <Handwash/>
                 </>
             )
+        
         }
+        if(productCat == 'สบู่' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+            return(
+                <>
+                <FakkSoap/>
+                </>
+            )
+        
+        }
+
+
     }
     const loadSingleProduct = productId => {
         //NOTE  use read method from apiCore to get single product that related to productId

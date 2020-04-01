@@ -87,7 +87,7 @@ const intro = () => (
                 </MDBBtn>
                 </a>
                 <a href="#fakkhaw">
-                <MDBBtn outline color='white' className="shop-button">
+                <MDBBtn  outline color='white' className="shop-button">
                  <div className="text-white button-text">บ้านฟักข้าว</div>             
                  </MDBBtn>
                  </a>  

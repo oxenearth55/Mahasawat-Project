@@ -1,5 +1,5 @@
 import React from 'react';
-import Fakkhaw from './Fakk_Photo/fakkhaw.jpg';
+import Fakkhaw from './Fakk_Photo/all.jpg';
 import { MDBAnimation } from 'mdbreact';
 
 
@@ -19,7 +19,9 @@ const Blog2 = () => (
         {/* <!--Grid column--> */}
         <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
 
-          <img src={Fakkhaw} class="img-fluid" alt=""/>
+          <img src={Fakkhaw} class="img-fluid" alt=""
+          style={{height:'350px'}}
+          />
 
         </div>
         {/* <!--Grid column--> */}

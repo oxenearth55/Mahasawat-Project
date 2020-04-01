@@ -401,6 +401,21 @@ p{
     object-fit: cover;
   }
 
+  /* Blog14 */
+
+  .news-tile .card-title {
+    position: absolute;
+    bottom: 15px;
+    left: 40px;
+  }
+
+  .rgba-stylish-strong {
+    background-color: rgba(62, 69, 81, .5);
+  }
+  .fix-bg{
+  background-attachment: fixed;
+  }
+
 
 /* Extra small devices (phones, up to 480px) */
 @media screen and (max-width: 767px) {

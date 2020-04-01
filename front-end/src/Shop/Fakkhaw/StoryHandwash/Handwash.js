@@ -23,6 +23,11 @@ import sick3 from '../Fakk_Photo/Handwash/sick3.jpg';
 import sick4 from '../Fakk_Photo/Handwash/sick4.jpg';
 import sick5 from '../Fakk_Photo/Handwash/sick5.jpg';
 import sick6 from '../Fakk_Photo/Handwash/sick6.jpg';
+import benefit1 from '../Fakk_Photo/art1.jpeg'
+import benefit2 from '../Fakk_Photo/art2.jpeg'
+import benefit3 from '../Fakk_Photo/art3.jpeg'
+
+
 
 
 
@@ -48,7 +53,7 @@ const Handwash = () => {
 const blog1 = () =>(
 
   <>
-   <MDBView src={health}  id="fakkhaw" >
+   <MDBView src={health} className="fix-bg"  id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 
@@ -88,7 +93,7 @@ const blog1 = () =>(
 
 const blog2 = () => (
   <>
-   <MDBView src={health3}  id="fakkhaw" >
+   <MDBView src={health3} className="fix-bg"  id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 
@@ -128,7 +133,7 @@ const blog2 = () => (
 
 const blog3 = () => (
   <>
-  <MDBView src={health4}  id="fakkhaw" >
+  <MDBView src={health4} className="fix-bg" id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 
@@ -163,7 +168,7 @@ const blog3 = () => (
 const blog4 =() => (
   <>
 
-<MDBView src={health5}  id="fakkhaw" >
+<MDBView src={health5} className="fix-bg" id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 
@@ -199,7 +204,7 @@ const blog4 =() => (
 
 const blog5 = () => (
   <>
-  <MDBView src={health6}  id="fakkhaw" >
+  <MDBView src={health6} className="fix-bg"  id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 
@@ -445,12 +450,13 @@ const blog9 = () => (
         {/* <!--Grid column--> */}
         <div class="col-lg-6 mb-4 mb-lg-0">
 
-          <h5 class="font-weight-bold">คุณอาจอยู่ในสถานที่ที่ไม่สามารถหาห้องน้ำได้   <i class="fas fa-eye blue-text ml-3"></i> </h5>
+          <h5 class="font-weight-bold">คุณอาจอยู่ในสถานที่ที่ไม่สามารถหาห้องน้ำได้ <i class="fas fa-eye blue-text ml-3"></i> </h5>
 
           <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
 
           <p class="text-muted">
-          ในบางครั้ง คุณอาจกำลังเดินซื้อสินค้าอยู่ที่ตลาดนัด ซึ่งเป็นสถานที่ที่ยากต่อการหาห้องน้ำ ทำให้คุณพลาดโอกาศในการล้างมือ 
+          ในบางครั้ง คุณอาจกำลังเดินซื้อสินค้าอยู่ที่ตลาดนัด ซึ่งเป็นสถานที่ที่ยากต่อการหาห้องน้ำ ทำให้คุณพลาดโอกาศในการล้างมือได้ 
+          หรือบางทีคุณอาจกำลังจะรับประมานอาหาร แต่ห้องน้ำอยู่ไกล คุณก็อาจจะไม่สนใจการล้างมือ แล้วเริ่มรับประทานอาหารมื้อโปรดของคุณต่อไป
           </p>
           </MDBAnimation>
 
@@ -530,27 +536,7 @@ const blog10 =() => (
   </>
 )
 
-const blog_header = () => (
-  <>
-<MDBAnimation reveal type="zoomIn">
 
-<div class="container my-5">
-
- 
-{/* <!--Section: Content--> */}
-<section class="px-md-5 mx-md-5 py-5 text-center white-text stylish-color z-depth-1 rounded">
-
-  <h3 class="">เพื่อแก้ปัญหานั้น <i class="fas fa-check green-text mx-1"></i> ...</h3>
-
-</section>
-{/* <!--Section: Content--> */}
-
-
-</div>
-</MDBAnimation>
-
-  </>
-)
 
 const blog11 = () =>(
   <>
@@ -579,9 +565,9 @@ const blog11 = () =>(
       <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
 
       <p class="text-muted">
-      ถึงจะขายดีก็ตามแต่เจลส่วนมากในท้องตลาด ไม่ว่าจะเป็นตามห้าง หรือ ซื้อมาใช้เอง ล้วนมีกลิ่นแอลกอฮอล์ที่ฉุนจมูก
-      เนื้อเจลเหนียวเหนอะหนะ และบางร้านค้าเมื่อรวมส่วนผสมการผลิตแล้ว แอลกอฮอล์อาจต่ำกว่ามาตารฐาน ทำให้ไม่เพียงพอต่อการฆ่าเชื้อโลก
-      บนฝ่ามือของเรา 
+      เจลส่วนมากตามท้องตลาด ไม่ว่าจะเป็นตามห้าง หรือ ซื้อมาใช้เอง ล้วนมีกลิ่นแอลกอฮอล์ที่ชวนให้คุณเวียนศรีษะฉุนจมูก
+      เนื้อเจลเหนียวเหนอะหนะ และบางร้านค้าเมื่อรวมส่วนผสมการผลิตแล้ว แอลกอฮอล์อาจต่ำกว่าค่ามาตารฐาน ทำให้ไม่เพียงพอต่อการฆ่าเชื้อโลก
+      บนฝ่ามือของเราได้ 
       </p>
       </MDBAnimation>
 
@@ -602,6 +588,166 @@ const blog11 = () =>(
   </>
 
 )
+
+const blog12 = () => (
+  <>
+<MDBAnimation reveal type="zoomIn">
+
+<div class="container my-5">
+
+ 
+{/* <!--Section: Content--> */}
+<section class="px-md-5 mx-md-5 py-5 text-center white-text stylish-color z-depth-1 rounded">
+
+  <h3 class="">เพื่อแก้ปัญหาที่เกิดขึ้น <i class="fas fa-check green-text mx-1"></i></h3>
+
+</section>
+{/* <!--Section: Content--> */}
+
+
+</div>
+</MDBAnimation>
+
+  </>
+)
+
+
+
+const blog13 = () => (
+  <>
+   <div class="container my-5 py-5 z-depth-1">
+ 
+
+ {/* <!--Section: Content--> */}
+ <section class="text-center px-md-5 mx-md-5 dark-grey-text">
+
+   {/* <!--Grid row--> */}
+   <div class="row d-flex justify-content-center">
+
+     {/* <!--Grid column--> */}
+     <div class="col-lg-7">
+
+       <p>บ้านฟักข้าวคุณขนิษฐาจึงได้ริเริ่มคิดค้นการแปรรูปผลฟักข้าวที่ได้จากการเพาะปลูก
+         นำมาแปรรูปเป็นผลิตภัณฑ์เจลล้างมือที่มีสรรพคุณมากมายและแก้ปัญหาต่างๆจากเจลล้างมือทั่วไปเพื่อให้คุณและคนที่คุณรักได้สัมผัสสิ่งที่ดีที่สุด</p>
+
+     </div>
+     {/* <!--Grid column--> */}
+
+   </div>
+   {/* <!--Grid row--> */}
+ </section>
+ {/* <!--Section: Content--> */}
+
+
+</div>
+  </>
+)
+
+
+
+
+const blog14 = () =>(
+  <>
+  <div class="container mt-5">
+
+
+{/* <!--Section: Content--> */}
+<section class="text-center">
+
+  {/* <!-- Section heading --> */}
+  <h3 class="font-weight-bold mb-5">สิ่งดีๆที่เจลล้างมือบ้านฟักข้าวมอบให้กับคุณ</h3>
+
+  {/* <!-- Grid row --> */}
+  <div class="row">
+
+    {/* <!-- Grid column --> */}
+    <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+
+      {/* <!-- Card --> */}
+      <div class="card hoverable">
+
+        {/* <!-- Card image --> */}
+        <img class="card-img-top" src={benefit1}alt="Card image cap"/>
+
+        {/* <!-- Card content --> */}
+        <div class="card-body">
+
+          {/* <!-- Title --> */}
+          <p class="card-title text-muted text-uppercase font-small mt-1 mb-3">กลิ่นหอม</p>
+          {/* <!-- Text --> */}
+          <p class="mb-2">กลิ่นหอมของน้ำนมข้าวและผลฟักข้าวชวนหลงใหล ไร้กลิ่นฉุนของแอลกอฮอล์</p>
+
+        </div>
+
+      </div>
+      {/* <!-- Card --> */}
+
+    </div>
+    {/* <!-- Grid column --> */}
+
+    {/* <!-- Grid column --> */}
+    <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+
+      {/* <!-- Card --> */}
+      <div class="card hoverable">
+
+        {/* <!-- Card image --> */}
+        <img class="card-img-top" src={benefit2} alt="Card image cap"/>
+
+        {/* <!-- Card content --> */}
+        <div class="card-body">
+
+          {/* <!-- Title --> */}
+          <p class="card-title text-muted text-uppercase font-small mt-1 mb-3">ไม่เหนียวมือ</p>
+          {/* <!-- Text --> */}
+          <p class="mb-2">เนื้อเจลมีคุณสมบัติแห้งเร็ว ทรึมไว ทะนุถนอมผิวมือให้ชุ่มชื้นตลอดเวลา</p>
+
+        </div>
+
+      </div>
+      {/* <!-- Card --> */}
+
+    </div>
+    {/* <!-- Grid column --> */}
+
+    {/* <!-- Grid column --> */}
+    <div class="col-lg-4 col-md-6 mb-0">
+
+      {/* <!-- Card --> */}
+      <div class="card hoverable">
+
+        {/* <!-- Card image --> */}
+        <img class="card-img-top" src={benefit3} alt="Card image cap"/>
+
+        {/* <!-- Card content --> */}
+        <div class="card-body">
+
+          {/* <!-- Title --> */}
+          <p class="card-title text-muted text-uppercase font-small mt-1 mb-3">กำจัดแบคทีเรียได้อยู่หมัด</p>
+          {/* <!-- Text --> */}
+          <p class="mb-2">ในเนื้อเจลมีส่วนผสทแอลกอฮอล์ถึง 95% ซึ่งเกินระดับมาตราฐานโดยทั่วไป</p>
+
+        </div>
+
+      </div>
+      {/* <!-- Card --> */}
+
+    </div>
+    {/* <!-- Grid column --> */}
+
+  </div>
+  {/* <!-- Grid row --> */}
+
+</section>
+{/* <!--Section: Content--> */}
+
+
+</div>
+  
+  </>
+)
+
+
 const blogx =() => (
   <>
 
@@ -762,6 +908,13 @@ const cover = () => (
         {blog9()}
         {blog10()}
         {blog11()}
+        {blog12()}
+        {blog13()}
+        {blog14()}
+        {/* {blog15()} */}
+
+
+
 
 
 
