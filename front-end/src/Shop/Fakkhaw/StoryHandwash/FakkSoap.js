@@ -13,9 +13,11 @@ import {
   import fakkhaw from '../Fakk_Photo/fakkhawSoaps.jpg';
   import dust from '../Fakk_Photo/Soap/dust.jpg';
   import work from '../Fakk_Photo/Soap/work.jpg';
-  import bike from '../Fakk_Photo/Soap/bike.jpg';
+  import bed from '../Fakk_Photo/Soap/bed.jpg';
   import glass from '../Fakk_Photo/Soap/glass.jpg';
   import shower from '../Fakk_Photo/Soap/shower.jpg';
+  import dark from '../Fakk_Photo/Soap/dark.jpg';
+
 
   import problem1 from '../Fakk_Photo/Soap/problem1.jpg';
   import problem2 from '../Fakk_Photo/Soap/problem2.jpg';
@@ -96,7 +98,7 @@ const FakkSoap = () => {
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
                       <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                        ฝุ่นและมลพิษทางอากาศนั่นเอง 
+                        ฝุ่นและมลพิษทางอากาศที่คุณได้พบเจอข้างนอก
                       </h1>
       
                       <hr className='hr-light my-4' />
@@ -159,7 +161,7 @@ const FakkSoap = () => {
      
       const blog3_intro =() =>(
         <>
-        <MDBView src={bike} className="fix-bg" id="fakkhaw" >
+        <MDBView src={bed} className="fix-bg" id="fakkhaw" >
       
       <MDBMask className='rgba-black-light' />
       
@@ -174,13 +176,15 @@ const FakkSoap = () => {
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
                       <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                        ในช่วงที่คุณอ่อนล้าจากการผจญภัยมาตลอดทั้งวัน และกำลังวิ่งตรงดิ่งมาที่เตียงนุ่มๆของคุณ
+
+                    หลังจากที่คุณอ่อนล้าจากการผจญภัยมาตลอดทั้งวัน คุณก็เลือกที่จะพักผ่อนเพื่อเช้าอันสดใสของวันใหม่
+                        
                       </h1>
       
                       <hr className='hr-light my-4' />
                       <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
                       <h5 className='text-uppercase mb-4 white-text'>
-                        <strong>คุณรู้หรือไม่ว่า...</strong>
+                        <strong>แต่คุณกลับลืมคิดถึงบางสิ่งบางอย่างที่สำคัญ...</strong>
                       </h5>
                       </MDBAnimation>
                    
@@ -195,6 +199,51 @@ const FakkSoap = () => {
 
         </>
       )
+
+
+      const blog3_sub_intro = () => (
+          <>
+           <MDBView src={dark} className="fix-bg" id="fakkhaw" >
+      
+      <MDBMask className='rgba-black-light' />
+      
+                <MDBContainer
+                  className='d-flex justify-content-center align-items-center '
+                  style={{ height: '100%', width: '100%', paddingTop: '2rem' }}
+                >
+      
+                  <MDBRow className=" mb-5  ">
+                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+      
+                    <MDBCol md='12' className='mb-4 white-text text-center'>
+      
+                      <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
+
+                        เมื่อคุณตื่นเช้าขึ้นมา คุณได้เห็นใบหน้าที่โทรมและมัวหมองของตัวเองในกระจก
+                        
+                      </h1>
+      
+                      <hr className='hr-light my-4' />
+                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <h5 className='text-uppercase mb-4 white-text'>
+                        <strong>มันเกิดอะไรขึ้นกัน...คุณอุทานเบาๆ</strong>
+                      </h5>
+                      </MDBAnimation>
+                   
+                    
+                    </MDBCol>
+                    </MDBAnimation>
+      
+                  </MDBRow>
+                </MDBContainer>
+                
+              </MDBView>
+
+          </>
+      )
+
+
+
 
       const blog4_intro =() =>(
         <>
@@ -213,13 +262,13 @@ const FakkSoap = () => {
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
                       <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                        ภัยเงียบที่ติดตามร่างกายของคุณจากการผจญภัย โดยที่คุณไม่รู้ตัว
+                        นั่นก็คือผลเสียของภัยเงียบที่กำลังคลืบคลานเข้ามาในชีวิตของคุณ
                       </h1>
       
                       <hr className='hr-light my-4' />
                       <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
                       <h5 className='text-uppercase mb-4 white-text'>
-                        <strong>คือ...</strong>
+                        <strong>ผลเสียที่มาจาก...</strong>
                       </h5>
                       </MDBAnimation>
                    
@@ -532,6 +581,7 @@ const FakkSoap = () => {
 {blog1()}
 {blog2_intro()}
 {blog3_intro()}
+{blog3_sub_intro()}
 {blog4_intro()}
 {blog5_intro()}
 
