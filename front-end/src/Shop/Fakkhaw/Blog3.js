@@ -23,7 +23,7 @@ const Blog3 = () => (
      {/* <!--Grid column--> */}
      <div class="col-md-6 mb-4 mb-md-0">
 
-       <h3 class="font-weight-bold">ผลฟักข้าวมากคุณประโยชน์  
+       <h3 class="font-weight-bold">มากคุณประโยชน์  
 
        <i class="fas fa-heart ml-3 red-text"></i> 
        </h3>

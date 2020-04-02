@@ -19,6 +19,13 @@ import BlogHeader from './BlogHeader';
 import Icon from './Icon';
 import Person from './Person';
 import Contract from './Contract';
+import Cover1 from './cover1';
+import Cover2 from './cover2';
+import Cover3 from './cover3';
+import Cover4 from './cover4';
+
+
+
 import { MDBAnimation } from "mdbreact";
 
 
@@ -113,11 +120,14 @@ useEffect(()=>{
 
 <BlogHeader/>
 <Icon/>
-
+<Cover1/>
 <Blog2/>
 <Example/>
+<Cover2/>
 <Blog3/>
+<Cover3/>
 <Blog4/>
+<Cover4/>
 <Blog5/>
 
 <AllShop product={fakkhawProducts}/>

@@ -8,9 +8,9 @@ import {addItem, updateItem,removeItem} from './cartHelpers';
 import { Link, Redirect } from 'react-router-dom';
 import CardProduct from './CardProduct'
 import RelatedProduct from './RelatedProduct'
-import Handwash from '../Shop/Fakkhaw/StoryHandwash/Handwash'
-import FakkSoap from '../Shop/Fakkhaw/StoryHandwash/FakkSoap'
-
+import Handwash from '../Shop/Fakkhaw/Story/Handwash'
+import FakkSoap from '../Shop/Fakkhaw/Story/FakkSoap'
+import Lotion from '../Shop/Fakkhaw/Story/Lotion'
 
 
 
@@ -45,6 +45,15 @@ const Product = (props) => {
             return(
                 <>
                 <FakkSoap/>
+                </>
+            )
+        
+        }
+
+        if(productCat == 'โลชั่น' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+            return(
+                <>
+                <Lotion/>
                 </>
             )
         

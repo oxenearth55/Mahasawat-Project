@@ -1,5 +1,5 @@
 import React from 'react';
-import Fakkhaw from './Fakk_Photo/all.jpg';
+import Fakkhaw from './Fakk_Photo/noodle.jpg';
 import { MDBAnimation } from 'mdbreact';
 
 
