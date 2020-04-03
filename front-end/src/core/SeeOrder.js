@@ -28,6 +28,10 @@ const SeeOrder = (props) => {
     const [shopInfo,setShopInfo] = useState([]);
     const [bankAccount, setBankAccount] = useState([]);
 
+//NOTE Calculate Total price (Shop cost and total product price)
+const [amount, setAmount] = useState(0)
+const [shipCost, setShipCost] = useState(0)
+const Total = amount + shipCost;
 
 
     const [values, setValues] = useState({    
@@ -52,9 +56,33 @@ const SeeOrder = (props) => {
         });
     };
 
+    //NOTE use to check if shop confirm shiping cost or not
+    const showConfirm = () => {
+        if(order.shippingConfirm==false){
+        return(
+            <div className="alert alert-warning" role="alert">
+            <h5 className="text-center">รอการยืนยันค่าส่งจากทางร้าน</h5>
+            </div>
+        )
+        }else{
+            return(
+                <>
+                {checkUpLoad()}
+                {showBankAccount()}
+                {showUpSlip()}
+                </>
+            )
+        }
+
+    }
+    
+
 
     const checkUpLoad = () =>
-    { if(success){
+    {
+        
+        
+        if(success){
         // setEmpty(false);
         return(
         
@@ -137,6 +165,9 @@ const handleChange = name => event => {
                     
                 });
                 getShopInfo(data.shop)
+                setAmount(data.amount)
+                setShipCost(data.shippingCost)
+              
 
             }
         });
@@ -156,7 +187,7 @@ const handleChange = name => event => {
 
     const statusIcon = (orderStatus) => { 
 
-            if(orderStatus === 'Awaiting Confirmation' || orderStatus === 'Not processed'){
+            if(orderStatus === 'รอยืนยันรายการ' || orderStatus === 'เลือกอัพเดทสถานะที่นี่'){
                 return (
 
                     <div className="container-fluid border  border-dark ">
@@ -164,121 +195,113 @@ const handleChange = name => event => {
                         <div className="row mt-4"> 
                                 <div className="col-3 text-center ">
                                     <img className ="logo order-status-icon" src={waiting}></img>
-                                    <p className="order-status-text">Awaiting Confirmation</p>
+                                    <p className="order-status-text">รอยืนยันรายการ</p>
                                 </div>
 
                                 <div className="col-3 text-center">
                                     <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
-                                    <p className="unStatus order-status-text ">Order Confirmation</p>
+                                    <p className="unStatus order-status-text ">ยืนยันรายการเรียบร้อย</p>
                                 </div>    
 
                                 <div className="col-3 text-center">
                                     <img className ="logo unStatus order-status-icon" src={packaging}></img>
-                                    <p className="unStatus order-status-text">Packaging</p>
+                                    <p className="unStatus order-status-text">กำลังจัดสินค้า</p>
                                 </div>    
 
                                 <div className="col-3 text-center">
                                     <img className ="logo unStatus order-status-icon" src={delivery}></img>
-                                    <p className="unStatus order-status-text">Shipping</p>
+                                    <p className="unStatus order-status-text">กำลังขนส่ง</p>
                                 </div>        
 
                         </div>
                     </div>
                 )
-            }else if(orderStatus === 'Order Confirmation'){
+            }else if(orderStatus === 'ยืนยันรายการเรียบร้อย'){
                 return (
                     <div className="container-fluid border  border-dark">
                        
                     <div className="row mt-4"> 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon" src={waiting}></img>
-                                <p className="unStatus order-status-text">Awaiting Confirmation</p>
+                                <p className="unStatus order-status-text">รอยืนยันรายการ</p>
                             </div>
 
                             <div className="col-3 text-center">
                                 <img className ="logo ml-4 order-status-icon order-confirm-icon" src={confirm}></img>
-                                <p className="order-status-text">Order Confirmation</p>
+                                <p className="order-status-text">ยืนยันรายการเรียบร้อย</p>
                             </div>    
 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon" src={packaging}></img>
-                                <p className="unStatus order-status-text">Packaging</p>
+                                <p className="unStatus order-status-text">กำลังจัดสินค้า</p>
                             </div>    
 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon" src={delivery}></img>
-                                <p className="unStatus order-status-text">Shipping</p>
+                                <p className="unStatus order-status-text">กำลังขนส่ง</p>
                             </div>        
 
                     </div>
                 </div>
                 )
 
-            }else if(orderStatus === 'Packaging'){
+            }else if(orderStatus === 'กำลังจัดสินค้า'){
                 return (
                     <div className="container-fluid border  border-dark">
                        
                     <div className="row mt-4"> 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon" src={waiting}></img>
-                                <p className="unStatus order-status-text">Awaiting Confirmation</p>
+                                <p className="unStatus order-status-text">รอยืนยันรายการ</p>
                             </div>
 
                             <div className="col-3 text-center">
                                     <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
-                                    <p className="unStatus order-status-text ">Order Confirmation</p>
+                                    <p className="unStatus order-status-text ">ยืนยันรายการเรียบร้อย</p>
                                 </div>    
 
                             <div className="col-3 text-center">
                                 <img className ="logo  order-status-icon" src={packaging}></img>
-                                <p className=" order-status-text">Packaging</p>
+                                <p className=" order-status-text">กำลังจัดสินค้า</p>
                             </div>    
 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon" src={delivery}></img>
-                                <p className="unStatus order-status-text">Shipping</p>
+                                <p className="unStatus order-status-text">กำลังขนส่ง</p>
                             </div>        
 
                     </div>
                 </div>
                 )
 
-            }else if(orderStatus === 'Shipping'){
+            }else if(orderStatus === 'กำลังขนส่ง'){
                 return (
                     <div className="container-fluid border  border-dark">
                        
                     <div className="row mt-4"> 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon " src={waiting}></img>
-                                <p className="unStatus order-status-text">Awaiting Confirmation</p>
+                                <p className="unStatus order-status-text">รอยืนยันรายการ</p>
                             </div>
 
                             <div className="col-3 text-center">
                                 <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
-                                <p className="unStatus order-status-text">Order Confirmation</p>
+                                <p className="unStatus order-status-text">ยืนยันรายการเรียบร้อย</p>
                             </div>    
 
                             <div className="col-3 text-center">
                                 <img className ="logo unStatus order-status-icon" src={packaging}></img>
-                                <p className="unStatus order-status-text">Packaging</p>
+                                <p className="unStatus order-status-text">กำลังจัดสินค้า</p>
                             </div>    
 
                             <div className="col-3 text-center">
                                 <img className ="logo order-status-icon" src={delivery}></img>
-                                <p className="order-status-text" >Shipping</p>
+                                <p className="order-status-text" >กำลังขนส่ง</p>
                             </div>        
 
                     </div>
                 </div>
                 )
-            }else if(orderStatus === 'Cancelled'){
-                return (
-                    <div>
-                        <p>This order is Cancelled</p>
-                    </div>
-                )
-            }else{
-                return  ''
             }
 
 
@@ -300,6 +323,21 @@ const handleChange = name => event => {
         </div>
     );
     
+    const showPrice = () => {
+        if(order.shippingConfirm == false){
+            return(
+                <>
+                {amount}
+                </>
+            )
+        }else{
+            return(
+                <>
+                {Total}
+                </>
+            )
+        }
+    }
 
     const showOrders = () => (
         
@@ -313,39 +351,46 @@ const handleChange = name => event => {
                     
                     style={{ borderBottom: "5px solid indigo" }}
                 >
-                    {showUpSlip()}
                     {/* <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button> */}
 
                     <h2 className="mb-5">
                         <span>
                             <div className="row">
-                           <div className="border text-white bg-dark order-id-title"> Your Order ID: </div>
+                           <div className="border text-white bg-dark order-id-title"> เลขรายการของคุณ : </div>
                             <div className="col-5  order-id">{order._id}
                             </div>
                             </div>
                         </span>
                         
                     </h2>
-                    <h4 className="mb-4">Order Status</h4>
+                    <h4 className="mb-4">สถานะการสั่งซื้อ</h4>
                     {statusIcon(order.status)}
                     
 
 
                     <ul className="list-group mt-4 mb-2">
                         <li className="list-group-item text-white bg-dark ">
-                            <h3 className="text-center ">Order Detail </h3>
+                            <h3 className="text-center ">รายละเอียด </h3>
+                        </li>
+                        
+                        <li className="list-group-item">
+                                ราคาสินค้า: ฿ {amount}
+                            </li>
+
+                            <li className="list-group-item">
+                                ราคาค่าส่ง: ฿ {order.shippingCost} 
+                            </li>
+                         
+                            
+                
+                            <li className="list-group-item">
+                                ราคาทั้งหมด: ฿ {showPrice()}
+                            </li>
+                        <li className="list-group-item">
+                        รายการของ: {user.name}
                         </li>
                         <li className="list-group-item">
-                            Transaction ID: {order.transaction_id}
-                        </li>
-                        <li className="list-group-item">
-                            Amount: ฿{order.amount}
-                        </li>
-                        <li className="list-group-item">
-                            Ordered by: {user.name}
-                        </li>
-                        <li className="list-group-item">
-                            Ordered on:{" "}
+                        สั่งเมื่อ:{" "}
                             {/* NOTE  use moment to format the date */}
                             {moment(order.createdAt).fromNow()} 
                         </li>
@@ -353,7 +398,7 @@ const handleChange = name => event => {
                     </ul>
 
                     <h3 className="mt-4 mb-4 font-italic">
-                        Total products in the order:{" "}
+                    รายการสินค้าทั้งหมด:{" "}
                         {products.length}
                     </h3>
 
@@ -367,9 +412,9 @@ const handleChange = name => event => {
                             }}
                         >
                             
-                            {showInput("Product name", p.name)}
-                            {showInput("Product price", p.price)}
-                            {showInput("Product total", p.count)}
+                            {showInput("ชื่อสินค้า", p.name)}
+                            {showInput("ราคา", p.price)}
+                            {showInput("จำนวน", p.count)}
                                       
 
                         </div>
@@ -386,7 +431,7 @@ const handleChange = name => event => {
 
 const showAddress = () => (
        <>
- <h4 className="mt-4">ที่อยู่ของลูกค้า</h4>
+ <h4 className="mt-4">ที่อยู่ของคุณ</h4>
 <div className="mb-4 mt-4" style={{  padding: "20px",border: "1px solid indigo"}}
                             >
 {showInput("ชื่อ-สกุล",address.name )}
@@ -413,7 +458,7 @@ const showAddress = () => (
         
         </button>
 
-        <PopUpBank bank={bankAccount}/>
+        <PopUpBank Total= {Total} bank={bankAccount}/>
         
         </>)
     }
@@ -439,8 +484,7 @@ const showAddress = () => (
             headerImg="dashBoardImgLayout"
         > 
             {showShopName()}
-            {checkUpLoad()}
-            {showBankAccount()}
+            {showConfirm()}
             {showOrders()}
             {showAddress()}
             {/* {showStatus()} */}

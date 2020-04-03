@@ -26,7 +26,7 @@ router.put('/user/other/:userId', requireSignin, updateOther);
 
 router.put('user/:uId/:role/:userId', requireSignin, isAuth, updateRole)
 
-router.get('/orders/by/user/:userId', requireSignin, isAuth, purchaseHistory);
+// router.get('/orders/by/user/:userId', requireSignin, isAuth, purchaseHistory);
 
 router.param('userId', userById);
 // NOTE grab all of user objects from DB

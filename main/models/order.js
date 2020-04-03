@@ -53,10 +53,20 @@ upload: {
    
 },
 
+shippingConfirm: {
+  type: Boolean,
+  default:false
+   
+},
+
+shippingCost: {
+  type: Number
+},
+
     status: {
       type: String,
-      default: "Awaiting Confirmation",
-      enum: ["Awaiting Confirmation","Order Confirmation", "Packaging", "Shipping", "Cancelled"] // enum means string objects
+      default: "รอยืนยันรายการ",
+      enum: ["รอยืนยันรายการ","ยืนยันรายการเรียบร้อย", "กำลังจัดสินค้า", "กำลังขนส่ง"] // enum means string objects
     },
     updated: Date,
     user: { type: ObjectId, ref: "User" }

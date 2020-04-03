@@ -6,6 +6,8 @@ import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
+import { uploadSlip } from "./apiAdmin";
+
 
 
 const Orders = ({match}) => {
@@ -17,8 +19,83 @@ const Orders = ({match}) => {
 
     const [address , setAddress] = useState([]);
     const [photo , setPhoto] = useState([]);
+    
+    //NOTE checkibng already update shipping cost or not
+    const [success, setSuccess] = useState(false)
+    const [error, setError] = useState(false)
+
+    //NOTE Calculate Total price (Shop cost and total product price)
+    const [amount, setAmount] = useState(0)
+    const [shipCost, setShipCost] = useState(0)
+    const Total = amount + shipCost;
 
 
+
+    //NOTE FormData
+    const [values, setValues] = useState({    
+        costShipping: '',       
+        formData: ''
+    });
+
+    const {costShipping,formData} =  values; 
+
+const showCostInput = () => {
+    if(order.shippingConfirm==false && !success){
+        return(
+            <>
+            <div className="alert alert-warning" role="alert">
+            <h5 className="text-center">กรุณาใส่ค่าส่งสินค้า</h5>
+            </div>
+            {inputCost()}
+            </>
+        )
+
+        
+    }else if(success){
+       return(
+       <div className="alert alert-success" role="alert">
+            <h5 className="text-center">ระบบได้ส่งค่าส่งให้ลูกค้าเรียบร้อย</h5>
+        </div>
+       )
+
+    }
+}
+
+    const inputCost = () => (
+    <form className="mb-3" onSubmit={clickSubmit} >
+            
+            <div className="row">
+
+            <div className="col-3">
+                <input type="number" onChange={handleChange('shippingCost')} id="exampleForm2" class="form-control"/>
+            </div>
+
+            <div className="col-6">
+
+    <button className="btn btn-outline-primary"><span><i class="fas fa-upload mr-2" aria-hidden="true"></i>ยืนยัน</span></button>
+    </div>
+    </div>
+
+    </form>
+    )
+
+    const clickSubmit = event =>{
+        event.preventDefault();   
+        uploadSlip(order._id,user._id, token, formData).then(data => {
+            if (data.error) {
+                setError(data.error);
+            } else {
+                setSuccess(true);
+              }
+        })
+    
+    }
+
+    const handleChange = name => event => {       
+        formData.set(name, event.target.value);
+        formData.set('shippingConfirm', true);
+    }
+    
     
 
     const loadOrder = orderId => {
@@ -31,6 +108,13 @@ const Orders = ({match}) => {
                 setProducts(data.products)
                 setAddress(data.address)
                 setPhoto(data.photo)
+                setValues({
+                    ...values,                   
+                    formData: new FormData()
+                    
+                });
+                setAmount(data.amount)
+                setShipCost(data.shippingCost)
               
 
             }
@@ -94,7 +178,7 @@ const Orders = ({match}) => {
                 className="form-control"
                 onChange={e => handleStatusChange(e,order._id)}
             >
-                <option>Not processed</option>
+                <option>เลือกอัพเดทสถานะที่นี่</option>
                 {statusValues.map((status, index) => (
                     <option key={index} value={status}>
                         {status}
@@ -103,6 +187,23 @@ const Orders = ({match}) => {
             </select>
         </div>
     );
+
+    
+    const showPrice = () => {
+        if(order.shippingConfirm == false){
+            return(
+                <>
+                {amount}
+                </>
+            )
+        }else{
+            return(
+                <>
+                {Total}
+                </>
+            )
+        }
+    }
 
     const showOrder = () => (
         <div className="row">
@@ -115,7 +216,7 @@ const Orders = ({match}) => {
                        <h2 className="mb-5">
                         <span>
                             <div className="row">
-                           <div className="border text-white bg-dark order-id-title">Order ID: </div>
+                           <div className="border text-white bg-dark order-id-title">เลขรายการ: </div>
                             <div className="col-5  order-id">{order._id}</div>
                             </div>
                         </span>
@@ -125,15 +226,25 @@ const Orders = ({match}) => {
                             <li className="list-group-item">
                                 {showStatus()}
                             </li>
+
+                            <li className="list-group-item">
+                                ราคาสินค้า: ฿ {amount}
+                            </li>
+
+                            <li className="list-group-item">
+                                ราคาค่าส่ง: ฿ {order.shippingCost} 
+                            </li>
                          
+                            
+                
                             <li className="list-group-item">
-                                Amount: ฿{order.amount}
+                                ราคาทั้งหมด: ฿ {showPrice()}
                             </li>
                             <li className="list-group-item">
-                                Ordered by: {user.name}
+                                รายการของ: {user.name}
                             </li>
                             <li className="list-group-item">
-                                Ordered on:{" "}
+                                สั่งเมื่อ:{" "}
                                 {/* NOTE  use moment to format the date */}
                                 {moment(order.createdAt).fromNow()} 
                             </li>
@@ -141,7 +252,7 @@ const Orders = ({match}) => {
                         </ul>
 
                         <h3 className="mt-4 mb-4 font-italic">
-                            Total products in the order:{" "}
+                            รายการสินค้าทั้งหมด:{" "}
                             {products.length}
                         </h3>
 
@@ -154,10 +265,10 @@ const Orders = ({match}) => {
                                     border: "1px solid indigo"
                                 }}
                             >
-                                {showInput("Product name", p.name)}
-                                {showInput("Product price", p.price)}
-                                {showInput("Product total", p.count)}
-                                {showInput("Product Id", p._id)}
+                                {showInput("ชื่อสินค้า", p.name)}
+                                {showInput("ราคาสินค้า", p.price)}
+                                {showInput("จำนวน", p.count)}
+                                {showInput("รหัสสินค้า", p._id)}
 
                             </div>
 
@@ -195,7 +306,7 @@ const Orders = ({match}) => {
 
     const showSlip = () =>
     {
-        if(order.upload == true){
+        if(order.upload == true && order.shippingConfirm==true){
         return(
         <>
             <div className="alert alert-success" role="alert">
@@ -208,7 +319,7 @@ const Orders = ({match}) => {
             <PopUpSlip order = {order}/>
         </>
         )
-        }else if(order.upload ==false){
+        }else if(order.upload ==false &&order.shippingConfirm==true){
             return(
                 <>
                     <div className="alert alert-warning" role="alert">
@@ -230,6 +341,7 @@ const Orders = ({match}) => {
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
+            {showCostInput()}
            {showSlip()}
            {showOrder()}
          

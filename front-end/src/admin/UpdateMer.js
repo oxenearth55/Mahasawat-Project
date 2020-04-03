@@ -168,23 +168,23 @@ const clickSubmit = e => {
             // console.log(data.error);
             alert(data.error);
         } else {
-            updateUser(data, () => {
+            // updateUser(data, () => {
+            //     setValues({
+            //         ...values,
+            //         role: data.role,
+            //         shop: data.shop,                     
+            //         success: true
+            //     });
+
+            // }
+            
+            // );
                 setValues({
                     ...values,
-                    role: data.role,
-                    shop: data.shop,                     
+                    role: data.role,                  
                     success: true
                 });
-
-            }
-            
-            );
-                // setValues({
-                //     ...values,
-                //     role: data.role,                  
-                //     success: true
-                // });
-                // setShopObjectID(data);
+                setShopObjectID(data);
 
             
             

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const PopUpBank = ({bank}) =>{
+const PopUpBank = ({bank, Total}) =>{
 
 
 
@@ -52,6 +52,9 @@ const PopUpBank = ({bank}) =>{
 
                     <p for="materialSaveFormEmail">เลขบัญชี</p>
                     <input     readOnly   value={bank.accountNumber} type="text" id="materialSaveFormEmail" class="form-control"/>
+                  
+                    <p for="materialSaveFormEmail">จำนวนเงิน</p>
+                    <input     readOnly   value={`${Total} บาท`} type="text" id="materialSaveFormEmail" class="form-control"/>
 
         </form>
     </div>
