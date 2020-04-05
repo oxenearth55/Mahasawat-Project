@@ -224,38 +224,38 @@ const showAddressForm = () => {
                   {/* <!--address--> */}
                   <div class="md-form mb-5">
                   <p for="address" class="">บ้านเลขที่</p>
-                  <input onChange={handleAddress('houseNumber')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <input onChange={handleAddress('houseNumber')} type="text" id="address" class="form-control" />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">หมู่บ้าน</p>
-                  <input  onChange={handleAddress('village')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <input  onChange={handleAddress('village')} type="text" id="address" class="form-control" />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">ซอย</p>
-                  <input onChange={handleAddress('lane')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <input onChange={handleAddress('lane')} type="text" id="address" class="form-control" />
                   </div>
 
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">ถนน</p>
-                  <input onChange={handleAddress('streetName')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <input onChange={handleAddress('streetName')} type="text" id="address" class="form-control" />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">ตำบล</p>
-                  <input onChange={handleAddress('subDistrict')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <input onChange={handleAddress('subDistrict')} type="text" id="address" class="form-control" />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">อำเภอ</p>
-                  <input onChange={handleAddress('district')} type="text" id="address" class="form-control" placeholder="1234 Main St"/>
+                  <input onChange={handleAddress('district')} type="text" id="address" class="form-control" />
                   </div>
 
               

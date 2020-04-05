@@ -6,7 +6,9 @@ import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
-import { uploadSlip } from "./apiAdmin";
+import { uploadDeliver } from "./apiAdmin";
+
+
 
 
 
@@ -81,7 +83,7 @@ const showCostInput = () => {
 
     const clickSubmit = event =>{
         event.preventDefault();   
-        uploadSlip(order._id,user._id, token, formData).then(data => {
+        uploadDeliver(order._id,user._id, token, formData).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {

@@ -12,6 +12,7 @@ const {
     updateOrderStatus,
     remove,
     uploadImage,
+    uploadDeliver,
     readOrder,
     photo
     
@@ -32,7 +33,14 @@ router.put(
     isAuth,
     uploadImage
         );
-
+    
+        router.put(
+            "/deliver/:orderId/:userId",
+            requireSignin,
+            isAuth,
+            uploadDeliver
+                );
+        
 
 
 router.post(

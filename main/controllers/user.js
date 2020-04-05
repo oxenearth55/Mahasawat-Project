@@ -140,7 +140,7 @@ exports.updateOther = (req, res) => {
 
 exports.update = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
-    const { name, password, shopObjectID, role } = req.body;
+    const { name,email, password, shopObjectID, role } = req.body;
 
     User.findOne({ _id: req.profile._id }, (err, user) => {
         if (err || !user) {
@@ -156,6 +156,16 @@ exports.update = (req, res) => {
             user.name = name;
         }
 
+        if (!email) {
+            return res.status(400).json({
+                error: 'Email is required'
+            });
+        } else {
+            user.email = email;
+        }
+
+
+        
 
 
 
