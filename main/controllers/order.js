@@ -1,8 +1,7 @@
 const { Order, CartItem } = require('../models/order');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 // sendgrid for email npm i @sendgrid/mail
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('test');
+
 const formidable = require('formidable');
 const fs = require('fs');
 const _ = require('lodash');
