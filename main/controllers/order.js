@@ -2,9 +2,7 @@ const { Order, CartItem } = require('../models/order');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 // sendgrid for email npm i @sendgrid/mail
 const sgMail = require('@sendgrid/mail');
-// sgMail.setApiKey('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');
-// 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
-sgMail.setApiKey('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');
+sgMail.setApiKey('test');
 const formidable = require('formidable');
 const fs = require('fs');
 const _ = require('lodash');
