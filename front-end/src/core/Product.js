@@ -11,6 +11,8 @@ import RelatedProduct from './RelatedProduct'
 import Handwash from '../Shop/Fakkhaw/Story/Handwash'
 import FakkSoap from '../Shop/Fakkhaw/Story/FakkSoap'
 import Lotion from '../Shop/Fakkhaw/Story/Lotion'
+import Bag from '../Shop/Fakkhaw/Story/Bag'
+
 
 
 
@@ -32,6 +34,7 @@ const Product = (props) => {
       };
 
     const showStory = () => {
+    //SECTION Fakkhaw Story 
         if(productCat == 'เจลล้างมือ' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             // if(1==1){
             return(
@@ -41,7 +44,7 @@ const Product = (props) => {
             )
         
         }
-        if(productCat == 'สบู่' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+        if(productCat == 'สบู่ฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             return(
                 <>
                 <FakkSoap/>
@@ -50,7 +53,7 @@ const Product = (props) => {
         
         }
 
-        if(productCat == 'โลชั่น' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+        if(productCat == 'โลชั่นฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             return(
                 <>
                 <Lotion/>
@@ -59,6 +62,15 @@ const Product = (props) => {
         
         }
 
+
+        if(productCat == 'ถุงผ้า' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+            return(
+                <>
+                <Bag/>
+                </>
+            )
+        
+        }
 
     }
     const loadSingleProduct = productId => {

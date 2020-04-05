@@ -198,7 +198,7 @@ exports.uploadImage = (req, res) => {
                                         <td role="modules-container" style="padding:0px 0px 0px 0px; text-align:left; color:#FFFFFF;" bgcolor="#f2f4fb" width="100%" align="left"><table class="module preheader preheader-hide" role="module" data-type="preheader" border="0" cellpadding="0" cellspacing="0" width="100%" style="display: none !important; mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">
     <tr>
       <td role="module-content">
-        <p>You've found the secret!</p>
+        <p></p>
       </td>
     </tr>
   </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="4c799948-eb62-486a-b850-87357e356e2a" data-mc-module-version="2019-10-22">
