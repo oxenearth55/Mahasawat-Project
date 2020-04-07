@@ -49,7 +49,22 @@ const productSchema = new mongoose.Schema(
         shipping: {
             type: String,
             required: true
-        }
+        },
+        rating: [{
+            userId: {type: ObjectId},
+            rate: {
+                type: Number,
+                default: 0
+            }
+        }],
+
+        comments: [{
+            userName: {type: String},
+            comment: {
+                type: String,
+                maxlength: 2000
+            }
+        }]
      
 
 

@@ -301,6 +301,81 @@ exports.decreaseQuantity = (req, res, next) => {
     
 };
 
+
+exports.rating = (req, res) => {
+    // From form request
+    let rate = req.body;
+ 
+    // Checking match user or not?  
+        let matchId = -1;
+        let avaRating = 0;
+        let count = product.rating.length;
+        // for loop to get matchId
+        for(i=0; i<product.rating.count; i++) {
+            if(rate.userIdReq == product.rating[i].userId) {
+                matchId = product.rating[i].rate;
+                break;
+            }
+        }
+        //NOTE user exist
+        if(match!=-1) {
+            product.rating[matchId].rate = rate;
+            avgRating = product.rating.forEach(element => total += element) / count;
+        } else {
+            product.rating[count].rate = rate;
+            let total = 0; 
+            product.rating[count].userId = rate.userId;
+            
+            avgRating = product.rating.forEach(element => total += element) / count;           
+        }
+
+        res.json(product);
+
+        product.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                });
+            }
+            res.json(result);
+        });
+   
+
+};
+
+
+exports.addComment = (req, res) => {
+    // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
+    const {comments} = req.body;
+    //NOTE findOne is use to check which shop that we are going to update
+    Product.findOne({ _id: req.product._id },  (err, product) => {
+      
+        if (!comments) {
+            return res.status(400).json({
+                error: 'Comment is required'
+            });
+        } else {
+            //NOTE PUSH Comment Object to database 
+            product.comments.push(comments) ;
+        }
+
+        product.save((err, updateComment) => {
+            if (err) {
+                console.log('COMMENT UPDATE ERROR', err);
+                return res.status(400).json({
+                    error: 'Comment update failed'
+                });
+            }
+            // updatedUser.hashed_password = undefined;
+            // updatedUser.salt = undefined;
+            res.json(updateComment);
+        });
+    });
+};
+
+
+
+
 // exports.addComment = (req, res, next) => {
 //     let comments = [];
 

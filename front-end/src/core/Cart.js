@@ -8,6 +8,8 @@ import Checkout from './Checkout';
 import {API} from '../config' 
 import CartAdjust from './CartAdjust'
 import Footer from './Footer'
+import { isAuthenticated } from '../auth';
+
 
 
 

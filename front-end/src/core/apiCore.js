@@ -178,3 +178,19 @@ export const readShop = shopID => {
 // };
 
 
+//SECTION Product's comments 
+export const uploadComment = (productId,userId, token, comments) => {
+    return fetch(`${API}/comment/${productId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(comments)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

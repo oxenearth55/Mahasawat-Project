@@ -164,12 +164,6 @@ exports.update = (req, res) => {
             user.email = email;
         }
 
-
-        
-
-
-
-
         if (password) {
             if (password.length < 6) {
                 return res.status(400).json({

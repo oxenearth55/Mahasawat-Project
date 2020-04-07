@@ -174,7 +174,12 @@ const handleAddress = name => event => {
 const showAddressForm = () => {
     return(
         <>
-       
+
+
+ 
+
+                 {isAuthenticated() && (
+<>
     
       {/* // <!--Main layout--> */}
       <main class="mt-5 pt-4">
@@ -390,7 +395,11 @@ const showAddressForm = () => {
         </div>
       </div>
     </main>
+    </>
+        )}
+
 </>
+
     )
     
 }

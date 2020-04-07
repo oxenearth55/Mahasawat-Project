@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Menu from './Menu'
 import Footer from './Footer'
-import { read, listRelated,getCategories,getAllProducts} from './apiCore';
+import { read, listRelated,getCategories,getAllProducts, uploadComment} from './apiCore';
 import Card from './Card';
 import ProductImage from './ProductImage';
 import {addItem, updateItem,removeItem} from './cartHelpers'; 
@@ -11,6 +11,7 @@ import RelatedProduct from './RelatedProduct'
 import Handwash from '../Shop/Fakkhaw/Story/Handwash'
 import FakkSoap from '../Shop/Fakkhaw/Story/FakkSoap'
 import Lotion from '../Shop/Fakkhaw/Story/Lotion'
+import { isAuthenticated } from '../auth';
 import Bag from '../Shop/Fakkhaw/Story/Bag'
 
 
@@ -26,6 +27,7 @@ const Product = (props) => {
     const [productCat, setProductCat] = useState('');
     const [productShop, setProductShop] = useState([]);
 
+    const { user, token } = isAuthenticated();
 
 
     
@@ -146,6 +148,57 @@ const showRelated = () => (
    
    )
 
+
+   //SECTION Product's comment 
+   //NOTE State of Object
+   const [comments,setComments] = useState({
+       comment:'',
+       userName:''
+
+   })
+
+   const comment = () => {
+   
+   return(
+      <>
+          {isAuthenticated() && (
+
+       <form onSubmit={clickSubmit}>
+    <div className="form-group">
+    <label className="text-muted">Comment</label>
+    <textarea onChange={handleChange('comment')} className="form-control"  />
+ </div>
+ <button  class="btn btn-outline-info waves-effect">ส่ง
+ 
+ </button>
+
+ </form>
+)}
+</>
+   ) 
+
+   }
+
+   const handleChange = name => event => {
+    setComments({ ...comments, userName:user.name, [name]: event.target.value });
+       console.log('comment is' + comments.userName)
+   }
+
+
+   const clickSubmit = event => {
+    event.preventDefault();
+    uploadComment(props.match.params.productId,user._id,token, {comments}).then(data => {
+        if (data.error) {
+            // console.log(data.error);
+            alert(data.error);
+        } else {              
+              
+                // setSuccess(true);
+        }
+    });
+};
+
+
     return (
        
        <>
@@ -168,7 +221,7 @@ const showRelated = () => (
                     ))}    
 </div>            
 </div> */}
-
+{comment()}
     <Footer/>
          </>
     );

@@ -19,6 +19,7 @@ const UpdateProduct = ({ match }) => {
         error: false,
         createdProduct: '',
         redirectToProfile: false,
+     
         formData: '' //NOTE form data stand for grab the state befor sending to the backend 
     });
     const [categories, setCategories] = useState([]);
@@ -37,8 +38,15 @@ const UpdateProduct = ({ match }) => {
         error,
         createdProduct,
         redirectToProfile,
+      
         formData
     } = values;
+
+    const [comments,setComments] = useState({
+        comment:'',
+        userName:user.name
+ 
+    })
 
     // NOTE get product from backend by senind product ID from params
     const init = productId => {
@@ -83,6 +91,7 @@ const UpdateProduct = ({ match }) => {
         const value = name === 'photo' ? event.target.files[0] : event.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value });
+      
     };
 
     const clickSubmit = event => {
@@ -129,11 +138,13 @@ const UpdateProduct = ({ match }) => {
                 <textarea onChange={handleChange('description')} className="form-control" value={description} />
             </div>
 
+          
             <div className="form-group">
                 <label className="text-muted">Detail</label>
                 <textarea onChange={handleChange('detail')} className="form-control" value={detail} />
             </div>
 
+          
             <div className="form-group">
                 <label className="text-muted">Price</label>
                 <input onChange={handleChange('price')} type="number" className="form-control" value={price} />
