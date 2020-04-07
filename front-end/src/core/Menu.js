@@ -156,13 +156,13 @@ return(
   <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0  ">
       <li class="nav-item  ">
-      <Link className="nav-link text-white " to="/"><div className="text-white text-op">HOME </div></Link>
+      <Link className="nav-link text-white " to="/"><div className="text-white text-op">หน้าหลัก </div></Link>
       </li>
      
     {/* NOTE For normal user (user.role === 0) */}
     {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                         <li class="nav-item">
-                        <Link className="nav-link " to="/user/dashboard"><div className="text-white">DASHBOARD</div></Link>
+                        <Link className="nav-link " to="/user/dashboard"><div className="text-white">แผงควบคุม</div></Link>
                         </li>
 
                     )}
@@ -170,7 +170,7 @@ return(
  {/* NOTE For Merchant user (user.role === 1) */}
  {isAuthenticated() && isAuthenticated().user.role === 1 &&(
                         <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">DASHBOARD</div></Link>
+                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">แผงควบคุม</div></Link>
                         </li>
 
                     )}
@@ -179,19 +179,19 @@ return(
 
                     {isAuthenticated() && isAuthenticated().user.role === 2 &&(
                         <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">DASHBOARD</div></Link>
+                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">แผงควบคุม</div></Link>
                         </li>
 
                     )}
 
 <li class="nav-item">
-                        <Link className="nav-link" to="/select/shop"><div className="text-white">SHOP</div></Link>
+                        <Link className="nav-link" to="/select/shop"><div className="text-white">ร้านค้า</div></Link>
                     </li>
 
 
                     {isAuthenticated() && isAuthenticated().user.role === 0 &&(
                     <li class="nav-item">
-                        <Link className="nav-link" to="/order"><div className="text-white">SEE ORDER</div></Link>
+                        <Link className="nav-link" to="/order"><div className="text-white">ดูรายการ</div></Link>
                     </li>
                                         )}
 
@@ -228,11 +228,11 @@ return(
           {!isAuthenticated() && (
          <>
         <Link class="dropdown-item" to="/signin">
-             Sign In
+             ลงชื่อเข้าใช้
         </Link>
 
         <Link class="dropdown-item" to="/signup">
-            Sign Up
+            สร้างบัญชี
         </Link>
               </>         
          
@@ -252,7 +252,7 @@ return(
                                 })
                             }
                              to="/signin" 
-                            >Sign Out
+                            >ลงชื่อออก
                             </div>
               
                             </a>

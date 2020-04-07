@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { getPurchaseHistory } from "./apiUser";
+// import { getPurchaseHistory } from "./apiUser";
 import moment from "moment";
 import { MDBListGroup, MDBListGroupItem, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
@@ -16,18 +16,18 @@ const Dashboard = () => {
     const token = isAuthenticated().token;
 
     //NOTE  get purchase history from backend
-    const init = (userId, token) => {
-        getPurchaseHistory(userId, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                setHistory(data);
-            }
-        });
-    };
+    // const init = (userId, token) => {
+    //     getPurchaseHistory(userId, token).then(data => {
+    //         if (data.error) {
+    //             console.log(data.error);
+    //         } else {
+    //             setHistory(data);
+    //         }
+    //     });
+    // };
 
     useEffect(() => {
-        init(_id, token);
+        // init(_id, token);
     }, []);
 
     

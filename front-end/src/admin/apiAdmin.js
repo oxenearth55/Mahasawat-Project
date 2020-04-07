@@ -349,13 +349,9 @@ export const getShopList = (userId, token) => {
         .catch(err => console.log(err));
 };
 
-export const getShop = (userId,token) => {
-    return fetch(`${API}/shop/get/${userId}`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`
-        }
+export const getShop = () => {
+    return fetch(`${API}/getShop`, {
+        method: "GET"
     })
         .then(response => {
             return response.json();

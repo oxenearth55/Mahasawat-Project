@@ -15,6 +15,9 @@ import {
   import nabuaPhoto from '../photo/nabuaLocation.jpeg'
   import fakkhawPhoto from '../photo/fakkhawLocation.jpg'
   import intropic from '../photo/intropic.jpg' 
+  import test2 from '../photo/maha1.jpeg' 
+
+
 
   const SelectShop = () => {
 
@@ -60,7 +63,7 @@ const headerViedeo = () => (
 
 const intro = () => (
         
-<MDBView src='https://subwallpaper.com/Widescreen-Wallpapers/sci-fi-abstract-wallpaper-photo-For-Widescreen-Wallpaper.jpg'  >
+<MDBView src={test2} >
 
 <MDBMask className='rgba-black-light' />
 <Menu/>   
@@ -81,21 +84,24 @@ const intro = () => (
                   <strong>ชุมชนมหาสวัสดิ์</strong>
                 </h5>
                 <ul class="smooth-scroll list-unstyled text-head">
-                <a href="#nabua">
+              
+                <Link to ='/shop/nabua'>
                 <MDBBtn outline color='white' className="shop-button" >
+                
                 <div className="text-white button-text">นาบัวลุงแจ่ม</div>
                 </MDBBtn>
-                </a>
-                <a href="#fakkhaw">
+                </Link>
+               
+                <Link to ='/shop/banfakkhaw'>
                 <MDBBtn  outline color='white' className="shop-button">
                  <div className="text-white button-text">บ้านฟักข้าว</div>             
                  </MDBBtn>
-                 </a>  
-                 <a href="#others">
+                 </Link>  
+                 <Link to ='/shop/:searchResult/:search'>
                 <MDBBtn outline color='white' className="shop-button">
                  <div className="text-white button-text">สินค้าทั้งหมด</div>             
                 </MDBBtn>
-                </a>  
+                </Link>  
 
                 </ul>
                 </MDBAnimation>
@@ -192,7 +198,7 @@ const nabuaShop = () => (
 
     const FakkhawShop = () => (
         <>
-        <MDBView src={intropic}  id="fakkhaw" >
+        <MDBView src={fakkhawPhoto}  id="fakkhaw" >
 
 <MDBMask className='rgba-black-light' />
 
@@ -239,10 +245,10 @@ const nabuaShop = () => (
     <div className='rgba-black-light'>
 
     {intro()}
-    {FakkhawShop()}
+    {/* {FakkhawShop()} */}
 
-    {nabuaShop()}
-    {allShop()}
+    {/* {nabuaShop()} */}
+    {/* {allShop()} */}
     
     </div>
 

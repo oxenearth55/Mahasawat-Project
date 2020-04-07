@@ -117,9 +117,9 @@ const Search = ({history,handleSearch}) => {
     const searchForm = () => (
 
         <form class="form-inline my-2 my-lg-0" onSubmit={searchSubmit}>
-      <input class="form-control mr-sm-2" onChange={handleChange("search")} type="text" placeholder="Search by name" name=""
+      <input class="form-control mr-sm-2" onChange={handleChange("search")} type="text" placeholder="ค้นหาด้วยชื่อ" name=""
        aria-label="Search"/>
-      <button class="btn btn-outline-white my-2 my-sm-0 " type="submit">Search</button>
+      <button class="btn btn-outline-white my-2 my-sm-0 " type="submit">ค้นหา</button>
     </form>
     );
 

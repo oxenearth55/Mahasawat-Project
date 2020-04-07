@@ -253,7 +253,7 @@ const FakkSoap = () => {
         <>
         <MDBView src={glass} className="fix-bg"  id="fakkhaw" >
       
-      <MDBMask className='rgba-black-light' />
+      <MDBMask className='rgba-black-strong' />
       
                 <MDBContainer
                   className='d-flex justify-content-center align-items-center '
@@ -416,7 +416,7 @@ const FakkSoap = () => {
         <>
          <MDBView src={shower} className="mt-5 fix-bg" id="fakkhaw" >
       
-      <MDBMask className='rgba-black-light' />
+      <MDBMask className='rgba-black-strong' />
       
                 <MDBContainer
                   className='d-flex justify-content-center align-items-center '

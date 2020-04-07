@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import Layout from "./Layout"
 import Card from "./Card"
-import {getCategories, getFilteredProducts, getShop} from "./apiCore"
+import {getCategories, getFilteredProducts,getAllProducts} from "./apiCore"
+import {getShop} from '../admin/apiAdmin'
 import Checkbox from './Checkbox'
 import RadioBox from './RadioBox'
 import Search from './Search'
@@ -29,7 +30,7 @@ const Shop = props => {
 
     const [myFilters, setMyFilters] = useState({ // NOTE This State contain one property which is filters
         //NOTE filters contains one properties which is categories  as array (sub properties of filters)
-        filters: {category: []} 
+        filters: {category: [], shop:[]} 
 
     });
 
@@ -39,7 +40,19 @@ const Shop = props => {
     const [skip, setSkip] = useState(0)
     const [filterResults, setFilterResults] = useState([])
     const [searchResults, setSearchResults] = useState([])
+    const [shopObject, setShopObject] = useState([])
 
+
+    const getShopObject = () => {
+        getShop().then(data => {
+            if (data.error) {
+                setError(data.error)
+            } 
+            else {
+                setShopObject(data);
+            }
+        });
+    };
 
   
 
@@ -71,6 +84,7 @@ const Shop = props => {
     // const trigger = props.match.params.trigger;
     searchData(searchQuery);
     window.scrollTo(0, 0)     
+    getShopObject();
 
        
  },[props] )
@@ -102,14 +116,7 @@ const Shop = props => {
         })
     }
 
-    // const triggerSearch = (trigger) => {
-    //     if(trigger == true){
-    //    return searchData(searchQuery,categoryQuery) 
-    //     }else{
-    //        return defaultDisplay();
-    //     }
-    // };
-
+   
 
 
     // NOTE grab filter (category) id that was filtered by checkbox before sending it to backend
@@ -117,10 +124,12 @@ const Shop = props => {
     const handleFilters = (filters, filterBy) => {
         const newFilters = {...myFilters}
         // NOTE filters came from Checkbox component
-        newFilters.filters[filterBy] = filters //this == categories that was checked
+        newFilters.filters[filterBy] = filters 
+        //this == categories that was checked
        
         loadFilteredResults(myFilters.filters) //NOTE grab category from the state and send these to backend
         setMyFilters(newFilters)
+        console.log('issss ' + myFilters.filters.shop)
 
     };
    
@@ -173,12 +182,6 @@ const defaultDisplay = () => {
     );
 };
 
-// NOTE grab search trigger from Layout => Menu => Search component as (true condition)
-const handleSearch = (searchResult) =>{
-    const newSearch = {...data}
-    newSearch.search = searchResult
-    setData({...data, search: newSearch.search})
-};
 
 
 
@@ -191,9 +194,25 @@ const show = (trigger) =>{
     }
 }
 
-// SECTION Link Shop name
 
+const showFilterByShop = () =>{
+if(trigger == ':search' ){
+return(
 
+ 
+    <>
+<h4 className="text-white text-center rgba-stylish-strong">
+               Filter by Shop
+             </h4> 
+                <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
+             <Checkbox products={shopObject} ifShop={true}
+             handleFilters={filters => handleFilters(filters,"shop")
+            }     
+    />
+    </div>
+    </>
+)}
+        }
 
     return(
     <Layout
@@ -207,11 +226,14 @@ const show = (trigger) =>{
                Filter by categories
              </h4> 
                 <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
-             <Checkbox categories={categories} 
+             <Checkbox categories={categories} ifCategory={true}
              handleFilters={filters => handleFilters(filters,"category")
             }     
     />
     </div>
+
+
+    {showFilterByShop()}
 
             
 

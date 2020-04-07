@@ -196,10 +196,10 @@ const firstSection = () =>(
 
         <section className="text-center my-5">
       <h2 className="h1-responsive font-weight-bold text-center my-5">
-        Our bestsellers
+        สินค้าขายดี
       </h2>
       <p className="grey-text text-center w-responsive mx-auto mb-5">
-        สินค้าของเราเป็นทืี่ชื่นชอบมากทั้งในหมู่คนไทยและคนต่างชาติ เพราะสินค้าที่นี่ ผลิตจาก ธรรมชาติ
+        สินค้าของเราเป็นที่ชื่นชอบมากทั้งในหมู่คนไทยและคนต่างชาติ เพราะสินค้าที่นี่ ผลิตจาก ธรรมชาติ
       </p>
     
   {/* NOTE show best sellers */}

@@ -33,7 +33,7 @@ router.get(
     "/shop/shop-name/:userId",
     requireSignin,
     isAuth,
-    isAdmin,
+    // isAdmin,
     getShop
 );
 
@@ -44,12 +44,9 @@ router.get(
 
 
 //NOTE get Shop Object
-router.get('/shop/get/:userId', 
-
-requireSignin,
-isAuth,
-isAdmin,
-listShop);
+router.get('/getShop', 
+listShop
+);
 
 router.param("userId", userById);
 router.param("shopId", shopById);

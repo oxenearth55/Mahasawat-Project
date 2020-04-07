@@ -130,7 +130,7 @@ useEffect(()=>{
 <Cover4/>
 <Blog5/>
 
-<AllShop product={fakkhawProducts}/>
+<AllShop product={fakkhawProducts} />
 
 {/* <Person/> */}
 <Contract/>

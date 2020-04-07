@@ -20,12 +20,15 @@ import {
 import Menu from '../Menu';
 
 import {Link} from 'react-router-dom' 
+import IntroPic from '../../photo/maha2.jpg' 
+
 
 
 
 const Intro = () => (
+  // 'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'
 
-<MDBView  src='https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'>
+<MDBView  src={IntroPic}>
           <MDBMask className='rgba-black-light' />
           <Menu/>
 
@@ -39,19 +42,19 @@ const Intro = () => (
               <MDBAnimation reveal type="fadeInUp">
 
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                  Mahasawat Shopping
+                  ร้านค้ามหาสวัสดิ์
                 </h1>
                 <hr className='hr-light my-4' />
                 <h5 className='text-uppercase mb-4 white-text '>
-                  <strong>Naturally products & Healthy</strong>
+                  <strong>ผลิตภัณฑ์ธรรมชาติจากชุมชน</strong>
                 </h5>
                 <Link to="/shop/:searchResult/:search">
                 <MDBBtn outline color='white'>
-                <div className="text-white">SHOP</div>
+                <div className="text-white">ร้านค้า</div>
                 </MDBBtn>
                 </Link>
                 <MDBBtn outline color='white'>
-                  About me
+                   เกี่ยวกับเรา
                 </MDBBtn>
                 </MDBAnimation>
               </MDBCol>
