@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders, deleteOrder,getShop} from "../admin/apiAdmin";
+import { MDBDataTable } from 'mdbreact';
 
 
 
@@ -16,6 +17,83 @@ const SeeOrderCus = () => {
     const { user, token } = isAuthenticated();
     
     const [error,setError] =useState('');
+
+    //SECTION TABLE WITH FILTER 
+
+    const seeOrder = (res) => (
+        <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/order/${res._id}`}>
+        คลิก
+    </Link>
+    
+    )
+
+
+    let rows =[]
+    orders.map(res=>{
+        let CostShipStatus = ''
+        let slipStatus = ''
+        if(res.shippingConfirm == true){
+            CostShipStatus ='ยืนยันค่าส่งแล้ว'
+    
+        }else if(res.shippingConfirm == false){
+            CostShipStatus='ยังไม่ได้ยืนยันค่าส่ง'
+        } if(res.upload == true){
+            slipStatus ='อัพโหลดหลักฐานการโอนเงินเรียบร้อย'
+        } if(res.upload == false){
+            slipStatus ='ยังไม่มีการอัพโหลดหลักฐานการโอนเงิน'
+        }
+    
+        if(res.user._id === user._id){
+        rows.push({orderId:res._id,name:res.shop.name, shipping:CostShipStatus,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
+        ลบ
+    </div>})
+        }
+    })
+    
+        const dataColum ={columns:[{
+            label: 'เลขรายการ',
+            field: 'orderId',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'ชื่อร้านค้า',
+            field: 'name',
+            sort: 'asc',
+            width: 200
+          },  {
+            label: 'สถานะการยืนยันค่าส่ง',
+            field: 'shipping',
+            sort: 'asc',
+            width: 200
+          }, 
+       
+          {
+            label: 'หลักฐานการโอนเงิน',
+            field: 'slip',
+            sort: 'asc',
+            width: 200
+          },    
+    
+          {
+            label: 'ดูรายละเอียด',
+            field: 'click',
+            sort: 'asc',
+            width: 200
+          } , 
+    
+          {
+            label: 'ลบรายการ',
+            field: 'delete',
+            sort: 'asc',
+            width: 200
+          }    
+    
+        
+        ]}
+    
+    dataColum.rows =rows
+
 
 
     const loadOrders = () => {
@@ -155,8 +233,9 @@ return(
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
-         {showOrdersTable()}
+         {/* {showOrdersTable()} */}
 
+         <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
         </Layout>
 

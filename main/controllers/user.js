@@ -227,7 +227,7 @@ exports.update = (req, res) => {
 //         });
 // };
 
-//NOTE remove order from backend 
+//NOTE remove User from Database 
 exports.remove = (req, res) => {
     let user = req.user;
     user.remove((err, deletedUser) => {

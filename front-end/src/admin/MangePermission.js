@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 import { Link,Redirect } from "react-router-dom";
 import { getUsers, updateUserRole,deleteOther } from "./apiAdmin";
 import {update} from '../user/apiUser'
+import { MDBDataTable } from 'mdbreact';
 
 const ManagePermission = () => {
   
@@ -32,15 +33,15 @@ const ManagePermission = () => {
     const showRole = (u) => {
         if(u === 0){
             return(
-                <div>Customer</div>
+                <div>ลูกค้า</div>
             )}
             else if(u === 1){
                 return(
-                <div>Merchant</div>
+                <div>พ่อค้า</div>
                 )}
                 else if(u === 2){
                     return(
-                        <div>Admin</div>
+                        <div>ผู้ดูแลระบบ</div>
                     )
                 }
 
@@ -109,6 +110,76 @@ const destroy = otherId => {
         }
     });
 };
+
+
+//SECTION TABLE FILTER 
+
+
+
+const seeUser = (res) => (
+    <Link className="btn btn-warning btn-sm mx-3 text-white" to= {`/admin/update/${res._id}`}>
+    คลิก
+</Link>)
+
+
+let rows =[]
+    users.map(res=>{
+        let role = ''
+        if(res.role === 0){
+            role = 'ลูกค้า'
+          }
+            else if(res.role === 1){
+                role = 'พ่อค้า'
+             }
+                else if(res.role === 2){
+                    role = 'ผู้ดูแลระบบ'
+                }
+
+                // <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
+    
+        rows.push({name:res.name, email:res.email,role:role ,permission:seeUser(res)})
+    
+        
+    })
+    
+        const dataColum ={columns:[
+          {
+            label: 'ชื่อผู้ใช้',
+            field: 'name',
+            sort: 'asc',
+            width: 200
+          },  {
+            label: 'อีเมล',
+            field: 'email',
+            sort: 'asc',
+            width: 200
+          }, 
+       
+          {
+            label: 'บทบาท',
+            field: 'role',
+            sort: 'asc',
+            width: 200
+          },    
+    
+          {
+            label: 'ตั้งค่าการเข้าถึง',
+            field: 'permission',
+            sort: 'asc',
+            width: 200
+          } , 
+    
+        //   {
+        //     label: 'ลบรายการ',
+        //     field: 'delete',
+        //     sort: 'asc',
+        //     width: 200
+        //   }    
+    
+        
+        ]}
+    
+    dataColum.rows =rows
          
 
     return (
@@ -121,43 +192,8 @@ const destroy = otherId => {
 
         >
 
-            {preventPermission()}
-          <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Role</th>
-      <th scope="col">Set permission</th>
-      <th scope="col">Delete account</th>
+<MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
-    </tr>
-  </thead>
-  
-  {users.map((u, uIndex) => {
-
-return(
-  <tbody>
-    <tr>
-        <th scope="row">{u.name}</th>
-        <td>{u.email}</td>
-        <td>{showRole(u.role)}</td>
-        <td>
-        {/* NOTE Go to this page with this user ID */}
-        <Link to= {`/admin/update/${u._id}`}>
-
-            <button className="btn btn-warning btn-sm text-white">Click</button>
-            {/* <input type="text" onChange={handleChange(u._id)} className="form-control" v/> */}
-        </Link>
-            </td>
-        <td><button onClick={() => destroy(u._id)} className="btn btn-danger btn-sm">Delete</button></td>
-    </tr>
-   
-  </tbody>
-     );}
-     )}
-</table>
-       
                    
              
 

@@ -3,6 +3,8 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
+import { MDBDataTable } from 'mdbreact';
+
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
@@ -37,6 +39,72 @@ const ManageProducts = () => {
         loadProducts();
     }, []);
 
+    //SECTION TABLE WITH FILTER 
+  
+
+    const seeOrder = (res) => (
+        <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/product/update/${res._id}`}>
+        คลิก
+    </Link>
+    
+    )
+
+
+    let rows =[]
+    products.map(res=>{
+       
+    
+        if(res.shop._id == user.shop){
+        rows.push({productName:res.name, category:res.category.name, amount:res.price, remain:res.quantity,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
+        ลบ
+    </div>})
+        }
+    })
+    
+        const dataColum ={columns:[{
+            label: 'ชื่อสินค้า',
+            field: 'productName',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'ประเภท',
+            field: 'category',
+            sort: 'asc',
+            width: 200
+          },  {
+            label: 'ราคา',
+            field: 'amount',
+            sort: 'asc',
+            width: 200
+          }, 
+       
+          {
+            label: 'สินค้าคงเหลือ',
+            field: 'remain',
+            sort: 'asc',
+            width: 200
+          },    
+    
+          {
+            label: 'ดูรายละเอียด',
+            field: 'click',
+            sort: 'asc',
+            width: 200
+          } , 
+    
+          {
+            label: 'ลบรายการ',
+            field: 'delete',
+            sort: 'asc',
+            width: 200
+          }    
+    
+        
+        ]}
+    
+    dataColum.rows =rows
+
     return (
         <Layout
             title="Manage Products"
@@ -46,38 +114,8 @@ const ManageProducts = () => {
 
 
         >
-            <div className="row">
-                <div className="col-12">
-                    <h2 className="text-center">
-                        Total {products.length} products
-                    </h2>
-                    <hr />
-                    <ul className="list-group">
-                        {products.map((p, i) => {
-                        if(p.shop._id == user.shop){
-                        return(
-                            <li
-                                key={i}
-                                className="list-group-item d-flex justify-content-between align-items-center"
-                            >
-                                <strong>{p.name}</strong>
-                                <Link to={`/admin/product/update/${p._id}`}>
-                                    <span className="badge badge-warning badge-pill">
-                                        Update
-                                    </span>
-                                </Link>
-                                <span
-                                    onClick={() => destroy(p._id)}
-                                    className="badge badge-danger badge-pill"
-                                >
-                                    Delete
-                                </span>
-                            </li>
-                        )}})}
-                    </ul>
-                    <br />
-                </div>
-            </div>
+           <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
+
         </Layout>
     );
 };

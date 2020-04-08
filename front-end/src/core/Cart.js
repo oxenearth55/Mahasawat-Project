@@ -288,6 +288,7 @@ const Cart = () => {
         }else{
             return(
             <>
+            
              <Checkout
                   
                   nabuaProducts={nabuaProducts}
