@@ -143,6 +143,7 @@ exports.list = (req, res) => {
         .populate('category')
         .populate('shop')
 
+
         .sort([[sortBy, order]])
         .limit(limit)
         .exec((err, products) => {

@@ -62,9 +62,17 @@ const productSchema = new mongoose.Schema(
             userName: {type: String},
             comment: {
                 type: String,
-                maxlength: 2000
+                maxlength: 2000,
+            }, 
+
+            date:{
+                type: String
+
             }
-        }]
+             
+
+        },    
+    ]
      
 
 

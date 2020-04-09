@@ -77,7 +77,7 @@ const intro = () => (
               <MDBAnimation reveal type="">
 
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 text-head '>
-                  คูณสามารถเลือกดูสินค้าจากร้านค้าต่างๆได้ในหน้านี้
+                  คุณสามารถเลือกดูร้านค้าจากชุมชนมหาสวัสดิ์ได้ที่นี่
                 </h1>
                 <hr className='hr-light my-4' />
                 <h5 className='text-uppercase mb-4 white-text '>
@@ -85,6 +85,15 @@ const intro = () => (
                 </h5>
                 <ul class="smooth-scroll list-unstyled text-head">
               
+
+
+                <Link to ='/shop/banfakkhaw'>
+                <MDBBtn  outline color='white' className="shop-button">
+                 <div className="text-white button-text">บ้านฟักข้าว</div>             
+                 </MDBBtn>
+                 </Link>  
+
+                 
                 <Link to ='/shop/nabua'>
                 <MDBBtn outline color='white' className="shop-button" >
                 
@@ -92,16 +101,8 @@ const intro = () => (
                 </MDBBtn>
                 </Link>
                
-                <Link to ='/shop/banfakkhaw'>
-                <MDBBtn  outline color='white' className="shop-button">
-                 <div className="text-white button-text">บ้านฟักข้าว</div>             
-                 </MDBBtn>
-                 </Link>  
-                 <Link to ='/shop/:searchResult/:search'>
-                <MDBBtn outline color='white' className="shop-button">
-                 <div className="text-white button-text">สินค้าทั้งหมด</div>             
-                </MDBBtn>
-                </Link>  
+              
+              
 
                 </ul>
                 </MDBAnimation>
@@ -218,12 +219,6 @@ const nabuaShop = () => (
                 <h5 className='text-uppercase mb-4 white-text '>
                   <strong>รับชมสินค้าจากทางร้าน</strong>
                 </h5>
-                <Link to="/shop/banfakkhaw">
-                <MDBBtn outline color='white'>
-                <div className="text-white">รับชมสินค้า</div>
-
-                </MDBBtn>
-                </Link>
               
                 </MDBAnimation>
               </MDBCol>

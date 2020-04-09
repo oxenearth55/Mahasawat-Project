@@ -184,7 +184,11 @@ return(
 
                     )}
 
-<li class="nav-item">
+                    <li class="nav-item">
+                        <Link className="nav-link" to="/shop/:searchResult/:search"><div className="text-white">ดูสินค้า</div></Link>
+                    </li>
+
+                    <li class="nav-item">
                         <Link className="nav-link" to="/select/shop"><div className="text-white">ร้านค้า</div></Link>
                     </li>
 

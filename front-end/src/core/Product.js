@@ -11,10 +11,14 @@ import RelatedProduct from './RelatedProduct'
 import Handwash from '../Shop/Fakkhaw/Story/Handwash'
 import FakkSoap from '../Shop/Fakkhaw/Story/FakkSoap'
 import Lotion from '../Shop/Fakkhaw/Story/Lotion'
+import Tea from '../Shop/Nabua/Story/Tea'
+
 import { isAuthenticated } from '../auth';
 import Bag from '../Shop/Fakkhaw/Story/Bag'
-
-
+import { MDBInput } from "mdbreact";
+import moment from "moment";
+import Comment from './Comment';
+import Pagination from './Pagination';
 
 
 
@@ -26,9 +30,14 @@ const Product = (props) => {
     const [error, setError] = useState(false);
     const [productCat, setProductCat] = useState('');
     const [productShop, setProductShop] = useState([]);
+    const [getComments, setGetcomments] = useState([]);
 
     const { user, token } = isAuthenticated();
 
+    const [run, setRun] = useState(false);
+    const productId = props.match.params.productId;
+    const [skip,setSkip] = useState(0);
+    const [size,setSize] = useState(0);
 
     
     const addToCart = () => {
@@ -73,6 +82,13 @@ const Product = (props) => {
             )
         
         }
+        if(productCat=='ชาเกษรดอกบัว' && productShop == 'นาบัวลุงแจ่ม'){
+            return(
+                <>
+                <Tea/>
+                </>
+            )
+        }
 
     }
     const loadSingleProduct = productId => {
@@ -83,7 +99,10 @@ const Product = (props) => {
             } else {
                 setProduct(data);
                 setProductCat(data.category.name);
-                setProductShop(data.shop.name)
+                setProductShop(data.shop.name);
+                setGetcomments(data.comments); //NOTE Grab comments array of obeject from this product
+                setSize(data.comments.length);
+                setSkip(0);
                 // fetch related products
                 listRelated(data._id).then(data => {
                     if (data.error) {
@@ -107,12 +126,12 @@ const Product = (props) => {
         });
     }
 
+    
     useEffect(() => {
         //NOTE grab productId from Routes
-        const productId = props.match.params.productId;
         loadSingleProduct(productId); 
         loadAllProducts();
-    }, [props]);
+    }, [run]);
 
 
      //SECTION Show related Product 
@@ -149,54 +168,25 @@ const showRelated = () => (
    )
 
 
-   //SECTION Product's comment 
-   //NOTE State of Object
-   const [comments,setComments] = useState({
-       comment:'',
-       userName:''
-
-   })
-
-   const comment = () => {
-   
-   return(
-      <>
-          {isAuthenticated() && (
-
-       <form onSubmit={clickSubmit}>
-    <div className="form-group">
-    <label className="text-muted">Comment</label>
-    <textarea onChange={handleChange('comment')} className="form-control"  />
- </div>
- <button  class="btn btn-outline-info waves-effect">ส่ง
- 
- </button>
-
- </form>
-)}
-</>
-   ) 
-
-   }
-
-   const handleChange = name => event => {
-    setComments({ ...comments, userName:user.name, [name]: event.target.value });
-       console.log('comment is' + comments.userName)
-   }
 
 
-   const clickSubmit = event => {
-    event.preventDefault();
-    uploadComment(props.match.params.productId,user._id,token, {comments}).then(data => {
-        if (data.error) {
-            // console.log(data.error);
-            alert(data.error);
-        } else {              
-              
-                // setSuccess(true);
-        }
-    });
-};
+
+//SECTION Pagination
+//NOTE grab comments into the array
+const commentArray =[]
+//NOTE then loop it by decending comment because we would like to show a new comment at the top
+    for(var i=getComments.length-1; i>=0;i--){
+        commentArray.push(getComments[i])
+    }
+
+
+const [currentPage,setCurrentPage] = useState([1])
+const [commentPerPage,setPostPerPage] = useState([5]);
+const indexOfLastComment = currentPage * commentPerPage;
+const indexOfFirstComment = indexOfLastComment - commentPerPage;
+const currentComments = commentArray.slice(indexOfFirstComment,indexOfLastComment)
+//NOTE Change page
+const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
     return (
@@ -211,17 +201,18 @@ const showRelated = () => (
 
             {showRelated()}
             
-            {/* <div className="row my-4">
-                    <h4>Related products</h4>
-                    <div className="row">
-                    {relatedProduct.map((p, i) => (
-                        <div className="col-4 mb-4" key={i}>
-                            <Card product={p} />
-                        </div>                   
-                    ))}    
-</div>            
-</div> */}
-{comment()}
+           
+
+<Comment currentPage={currentPage} getComments={currentComments} product={product} setRun={setRun} 
+                   run={run} size={size}/>
+
+<div className="container-fluid">
+       <div className="row  mb-5 justify-content-center">
+<Pagination commentPerPage={commentPerPage}  
+                    totalComment={commentArray.length} 
+                   paginate={paginate} />
+    </div>
+    </div>
     <Footer/>
          </>
     );
