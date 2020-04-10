@@ -223,11 +223,11 @@ return(
         <span class="red-text font-weight-bold">
     <strong>฿{product.price}</strong>
         </span>
-        <span class="grey-text">
+        {/* <span class="grey-text">
           <small>
             <s>฿200</s>
           </small>
-        </span>
+        </span> */}
       </h3>
       </MDBAnimation>
 

@@ -19,6 +19,8 @@ const Comment = ({getComments,product, setRun = f => f,
 
 })
 const { user, token } = isAuthenticated();
+const [empty, setEmpty] = useState(false);
+const [success, setSuccess] = useState(false);
 
 
 const comment = () => {
@@ -37,6 +39,7 @@ return(
        rows="1"
        icon="pencil-alt "
        onChange={handleChange('comment')}
+       value={comments.comment}
      />
      <div className ="col-12 text-center ">
 
@@ -59,19 +62,45 @@ const handleChange = name => event => {
  console.log('currentPage of comments is '+ currentPage );
 }
 
+const alert = () =>{
+  if(empty){
+  return(
+    <div class="alert alert-warning" role="alert">   
+    <div className='text-center'>โปรดใส่ความคิดเห็นของท่าน</div>
+</div>
+  )
+  } else if(success){
+    return(
+      <div class="alert alert-success" role="alert">   
+    <div className='text-center'>ลงความคิดเห็นสำเร็จ</div>
+  </div>
+    )
+
+  }
+}
+
 const clickSubmit = event => {
  event.preventDefault();
-
+if(comments.comment!=''){
  uploadComment(product._id,user._id,token, {comments}).then(data => {
      if (data.error) {
          // console.log(data.error);
          alert(data.error);
      } else {              
-      setRun(!run);                
+      setRun(!run);        
+      setComments({ ...comments, comment:'' });
+      setSuccess(true)
+      setEmpty(false)
+
 
              // setSuccess(true);
      }
- });
+ }
+ 
+ );
+}else{
+  setEmpty(true)
+}
 };
 
 const com = [];
@@ -89,7 +118,7 @@ const showComments = () =>{
 <section class="dark-grey-text mb-5">
 
  {/* <!-- Section heading --> */}
- <h3 class="font-weight-bold text-center mb-5">รีวิวจากลูกค้า</h3>
+ <h3 class="font-weight-bold text-center mb-5">รีวิวจากลูกค้า <i class="far fa-comments blue-text"></i></h3>
  {
  
  getComments.map((res,index) => {
@@ -154,6 +183,12 @@ com.push(res)
     return(
 
         <>
+      <div className="container">
+
+      {alert()}
+
+
+      </div>
 {comment()}
 {showComments()}
 

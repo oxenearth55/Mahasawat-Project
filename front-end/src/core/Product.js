@@ -35,7 +35,6 @@ const Product = (props) => {
     const { user, token } = isAuthenticated();
 
     const [run, setRun] = useState(false);
-    const productId = props.match.params.productId;
     const [skip,setSkip] = useState(0);
     const [size,setSize] = useState(0);
 
@@ -129,9 +128,11 @@ const Product = (props) => {
     
     useEffect(() => {
         //NOTE grab productId from Routes
+        const productId = props.match.params.productId;
+
         loadSingleProduct(productId); 
         loadAllProducts();
-    }, [run]);
+    }, [run,props]);
 
 
      //SECTION Show related Product 
