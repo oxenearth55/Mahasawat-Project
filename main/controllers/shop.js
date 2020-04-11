@@ -171,6 +171,66 @@ exports.update = (req, res) => {
 };
 
 
+exports.addProviderShip = (req, res) => {
+    // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
+    const {shipping} = req.body;
+    //NOTE findOne is use to check which shop that we are going to update
+    Shop.findOne({ _id: req.shop._id },  (err, shop) => {
+      
+        if (!shipping) {
+            return res.status(400).json({
+                error: 'shipping is required'
+            });
+        } else {
+            //NOTE PUSH Comment Object to database 
+            shop.shipping.push(shipping) ;
+        }
+
+        shop.save((err, addShipping) => {
+            if (err) {
+                console.log('Shipping ADD ERROR', err);
+                return res.status(400).json({
+                    error: 'Shipping add failed'
+                });
+            }
+            // updatedUser.hashed_password = undefined;
+            // updatedUser.salt = undefined;
+            res.json(addShipping);
+        });
+    });
+};
+
+exports.updateShpping = (req, res) => {
+    // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
+    const {shipping} = req.body;
+    //NOTE findOne is use to check which shop that we are going to update
+    Shop.findOne({ _id: req.shop._id },  (err, shop) => {
+      
+        if (!shipping) {
+            return res.status(400).json({
+                error: 'shipping is required'
+            });
+        } else {
+            //NOTE PUSH Comment Object to database 
+            shop.shipping.push(shipping) ;
+        }
+
+        shop.save((err, addShipping) => {
+            if (err) {
+                console.log('Shipping ADD ERROR', err);
+                return res.status(400).json({
+                    error: 'Shipping add failed'
+                });
+            }
+            // updatedUser.hashed_password = undefined;
+            // updatedUser.salt = undefined;
+            res.json(addShipping);
+        });
+    });
+};
+
+
+
 
 exports.read = (req, res) => {
     return res.json(req.shop);

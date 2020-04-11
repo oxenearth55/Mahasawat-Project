@@ -27,6 +27,8 @@ import UpdateMer from './admin/UpdateMer'
 import SeeOrderCus from './core/SeeOrderCus'
 import SelectShop from './Shop/SelectShop'
 import ManageShop from './admin/ManageShop'
+import ManageShipping from './admin/ManageShipping'
+
 
 const Routes = () => {
 
@@ -90,6 +92,8 @@ const Routes = () => {
             <AdminRoute path="/admin/Inventory" exact component={Inventory}/>
 
             <AdminRoute path="/admin/manage/shop" exact component={ManageShop}/>
+            <AdminRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
+
 
 
 

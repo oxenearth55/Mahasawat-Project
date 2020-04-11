@@ -371,3 +371,20 @@ export const getSpecificShop = shopId => {
         })
         .catch(err => console.log(err));
 };
+
+//ANCHOR Manage Shipping 
+export const addShipping = (shopId,userId, token, shipping) => {
+    return fetch(`${API}/shipping/${shopId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(shipping)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

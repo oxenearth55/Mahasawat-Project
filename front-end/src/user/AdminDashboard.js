@@ -58,9 +58,12 @@ const AdminDashboard = () => {
   
         if(role === 2){
             return(
+                <MDBListGroupItem  hover>
+
                 <Link className="nav-link textDash" to="/admin/manage/permission">
                     Manage Permission
                 </Link>
+                </MDBListGroupItem>
             )
         }
     }
@@ -115,13 +118,18 @@ const links = () => (
 
     <MDBListGroupItem hover>
         <Link className="nav-link textDash" to="/admin/manage/shop">
-            Manage Shop
+            Manage Bannking
         </Link>      
     </MDBListGroupItem>
 
-    <MDBListGroupItem  hover>
         {adminGivePermission()}     
+
+    <MDBListGroupItem  hover>
+        <Link className="nav-link textDash" to={`/manage/shipping/${shop}`}>
+            Manage Shipping
+        </Link>    
     </MDBListGroupItem>
+
 
     <MDBListGroupItem  hover>
         <Link className="nav-link textDash" to={`/profile/${_id}`}>

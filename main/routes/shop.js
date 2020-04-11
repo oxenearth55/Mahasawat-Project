@@ -9,7 +9,8 @@ const {
     create,
     listShop,
     update,
-    read
+    read,
+    addProviderShip
 } = require("../controllers/shop");
 
 router.post(
@@ -47,6 +48,18 @@ router.get(
 router.get('/getShop', 
 listShop
 );
+
+router.put(
+    "/shipping/:shopId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    addProviderShip
+
+)
+
+
+
 
 router.param("userId", userById);
 router.param("shopId", shopById);

@@ -36,6 +36,21 @@ const shopSchema = new mongoose.Schema({
             bankName:String,      
             accountNumber: String,
           },
+
+          shipping: [{
+            providerName: {type: String},
+            shippingCost: {
+                type: Number
+            }, 
+            avilable:{
+                type:Boolean,
+                default:false
+            }
+
+             
+
+        },    
+    ],
           
 
 
