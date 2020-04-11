@@ -13,7 +13,7 @@ const SeeOrderCus = () => {
     // const [statusValues, setStatusValues] = useState([]);
     const [shopObject, setShopObject] = useState([]);
 
-
+    const [loading,setLoading] = useState(true);
     const { user, token } = isAuthenticated();
     
     const [error,setError] =useState('');
@@ -21,7 +21,7 @@ const SeeOrderCus = () => {
     //SECTION TABLE WITH FILTER 
 
     const seeOrder = (res) => (
-        <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/order/${res._id}`}>
+        <Link className="btn btn-warning btn-sm mx-3 text-white" to={`order/${res._id}`}>
         คลิก
     </Link>
     
@@ -103,6 +103,7 @@ const SeeOrderCus = () => {
                 console.log(data.error);
             } else {
                 setOrders(data);
+                setLoading(false);
             }
         });
     };
@@ -156,73 +157,43 @@ const destroy = orderId => {
 //NOTE Show Order related their shops
 
 
-const showOrdersTable = () => {
-    const number =[];
-    {orders.map((o, oIndex) => {
-        if(o.user._id === user._id){
-            number.push(o.shop)}
-        }
-    )
-    }
 
 
-
-
-
-
-
-return(
-    <div>  {showOrdersLength(number.length)}
-  
-    <table class="table table-hover">
-    <thead>
-        <tr>
-        <th scope="col">Order ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Total</th>
-        <th scope="col">Status</th>
-        <th scope="col">See details</th>
-        <th scope="col">Delete order</th>
-
-
-        </tr>
-    </thead>
-    {orders.map((o, oIndex) => {
-        if(o.user._id == user._id){
-            number.push(o.shop)
-                return (
-    <tbody>
-        <tr>
-            <th scope="row">{o._id}</th>
-            <td>{o.shop.name}</td>
-            <td>{o.amount}</td>
-            <td>{o.status}</td>
-            
-            <td> 
-                <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/order/${o._id}`}>
-                    Click
-                </Link>
-            </td>
-
-            <td>
-                    <div  onClick={() => destroy(o._id)} className="btn btn-danger btn-sm">
-                        Delete
-                    </div>
-            </td>
-
-            </tr>
-            <tr>                
-        </tr>
-    </tbody>
-       );}
-    })}
-                                 
-                                    
-</table>                              
+const showLoading = () => {
+if(loading){
+    return(
+        <div className="text-center">
+        <div class="spinner-grow text-primary" role="status">
+  <span class="sr-only">Loading...</span>
 </div>
-
-) 
+<div class="spinner-grow text-secondary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-success" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-danger" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-warning" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-info" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-light" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-dark" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+        </div>
+    )
 }
+}
+
+
+
 
 
     return(
@@ -235,6 +206,7 @@ return(
         >
          {/* {showOrdersTable()} */}
 
+    {showLoading()}
          <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
         </Layout>

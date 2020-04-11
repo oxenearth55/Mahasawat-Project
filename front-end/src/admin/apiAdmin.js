@@ -371,6 +371,22 @@ export const getSpecificShop = shopId => {
         })
         .catch(err => console.log(err));
 };
+//NOTE Update Banking QrCode
+export const updateQrCode = (shopId, userId, token, QR) => {
+    return fetch(`${API}/update/qrCode/${shopId}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: QR
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 
 //ANCHOR Manage Shipping 
 export const addShipping = (shopId,userId, token, shipping) => {

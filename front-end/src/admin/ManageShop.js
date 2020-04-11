@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { getShop,updateShop,getSpecificShop } from './apiAdmin';
+import { getShop,updateShop,getSpecificShop,updateQrCode } from './apiAdmin';
 import { read } from '../user/apiUser';
 
 
@@ -21,6 +21,16 @@ const ManageShop = () => {
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
+    const [showQrCode, setQrCode] = useState(false);
+
+
+    const [values, setValues] = useState({
+        photo:'',
+        formData:''
+
+    })
+
+    const {photo,formData} = values
 
 
     // const {shopInfo, setShopInfo} = ([]);
@@ -58,6 +68,10 @@ const ManageShop = () => {
                     accountNumber: data.bankAccount.accountNumber                       
                 });
                 setShopID(data._id)
+                setValues({...values,
+                    formData: new FormData()
+
+                })
         
                
             }
@@ -101,7 +115,13 @@ const ManageShop = () => {
     const handleChange = name => event => {
 
       console.log('shop id is '+ shopID)
+      if(name=='photo'){
+
+        setBankinfo({ ...bankinfo, [name]: event.target.files[0]  });
+
+      }else{
         setBankinfo({ ...bankinfo, [name]: event.target.value });
+      }
 
     };
 
@@ -124,8 +144,9 @@ const ManageShop = () => {
     };
 
     const bankUpdate = (personName, bankName, accountNumber) => (
-        <form onSubmit={clickSubmit}>
+        <form className="my-5" onSubmit={clickSubmit}>
             <h3>จัดการบัญชี</h3>
+          
             <div className="form-group">
                 <label className="text-muted">ชื่อ</label>
                 <input type="text" onChange={handleChange('personName')} className="form-control" value={personName} />
@@ -151,7 +172,7 @@ const ManageShop = () => {
         if(success){
             return(
                 <>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success text-center" role="alert">
                      อัพเดทบัญชีสำเร็จ
                 </div>
                 </>
@@ -159,6 +180,76 @@ const ManageShop = () => {
         }
     }
 
+    //SECTION QR CODE 
+    const clickSubmit2 = event => {
+        event.preventDefault();
+        // NOTE Update changes to backend 
+        updateQrCode(shopID, user._id, token, formData).then(data => {
+            if (data.error) {
+                setError(data.error);
+            } else {
+              setSuccess(true);
+            }
+        });
+    };
+
+
+    const handleChange2 = name => event =>{
+        const value = name === 'photo' ? event.target.files[0] : event.target.value;
+        formData.set('photo',value)
+
+        // setValues({...values, photo: e.target.files[0]})
+    }
+
+    const formQrCode = () => (
+        <form className="my-5  border p-5  " onSubmit={clickSubmit2}>
+        <h3 className='text-center'>อัพโหลด Qr Code สำหรับการโอนเงิน</h3>
+        <div className="form-group text-center">
+            <label className="btn btn-secondary">
+                <input onChange={handleChange2('photo')} type="file" name="photo" accept="image/*" />
+            </label>
+       
+        <button  className="btn btn-primary">
+            อัพโหลด
+        </button>
+        </div>
+
+    </form>
+    )
+
+    const showQR = () =>{
+        if(showQrCode==true){
+        return(
+            <>
+            {formQrCode()}
+            </>
+        )
+        }
+    }
+
+    const setShowQr = () => (
+        <>
+        {qrBtn()}
+        </>
+    )
+
+    const qrBtn = () => {
+        if(showQrCode==true){
+            return(
+                <>
+         <button type="button" onClick={()=>setQrCode(false)}class="btn btn-pink">ซ่อน</button>
+
+                </>
+
+            )
+        } if(showQrCode==false){
+            return(
+            <>
+             <button type="button" onClick={()=>setQrCode(true)} class="btn btn-outline-info waves-effect">อัพเดทQrCode</button>
+
+            </>)
+        }
+    }
 
     return(
 
@@ -170,6 +261,8 @@ const ManageShop = () => {
 >
     <div className="container">
     {showSuccess(success)}
+    {setShowQr()}
+    {showQR()}
     {bankUpdate(personName, bankName, accountNumber)}
     </div>
                 

@@ -35,7 +35,13 @@ const shopSchema = new mongoose.Schema({
             personName:String,
             bankName:String,      
             accountNumber: String,
+          
           },
+
+          photo: {
+            data: Buffer,
+            contentType: String
+        },
 
           shipping: [{
             providerName: {type: String},

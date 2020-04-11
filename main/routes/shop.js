@@ -9,7 +9,9 @@ const {
     create,
     listShop,
     update,
+    updateQrCode,
     read,
+    photo,
     addProviderShip
 } = require("../controllers/shop");
 
@@ -27,6 +29,15 @@ router.put(
     isAuth,
     isAdmin,
     update
+
+)
+
+router.put(
+    "/update/qrCode/:shopId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    updateQrCode
 
 )
 
@@ -57,6 +68,8 @@ router.put(
     addProviderShip
 
 )
+
+router.get("/qr/:shopId", photo);
 
 
 

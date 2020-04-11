@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {API} from '../config' 
 
-const PopUpBank = ({bank, Total}) =>{
+const PopUpBank = ({bank, Total,shopId}) =>{
 
 
 
@@ -55,6 +56,14 @@ const PopUpBank = ({bank, Total}) =>{
                   
                     <p for="materialSaveFormEmail">จำนวนเงิน</p>
                     <input     readOnly   value={`${Total} บาท`} type="text" id="materialSaveFormEmail" class="form-control"/>
+
+            <div className="mt-5">
+                    <h4 for="materialSaveFormEmail">QR Code</h4>
+
+                    <img src={`${API}/qr/${shopId._id}`} 
+              alt="slip" class="img-fluid"/>
+
+              </div>
 
         </form>
     </div>

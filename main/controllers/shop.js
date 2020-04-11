@@ -230,7 +230,51 @@ exports.updateShpping = (req, res) => {
 };
 
 
+exports.updateQrCode = (req, res) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'Image could not be uploaded'
+            });
+        }
 
+        let shop = req.shop;
+        shop = _.extend(shop, fields);
+
+        // 1kb = 1000
+        // 1mb = 1000000
+
+        if (files.photo) {
+            // console.log("FILES PHOTO: ", files.photo);
+            if (files.photo.size > 10000000) {
+                return res.status(400).json({
+                    error: 'Image should be less than 10mb in size'
+                });
+            }
+            shop.photo.data = fs.readFileSync(files.photo.path);
+            shop.photo.contentType = files.photo.type;
+        }
+
+        shop.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                });
+            }
+            res.json(result);
+        });
+    });
+};
+
+exports.photo = (req, res, next) => {
+    if (req.shop.photo.data) {
+        res.set('Content-Type', req.shop.photo.contentType);
+        return res.send(req.shop.photo.data);
+    }
+    next();
+};
 
 exports.read = (req, res) => {
     return res.json(req.shop);

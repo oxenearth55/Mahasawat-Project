@@ -458,7 +458,7 @@ const showAddress = () => (
         
         </button>
 
-        <PopUpBank Total= {Total} bank={bankAccount}/>
+        <PopUpBank Total= {Total} bank={bankAccount} shopId={shopInfo}/>
         
         </>)
     }
