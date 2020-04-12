@@ -85,7 +85,7 @@ const { user, token } = isAuthenticated();
 
 const buy = () => {
 
-if(nabuaProducts.lenght !=0){
+if(nabuaProducts[0] !=undefined){
     const createOrderData ={ //NOTE keep it as Object before storing in Datase
         products: nabuaProducts,
         amount: nabuaTotal,
@@ -108,7 +108,7 @@ if(nabuaProducts.lenght !=0){
 }
 
 
-if(fakkhawProducts.lenght !=0){
+if(fakkhawProducts[0] !=undefined){
     const createOrderData ={ //NOTE keep it as Object before storing in Datase
         products: fakkhawProducts,
         amount: fakkhawTotal,
@@ -169,6 +169,7 @@ emptyCart(()=>{
 // NOTE grab address from a user inputs
 const handleAddress = name => event => {
   setAddress({ ...address, [name]: event.target.value });
+  console.log('nabua is ' +fakkhawProducts[1])
 };
 
 const showAddressForm = () => {
@@ -459,4 +460,3 @@ const exute =() =>(
 
 
 export default Checkout;
-

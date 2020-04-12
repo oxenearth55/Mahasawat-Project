@@ -5,7 +5,6 @@ import {getProducts} from './apiCore';
 import { getShop } from '../admin/apiAdmin';
 import RelatedProduct from './RelatedProduct';
 import PopUpCart from './PopUpCart';
-import {getCart} from './cartHelpers'; 
 
 
 
@@ -21,7 +20,6 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
     useEffect(() => {
         loadProductsBySell();
         getShopObject();
-        getCart()
 
 
     },[run]);
@@ -299,7 +297,7 @@ return(
 
           <div class="row mt-3">
             <div class="col-md-12 text-center text-md-left text-md-right">
-              <button type="button" onClick={() => {addCart(); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
+              <button type="button" onClick={() => {addCart(product); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
                 <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> Add to cart</button>
                 <PopUpCart/>
            

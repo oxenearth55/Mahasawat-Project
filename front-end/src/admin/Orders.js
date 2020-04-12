@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
+import { listOrders, getStatusValues, decreaseProductAmount,updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
@@ -24,12 +24,15 @@ const Orders = ({match}) => {
     
     //NOTE checkibng already update shipping cost or not
     const [success, setSuccess] = useState(false)
+    const [successUp, setSuccessUp] = useState(false)
+    const [updatetext, setUpdateText] = useState([])
+
     const [error, setError] = useState(false)
 
     //NOTE Calculate Total price (Shop cost and total product price)
-    const [amount, setAmount] = useState(0)
-    const [shipCost, setShipCost] = useState(0)
-    const Total = amount + shipCost;
+    // const [amount, setAmount] = useState(0)
+    // const [shipCost, setShipCost] = useState(0)
+    // const Total = amount + shipCost;
 
 
 
@@ -41,27 +44,27 @@ const Orders = ({match}) => {
 
     const {costShipping,formData} =  values; 
 
-const showCostInput = () => {
-    if(order.shippingConfirm==false && !success){
-        return(
-            <>
-            <div className="alert alert-warning" role="alert">
-            <h5 className="text-center">กรุณาใส่ค่าส่งสินค้า</h5>
-            </div>
-            {inputCost()}
-            </>
-        )
+// const showCostInput = () => {
+//     if(order.shippingConfirm==false && !success){
+//         return(
+//             <>
+//             <div className="alert alert-warning" role="alert">
+//             <h5 className="text-center">กรุณาใส่ค่าส่งสินค้า</h5>
+//             </div>
+//             {inputCost()}
+//             </>
+//         )
 
         
-    }else if(success){
-       return(
-       <div className="alert alert-success" role="alert">
-            <h5 className="text-center">ระบบได้ส่งค่าส่งให้ลูกค้าเรียบร้อย</h5>
-        </div>
-       )
+//     }else if(success){
+//        return(
+//        <div className="alert alert-success" role="alert">
+//             <h5 className="text-center">ระบบได้ส่งค่าส่งให้ลูกค้าเรียบร้อย</h5>
+//         </div>
+//        )
 
-    }
-}
+//     }
+// }
 
     const inputCost = () => (
     <form className="mb-3" onSubmit={clickSubmit} >
@@ -115,8 +118,8 @@ const showCostInput = () => {
                     formData: new FormData()
                     
                 });
-                setAmount(data.amount)
-                setShipCost(data.shippingCost)
+                // setAmount(data.amount)
+                // setShipCost(data.shippingCost)
               
 
             }
@@ -159,19 +162,47 @@ const showCostInput = () => {
         </div>
     );
 
+
     //NOTE orderId is used to check which order that we're going to set status
     const handleStatusChange = (e) => {
-        updateOrderStatus(user._id, token, order._id, e.target.value).then(
+        const decreaseProduct ={ //NOTE keep it as Object before storing in Datase
+            products: products
+        
+            
+        };
+        setUpdateText(e.target.value)
+        if(e.target.value=='ยืนยันรายการเรียบร้อย'){
+        updateOrderStatus(user._id, token, order._id, e.target.value)
+        decreaseProductAmount(user._id, token,decreaseProduct).then(
             data => {
                 if (data.error) {
                     console.log("Status update failed");
                 } else {
                     console.log('photo is '+order.photo)
+                    setSuccessUp(true)
 
                 }
             }
         );
+        }else{
+            updateOrderStatus(user._id, token, order._id, e.target.value)
+            setSuccessUp(true)
+        }
     };
+
+    const showSucessUpdate = () =>{
+        if(successUp == true){
+
+        return(
+            <>
+        <div className="alert alert-success" role="alert">
+
+        <h5 className="text-center order-aleart-slip">อัพเดทสถาณะเป็น {updatetext} เรียบร้อย</h5>
+        </div>
+            </>
+        )
+            }
+    }
 
     const showStatus = ()=> (
         <div className="form-group">
@@ -191,25 +222,26 @@ const showCostInput = () => {
     );
 
     
-    const showPrice = () => {
-        if(order.shippingConfirm == false){
-            return(
-                <>
-                {amount}
-                </>
-            )
-        }else{
-            return(
-                <>
-                {Total}
-                </>
-            )
-        }
-    }
+    // const showPrice = () => {
+    //     if(order.shippingConfirm == false){
+    //         return(
+    //             <>
+    //             {amount}
+    //             </>
+    //         )
+    //     }else{
+    //         return(
+    //             <>
+    //             {Total}
+    //             </>
+    //         )
+    //     }
+    // }
 
     const showOrder = () => (
         <div className="row">
         <div className="col-md-8 offset-md-2">
+       {showSucessUpdate()}
          
                     <div
                         className="mt-5"
@@ -230,18 +262,19 @@ const showCostInput = () => {
                             </li>
 
                             <li className="list-group-item">
-                                ราคาสินค้า: ฿ {amount}
+                                ราคาสินค้า: ฿ {order.amount}
                             </li>
 
-                            <li className="list-group-item">
+                            {/* <li className="list-group-item">
                                 ราคาค่าส่ง: ฿ {order.shippingCost} 
                             </li>
-                         
+                          */}
                             
-                
+{/*                 
                             <li className="list-group-item">
                                 ราคาทั้งหมด: ฿ {showPrice()}
-                            </li>
+                            </li> */}
+
                             <li className="list-group-item">
                                 รายการของ: {user.name}
                             </li>
@@ -308,7 +341,7 @@ const showCostInput = () => {
 
     const showSlip = () =>
     {
-        if(order.upload == true && order.shippingConfirm==true){
+        if(order.upload == true ){
         return(
         <>
             <div className="alert alert-success" role="alert">
@@ -321,7 +354,7 @@ const showCostInput = () => {
             <PopUpSlip order = {order}/>
         </>
         )
-        }else if(order.upload ==false &&order.shippingConfirm==true){
+        }else if(order.upload ==false){
             return(
                 <>
                     <div className="alert alert-warning" role="alert">
@@ -343,7 +376,7 @@ const showCostInput = () => {
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
-            {showCostInput()}
+            {/* {showCostInput()} */}
            {showSlip()}
            {showOrder()}
          

@@ -48,7 +48,7 @@ router.post(
     requireSignin,
     isAuth,
     // addOrderToUserHistory,
-    decreaseQuantity,
+    
     create
     // saveImage
 );
@@ -76,14 +76,25 @@ router.get(
     getStatusValues
 );
 
-//NOTE Only admin can have a permission to implement on order status
+
 router.put(
-    "/order/:orderId/status/:userId",
+    "/order/status/:orderId/:userId",
     requireSignin,
     isAuth,
-    isAdmin,
+    // isAdmin,
     updateOrderStatus
+    
 );
+
+//NOTE Only admin can have a permission to implement on order status
+// router.put(
+//     "/reduce/:userId",
+//     requireSignin,
+//     isAuth,
+//     isAdmin,
+//     decreaseQuantity
+    
+// );
 //NOTE Get photo (slip) from order 
 router.get("/order/slip/:orderId", photo);
 

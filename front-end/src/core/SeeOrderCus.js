@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { listOrders, deleteOrder,getShop} from "../admin/apiAdmin";
+import { listOrders, deleteOrder,getShop,updateOrderStatus} from "../admin/apiAdmin";
 import { MDBDataTable } from 'mdbreact';
 
 
@@ -17,6 +17,8 @@ const SeeOrderCus = () => {
     const { user, token } = isAuthenticated();
     
     const [error,setError] =useState('');
+    const [sucess,setSuccess] = useState(false);
+
 
     //SECTION TABLE WITH FILTER 
 
@@ -44,7 +46,7 @@ const SeeOrderCus = () => {
         }
     
         if(res.user._id === user._id){
-        rows.push({orderId:res._id,name:res.shop.name, shipping:CostShipStatus,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
+        rows.push({orderId:res._id,name:res.shop.name, status:res.status,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
         ลบ
     </div>})
         }
@@ -62,8 +64,8 @@ const SeeOrderCus = () => {
             sort: 'asc',
             width: 200
           },  {
-            label: 'สถานะการยืนยันค่าส่ง',
-            field: 'shipping',
+            label: 'สถานะ',
+            field: 'status',
             sort: 'asc',
             width: 200
           }, 
@@ -93,7 +95,6 @@ const SeeOrderCus = () => {
         ]}
     
     dataColum.rows =rows
-
 
 
     const loadOrders = () => {
@@ -193,7 +194,34 @@ if(loading){
 }
 
 
+//SECTION CANCLE ORDER 
 
+const status = 'ยกเลิก'
+const cancle = (res) => {
+    // event.preventDefault();
+    // NOTE Update changes to backend 
+    setSuccess(true);
+
+    updateOrderStatus( user._id, token,res, status).then(data => {
+        if (data.error) {
+        } else {
+            loadOrders();
+
+        }
+    });
+}
+
+const aleartSucees = () => {
+    if(sucess == true){
+        return(<>
+<div class="alert alert-success text-center" role="alert">
+            คุณยกเลิกรายการสำเร็จ
+</div>
+
+        </>)
+
+    }
+}
 
 
     return(
@@ -207,6 +235,7 @@ if(loading){
          {/* {showOrdersTable()} */}
 
     {showLoading()}
+    {aleartSucees()}
          <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
         </Layout>

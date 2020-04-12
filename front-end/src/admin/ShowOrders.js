@@ -18,6 +18,8 @@ const ShowOrders = () => {
     const { user, token } = isAuthenticated();
     
     const [error,setError] =useState('');
+
+    const [deleteSucc,setDeleteSucc] = useState(false)
     
 const seeOrder = (res) => (
     <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/order/${res._id}`}>
@@ -50,7 +52,7 @@ orders.map(res=>{
     }
 
     if(user.shop === res.shop._id){
-    rows.push({orderId:res._id,name:res.user.name, shipping:CostShipStatus,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
+    rows.push({orderId:res._id,name:res.user.name,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => {destroy(res._id); setLoading(true)}} className="btn btn-danger btn-sm">
     ลบ
 </div>})
     }
@@ -67,12 +69,7 @@ orders.map(res=>{
         field: 'name',
         sort: 'asc',
         width: 200
-      },  {
-        label: 'สถานะการยืนยันค่าส่ง',
-        field: 'shipping',
-        sort: 'asc',
-        width: 200
-      }, 
+      },  
    
       {
         label: 'หลักฐานการโอนเงิน',
@@ -149,10 +146,23 @@ const destroy = (orderId) => {
             console.log(data.error);
         } else {
             loadOrders();
+            setDeleteSucc(true);
         }
     });
 };
 
+const showAleart = () =>{
+    if(deleteSucc){
+        return(
+            <>
+        <div class="alert alert-success text-center" role="alert">
+            คุณลบรายการสำเร็จ
+        </div>
+            
+            </>
+        )
+    }
+}
 
 const showLoading = () => {
     if(loading){
@@ -197,6 +207,7 @@ const showLoading = () => {
             headerImg="dashBoardImgLayout"
         >
         {showLoading()}
+        {showAleart()}
          <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
 

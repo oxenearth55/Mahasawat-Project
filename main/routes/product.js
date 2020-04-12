@@ -13,7 +13,8 @@ const {
     listBySearch,
     photo,
     listSearch,
-    addComment
+    addComment,
+    decreaseQuantity
 } = require("../controllers/product");
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
@@ -53,6 +54,15 @@ router.put(
     addComment
 
 )
+
+router.put(
+    "/reduce/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    decreaseQuantity
+    
+);
 
 router.param("userId", userById);
 router.param("productId", productById);

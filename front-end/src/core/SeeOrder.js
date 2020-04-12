@@ -29,10 +29,9 @@ const SeeOrder = (props) => {
     const [bankAccount, setBankAccount] = useState([]);
 
 //NOTE Calculate Total price (Shop cost and total product price)
-const [amount, setAmount] = useState(0)
-const [shipCost, setShipCost] = useState(0)
-const Total = amount + shipCost;
-
+// const [amount, setAmount] = useState(0)
+// const [shipCost, setShipCost] = useState(0)
+// const Total = amount + shipCost;
 
     const [values, setValues] = useState({    
         photo: '',    
@@ -58,13 +57,15 @@ const Total = amount + shipCost;
 
     //NOTE use to check if shop confirm shiping cost or not
     const showConfirm = () => {
-        if(order.shippingConfirm==false){
-        return(
-            <div className="alert alert-warning" role="alert">
-            <h5 className="text-center">รอการยืนยันค่าส่งจากทางร้าน</h5>
-            </div>
-        )
-        }else{
+        // if(order.shippingConfirm==false){
+        // return(
+        //     <div className="alert alert-warning" role="alert">
+        //     <h5 className="text-center">รอการยืนยันค่าส่งจากทางร้าน</h5>
+        //     </div>
+        // )
+        // }
+        
+        
             return(
                 <>
                 {checkUpLoad()}
@@ -72,7 +73,7 @@ const Total = amount + shipCost;
                 {showUpSlip()}
                 </>
             )
-        }
+        
 
     }
     
@@ -165,8 +166,8 @@ const handleChange = name => event => {
                     
                 });
                 getShopInfo(data.shop)
-                setAmount(data.amount)
-                setShipCost(data.shippingCost)
+                // setAmount(data.amount)
+                // setShipCost(data.shippingCost)
               
 
             }
@@ -323,21 +324,21 @@ const handleChange = name => event => {
         </div>
     );
     
-    const showPrice = () => {
-        if(order.shippingConfirm == false){
-            return(
-                <>
-                {amount}
-                </>
-            )
-        }else{
-            return(
-                <>
-                {Total}
-                </>
-            )
-        }
-    }
+    // const showPrice = () => {
+    //     if(order.shippingConfirm == false){
+    //         return(
+    //             <>
+    //             {amount}
+    //             </>
+    //         )
+    //     }else{
+    //         return(
+    //             <>
+    //             {Total}
+    //             </>
+    //         )
+    //     }
+    // }
 
     const showOrders = () => (
         
@@ -374,10 +375,10 @@ const handleChange = name => event => {
                         </li>
                         
                         <li className="list-group-item">
-                                ราคาสินค้า: ฿ {amount}
+                                ราคาสินค้า: ฿ {order.amount}
                             </li>
 
-                            <li className="list-group-item">
+                            {/* <li className="list-group-item">
                                 ราคาค่าส่ง: ฿ {order.shippingCost} 
                             </li>
                          
@@ -385,7 +386,7 @@ const handleChange = name => event => {
                 
                             <li className="list-group-item">
                                 ราคาทั้งหมด: ฿ {showPrice()}
-                            </li>
+                            </li> */}
                         <li className="list-group-item">
                         รายการของ: {user.name}
                         </li>
@@ -458,7 +459,7 @@ const showAddress = () => (
         
         </button>
 
-        <PopUpBank Total= {Total} bank={bankAccount} shopId={shopInfo}/>
+        <PopUpBank Total= {order.amount} bank={bankAccount} shopId={shopInfo}/>
         
         </>)
     }

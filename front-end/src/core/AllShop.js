@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import {API} from '../config' 
-import {addItem} from './cartHelpers'; 
+import {addNabuaItem,addFakkhawItem} from './cartHelpers'; 
 import ShowIcon from './ShowIcon';
 import CardShop from './CardShop';
 
@@ -17,9 +17,13 @@ const AllShop = ({product,search=false,filter,searchInput}) => {
 
 
     const addToCart = (p) => {
-        addItem(p);
-
-    };
+      if(p.shop._id =='5e6a17a35c566806d6a101dd'){
+        addNabuaItem(p);
+      }
+    else if(p.shop._id =='5e6a17ac5c566806d6a101de'){
+      addFakkhawItem(p)
+    }
+  }
 
     const notFoundProduct = (product) =>{
       if(product.length == 0){

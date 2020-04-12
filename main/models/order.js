@@ -66,7 +66,7 @@ shippingCost: {
     status: {
       type: String,
       default: "รอยืนยันรายการ",
-      enum: ["รอยืนยันรายการ","ยืนยันรายการเรียบร้อย", "กำลังจัดสินค้า", "กำลังขนส่ง"] // enum means string objects
+      enum: ["รอยืนยันรายการ","ยืนยันรายการเรียบร้อย", "กำลังจัดสินค้า", "กำลังขนส่ง","ยกเลิก"] // enum means string objects
     },
     updated: Date,
     user: { type: ObjectId, ref: "User" }

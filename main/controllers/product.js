@@ -296,6 +296,7 @@ exports.decreaseQuantity = (req, res, next) => {
             });
         }
         next();
+        
     });
 
 

@@ -405,6 +405,68 @@ ${order.products
              
           `
         };
+
+        const emailDataNabuaAdmin = {
+          to: 'earthlono123@gmail.com',
+          from: 'Nabua@Mahasawat.com',
+          subject: `ลูกค้าได้อัพโหลดหลักฐานการชำระเงิน`,
+          html:`
+          <h1>การสั่งซื้อสินค้า</h1>
+
+          <h4>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h4>
+          <h5>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ Mahasawat</h5>
+
+          <p>ชื่อ: ${order._id}</p>  
+          <p>ชื่อ: ${order.user.name}</p>  
+          <p>อีเมลลูกค้า: ${order.user.email}</p>
+          <p>จำนวนสินค้า: ${order.products.length}</p>
+          <p>ราคา: ${order.amount}</p>
+          <p>Product details:</p>
+          <hr />
+          ${order.products
+              .map(p => {
+                  return `<div>
+                      <p>ชื่อสินค้า: ${p.name}</p>
+                      <h3>ราคา: ${p.price}</p>
+                      <p>จำนวน: ${p.count}</p>
+                      </hr>
+              </div>`;
+              })}`
+
+
+          
+
+        };
+
+        const emailDataFakkhawAdmin = {
+          to: 'earthlono123@gmail.com',
+          from: 'Fakkhaw@Mahasawat.com',
+          subject: `ลูกค้าได้อัพโหลดหลักฐานการชำระเงิน`,
+          html:`  <h1>การสั่งซื้อสินค้า</h1>
+
+          <h4>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h4>
+          <h5>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ Mahasawat</h5>
+
+          <p>ชื่อ: ${order._id}</p>  
+          <p>ชื่อ: ${order.user.name}</p>  
+          <p>อีเมลลูกค้า: ${order.user.email}</p>
+          <p>จำนวนสินค้า: ${order.products.length}</p>
+          <p>ราคา: ${order.amount}</p>
+          <p>Product details:</p>
+          <hr />
+          ${order.products
+              .map(p => {
+                  return `<div>
+                      <p>ชื่อสินค้า: ${p.name}</p>
+                      <h3>ราคา: ${p.price}</p>
+                      <p>จำนวน: ${p.count}</p>
+                      </hr>
+              </div>`;
+              })}`
+
+        };
+
+
 // const emailCus = order.user.email;
 
         const emailDataFakkhaw = {
@@ -753,9 +815,13 @@ ${order.products
 
       if(order.shop == '5e6a17a35c566806d6a101dd'){
         sgMail.send(emailDataNabua);
+        sgMail.send(emailDataNabuaAdmin);
+
 
     }else if(order.shop == '5e6a17ac5c566806d6a101de'){
         sgMail.send(emailDataFakkhaw);
+        sgMail.send(emailDataFakkhawAdmin);
+
     }
 
 
@@ -1371,7 +1437,6 @@ exports.updateOrderStatus = (req, res) => {
                 error: errorHandler(err)
             });
         }
-        res.json(order);
     });
 };
 

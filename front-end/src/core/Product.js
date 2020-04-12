@@ -4,7 +4,7 @@ import Footer from './Footer'
 import { read, listRelated,getCategories,getAllProducts, uploadComment} from './apiCore';
 import Card from './Card';
 import ProductImage from './ProductImage';
-import {addItem, updateItem,removeItem} from './cartHelpers'; 
+import {addNabuaItem,addFakkhawItem, updateItem,removeItem} from './cartHelpers'; 
 import { Link, Redirect } from 'react-router-dom';
 import CardProduct from './CardProduct'
 import RelatedProduct from './RelatedProduct'
@@ -39,10 +39,14 @@ const Product = (props) => {
     const [size,setSize] = useState(0);
 
     
-    const addToCart = () => {
-        addItem(product);
-      };
-
+    const addToCart = (p) => {
+        if(p.shop._id =='5e6a17a35c566806d6a101dd'){
+          addNabuaItem(p);
+        }
+      else if(p.shop._id =='5e6a17ac5c566806d6a101de'){
+        addFakkhawItem(p)
+      }
+    }
     const showStory = () => {
     //SECTION Fakkhaw Story 
         if(productCat == 'เจลล้างมือ' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){

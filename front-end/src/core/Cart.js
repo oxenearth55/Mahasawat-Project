@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './Layout';
-import { getCart, getNabuaProducts,getfakkhawProducts } from './cartHelpers';
-import {addItem, updateItem,removeItem} from './cartHelpers'; 
+import { getCart, getNabuaProducts,getfakkhawProducts,getFakkhaw,getNabua,itemTotal} from './cartHelpers';
+import {addItem, updateItem,removeFakkhaw,removeNabua} from './cartHelpers'; 
 import Card from './Card';
 import Checkout from './Checkout';
 import {API} from '../config' 
@@ -21,6 +21,7 @@ const Cart = () => {
     const [nabuaProducts,setNabuaProducts] = useState([]);
     const [fakkhawProducts,setFakkhawProducts] = useState([]);
     const [shop,setShop] = useState('');
+    const [itemtotal,setItemtotal] = useState(0);
 
 
     
@@ -29,9 +30,10 @@ const Cart = () => {
 
     //SECTION useEffect 
     useEffect(() => {
-        setItems(getCart()); //NOTE get object (cart) from local storage; To show that there are any product in Cart or not
-        setNabuaProducts(getNabuaProducts());
-        setFakkhawProducts(getfakkhawProducts());
+        // setItems(getCart()); //NOTE get object (cart) from local storage; To show that there are any product in Cart or not
+        setNabuaProducts(getNabua());
+        setFakkhawProducts(getFakkhaw());
+        setItemtotal(itemTotal())
     }, [run]);
 
     //SECTION Display Cart 
@@ -108,7 +110,7 @@ const Cart = () => {
         </td> */}
         <td>
             
-          <button onClick = {() => {removeItem(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+          <button onClick = {() => {removeFakkhaw(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
             title="Remove item">X
           </button>
           
@@ -227,7 +229,7 @@ const Cart = () => {
             </td> */}
             <td>
                 
-              <button onClick = {() => {removeItem(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+              <button onClick = {() => {removeNabua(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
                 title="Remove item">X
               </button>
             </td>
@@ -267,7 +269,7 @@ const Cart = () => {
     };
 //NOTE if not have anything in localsotage (cart)
     const noItemsMessage = () => {
-        if(items.length <=0){
+        if(itemtotal <=0){
         return(    
           <div>
             <h2>
