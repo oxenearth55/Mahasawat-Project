@@ -8,13 +8,21 @@ import {addNabuaItem,addFakkhawItem, updateItem,removeItem} from './cartHelpers'
 import { Link, Redirect } from 'react-router-dom';
 import CardProduct from './CardProduct'
 import RelatedProduct from './RelatedProduct'
+
+//SECTION STORY
+//ANCHOR FAKKHAW
 import Handwash from '../Shop/Fakkhaw/Story/Handwash'
 import FakkSoap from '../Shop/Fakkhaw/Story/FakkSoap'
 import Lotion from '../Shop/Fakkhaw/Story/Lotion'
+import Bag from '../Shop/Fakkhaw/Story/Bag'
+
+//ANCHOR NABUA
 import Tea from '../Shop/Nabua/Story/Tea'
+import SoapTea from '../Shop/Nabua/Story/SoapTea'
+
+
 
 import { isAuthenticated } from '../auth';
-import Bag from '../Shop/Fakkhaw/Story/Bag'
 import { MDBInput } from "mdbreact";
 import moment from "moment";
 import Comment from './Comment';
@@ -89,6 +97,14 @@ const Product = (props) => {
             return(
                 <>
                 <Tea/>
+                </>
+            )
+        }
+
+        if(productCat=='สบู่เกษรดอกบัว' && productShop == 'นาบัวลุงแจ่ม'){
+            return(
+                <>
+                <SoapTea/>
                 </>
             )
         }
