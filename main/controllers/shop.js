@@ -201,9 +201,7 @@ exports.addProviderShip = (req, res) => {
 };
 
 exports.updateShpping = (req, res) => {
-    // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
     const {shipping} = req.body;
-    //NOTE findOne is use to check which shop that we are going to update
     Shop.findOne({ _id: req.shop._id },  (err, shop) => {
       
         if (!shipping) {
@@ -211,7 +209,6 @@ exports.updateShpping = (req, res) => {
                 error: 'shipping is required'
             });
         } else {
-            //NOTE PUSH Comment Object to database 
             shop.shipping.push(shipping) ;
         }
 
@@ -222,8 +219,6 @@ exports.updateShpping = (req, res) => {
                     error: 'Shipping add failed'
                 });
             }
-            // updatedUser.hashed_password = undefined;
-            // updatedUser.salt = undefined;
             res.json(addShipping);
         });
     });

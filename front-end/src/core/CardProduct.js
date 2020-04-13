@@ -52,6 +52,18 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
 
 
     //SECTION Show Icon 
+    const showOutStock = () => {
+      if(product.quantity <=0){
+      return(
+        <>
+        <span class="badge  badge-warning product mb-4 ml-xl-0 ml-4">
+                        สินค้าหมด
+                </span>
+
+        </>
+      )
+      }
+    }
 
     const showBestSeller = () =>
     {
@@ -61,7 +73,7 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
         productsBySell.map((p,i) => {
             if(p._id === product._id){
                 return(<span class="badge badge-danger product mb-4 ml-xl-0 ml-4">
-                        BestSellers
+                        สินค้าขายดี
                 </span>
                 )}
 
@@ -107,46 +119,55 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
                 <div className="mx-0">
                 {showBestSeller()} 
                 </div>
+                <div className="mx-0">
+                {showOutStock()} 
+                </div>
             </MDBAnimation>
 
         </div>
 
     )
 
-    //SECTION Show related Product 
-const showRelated = () => (
- <div class="container my-5 py-5">
+//     //SECTION Show related Product 
+// const showRelated = () => (
+//  <div class="container my-5 py-5">
 
-    {/* <!--Section: Content--> */}
-    <section class="text-center">
+//     {/* <!--Section: Content--> */}
+//     <section class="text-center">
 
 
-      {/* <!--Grid row--> */}
-      <div class="row">
+//       {/* <!--Grid row--> */}
+//       <div class="row">
 
-      {relatedProduct.map((r, i) => {
+//       {relatedProduct.map((r, i) => {
         
-        return(
-        <>
-          <RelatedProduct r={r}/>
-        </>
-      )})}    
+//         return(
+//         <>
+//           <RelatedProduct r={r}/>
+//         </>
+//       )})}    
 
-{/* <!--Grid column--> */}
+// {/* <!--Grid column--> */}
         
 
-</div>
-    </section>
-    {/* <!--Section: Content--> */}
+// </div>
+//     </section>
+//     {/* <!--Section: Content--> */}
 
 
-  </div>
+//   </div>
 
-)
+// )
 
    
-
-
+const Showbutton = () =>{
+  if(product.quantity>0){
+    return(<>
+     <button type="button" onClick={() => {addCart(product); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
+        <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> Add to cart
+        </button></>)
+  }
+}
 
 
     //SECTION Render
@@ -297,8 +318,7 @@ return(
 
           <div class="row mt-3">
             <div class="col-md-12 text-center text-md-left text-md-right">
-              <button type="button" onClick={() => {addCart(product); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
-                <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> Add to cart</button>
+            {Showbutton()}
                 <PopUpCart/>
            
             </div>

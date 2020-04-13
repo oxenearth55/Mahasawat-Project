@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import { getCart, getNabuaProducts,getfakkhawProducts,getFakkhaw,getNabua,itemTotal} from './cartHelpers';
-import {addItem, updateItem,removeFakkhaw,removeNabua} from './cartHelpers'; 
+import {removeFakkhaw,removeNabua} from './cartHelpers'; 
 import Card from './Card';
 import Checkout from './Checkout';
 import {API} from '../config' 
@@ -56,21 +56,21 @@ const Cart = () => {
                 <tr>
                   <th></th>
                   <th class="font-weight-bold">
-                    <strong>Product</strong>
+                    <strong>ชื่อสินค้า</strong>
                   </th>
                  
                   
                   <th class="font-weight-bold">
-                    <strong>Price</strong>
+                    <strong>ราคา</strong>
                   </th>
                   <th class="font-weight-bold">
-                    <strong>QTY</strong>
+                    <strong>จำนวน</strong>
                   </th>
-                  {/* <th class="font-weight-bold">
-                    <strong>Amount</strong>
-                  </th> */}
+                  <th class="font-weight-bold">
+                    <strong>สินค้าคงเหลือ</strong>
+                  </th>
                    <th class="font-weight-bold">
-                    <strong>Remove</strong>
+                    <strong>ลบ</strong>
                   </th>
                   <th></th>
                 </tr>
@@ -100,9 +100,12 @@ const Cart = () => {
         <td>฿{product.price}</td>
         <td>
     <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
-    setRun={setRun} run={run} 
+    setRun={setRun} run={run} fakkhaw={true}
 />           
 </td>
+
+<td>{product.quantity}</td>
+
         {/* <td class="font-weight-bold">
             <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}
     
@@ -173,21 +176,21 @@ const Cart = () => {
                     <tr>
                       <th></th>
                       <th class="font-weight-bold">
-                        <strong>Product</strong>
+                        <strong>ชื่อสินค้า</strong>
                       </th>
                      
                       
                       <th class="font-weight-bold">
-                        <strong>Price</strong>
+                        <strong>ราคา</strong>
                       </th>
                       <th class="font-weight-bold">
-                        <strong>QTY</strong>
+                        <strong>จำนวน</strong>
                       </th>
-                      {/* <th class="font-weight-bold">
-                        <strong>Amount</strong>
-                      </th> */}
                        <th class="font-weight-bold">
-                        <strong>Remove</strong>
+                        <strong>สินค้าคงเหลือ</strong>
+                      </th> 
+                       <th class="font-weight-bold">
+                        <strong>ลบ</strong>
                       </th>
                       <th></th>
                     </tr>
@@ -218,9 +221,12 @@ const Cart = () => {
             <td>
             
     <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
-    setRun={setRun} run={run} 
+    setRun={setRun} run={run} nabua={true}
 />           
 </td>
+
+<td>{product.quantity}</td>
+
 
             {/* <td class="font-weight-bold">
                 <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}

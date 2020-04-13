@@ -137,7 +137,7 @@ let rows =[]
 
                 // <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
     
-        rows.push({name:res.name, email:res.email,role:role ,permission:seeUser(res)})
+        rows.push({name:res.name, email:res.email,role:role ,shop:res.shop.name,permission:seeUser(res)})
     
         
     })
@@ -161,6 +161,14 @@ let rows =[]
             sort: 'asc',
             width: 200
           },    
+
+          {
+            label: 'ร้านค้า',
+            field: 'shop',
+            sort: 'asc',
+            width: 200
+          },    
+    
     
           {
             label: 'ตั้งค่าการเข้าถึง',

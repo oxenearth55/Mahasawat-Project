@@ -28,6 +28,18 @@ const loadProductsBySell = () => {
         loadProductsBySell();
     },[]);
 
+    const showOutStock = () => {
+        if(product.quantity <=0){
+        return(
+          <>
+          <span class="badge  badge-warning product mb-2 mr-1">
+                          สินค้าหมด
+                  </span>
+  
+          </>
+        )
+        }
+      }
 
  const showIcon = () =>
  {
@@ -60,6 +72,7 @@ const loadProductsBySell = () => {
 
 <>
 {showIcon()}
+{showOutStock()}
 </>
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ProductImage from './ProductImage';
-import {addItem, updateItem,removeItem} from './cartHelpers'; 
+import {addItem,removeItem} from './cartHelpers'; 
 import { updateCategory } from '../admin/apiAdmin';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBCard, MDBCardTitle, MDBBtn, MDBCardGroup, MDBCardImage, MDBCardText, MDBCardBody } from "mdbreact";
@@ -45,7 +45,7 @@ const Card = ({
     //NOTE Make sure that value don't contain negative value
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if(event.target.value >= 1){
-      updateItem(productId, event.target.value)
+      // updateItem(productId, event.target.value)
     }
   };
 

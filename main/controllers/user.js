@@ -37,7 +37,10 @@ exports.read = (req, res) => {
 
 // NOTE Grab users from DB 
 exports.list = (req, res) => {
-    User.find().exec((err, data) => {
+    User.find()
+    .populate('shop', 'name')
+
+    .exec((err, data) => {
         if (err) {
             return res.status(400).json({
                 error: errorHandler(err)

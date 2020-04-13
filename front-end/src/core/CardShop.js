@@ -5,8 +5,25 @@ import {addItem} from './cartHelpers';
 import ShowIcon from './ShowIcon';
 import Search from './Search';
 
-const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert2}) => (
+const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert2}) => {
 
+    
+const Showbutton = () =>{
+  if(p.quantity>0){
+    return(<>
+     <button  type="button" onClick={() => {addToCart(p); }} data-target={`#${convert2(index)}`}  data-toggle="modal" class=" py-2 btn-block btn btn-outline-info btn-rounded waves-effect px-1" >
+        <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> หยิบลงรถเข็น
+      </button>
+        
+        </>
+        
+        
+        )
+  }
+}
+
+
+  return(
     <>
     {/* <!-- Modal --> */}
   <div class="modal fade" id={convert(index)} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -72,7 +89,7 @@ const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert
                     <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
                       aria-controls="collapseOne1">
                       <h5 class="mb-0 text-white">
-                        Description
+                        คำอธิบาย
                         <i class="fas fa-angle-down rotate-icon"></i>
                       </h5>
                     </a>
@@ -96,7 +113,7 @@ const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
                       aria-expanded="false" aria-controls="collapseTwo2">
                       <h5 class="mb-0 text-white">
-                        Details
+                        รายละเอียด
                         <i class="fas fa-angle-down rotate-icon"></i>
                       </h5>
                     </a>
@@ -126,15 +143,14 @@ const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert
                   <Link to= {`/product/${p._id}`}>
 
                       <button  type="button" onClick={() => {goToDetail(p); }} data-dismiss="modal" class="btn-block btn-primary btn-rounded mb-sm-5 py-2  btn btn-outline-default btn-rounded waves-effect px-0 ">
-                        See more
+                        ดูเพิ่มเติม
                       </button>   
                   </Link>                   
                       </div>
 
                     <div class="col-md-6 text-center text-md-left ">
-                      <button  type="button" onClick={() => {addToCart(p); }} data-target={`#${convert2(index)}`}  data-toggle="modal" class=" py-2 btn-block btn btn-outline-info btn-rounded waves-effect px-1" >
-                        <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Add cart
-                      </button>
+                    {Showbutton()}
+
  
                   </div>
 
@@ -259,8 +275,8 @@ const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert
     </>
 
 
-
 )
+      }
 
 
 export default CardShop

@@ -60,6 +60,17 @@ export const addNabuaItem = (item = [], count = 0, next = f => f) => {
             return nabua.find(p => p._id === id);
         });
 
+        nabua= Array.from(new Set(nabua.map(item => ({
+            _id: item._id,
+            name: item.name,
+            price: item.price,
+            // shop: item.shop._id,
+            count: item.count,
+            quantity: item.quantity
+
+
+      }))));
+
         localStorage.setItem('nabua', JSON.stringify(nabua));
         next();
     }
@@ -93,6 +104,16 @@ export const addFakkhawItem = (item = [], count = 0, next = f => f) => {
         fakkhaw = Array.from(new Set(fakkhaw.map(p => p._id))).map(id => {
             return fakkhaw.find(p => p._id === id);
         });
+
+        fakkhaw= Array.from(new Set(fakkhaw.map(item => ({
+            _id: item._id,
+            name: item.name,
+            price: item.price,
+            // shop: item.shop._id,
+            count: item.count,
+            quantity: item.quantity
+
+      }))));
 
         localStorage.setItem('fakkhaw', JSON.stringify(fakkhaw));
         next();
@@ -198,22 +219,44 @@ export const getFakkhaw = () => {
 
 
 
-export const updateItem = (productId, count) => {
-    let cart = [];
+export const updateItemNabua = (productId, count) => {
+    let nabua = [];
     if (typeof window !== 'undefined') {
-        if (localStorage.getItem('cart')) {
-            cart = JSON.parse(localStorage.getItem('cart')); //NOTE keep Object in cart Array 
+        if (localStorage.getItem('nabua')) {
+            nabua = JSON.parse(localStorage.getItem('nabua')); //NOTE keep Object in cart Array 
         }
 
-        cart.map((product, i) => {
+        nabua.map((product, i) => {
             if (product._id === productId) {
-                cart[i].count = count; // NOTE Update count at index(i)
+                nabua[i].count = count; // NOTE Update count at index(i)
             }
         });
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('nabua', JSON.stringify(nabua));
     }
 };
+
+
+export const updateItemFakkhaw = (productId, count) => {
+    let fakkhaw = [];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('fakkhaw')) {
+            fakkhaw = JSON.parse(localStorage.getItem('fakkhaw')); //NOTE keep Object in cart Array 
+        }
+
+        fakkhaw.map((product, i) => {
+            if (product._id === productId) {
+                fakkhaw[i].count = count; // NOTE Update count at index(i)
+            }
+        });
+
+        localStorage.setItem('fakkhaw', JSON.stringify(fakkhaw));
+    }
+};
+
+
+
+
 
 export const removeItem = productId => {
     let cart = [];
