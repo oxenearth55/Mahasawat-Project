@@ -38,25 +38,52 @@ const shopSchema = new mongoose.Schema({
           
           },
 
+          shippingProvider1: {
+            providerName:String,
+            shippingCost:Number,      
+            avilable:{ type:Boolean, default:false},
+          
+          },
+
+          shippingProvider2: {
+            providerName:String,
+            shippingCost:Number,      
+            avilable:{ type:Boolean, default:false},
+          
+          },
+
+
+          shippingProvider3: {
+            providerName:String,
+            shippingCost:Number,      
+            avilable:{ type:Boolean, default:false},
+          
+          },
+
+
           photo: {
             data: Buffer,
             contentType: String
         },
 
-          shipping: [{
-            providerName: {type: String},
-            shippingCost: {
-                type: Number
-            }, 
-            avilable:{
-                type:Boolean,
-                default:false
-            }
+    //       shipping: [{
+    //         providerName: {type: String},
+    //         shippingCost: {
+    //             type: Number
+    //         }, 
+    //         avilable:{
+    //             type:Boolean,
+    //             default:false
+    //         }
 
              
 
-        },    
-    ],
+    //     },    
+    // ],
+
+
+
+
           
 
 

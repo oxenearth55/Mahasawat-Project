@@ -30,6 +30,7 @@ import ManageShop from './admin/ManageShop'
 import ManageShipping from './admin/ManageShipping'
 
 
+
 const Routes = () => {
 
     return (<BrowserRouter>
@@ -93,6 +94,7 @@ const Routes = () => {
 
             <AdminRoute path="/admin/manage/shop" exact component={ManageShop}/>
             <AdminRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
+
 
 
 

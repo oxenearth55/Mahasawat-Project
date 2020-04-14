@@ -173,17 +173,25 @@ exports.update = (req, res) => {
 
 exports.addProviderShip = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
-    const {shipping} = req.body;
+    const {shippingProvider1} = req.body;
+    const {shippingProvider2} = req.body;
+    const {shippingProvider3} = req.body;
+
     //NOTE findOne is use to check which shop that we are going to update
     Shop.findOne({ _id: req.shop._id },  (err, shop) => {
       
-        if (!shipping) {
-            return res.status(400).json({
-                error: 'shipping is required'
-            });
-        } else {
-            //NOTE PUSH Comment Object to database 
-            shop.shipping.push(shipping) ;
+        if (shippingProvider1) {
+            shop.shippingProvider1=shippingProvider1 ;
+        } 
+        if(shippingProvider2){
+            shop.shippingProvider2=shippingProvider2 ;
+
+         
+        }
+        if(shippingProvider3){
+
+            shop.shippingProvider3=shippingProvider3 ;
+
         }
 
         shop.save((err, addShipping) => {
