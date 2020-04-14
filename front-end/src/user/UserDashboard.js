@@ -81,14 +81,14 @@ const Dashboard = () => {
         
             <MDBListGroupItem hover >  
             <Link className="nav-link" to="/cart">
-                            My Cart
+                            ตะกร้ารถเข็นของฉัน
                         </Link>
                                 
             </MDBListGroupItem>
             <MDBListGroupItem hover>
                 
             <Link className="nav-link" to={`/profile/${_id}`}>
-                            Update Profile
+                            อัพเดทโปรไฟล์
                         </Link>
             
             </MDBListGroupItem>
@@ -107,18 +107,18 @@ const Dashboard = () => {
             const info = () =>(
                 <MDBContainer>
                   <MDBListGroup >
-                    <MDBListGroupItem  className="bg-dark text-white">User Information</MDBListGroupItem>
+                    <MDBListGroupItem  className="bg-dark text-white">ข้อมูลผู้ใช้</MDBListGroupItem>
                     <MDBListGroupItem  ><p className="dash-info">{name}</p></MDBListGroupItem>
                     <MDBListGroupItem   ><p className="dash-info">{email}</p></MDBListGroupItem>
-                    <MDBListGroupItem   ><p className="dash-info"> {role === 1 ? "Admin" : "Registered User"}</p></MDBListGroupItem>
+                    <MDBListGroupItem   ><p className="dash-info"> {role === 1 ? "ผู้ดูแล" : "ลูกค้า"}</p></MDBListGroupItem>
                   </MDBListGroup>
                 </MDBContainer>
                 );
 
     return (
         <Layout
-            title="Dashboard"
-            description={`G'day ${name}!`}
+            title="โปรไฟล์"
+            description={`สวัสดีคุณ ${name}!`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"
 

@@ -47,16 +47,16 @@ const Signin = () => {
   <MDBRow>
     <MDBCol md="12">
       <form className="">
-        <p className="h5 text-center mb-4">Sign in</p>
+        <p className="h5 text-center mb-4">เข้าสู่ระบบ</p>
         <div className="grey-text">
           <MDBInput onChange={handleChange("email")}
-           label="Type your email" icon="envelope" group type="email" validate error="wrong"
+           label="อีเมล" icon="envelope" group type="email" validate error="wrong"
             success="right" />
           <MDBInput onChange={handleChange("password")}
-           label="Type your password" icon="lock" group type="password" validate />
+           label="รหัส" icon="lock" group type="password" validate />
         </div>
         <div className="text-center">
-          <MDBBtn  onClick={clickSubmit}>Login</MDBBtn>
+          <MDBBtn  onClick={clickSubmit}>เข้าสู่ระบบ</MDBBtn>
         </div>
       </form>
     </MDBCol>
@@ -110,7 +110,7 @@ const Signin = () => {
     const showLoading = () =>
         loading && (
             <div className="alert alert-info">
-                <h2>Loading...</h2>
+                <h2>กำลังโหลด...</h2>
             </div>
         );
 

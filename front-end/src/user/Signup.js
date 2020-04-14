@@ -76,18 +76,18 @@ const signUpformNew = () => (
   <MDBRow>
     <MDBCol md="12">
       <form>
-        <p className="h5 text-center mb-4">Sign up</p>
+        <p className="h5 text-center mb-4">สร้างบัญชี</p>
         <div className="grey-text">
-          <MDBInput onChange = {handleChange('name')} label="Your name" icon="user" group type="text" validate error="wrong"
+          <MDBInput onChange = {handleChange('name')} label="ชื่อ" icon="user" group type="text" validate error="wrong"
             success="right" />
-          <MDBInput  onChange = {handleChange('email')} label="Your email" icon="envelope" group type="email" validate error="wrong"
+          <MDBInput  onChange = {handleChange('email')} label="อีเมล" icon="envelope" group type="email" validate error="wrong"
             success="right" />
           {/* <MDBInput label="Confirm your email" icon="exclamation-triangle" group type="text" validate
             error="wrong" success="right" /> */}
-          <MDBInput onChange = {handleChange('password')} label="Your password" icon="lock" group type="password" validate />
+          <MDBInput onChange = {handleChange('password')} label="รหัส" icon="lock" group type="password" validate />
         </div>
         <div className="text-center">
-          <MDBBtn onClick = {clickSubmit} color="primary">Register</MDBBtn>
+          <MDBBtn onClick = {clickSubmit} color="primary">สมัครบัญชี</MDBBtn>
         </div>
       </form>
     </MDBCol>

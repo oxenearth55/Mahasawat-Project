@@ -235,7 +235,7 @@ return(
  
     <div className="mb-5">
 <h4 className="text-white text-center rgba-stylish-strong">
-               Filter by Shop
+               คัดกรอง โดย ชื่อร้าน
              </h4> 
                 <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
              <Checkbox products={shopObject} ifShop={true}
@@ -249,14 +249,14 @@ return(
 
     return(
     <Layout
-    title="Shop page"
-    description="Search and find product that you prefer"
+    title="หน้าสินค้า"
+    description="คุณสามารถเลือกซื้อและรับชมสินค้ามากมายได้ที่นี่"
     className="container-fluid"
     headerImg = "shopImgLayout"
     >
      
          <h4 className="text-white text-center rgba-stylish-strong">
-               Filter by categories
+               คัดกรอง โดย ชนิดของสินค้า
              </h4> 
                 <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
              <Checkbox categories={categories} ifCategory={true}

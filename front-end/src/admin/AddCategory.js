@@ -36,7 +36,7 @@ const AddCategory = () => {
     const newCategoryFom = () => (
         <form onSubmit={clickSubmit}>
             <div className="form-group">
-                <label className="text-muted">Name</label>
+                <label className="text-muted">ชื่อ</label>
                 <input
                     type="text"
                     className="form-control"
@@ -46,34 +46,34 @@ const AddCategory = () => {
                     required
                 />
             </div>
-            <button className="btn btn-outline-primary">Create Category</button>
+            <button className="btn btn-outline-primary">เพิ่ม ประเภทสินค้า</button>
         </form>
     );
 
     const showSuccess = () => {
         if (success) {
-            return <h3 className="text-success">{name} is created</h3>;
+            return <h3 className="text-success">{name} ถูกสร้างเรียบร้อย</h3>;
         }
     };
 
     const showError = () => {
         if (error) {
-            return <h3 className="text-danger">ERROR: "{name}" has already exist</h3>;
+            return <h3 className="text-danger">มีข้อผิดพลาด: "{name}" มีอยู่ในระบบแล้ว</h3>;
         }
     };
 
     const goBack = () => (
         <div className="mt-5">
             <Link to="/admin/dashboard" className="text-warning">
-                Back to Dashboard
+                กลับไปที่หน้าควบคุม
             </Link>
         </div>
     );
 
     return (
         <Layout
-            title="Add a new category"
-            description={`G'day ${user.name}, ready to add a new category?`}
+            title="เพิ่มประเกทของสินค้า"
+            description={`สวัสดีคุณ ${user.name}, คุณสามารถเพิ่มชนิดของสินค้าได้จากหน้านี้`}
             headerImg="dashBoardImgLayout"
         >
             <div className="row">

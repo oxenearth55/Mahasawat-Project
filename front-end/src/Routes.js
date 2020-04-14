@@ -17,7 +17,6 @@ import SeeOrder from'./core/SeeOrder'
 import Profile from './user/Profile'
 import ManageProducts from './admin/ManageProducts'
 import UpdateProduct from './admin/UpdateProduct'
-import Inventory from './admin/Inventory'
 import ShowOrders from './admin/ShowOrders'
 import ManagePermission from './admin/MangePermission'
 import CreateShop from './admin/CreateShop'
@@ -26,7 +25,7 @@ import Nabua from './Shop/Nabua'
 import UpdateMer from './admin/UpdateMer'
 import SeeOrderCus from './core/SeeOrderCus'
 import SelectShop from './Shop/SelectShop'
-import ManageShop from './admin/ManageShop'
+import ManageBank from './admin/ManageBank'
 import ManageShipping from './admin/ManageShipping'
 
 
@@ -90,9 +89,8 @@ const Routes = () => {
             <AdminRoute path="/admin/create/shop" exact component={CreateShop} />
 
 
-            <AdminRoute path="/admin/Inventory" exact component={Inventory}/>
 
-            <AdminRoute path="/admin/manage/shop" exact component={ManageShop}/>
+            <AdminRoute path="/admin/manage/bank" exact component={ManageBank}/>
             <AdminRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
 
 

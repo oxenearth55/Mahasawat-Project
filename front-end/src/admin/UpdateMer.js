@@ -55,9 +55,9 @@ const getShopObject = () => {
 const selectShop = () =>{
         return (
             <div className="form-group">
-            <label className="text-muted">Shop Name </label>
+            <label className="text-muted">ชื่อร้าน </label>
             <select onChange={handleShop} className="form-control">
-                <option  >Please select</option>
+                <option  >โปรดเลือก</option>
                 
                 {shopObject &&
                     shopObject.map((s, i) => (
@@ -96,19 +96,19 @@ const shopName = () => {
 const showRole = (role) => {
     if(role === 0){
         return(
-            <div>Customer</div>
+            <div>ลูกค้า</div>
         )}
         else if(role === 1){
             return(
-            <div>Merchant</div>
+            <div>คนขาย</div>
             )}
             else if(role === 2){
                 return(
-                    <div>Admin</div>
+                    <div>ผู้ดูแล</div>
                 )
             }else{
                 return(
-                <div>Please Submit Change</div>
+                <div>โปรดยืนยันการเปลี่ยนแปลง</div>
                 )
             }
 
@@ -121,31 +121,31 @@ const profileUpdate = (name, email, role) => (
         <h1>{shopName()}</h1>
         <div className="row border my-4 bg-light">
             <div className="form-group col-4">
-                <h5 className="text-muted">Name</h5>
+                <h5 className="text-muted">ชื่อ</h5>
                 <div className="text-dark" > {name}</div>
             </div>
       
             <div className="form-group col-4">
-                <h5 className="text-muted">Email</h5>
+                <h5 className="text-muted">อีเมล</h5>
                 <div className="text-dark" > {email}</div>
                 </div>
         
             <div className="form-group col-4">
-                <h5 className="text-muted ">Current Role</h5>
+                <h5 className="text-muted ">หน้าที่ปัจจุบัน</h5>
                 <div className="text-dark" > {showRole(role)}</div>
             </div>
 
         </div>
 
         <div className="form-group">
-            <label className="text-muted">Update Role</label>
+            <label className="text-muted">อัพเดท หน้าที่</label>
            
             {/* <input type="text" onChange={handleChange('role')} className="form-control" value={role} /> */}
             <select onChange={handleChange('role')} className="form-control">
-                    <option > Please Select</option>
-                    <option value="0">Customer</option>
-                    <option value="1">Merchant</option>
-                    <option value="2">Admin</option>
+                    <option > โปรดเลือก</option>
+                    <option value="0">ลูกค้า</option>
+                    <option value="1">คนขาย</option>
+                    <option value="2">ผู้ดูแล</option>
 
 
                     {/* <option value="undefine">Unshop</option> */}
@@ -156,7 +156,7 @@ const profileUpdate = (name, email, role) => (
         {selectShop()}
 
         <button onClick={clickSubmit} className="btn btn-primary">
-            Submit
+            ยืนยัน
         </button>
     </form>
 );
@@ -231,15 +231,15 @@ const preventPermission = () => {
 
     return(
         <Layout
-        title={'t'}
-        description= "You can update merchant role and shop here"
+        title={'การจัดการสิทธิ์เข้าถึง'}
+        description= "คุณสามารถจัดการสิทธิ์การเข้าถึงของลูกค้าได้ที่นี่"
         className="container-fluid"
         headerImg="productImgLayout"
     >
 
         {preventPermission()}
 
-<h2 className="mb-4">Profile update</h2>
+<h2 className="mb-4">อัพเดทสิทธิ์การเข้าถึง</h2>
             {profileUpdate(name, email, role)}
             {redirectUser(success)}
         </Layout>

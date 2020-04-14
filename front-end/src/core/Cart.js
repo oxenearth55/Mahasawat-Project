@@ -279,13 +279,13 @@ const Cart = () => {
         return(    
           <div>
             <h2>
-                Your cart is empty. <br /> 
+                รถเข็นของคุณว่างอยู่ <br /> 
             </h2>
             <div className="row">
 <Link to="/shop/:searchResult/:search">
   <br/>
   <br/>
-   <h3>Continue shopping</h3></Link>
+   <h3>โปรดเลือกสินค้าที่ท่านต้องการ</h3></Link>
    <br/>  
 
 
@@ -396,8 +396,8 @@ const diplayFakkhawProducts = () =>{
 //SECTION Render 
     return (
         <Layout
-            title="Shopping Cart"
-            description="Manage your cart items. Add remove checkout or continue shopping."
+            title="ตะกร้ารถเข็น"
+            description="สินค้าที่คุณเลือก จะมาอยู่ในตระก้ารถเข็นแห่งนี้"
             className="container-fluid"
             headerImg="cartImgLayout"
         >

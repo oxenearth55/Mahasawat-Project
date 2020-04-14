@@ -164,7 +164,7 @@ const Showbutton = () =>{
   if(product.quantity>0){
     return(<>
      <button type="button" onClick={() => {addCart(product); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
-        <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> Add to cart
+        <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> หยิบลงรถเข็น
         </button></>)
   }
 }
@@ -182,7 +182,7 @@ return(
 <section class="text-center">
 
   {/* <!-- Section heading --> */}
-  <h3 class="font-weight-bold mb-5">Product Details</h3>
+  <h3 class="font-weight-bold mb-5">รายละเอียดสินค้า</h3>
 
   <div class="row">
 
@@ -264,7 +264,7 @@ return(
             <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
               aria-controls="collapseOne1">
               <h5 class="mb-0">
-                Description
+                คำอธิบาย
                 <i class="fas fa-angle-down rotate-icon"></i>
               </h5>
             </a>
@@ -288,7 +288,7 @@ return(
             <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
               aria-expanded="false" aria-controls="collapseTwo2">
               <h5 class="mb-0">
-                Details
+                รายละเอียด
                 <i class="fas fa-angle-down rotate-icon"></i>
               </h5>
             </a>

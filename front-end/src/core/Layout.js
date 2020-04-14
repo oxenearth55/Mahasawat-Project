@@ -12,7 +12,7 @@ const Layout = ({title = "Title", description = "Description", className, childr
 <div>
 <Menu/> 
 
-    <div className ="container-fluid mx-0 px-0 mb-4 "> 
+    <div className ="container-fluid mx-0 px-0 mb-4 dashBoard-text "> 
     <MDBMask className='rgba-black-light' />
 
 

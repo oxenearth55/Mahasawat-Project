@@ -226,9 +226,9 @@ const aleartSucees = () => {
 
     return(
         <Layout
-            title="Orders"
+            title="รายการสั่งซื้อของคุณ"
             description={
-            `you can see your orders here`}
+            `คุณสามารถดูรายการสั่งซื้อทั้งหมดได้ที่นี่`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >

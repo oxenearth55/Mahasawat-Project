@@ -107,8 +107,8 @@ const ManageProducts = () => {
 
     return (
         <Layout
-            title="Manage Products"
-            description="You can Update Products Here"
+            title="จัดการสินค้า"
+            description="คุณสามารถจัดการสินค้าได้ที่หน้านี้"
             className="container-fluid"
             headerImg="dashBoardImgLayout"
 

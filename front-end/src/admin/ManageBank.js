@@ -7,7 +7,7 @@ import { read } from '../user/apiUser';
 
 
 
-const ManageShop = () => {
+const ManageBank = () => {
 
     const [bankinfo, setBankinfo] = useState({
         personName: '',
@@ -162,7 +162,7 @@ const ManageShop = () => {
             </div>
     
             <button  className="btn btn-primary">
-                Submit
+                ยืนยัน
             </button>
         </form>
     );
@@ -255,8 +255,8 @@ const ManageShop = () => {
 
       
          <Layout
-    title="Manage Shop"
-    description={`คุณสามาระตั้งค่าร้านค้าของคุณได้ที่นี่`}
+    title="จัดการบัญชี"
+    description={`คุณสามารถจัดการบัญชีธนาคารของคุณได้ที่นี่`}
     headerImg="dashBoardImgLayout"
 >
     <div className="container">
@@ -273,4 +273,4 @@ const ManageShop = () => {
 
 }
 
-export default ManageShop; 
+export default ManageBank; 

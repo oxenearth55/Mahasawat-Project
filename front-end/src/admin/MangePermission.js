@@ -192,8 +192,8 @@ let rows =[]
 
     return (
         <Layout
-            title="Manage Products"
-            description="You can Set permission here"
+            title="การจัดการสิทธิ์การเข้าถึง"
+            description="คุณสามารถแก้ไขสิทธิการเข้าถึงของคนอื่นๆได้ที่นี่"
             className="container-fluid"
             headerImg="dashBoardImgLayout"
 

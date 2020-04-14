@@ -405,7 +405,7 @@ const showSuccess = () => {
     return(
         <>
           <Layout
-            title="Manage Shipping"
+            title="การดูแลการขนส่ง"
             description={`คุณสามารถจัดการค่าจัดส่งได้ที่นี่`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"

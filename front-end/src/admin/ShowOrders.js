@@ -200,9 +200,9 @@ const showLoading = () => {
 
     return(
         <Layout
-            title="Orders"
+            title="รายการสั่งซื้อทั้งหมด"
             description={
-            `you can manage all the orders here`}
+            `คุณสามารถดูรายการสั่งซื้อทั้งหมดได้ที่นี่`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >

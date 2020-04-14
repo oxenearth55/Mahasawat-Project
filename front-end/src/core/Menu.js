@@ -159,13 +159,7 @@ return(
       <Link className="nav-link text-white " to="/"><div className="text-white text-op">หน้าหลัก </div></Link>
       </li>
      
-    {/* NOTE For normal user (user.role === 0) */}
-    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
-                        <li class="nav-item">
-                        <Link className="nav-link " to="/user/dashboard"><div className="text-white">แผงควบคุม</div></Link>
-                        </li>
-
-                    )}
+    
 
  {/* NOTE For Merchant user (user.role === 1) */}
  {isAuthenticated() && isAuthenticated().user.role === 1 &&(
@@ -197,7 +191,19 @@ return(
                     <li class="nav-item">
                         <Link className="nav-link" to="/order"><div className="text-white">ดูรายการ</div></Link>
                     </li>
+
+
+
                                         )}
+
+
+                                        {/* NOTE For normal user (user.role === 0) */}
+    {isAuthenticated() && isAuthenticated().user.role === 0 &&(
+                        <li class="nav-item">
+                        <Link className="nav-link " to="/user/dashboard"><div className="text-white">โปรไฟล์</div></Link>
+                        </li>
+
+                    )}
 
 
 

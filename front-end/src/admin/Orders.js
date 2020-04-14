@@ -206,7 +206,7 @@ const Orders = ({match}) => {
 
     const showStatus = ()=> (
         <div className="form-group">
-            <h3 className="mark mb-4">Status: {order.status}</h3>
+            <h3 className="mark mb-4">สถานะ: {order.status}</h3>
             <select
                 className="form-control"
                 onChange={e => handleStatusChange(e,order._id)}
@@ -369,10 +369,10 @@ const Orders = ({match}) => {
 
     return (
         <Layout
-            title="Orders"
-            description={`G'day ${
+            title="รายการสั่งซื้อ"
+            description={`สวัสดีคุณ ${
                 user.name
-            }, you can manage all the orders here`}
+            }, คุณสามารถรายละเอียดรายการสั่งซื้อได้ที่นี่`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >

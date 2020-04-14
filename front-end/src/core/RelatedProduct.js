@@ -47,11 +47,11 @@ const RelatedProduct = ({r}) => {
          <i class="far fa-star"></i>
        </div> */}
    
-       <button  onClick ={()=>addToCartRelated(r)} data-toggle="modal" data-target="#modalAbandonedCart"  type="button" class="btn btn-black btn-rounded btn-sm px-3">ADD CART</button>
+       <button  onClick ={()=>addToCartRelated(r)} data-toggle="modal" data-target="#modalAbandonedCart"  type="button" class="btn btn-black btn-rounded btn-sm px-3">หยิบลงรถเข็น</button>
        <PopUpCart/>
 
        <Link to= {`/product/${r._id}`}>
-       <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">SEE MORE</button>
+       <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">ดูเพิ่มเติม</button>
        </Link>
      </div>
    

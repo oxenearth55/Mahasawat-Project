@@ -477,10 +477,8 @@ const showAddress = () => (
 
     return(
         <Layout
-            title="See Your Orders"
-            description={`Hi ${
-                user.name
-            }, you can see your order here`}
+            title="รายการสั่งซื้อของคุณ"
+            description={`คุณสามารถอัพโหลดหลักฐานการโอนเงิน และดูรายละเอียดการสั่งซื้อได้ที่นี่`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         > 

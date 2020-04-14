@@ -15,15 +15,15 @@ const AdminDashboard = () => {
     const showRole = (role) => {
         if(role === 0){
             return(
-                <div>Customer</div>
+                <div>ลูกค้า</div>
             )}
             else if(role === 1){
                 return(
-                <div>Merchant</div>
+                <div>คนขาย</div>
                 )}
                 else if(role === 2){
                     return(
-                        <div>Admin</div>
+                        <div>ผู้ดูแล</div>
                     )
                 }else{
                     return(
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
                 <MDBListGroupItem  hover>
 
                 <Link className="nav-link textDash" to="/admin/manage/permission">
-                    Manage Permission
+                จัดการสิทธิ์การเข้าถึง
                 </Link>
                 </MDBListGroupItem>
             )
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
 const info = () =>(
 <MDBContainer>
   <MDBListGroup >
-    <MDBListGroupItem  className="bg-dark text-white">User Information</MDBListGroupItem>
+    <MDBListGroupItem  className="bg-dark text-white">ข้อมูลผู้ใช้</MDBListGroupItem>
     <MDBListGroupItem  ><p className="dash-info">{name}</p></MDBListGroupItem>
     <MDBListGroupItem   ><p className="dash-info">{email}</p></MDBListGroupItem>
     <MDBListGroupItem   ><p className="dash-info">{showRole(role)}</p></MDBListGroupItem>
@@ -91,34 +91,34 @@ const links = () => (
 
     <MDBListGroupItem hover >  
         <Link className="nav-link textDash" to="/create/category">
-            Create Category
+            เพิ่มประเกทสินค้า
         </Link>
                         
     </MDBListGroupItem>
     <MDBListGroupItem hover>
         
         <Link className="nav-link textDash" to="/create/product">
-            Create Product
+            เพิ่มสินค้า
         </Link> 
     
     </MDBListGroupItem>
     <MDBListGroupItem  hover>
         
         <Link className="nav-link textDash" to="/admin/orders">
-            View Orders
+            ดูรายการ
         </Link>
         
     </MDBListGroupItem>
 
     <MDBListGroupItem hover>
         <Link className="nav-link textDash" to="/admin/products">
-            Manage Products
+            จัดการสินค้า
         </Link>      
     </MDBListGroupItem>
 
     <MDBListGroupItem hover>
-        <Link className="nav-link textDash" to="/admin/manage/shop">
-            Manage Bannking
+        <Link className="nav-link textDash" to="/admin/manage/bank">
+            จัดการบัญชีธนาคาร
         </Link>      
     </MDBListGroupItem>
 
@@ -126,14 +126,14 @@ const links = () => (
 
     <MDBListGroupItem  hover>
         <Link className="nav-link textDash" to={`/manage/shipping/${shop}`}>
-            Manage Shipping
+            จัดการ การขนส่ง
         </Link>    
     </MDBListGroupItem>
 
 
     <MDBListGroupItem  hover>
         <Link className="nav-link textDash" to={`/profile/${_id}`}>
-             Update Profile
+             อัพเดทโปรไฟล์
         </Link>    
     </MDBListGroupItem>
 
@@ -149,8 +149,8 @@ const links = () => (
 
     return (
         <Layout
-            title="Dashboard"
-            description={`G'day ${name}!`}
+            title="แผงควบคุม"
+            description={`ยินดีต้อนรับ ${name}!`}
             className="container-fluid"
             headerImg="dashBoardImgLayout"
 
