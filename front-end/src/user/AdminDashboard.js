@@ -91,7 +91,7 @@ const links = () => (
 
     <MDBListGroupItem hover >  
         <Link className="nav-link textDash" to="/create/category">
-            เพิ่มประเกทสินค้า
+            เพิ่มประเภทสินค้า
         </Link>
                         
     </MDBListGroupItem>

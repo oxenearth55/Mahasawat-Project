@@ -2,14 +2,16 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import { getCart, getNabuaProducts,getfakkhawProducts,getFakkhaw,getNabua,itemTotal} from './cartHelpers';
-import {removeFakkhaw,removeNabua} from './cartHelpers'; 
+import {removeFakkhaw,removeNabua,getFakkhawShip,getNabuaShip,emptyFakkhaw,emptyNabua} from './cartHelpers'; 
 import Card from './Card';
 import Checkout from './Checkout';
 import {API} from '../config' 
 import CartAdjust from './CartAdjust'
 import Footer from './Footer'
 import { isAuthenticated } from '../auth';
-
+import {getSpecificShop} from '../admin/apiAdmin'
+import Shipping from './Shipping'
+import PopUpWarn from './PopUpWarn';
 
 
 
@@ -23,6 +25,9 @@ const Cart = () => {
     const [shop,setShop] = useState('');
     const [itemtotal,setItemtotal] = useState(0);
 
+    const [nabuaShip, setNabuaShip] = useState(0); 
+    const [fakkhawShip, setFakkhawShip] = useState(0); 
+
 
     
 
@@ -31,10 +36,25 @@ const Cart = () => {
     //SECTION useEffect 
     useEffect(() => {
         // setItems(getCart()); //NOTE get object (cart) from local storage; To show that there are any product in Cart or not
+        setEmptyShip()
+
         setNabuaProducts(getNabua());
         setFakkhawProducts(getFakkhaw());
         setItemtotal(itemTotal())
+        setFakkhawShip(getFakkhawShip())
+        setNabuaShip(getNabuaShip())
+        
     }, [run]);
+
+
+    const setEmptyShip = () =>{
+      if(fakkhawProducts.length==0){
+        emptyFakkhaw();
+      }
+      if(nabuaProducts.length==0){
+        emptyNabua();
+      }
+    }
 
     //SECTION Display Cart 
 
@@ -123,16 +143,34 @@ const Cart = () => {
       </tr>      
                 )})}
            <tr>
-      <td colspan="3"></td>
+
+
+      <td colspan="1">
+      
+        <h6 class="mt-2 px-5 mx-5">
+          <strong>การจัดส่ง</strong>
+          <div className="row">
+          <Shipping fakkhaw={true} shopId={'5e6a17ac5c566806d6a101de' } setRun={setRun} run={run} />
+         
+          </div>
+        </h6>
+        </td>
+        <td colspan="2">
+        <h5 class="mt-5 ml-5">
+
+        <strong>  ค่าจัดส่ง {fakkhawShip}  </strong>
+       </h5>
+       </td>
+
       <td>
-        <h4 class="mt-2">
-          <strong>Total</strong>
-        </h4>
+        <h5 class="mt-5">
+          <strong>ราคาทั้งหมด</strong>
+        </h5>
       </td>
       <td class="text-right">
-        <h4 class="mt-2">
+        <h5 class="mt-5">
           <strong>฿{getTotalFakkhaw()}</strong>
-        </h4>
+        </h5>
       </td>
       <td colspan="3" class="text-right">
       
@@ -242,20 +280,36 @@ const Cart = () => {
           </tr>      
                     )})}
                <tr>
-          <td colspan="3"></td>
-          <td>
-            <h4 class="mt-2">
-              <strong>Total</strong>
-            </h4>
-          </td>
-          <td class="text-right">
-            <h4 class="mt-2">
-              <strong>฿{getTotalNabua()}</strong>
-            </h4>
-          </td>
-          <td colspan="3" class="text-right">
-          
-          </td>
+               <td colspan="1">
+      
+      <h6 class="mt-2 px-5 mx-5">
+        <strong>การจัดส่ง</strong>
+        <div className="row">
+        <Shipping nabua={true} shopId={'5e6a17a35c566806d6a101dd' } setRun={setRun} run={run} />
+       
+        </div>
+      </h6>
+      </td>
+      <td colspan="2">
+      <h5 class="mt-5 ml-5">
+
+      <strong>  ค่าจัดส่ง {nabuaShip}  </strong>
+     </h5>
+     </td>
+
+    <td>
+      <h5 class="mt-5">
+        <strong>ราคาทั้งหมด</strong>
+      </h5>
+    </td>
+    <td class="text-right">
+      <h5 class="mt-5">
+        <strong>฿{getTotalNabua()}</strong>
+      </h5>
+    </td>
+    <td colspan="3" class="text-right">
+    
+    </td>
         </tr>
                </tbody>
                   {/* //ANCHOR Table body */}
@@ -350,14 +404,16 @@ const showTotal = () => {
 const getTotalNabua = () => {
        
     return nabuaProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
-        return currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
+        return Number(nabuaShip)+ currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
     }, 0)
 }
+
 
 const getTotalFakkhaw = () => {
        
     return fakkhawProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
-        return currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
+        return Number(fakkhawShip)+currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
+
     }, 0)
 }
 
@@ -402,6 +458,11 @@ const diplayFakkhawProducts = () =>{
             headerImg="cartImgLayout"
         >
 
+<button type="button"  data-toggle="modal" data-target="#centralModalWarning" class="btn btn-lg btn-block mb-4 btn-deep-orange ">คำเตือน</button>
+
+  
+
+<PopUpWarn/>
         {displayNabuaProducts()}
         {diplayFakkhawProducts()}
         {noItemsMessage()}

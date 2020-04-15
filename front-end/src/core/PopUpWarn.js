@@ -34,8 +34,8 @@ const PopUpWarn = ({checkout}) => (
 
        {/* <!--Footer--> */}
        <div class="modal-footer justify-content-center">
-         <a type="button" data-dismiss="modal" onClick={checkout} type='submit' class="btn btn-warning">ทำรายการ <i class="far fa-gem ml-1 text-white"></i></a>
-         <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">ไว้ก่อน</a>
+         {/* <a type="button" data-dismiss="modal" onClick={checkout} type='submit' class="btn btn-warning">ทำรายการ <i class="far fa-gem ml-1 text-white"></i></a> */}
+         <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">รับทราบ</a>
        </div>
      </div>
      {/* <!--/.Content--> */}

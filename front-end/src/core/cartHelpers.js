@@ -34,6 +34,60 @@ export const addItem = (item = [], count = 0, next = f => f) => {
 };
 
 
+
+//SECTION SHIPPING
+export const addNabuaShip = (item = [], count = 0, next = f => f) => {
+    let nabuaShip = [];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('nabuaShip')) {  //If it has cart in local storage then ...
+            //NOTE to convert json to object 
+            // get product from local storage 
+            nabuaShip = JSON.parse(localStorage.getItem('nabuaShip'));
+        }   
+        nabuaShip = item;
+        localStorage.setItem('nabuaShip', JSON.stringify(nabuaShip));
+        next();
+    }
+};
+
+export const addFakkhawShip = (item = [], count = 0, next = f => f) => {
+    let fakkhawShip = [];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('fakkhawShip')) {  //If it has cart in local storage then ...
+            //NOTE to convert json to object 
+            // get product from local storage 
+
+            fakkhawShip = JSON.parse(localStorage.getItem('fakkhawShip'));
+        }   
+        fakkhawShip = item;
+        
+        localStorage.setItem('fakkhawShip', JSON.stringify(item));
+        next();
+    }
+};
+
+
+export const getNabuaShip = () => {
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('nabuaShip')) {
+            return JSON.parse(localStorage.getItem('nabuaShip'));
+        }
+    }
+    return [];
+};
+
+export const getFakkhawShip = () => {
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('fakkhawShip')) {
+            return JSON.parse(localStorage.getItem('fakkhawShip'));
+        }
+    }
+    return [];
+};
+
+
+
+//SECTION CART 
 export const addNabuaItem = (item = [], count = 0, next = f => f) => {
     let nabua = [];
     if (typeof window !== 'undefined') {
@@ -47,14 +101,6 @@ export const addNabuaItem = (item = [], count = 0, next = f => f) => {
             ...item,
             count: 1 // NOTE intitial count after item was added by a user is one
         });   
-        // remove duplicates
-        // build an Array from new Set and turn it back into array using Array.from
-        // so that later we can re-map it
-        // new set will only allow unique values in it
-        // so pass the ids of each object/product
-        // If the loop tries to add the same value again, it'll get ignored
-        // ...with the array of ids we got on when first map() was used
-        // run map() on it again and return the actual product from the cart
 
         nabua = Array.from(new Set(nabua.map(p => p._id))).map(id => {
             return nabua.find(p => p._id === id);
@@ -278,6 +324,7 @@ export const removeItem = productId => {
 
 export const removeNabua = productId => {
     let nabua = [];
+
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('nabua')) { 
             nabua = JSON.parse(localStorage.getItem('nabua'));
@@ -318,7 +365,32 @@ export const emptyCart = next => {
         // localStorage.removeItem('cart');
         localStorage.removeItem('nabua');
         localStorage.removeItem('fakkhaw');
+        localStorage.removeItem('fakkhawShip');
+        localStorage.removeItem('nabuaShip');
+
+
         next();
+    }
+};
+
+
+export const emptyNabua = () => {
+    if (typeof window !== 'undefined') {
+        // localStorage.removeItem('cart');
+        localStorage.removeItem('nabuaShip');
+
+
+    }
+};
+
+
+
+export const emptyFakkhaw = () => {
+    if (typeof window !== 'undefined') {
+        // localStorage.removeItem('cart');
+        localStorage.removeItem('fakkhawShip');
+
+
     }
 };
 

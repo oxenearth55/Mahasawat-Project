@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getProducts, processPayment, createOrder } from './apiCore';
 import { emptyCart } from './cartHelpers';
 import Card from './Card';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import {isAuthenticated} from '../auth'; 
-import PopUpWarn from './PopUpWarn';
+
 
 
 
@@ -31,6 +31,17 @@ const Checkout = (
         instance: {}
     });
 
+    const [redirectToOrder, setRedirectToOrder] = useState(false)
+
+    const redirectUser = () => {
+        if (redirectToOrder) {
+           
+                return <Redirect to="/order"/>;
+            
+        }
+    };
+
+    const [success,setSuccess] = useState(false)
     const [address, setAddress] = useState({
       firstName:'',
       lastName:'',
@@ -84,6 +95,7 @@ const { user, token } = isAuthenticated();
 
 
 const buy = () => {
+   
 
 if(nabuaProducts[0] !=undefined){
     const createOrderData ={ //NOTE keep it as Object before storing in Datase
@@ -99,7 +111,7 @@ if(nabuaProducts[0] !=undefined){
             setData({ ...data, error: data.error });
         } else {
 
-            setData({...data, success: data.success}) 
+            setData({...data, success: true}) 
 
 
         }
@@ -121,7 +133,7 @@ if(fakkhawProducts[0] !=undefined){
             setData({ ...data, error: data.error });
         } else {
 
-            setData({...data, success: data.success}) 
+            setData({...data, success: true}) 
 
 
         }
@@ -136,6 +148,7 @@ emptyCart(()=>{
         success: true
 
     });
+    setRedirectToOrder(true)
 }) 
 
 };
@@ -181,13 +194,13 @@ const showAddressForm = () => {
 
                  {isAuthenticated() && (
 <>
-    
+    <form onSubmit={buy}>
       {/* // <!--Main layout--> */}
-      <main class="mt-5 pt-4">
+      <main class="mt-5 pt-4 ">
         <div class="container wow fadeIn">
     
           {/* <!-- Heading --> */}
-          <h2 class="my-5 h2 text-center">Checkout form</h2>
+          <h2 class="my-5 h2 text-center">โปรดกรอกรายละเอียดที่อยู่</h2>
     
           {/* <!--Grid row--> */}
           <div class="row">
@@ -209,7 +222,7 @@ const showAddressForm = () => {
                       {/* <!--firstName--> */}
                       <div class="md-form mb-5">
                   <p for="name" class="">ชื่อ-สกุล</p>
-                  <input onChange={handleAddress('name')} type="text" id="name" class="form-control" placeholder="ชื่อ-สกุล"/>
+                  <input onChange={handleAddress('name')} type="text" id="name" class="form-control" placeholder="ชื่อ-สกุล" required/>
                   </div>
     
                   
@@ -223,45 +236,45 @@ const showAddressForm = () => {
     
                   <div class="md-form mb-5">
                   <p for="address" class="">เบอร์โทรศัพท์</p>
-                  <input onChange={handleAddress('phoneNumber')} type="text" id="phone" class="form-control" placeholder="08X-"/>
+                  <input onChange={handleAddress('phoneNumber')} type="text" id="phone" class="form-control" placeholder="08X-" required/>
                   </div>
             
                
                   {/* <!--address--> */}
                   <div class="md-form mb-5">
                   <p for="address" class="">บ้านเลขที่</p>
-                  <input onChange={handleAddress('houseNumber')} type="text" id="address" class="form-control" />
+                  <input onChange={handleAddress('houseNumber')} type="text" id="address" class="form-control"required />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">หมู่บ้าน</p>
-                  <input  onChange={handleAddress('village')} type="text" id="address" class="form-control" />
+                  <input  onChange={handleAddress('village')} type="text" id="address" class="form-control" required/>
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">ซอย</p>
-                  <input onChange={handleAddress('lane')} type="text" id="address" class="form-control" />
+                  <input onChange={handleAddress('lane')} type="text" id="address" class="form-control" required/>
                   </div>
 
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">ถนน</p>
-                  <input onChange={handleAddress('streetName')} type="text" id="address" class="form-control" />
+                  <input onChange={handleAddress('streetName')} type="text" id="address" class="form-control" required/>
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">ตำบล</p>
-                  <input onChange={handleAddress('subDistrict')} type="text" id="address" class="form-control" />
+                  <input onChange={handleAddress('subDistrict')} type="text" id="address" class="form-control" required/>
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
                   <p for="address" class="">อำเภอ</p>
-                  <input onChange={handleAddress('district')} type="text" id="address" class="form-control" />
+                  <input onChange={handleAddress('district')} type="text" id="address" class="form-control" required/>
                   </div>
 
               
@@ -383,11 +396,11 @@ const showAddressForm = () => {
                
                   <hr class="mb-4"/>
 
-                  <button class="btn btn-primary btn-lg btn-block" type="button"
-                  data-toggle="modal" data-target="#centralModalWarning">Continue to checkout</button>
-          <PopUpWarn checkout={buy}/>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit"
+                  data-toggle="modal" data-target="#centralModalWarning">ทำรายการ</button>
                 </form>
-    
+                {/* <PopUpWarn checkout={buy}/> */}
+
               </div>
               {/* <!--/.Card--> */}
     
@@ -396,6 +409,7 @@ const showAddressForm = () => {
         </div>
       </div>
     </main>
+    </form>
     </>
         )}
 
@@ -420,18 +434,24 @@ const showError = error => (
     </div>
 );
 
-const showSuccess = success => (
-    <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
-        Thanks! Your Order was successful!
-    </div>
-);
+const showSuccess = (success) => {
+  if(success==true){
+  return(
+    <div class="alert alert-success" role="alert">
+        ทำรายการสั่งซื้อเรียบร้อย 
+  </div>
 
-const showLoading = loading => loading && <h2 className="text-danger">Loading...</h2>;
+  )
+  }
+};
+
+const showLoading = loading => loading && <h2 className="text-danger">กำลังโหลด...</h2>;
 
 const exute =() =>(
-    <button onClick={buy} className="btn btn-primary">Checkout</button>
+    <button onClick={buy} className="btn btn-primary">ทำรายการ</button>
 
 )
+
 
     return(
         <div>
@@ -440,7 +460,7 @@ const exute =() =>(
             {/* {showLoading(data.loading)} */}
             {/* <h2>Total: ${getTotal()}</h2> */}
 
-     
+{redirectUser()}
            {isAuthenticated() ? (
             <div>
             {showAddressForm()}
@@ -449,7 +469,7 @@ const exute =() =>(
             </div>
     ): (
         <Link to="/signin">
-        <button className="btn btn-primary">Please, Sign in to Checkout</button> 
+        <button className="btn btn-primary">โปรดเข้าสู่ระบบก่อน</button> 
         </Link>
     )}
     

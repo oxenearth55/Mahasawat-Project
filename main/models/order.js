@@ -53,11 +53,11 @@ upload: {
    
 },
 
-shippingConfirm: {
-  type: Boolean,
-  default:false
+// shippingConfirm: {
+//   type: Boolean,
+//   default:false
    
-},
+// },
 
 shippingCost: {
   type: Number
