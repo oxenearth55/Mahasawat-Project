@@ -359,7 +359,10 @@ const Cart = () => {
                   fakkhawTotal={getTotalFakkhaw()}
                    setRun={setRun} 
                    run={run}
-                   
+                   shippingCostNabua={Number(getNabuaShip())}
+                   shippingCostFakkhaw={Number(getFakkhawShip())}
+
+
                    />
 
 
@@ -466,9 +469,6 @@ const diplayFakkhawProducts = () =>{
         {displayNabuaProducts()}
         {diplayFakkhawProducts()}
         {noItemsMessage()}
-
-
-        
 
         </Layout>
     );

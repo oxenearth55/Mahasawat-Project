@@ -121,7 +121,7 @@ const UpdateProduct = ({ match }) => {
 
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
-            <h4>Post Photo</h4>
+            <h4>อัพโหลดรูป</h4>
             <div className="form-group">
                 <label className="btn btn-secondary">
                     <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
@@ -129,31 +129,31 @@ const UpdateProduct = ({ match }) => {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Name</label>
+                <label className="text-muted">ชื่อสินค้า</label>
                 <input onChange={handleChange('name')} type="text" className="form-control" value={name} />
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Description</label>
+                <label className="text-muted">คำอธิบาย</label>
                 <textarea onChange={handleChange('description')} className="form-control" value={description} />
             </div>
 
           
             <div className="form-group">
-                <label className="text-muted">Detail</label>
+                <label className="text-muted">รายละเอียด</label>
                 <textarea onChange={handleChange('detail')} className="form-control" value={detail} />
             </div>
 
           
             <div className="form-group">
-                <label className="text-muted">Price</label>
+                <label className="text-muted">ราคา</label>
                 <input onChange={handleChange('price')} type="number" className="form-control" value={price} />
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Category</label>
+                <label className="text-muted">ประเภท</label>
                 <select onChange={handleChange('category')} className="form-control" value={category}>
-                    <option>Please select</option>
+                    <option>โปรดเลือก</option>
                     {categories &&
                         categories.map((c, i) => (
                             <option key={i} value={c._id}>
@@ -163,21 +163,14 @@ const UpdateProduct = ({ match }) => {
                 </select>
             </div>
 
-            <div className="form-group">
-                <label className="text-muted">Shipping</label>
-                <select onChange={handleChange('shipping')} className="form-control">
-                    <option>Please select</option>
-                    <option value="EMS">EMS</option>
-                    <option value="Kerry">Kerry</option>
-                </select>
-            </div>
+          
 
             <div className="form-group">
-                <label className="text-muted">Quantity</label>
+                <label className="text-muted">จำนวน</label>
                 <input onChange={handleChange('quantity')} type="number" className="form-control" value={quantity} />
             </div>
 
-            <button className="btn btn-outline-primary">Update Product</button>
+            <button className="btn btn-outline-primary">อัพเดทสินค้า</button>
         </form>
     );
 
@@ -189,14 +182,14 @@ const UpdateProduct = ({ match }) => {
 
     const showSuccess = () => (
         <div className="alert alert-info" style={{ display: createdProduct ? '' : 'none' }}>
-            <h2>{`${createdProduct}`} is updated!</h2>
+            <h2>{`${createdProduct}`} ถูกเปลี่ยนแปลงเรียบร้อย!</h2>
         </div>
     );
 
     const showLoading = () =>
         loading && (
             <div className="alert alert-success">
-                <h2>Loading...</h2>
+                <h2>กำลังโหลด...</h2>
             </div>
         );
 
@@ -209,7 +202,7 @@ const UpdateProduct = ({ match }) => {
     };
 
     return (
-        <Layout title="Add a new product" description={` Update a Product`} headerImg="dashBoardImgLayout"
+        <Layout title="แก้ไขสินค้า" description={` ท่านสามารถแก้ไขสินค้าได้ที่นี่`} headerImg="dashBoardImgLayout"
         >
             <div className="row">
                 <div className="col-md-8 offset-md-2">

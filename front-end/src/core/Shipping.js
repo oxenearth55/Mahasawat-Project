@@ -14,19 +14,19 @@ const Shipping = ({shopId,  setRun = f => f,
     const [shippingProvider1, setShippingProvider1] = useState ({
         providerName:'',
         shippingCost: 0,
-        avilable: false
+        available: false
     })
 
     const [shippingProvider2, setShippingProvider2] = useState ({
         providerName:'',
         shippingCost: 0,
-        avilable: false
+        available: false
     })
 
     const [shippingProvider3, setShippingProvider3] = useState ({
         providerName:'',
         shippingCost: 0,
-        avilable: false
+        available: false
     })
     
 
@@ -58,7 +58,7 @@ const getShopInfo = shopId => {
 
             providerName:data.shippingProvider1.providerName,
             shippingCost:data.shippingProvider1.shippingCost,
-            avilable:data.shippingProvider1.avilable
+            available:data.shippingProvider1.available
         
         })
 
@@ -66,7 +66,7 @@ const getShopInfo = shopId => {
 
             providerName:data.shippingProvider2.providerName,
             shippingCost:data.shippingProvider2.shippingCost,
-            avilable:data.shippingProvider2.avilable
+            available:data.shippingProvider2.available
         
         })
 
@@ -74,7 +74,7 @@ const getShopInfo = shopId => {
 
             providerName:data.shippingProvider3.providerName,
             shippingCost:data.shippingProvider3.shippingCost,
-            avilable:data.shippingProvider3.avilable
+            available:data.shippingProvider3.available
         
         })
     }
@@ -94,7 +94,7 @@ const getShopInfo = shopId => {
       };
 
       const checkAvilable = () =>{
-          if(shippingProvider1.avilable == true){
+          if(shippingProvider1.available == true){
               return(
                   <>
                       <option >เลือกการขนส่ง</option>
@@ -106,7 +106,7 @@ const getShopInfo = shopId => {
               )
 
           }
-           if(shippingProvider2.avilable == true){
+           if(shippingProvider2.available == true){
             return(
                 <>
            <option value={shippingProvider2}>{shippingProvider2.providerName}</option>
@@ -116,7 +116,7 @@ const getShopInfo = shopId => {
 
         }
 
-         if(shippingProvider3.avilable == true){
+         if(shippingProvider3.available == true){
             return(
                 <>
            <option value={shippingProvider3}>{shippingProvider3.providerName}</option>
@@ -133,11 +133,11 @@ const getShopInfo = shopId => {
 
 
         return(<>
-        <select  onChange={handleChange('avilable')} className="form-control"  required>
+        <select  onChange={handleChange('available')} className="form-control"  required>
         <option value={0}>โปรดเลือก</option>
                     {shippingProvider &&
                         shippingProvider.map((res, i) => {
-                       if(res.avilable!==false){
+                       if(res.available!==false){
                         return(
                             <option key={i} value={res.shippingCost}>
                                 {res.providerName}

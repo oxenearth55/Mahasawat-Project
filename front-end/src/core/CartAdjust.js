@@ -1,14 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import Layout from './Layout';
-import { getCart, getNabuaProducts,getfakkhawProducts, getFakkhaw } from './cartHelpers';
+import React, { useState} from 'react';
+
 import { updateItemNabua,updateItemFakkhaw} from './cartHelpers'; 
 
 const CartAdjust = ({product, productPrice,
     setRun = f => f, // NOTE default value of function 
     run = undefined,  // NOTE default value of undefined,
     adjustAmoumt = false,
-    showEachTotal = false,
     nabua = false,
     fakkhaw = false
 }) =>{
@@ -63,24 +60,6 @@ const CartAdjust = ({product, productPrice,
             )
       }
     }
-
-    const showEachTotals = () => {
-        const total = productPrice*count;
-
-        if(showEachTotal){
-            setRun(!run);
-
-            return(
-                <>
-                {total}
-                </>
-            )
-        }
-    }
-
-
-
-
 
 
     return (

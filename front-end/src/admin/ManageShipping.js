@@ -20,19 +20,19 @@ const ManageShipping = (props) =>
     const [shippingProvider1, setShippingProvider1] = useState ({
         providerName:'',
         shippingCost: 0,
-        avilable: false
+        available: false
     })
 
     const [shippingProvider2, setShippingProvider2] = useState ({
         providerName:'',
         shippingCost: 0,
-        avilable: false
+        available: false
     })
 
     const [shippingProvider3, setShippingProvider3] = useState ({
         providerName:'',
         shippingCost: 0,
-        avilable: false
+        available: false
     })
 
      //SECTION useEffect
@@ -54,7 +54,7 @@ const getShopInfo = shopId => {
 
             providerName:data.shippingProvider1.providerName,
             shippingCost:data.shippingProvider1.shippingCost,
-            avilable:data.shippingProvider1.avilable
+            available:data.shippingProvider1.available
         
         })
 
@@ -62,7 +62,7 @@ const getShopInfo = shopId => {
 
             providerName:data.shippingProvider2.providerName,
             shippingCost:data.shippingProvider2.shippingCost,
-            avilable:data.shippingProvider2.avilable
+            available:data.shippingProvider2.available
         
         })
 
@@ -70,7 +70,7 @@ const getShopInfo = shopId => {
 
             providerName:data.shippingProvider3.providerName,
             shippingCost:data.shippingProvider3.shippingCost,
-            avilable:data.shippingProvider3.avilable
+            available:data.shippingProvider3.available
         
         })
 
@@ -257,7 +257,7 @@ const displayProvider1 = () => {
     <div class="col-md-1 mb-3 mx-5">
     <label for="validationDefault01">การนำไปใช้</label>
 
-    <select onChange={handleChange1('avilable')} className="form-control" >
+    <select onChange={handleChange1('available')} className="form-control" >
     <option >เลือกสถานะ</option>
                     <option value={false}>ไม่ใช้</option>
                     <option value={true}>ใช้</option>
@@ -272,7 +272,7 @@ const displayProvider1 = () => {
          <div class="col-md-2 mb-2 mx-5 mt-4">
       <label for="validationDefault01">สถานะ: </label>
 
-        {showAvalible(shippingProvider1.avilable)}
+        {showAvalible(shippingProvider1.available)}
     
     </div>
          <button onClick={clickSubmit1} class="btn btn-primary btn-sm px-3 my-3" type="submit">อัพเดท</button>
@@ -308,7 +308,7 @@ const displayProvider2 = () => {
     <div class="col-md-1 mb-3 mx-5">
     <label for="validationDefault01">การนำไปใช้</label>
 
-    <select onChange={handleChange2('avilable')} className="form-control" >
+    <select onChange={handleChange2('available')} className="form-control" >
     <option >เลือกสถานะ</option>
                     <option value={false}>ไม่ใช้</option>
                     <option value={true}>ใช้</option>
@@ -321,7 +321,7 @@ const displayProvider2 = () => {
          <div class="col-md-2 mb-2 mx-5 mt-4">
       <label for="validationDefault01">สถานะ: </label>
 
-        {showAvalible(shippingProvider2.avilable)}
+        {showAvalible(shippingProvider2.available)}
     
     </div>
          <button onClick={clickSubmit2} class="btn btn-primary btn-sm px-3 my-3" type="submit">อัพเดท</button>
@@ -358,7 +358,7 @@ const displayProvider3 = () => {
     <div class="col-md-1 mb-3 mx-5">
     <label for="validationDefault01">การนำไปใช้</label>
 
-    <select onChange={handleChange3('avilable')} className="form-control" >
+    <select onChange={handleChange3('available')} className="form-control" >
     <option >เลือกสถานะ</option>
                     <option value={false}>ไม่ใช้</option>
                     <option value={true}>ใช้</option>
@@ -371,7 +371,7 @@ const displayProvider3 = () => {
          <div class="col-md-2 mb-2 mx-5 mt-4">
       <label for="validationDefault01">สถานะ: </label>
 
-        {showAvalible(shippingProvider3.avilable)}
+        {showAvalible(shippingProvider3.available)}
     
     </div>
          <button onClick={clickSubmit3} class="btn btn-primary btn-sm px-3 my-3 " type="submit">อัพเดท</button>

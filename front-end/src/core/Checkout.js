@@ -17,7 +17,9 @@ const Checkout = (
         nabuaTotal,
         fakkhawTotal,
     setRun = f => f, 
-    run = undefined
+    run = undefined,
+    shippingCostNabua,
+    shippingCostFakkhaw
 
 
 
@@ -31,6 +33,7 @@ const Checkout = (
         instance: {}
     });
 
+    const [aleart,setAleart] = useState(false)
     const [redirectToOrder, setRedirectToOrder] = useState(false)
 
     const redirectUser = () => {
@@ -91,18 +94,35 @@ const { user, token } = isAuthenticated();
 //NOTE Rename of address from state => reduce confusing for using duplicated data (variable)
 // let deliveryAddress = data.address;
 
+const aleartShip = () =>{
+if(aleart==true){
+
+  return(
+    
+    <>
+    <div class="alert alert-danger text-center" role="alert">
+      โปรดเลือกการขนส่ง
+</div>
+    </>
+  )
+}
+}
 
 
-
-const buy = () => {
+const buy = event => {
    
+  event.preventDefault();
 
 if(nabuaProducts[0] !=undefined){
-    const createOrderData ={ //NOTE keep it as Object before storing in Datase
+
+  if(shippingCostNabua !==0 && shippingCostNabua!='' && ( (shippingCostFakkhaw !==0 && fakkhawProducts[0]  !=undefined) ||  (shippingCostFakkhaw ==0 && fakkhawProducts[0] ==undefined) )  ){
+
+    const createOrderData = { //NOTE keep it as Object before storing in Datase
         products: nabuaProducts,
         amount: nabuaTotal,
         shop:'5e6a17a35c566806d6a101dd',
-        address: address
+        address: address,
+        shippingCost:shippingCostNabua
         
     };
 
@@ -112,20 +132,40 @@ if(nabuaProducts[0] !=undefined){
         } else {
 
             setData({...data, success: true}) 
+            setSuccess(true)
 
-
+              
         }
-    });
+        emptyCart(()=>{
+          setRun(!run);                
+          setData({
+              loading: false,
+              success: true
+      
+          });
+          setRedirectToOrder(true)
+      }) 
+      
 
+    });
+    
+
+}
+else{
+  setAleart(true);
+}
 }
 
 
 if(fakkhawProducts[0] !=undefined){
+  if(shippingCostFakkhaw !==0 && shippingCostFakkhaw!='' && ( (shippingCostNabua !==0 && nabuaProducts[0]  !=undefined) ||  (shippingCostNabua ==0 && nabuaProducts[0] ==undefined) )   ){
+
     const createOrderData ={ //NOTE keep it as Object before storing in Datase
         products: fakkhawProducts,
         amount: fakkhawTotal,
         shop:'5e6a17ac5c566806d6a101de',
-        address: address
+        address: address,
+        shippingCost:shippingCostFakkhaw
     };
 
     createOrder(user._id, token, createOrderData).then(data => {
@@ -137,22 +177,28 @@ if(fakkhawProducts[0] !=undefined){
 
 
         }
+          emptyCart(()=>{
+              setRun(!run);                
+              setData({
+                  loading: false,
+                  success: true
+          
+              });
+              setRedirectToOrder(true)
+          }) 
+          
+
     });
+  }
+  else{
+    setAleart(true);
+
+  }
 }
 
 //  NOTE After finished create order, remove every thing on cart page by default
-emptyCart(()=>{
-    setRun(!run);                
-    setData({
-        loading: false,
-        success: true
-
-    });
-    setRedirectToOrder(true)
-}) 
 
 };
-
 
            
         
@@ -173,7 +219,6 @@ emptyCart(()=>{
 
             // NOTE emty cart
 
-          
 
             
 
@@ -182,7 +227,7 @@ emptyCart(()=>{
 // NOTE grab address from a user inputs
 const handleAddress = name => event => {
   setAddress({ ...address, [name]: event.target.value });
-  console.log('nabua is ' +fakkhawProducts[1])
+  console.log('nabua ship is ' +data.success)
 };
 
 const showAddressForm = () => {
@@ -194,6 +239,7 @@ const showAddressForm = () => {
 
                  {isAuthenticated() && (
 <>
+{aleartShip()}
     <form onSubmit={buy}>
       {/* // <!--Main layout--> */}
       <main class="mt-5 pt-4 ">
@@ -397,7 +443,7 @@ const showAddressForm = () => {
                   <hr class="mb-4"/>
 
                   <button class="btn btn-primary btn-lg btn-block" type="submit"
-                  data-toggle="modal" data-target="#centralModalWarning">ทำรายการ</button>
+                  >ทำรายการ</button>
                 </form>
                 {/* <PopUpWarn checkout={buy}/> */}
 

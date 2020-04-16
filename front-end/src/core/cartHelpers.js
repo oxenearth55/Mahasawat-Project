@@ -194,17 +194,32 @@ export const itemTotal = () => {
 // };
 
 export const getNabua = () => {
+    let nabua = [];
+
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('nabua')) {
+            nabua = JSON.parse(localStorage.getItem('nabua')); //NOTE keep Object in cart Array 
+if(nabua.length ==0){
+    localStorage.removeItem('nabuaShip');
+
+}
             return JSON.parse(localStorage.getItem('nabua'));
         }
+
     }
     return [];
 };
 
 export const getFakkhaw = () => {
+    let fakkhaw = [];
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('fakkhaw')) {
+            fakkhaw = JSON.parse(localStorage.getItem('fakkhaw')); //NOTE keep Object in cart Array 
+            if(fakkhaw.length == 0){
+                localStorage.removeItem('fakkhawShip');
+            
+            }
+
             return JSON.parse(localStorage.getItem('fakkhaw'));
         }
     }

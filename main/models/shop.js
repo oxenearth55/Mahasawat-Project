@@ -41,14 +41,14 @@ const shopSchema = new mongoose.Schema({
           shippingProvider1: {
             providerName:String,
             shippingCost:Number,      
-            avilable:{ type:Boolean, default:false},
+            available:{ type:Boolean, default:false},
           
           },
 
           shippingProvider2: {
             providerName:String,
             shippingCost:Number,      
-            avilable:{ type:Boolean, default:false},
+            available:{ type:Boolean, default:false},
           
           },
 
@@ -56,7 +56,7 @@ const shopSchema = new mongoose.Schema({
           shippingProvider3: {
             providerName:String,
             shippingCost:Number,      
-            avilable:{ type:Boolean, default:false},
+            available:{ type:Boolean, default:false},
           
           },
 
