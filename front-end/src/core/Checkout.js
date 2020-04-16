@@ -19,7 +19,8 @@ const Checkout = (
     setRun = f => f, 
     run = undefined,
     shippingCostNabua,
-    shippingCostFakkhaw
+    shippingCostFakkhaw,
+    itemtotal
 
 
 
@@ -115,7 +116,7 @@ const buy = event => {
 
 if(nabuaProducts[0] !=undefined){
 
-  if(shippingCostNabua !==0 && shippingCostNabua!='' && ( (shippingCostFakkhaw !==0 && fakkhawProducts[0]  !=undefined) ||  (shippingCostFakkhaw ==0 && fakkhawProducts[0] ==undefined) )  ){
+  if(shippingCostNabua !==0 && shippingCostNabua!='' && ( (shippingCostFakkhaw !==0 && fakkhawProducts[0] !==undefined) ||  (shippingCostFakkhaw ==0 && fakkhawProducts[0] ==undefined) )  ){
 
     const createOrderData = { //NOTE keep it as Object before storing in Datase
         products: nabuaProducts,
@@ -158,7 +159,7 @@ else{
 
 
 if(fakkhawProducts[0] !=undefined){
-  if(shippingCostFakkhaw !==0 && shippingCostFakkhaw!='' && ( (shippingCostNabua !==0 && nabuaProducts[0]  !=undefined) ||  (shippingCostNabua ==0 && nabuaProducts[0] ==undefined) )   ){
+  if(shippingCostFakkhaw !==0 && shippingCostFakkhaw!='' && ( (shippingCostNabua !==0 && nabuaProducts[0]  !==undefined) ||  (shippingCostNabua ==0 && nabuaProducts[0] ==undefined) )   ){
 
     const createOrderData ={ //NOTE keep it as Object before storing in Datase
         products: fakkhawProducts,
@@ -442,7 +443,7 @@ const showAddressForm = () => {
                
                   <hr class="mb-4"/>
 
-                  <button class="btn btn-primary btn-lg btn-block" type="submit"
+                  <button class="btn btn-primary btn-lg btn-block text-center" type="submit"
                   >ทำรายการ</button>
                 </form>
                 {/* <PopUpWarn checkout={buy}/> */}
@@ -480,8 +481,8 @@ const showError = error => (
     </div>
 );
 
-const showSuccess = (success) => {
-  if(success==true){
+const showSuccess = () => {
+  if(data.success==true){
   return(
     <div class="alert alert-success" role="alert">
         ทำรายการสั่งซื้อเรียบร้อย 
@@ -498,15 +499,28 @@ const exute =() =>(
 
 )
 
+const noItemsMessage = () => {
+  if(itemtotal <=0){
+  return(    
+    <div>
+      <h2>
+          รถเข็นของคุณว่างอยู่ <br /> 
+      </h2>
+      <div className="row">
+<Link to="/shop/:searchResult/:search">
+<br/>
+<br/>
+<h3>โปรดเลือกสินค้าที่ท่านต้องการ</h3></Link>
+<br/>  
 
-    return(
-        <div>
-            {/* {showError(data.error)} */}
-            {/* {showSuccess(data.success)} */}
-            {/* {showLoading(data.loading)} */}
-            {/* <h2>Total: ${getTotal()}</h2> */}
 
-{redirectUser()}
+      </div>
+      </div>
+  );
+
+  }else{
+      return(
+        <>
            {isAuthenticated() ? (
             <div>
             {showAddressForm()}
@@ -518,8 +532,18 @@ const exute =() =>(
         <button className="btn btn-primary">โปรดเข้าสู่ระบบก่อน</button> 
         </Link>
     )}
+        </>
+      )
+  }
+}
+    return(
+        <>
+          
+          {showSuccess()}
+
+          {noItemsMessage()}
     
-        </div>
+        </>
 
     );
 }

@@ -328,49 +328,11 @@ const Cart = () => {
         );
     };
 //NOTE if not have anything in localsotage (cart)
-    const noItemsMessage = () => {
-        if(itemtotal <=0){
-        return(    
-          <div>
-            <h2>
-                รถเข็นของคุณว่างอยู่ <br /> 
-            </h2>
-            <div className="row">
-<Link to="/shop/:searchResult/:search">
-  <br/>
-  <br/>
-   <h3>โปรดเลือกสินค้าที่ท่านต้องการ</h3></Link>
-   <br/>  
+   
+          
 
 
-            </div>
-            </div>
-        );
-
-        }else{
-            return(
-            <>
-            
-             <Checkout
-                  
-                  nabuaProducts={nabuaProducts}
-                  nabuaTotal={getTotalNabua()}
-                  fakkhawProducts={fakkhawProducts}
-                  fakkhawTotal={getTotalFakkhaw()}
-                   setRun={setRun} 
-                   run={run}
-                   shippingCostNabua={Number(getNabuaShip())}
-                   shippingCostFakkhaw={Number(getFakkhawShip())}
-
-
-                   />
-
-
-            </>
-            );
-        }
-    
-};
+          
 
 //SECTION Display shop related to product.shop  
 const [showNabua,setShowNabua] =useState (false); // use to display shop if it is valid
@@ -468,8 +430,23 @@ const diplayFakkhawProducts = () =>{
 <PopUpWarn/>
         {displayNabuaProducts()}
         {diplayFakkhawProducts()}
-        {noItemsMessage()}
+        <>
+            
+            <Checkout
+                 
+                 nabuaProducts={nabuaProducts}
+                 nabuaTotal={getTotalNabua()}
+                 fakkhawProducts={fakkhawProducts}
+                 fakkhawTotal={getTotalFakkhaw()}
+                  setRun={setRun} 
+                  run={run}
+                  shippingCostNabua={Number(getNabuaShip())}
+                  shippingCostFakkhaw={Number(getFakkhawShip())}
+                  itemtotal={itemtotal}
 
+                  />
+
+                  </>
         </Layout>
     );
 }
