@@ -18,8 +18,8 @@ const Checkout = (
         fakkhawTotal,
     setRun = f => f, 
     run = undefined,
-    shippingCostNabua,
-    shippingCostFakkhaw,
+    shippingNabua,
+    shippingFakkhaw,
     itemtotal
 
 
@@ -116,14 +116,14 @@ const buy = event => {
 
 if(nabuaProducts[0] !=undefined){
 
-  if(shippingCostNabua !==0 && shippingCostNabua!='' && ( (shippingCostFakkhaw !==0 && fakkhawProducts[0] !==undefined) ||  (shippingCostFakkhaw ==0 && fakkhawProducts[0] ==undefined) )  ){
+  if(shippingNabua.shippingCost !==0 && shippingNabua.shippingCost!=undefined && ( (shippingFakkhaw.shippingCost !==undefined && shippingFakkhaw.shippingCost !==0 && fakkhawProducts[0] !==undefined) ||  (shippingFakkhaw.shippingCost == undefined && fakkhawProducts[0] ==undefined) )  ){
 
     const createOrderData = { //NOTE keep it as Object before storing in Datase
         products: nabuaProducts,
         amount: nabuaTotal,
         shop:'5e6a17a35c566806d6a101dd',
         address: address,
-        shippingCost:shippingCostNabua
+        shippingProvider:shippingNabua
         
     };
 
@@ -159,14 +159,14 @@ else{
 
 
 if(fakkhawProducts[0] !=undefined){
-  if(shippingCostFakkhaw !==0 && shippingCostFakkhaw!='' && ( (shippingCostNabua !==0 && nabuaProducts[0]  !==undefined) ||  (shippingCostNabua ==0 && nabuaProducts[0] ==undefined) )   ){
+  if(shippingFakkhaw.shippingCost !==0 && shippingFakkhaw.shippingCost!=undefined && ( (shippingNabua.shippingCost !==0 && shippingNabua.shippingCost !== undefined && nabuaProducts[0]  !==undefined) ||  (shippingNabua.shippingCost ==undefined && nabuaProducts[0] ==undefined) )   ){
 
     const createOrderData ={ //NOTE keep it as Object before storing in Datase
         products: fakkhawProducts,
         amount: fakkhawTotal,
         shop:'5e6a17ac5c566806d6a101de',
         address: address,
-        shippingCost:shippingCostFakkhaw
+        shippingProvider:shippingFakkhaw
     };
 
     createOrder(user._id, token, createOrderData).then(data => {
@@ -484,7 +484,7 @@ const showError = error => (
 const showSuccess = () => {
   if(data.success==true){
   return(
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success text-center" role="alert">
         ทำรายการสั่งซื้อเรียบร้อย 
   </div>
 

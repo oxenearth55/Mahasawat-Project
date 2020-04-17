@@ -36,16 +36,22 @@ export const addItem = (item = [], count = 0, next = f => f) => {
 
 
 //SECTION SHIPPING
-export const addNabuaShip = (item = [], count = 0, next = f => f) => {
-    let nabuaShip = [];
+export const addNabuaShip = (item , count = 0, next = f => f) => {
+    // let nabuaShip = [];
+    var nabuaShip =[]
+    // let object = JSON.stringify(item);
+
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('nabuaShip')) {  //If it has cart in local storage then ...
             //NOTE to convert json to object 
             // get product from local storage 
             nabuaShip = JSON.parse(localStorage.getItem('nabuaShip'));
         }   
-        nabuaShip = item;
-        localStorage.setItem('nabuaShip', JSON.stringify(nabuaShip));
+
+        nabuaShip = item
+    
+    
+        localStorage.setItem('nabuaShip', item);
         next();
     }
 };
@@ -61,13 +67,14 @@ export const addFakkhawShip = (item = [], count = 0, next = f => f) => {
         }   
         fakkhawShip = item;
         
-        localStorage.setItem('fakkhawShip', JSON.stringify(item));
+        localStorage.setItem('fakkhawShip',item);
         next();
     }
 };
 
 
 export const getNabuaShip = () => {
+    
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('nabuaShip')) {
             return JSON.parse(localStorage.getItem('nabuaShip'));
@@ -393,8 +400,6 @@ export const emptyNabua = () => {
     if (typeof window !== 'undefined') {
         // localStorage.removeItem('cart');
         localStorage.removeItem('nabuaShip');
-
-
     }
 };
 

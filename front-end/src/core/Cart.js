@@ -25,8 +25,10 @@ const Cart = () => {
     const [shop,setShop] = useState('');
     const [itemtotal,setItemtotal] = useState(0);
 
-    const [nabuaShip, setNabuaShip] = useState(0); 
-    const [fakkhawShip, setFakkhawShip] = useState(0); 
+    const [nabuaShip, setNabuaShip] = useState(); 
+    const [fakkhawShip, setFakkhawShip] = useState(); 
+
+
 
 
     
@@ -44,6 +46,7 @@ const Cart = () => {
         setFakkhawShip(getFakkhawShip())
         setNabuaShip(getNabuaShip())
         
+        
     }, [run]);
 
 
@@ -55,6 +58,7 @@ const Cart = () => {
         emptyNabua();
       }
     }
+
 
     //SECTION Display Cart 
 
@@ -158,7 +162,7 @@ const Cart = () => {
         <td colspan="2">
         <h5 class="mt-5 ml-5">
 
-        <strong>  ค่าจัดส่ง {fakkhawShip}  </strong>
+        <strong>  ค่าจัดส่ง {fakkhawShip.shippingCost}  </strong>
        </h5>
        </td>
 
@@ -293,7 +297,7 @@ const Cart = () => {
       <td colspan="2">
       <h5 class="mt-5 ml-5">
 
-      <strong>  ค่าจัดส่ง {nabuaShip}  </strong>
+      <strong>  ค่าจัดส่ง {nabuaShip.shippingCost}  </strong>
      </h5>
      </td>
 
@@ -366,21 +370,45 @@ const showTotal = () => {
    
 
 
-const getTotalNabua = () => {
+const calculateNabuaPrice = () => {
        
-    return nabuaProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
-        return Number(nabuaShip)+ currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
+  return nabuaProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
+    return currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
+
     }, 0)
 }
 
+const calculateFakkhawPrice = () => {      
+    return fakkhawProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
+     return currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
+
+    }, 0)
+}
 
 const getTotalFakkhaw = () => {
-       
-    return fakkhawProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
-        return Number(fakkhawShip)+currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
-
-    }, 0)
+let total = calculateFakkhawPrice() 
+if(fakkhawShip !==undefined){
+if(fakkhawShip.shippingCost !== undefined && fakkhawShip!==0){
+return total + fakkhawShip.shippingCost
 }
+else{
+  return calculateFakkhawPrice() 
+}
+}
+}
+
+const getTotalNabua = () => {
+  let total = calculateNabuaPrice() 
+  if(nabuaShip !==undefined){
+  if(nabuaShip.shippingCost !== undefined && nabuaShip!==0){
+  return total + nabuaShip.shippingCost
+  }
+  else{
+    return calculateNabuaPrice() 
+  }
+  }
+  }
+
 
 //SECTION Display products 
 
@@ -440,8 +468,8 @@ const diplayFakkhawProducts = () =>{
                  fakkhawTotal={getTotalFakkhaw()}
                   setRun={setRun} 
                   run={run}
-                  shippingCostNabua={Number(getNabuaShip())}
-                  shippingCostFakkhaw={Number(getFakkhawShip())}
+                  shippingNabua={(getNabuaShip())}
+                  shippingFakkhaw={(getFakkhawShip())}
                   itemtotal={itemtotal}
 
                   />

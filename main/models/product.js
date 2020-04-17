@@ -71,7 +71,7 @@ const productSchema = new mongoose.Schema(
             }
              
 
-        },    
+        }    
     ]
      
 

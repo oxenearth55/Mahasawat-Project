@@ -37,6 +37,13 @@ const OrderSchema = new mongoose.Schema(
       subDistrict: String,
       postalNo: String
     },
+
+    shippingProvider: {
+      providerName:String,
+      shippingCost:Number
+    },
+
+
     shop: {
       type: ObjectId,
       ref: "Shop"

@@ -225,10 +225,11 @@ exports.uploadImage = (req, res) => {
 <div style="font-family: inherit; text-align: inherit; margin-left: 0px"><br></div>
 <div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">เลขรายการ : ${order._id}</span></div>
 <div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ชื่อ :  ${order.user.name}</span></div>
-<div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ค่าขนส่ง :  ${order.shippingCost}</span></div>
-<div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ราคาสินค้า :  ${order.amount}</span></div>
-<div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ราคาทั้งหมด :  ${Total}</span></div>
+<div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ขนส่งด้วย :  ${order.shippingProvider.providerName}</span></div>
+<div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ค่าขนส่ง :  ${order.shippingProvider.shippingCost}</span></div>
+<div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">ราคาทั้งหมด :  ${order.amount}</span></div>
 <div style="font-family: inherit; text-align: inherit; margin-left: 0px"><span style="box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-family: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial">จำนวนสินค้า :  ${order.products.length}</span></div>
+
 <div style="font-family: inherit; text-align: inherit; margin-left: 0px"><br></div>
 <div style="font-family: inherit; text-align: inherit; margin-left: 0px"><br>
 </div><div></div></div></td>
@@ -416,18 +417,23 @@ ${order.products
           <h4>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h4>
           <h5>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ Mahasawat</h5>
 
-          <p>ชื่อ: ${order._id}</p>  
+          <p>เลขรายการ: ${order._id}</p>  
           <p>ชื่อ: ${order.user.name}</p>  
           <p>อีเมลลูกค้า: ${order.user.email}</p>
           <p>จำนวนสินค้า: ${order.products.length}</p>
-          <p>ราคา: ${order.amount}</p>
+          <p>ราคาทั้งหมด: ${order.amount}</p>
+          <p>ขนส่งด้วย: ${order.shippingProvider.providerName}</p>
+          <p>ค่าขนส่ง: ${order.shippingProvider.shippingCost}</p>
+
+
+
           <p>Product details:</p>
           <hr />
           ${order.products
               .map(p => {
                   return `<div>
                       <p>ชื่อสินค้า: ${p.name}</p>
-                      <h3>ราคา: ${p.price}</p>
+                      <p>ราคา: ${p.price}</p>
                       <p>จำนวน: ${p.count}</p>
                       </hr>
               </div>`;
@@ -447,11 +453,14 @@ ${order.products
           <h4>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h4>
           <h5>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ Mahasawat</h5>
 
-          <p>ชื่อ: ${order._id}</p>  
+          <p>เลขรายการ: ${order._id}</p>  
           <p>ชื่อ: ${order.user.name}</p>  
           <p>อีเมลลูกค้า: ${order.user.email}</p>
           <p>จำนวนสินค้า: ${order.products.length}</p>
-          <p>ราคา: ${order.amount}</p>
+          <p>ราคาทั้งหมด: ${order.amount}</p>
+          <p>ขนส่งด้วย: ${order.shippingProvider.providerName}</p>
+          <p>ค่าขนส่ง: ${order.shippingProvider.shippingCost}</p>
+
           <p>Product details:</p>
           <hr />
           ${order.products
@@ -633,9 +642,9 @@ ${order.products
           <div style="font-family: inherit; text-align: center"><br></div>
           <div style="font-family: inherit; text-align: inherit">เลขรายการ : ${order._id} </div>
           <div style="font-family: inherit; text-align: inherit">ชื่อ : ${order.user.name}</div>
-          <div style="font-family: inherit; text-align: inherit">ค่าขนส่ง : ${order.shippingCost}</div>
-          <div style="font-family: inherit; text-align: inherit">ค่าสินค้า : ${order.amount}</div>
-          <div style="font-family: inherit; text-align: inherit">ราคาทั้งหมด : ${Total}</div>
+          <div style="font-family: inherit; text-align: inherit">ขนส่งด้วย : ${order.shippingProvider.providerName}</div>
+          <div style="font-family: inherit; text-align: inherit">ค่าขนส่ง : ${order.shippingProvider.shippingCost}</div>
+          <div style="font-family: inherit; text-align: inherit">ราคาทั้งหมด : ${order.amount}</div>
           <div style="font-family: inherit; text-align: inherit">จำนวนสินค้า : ${order.products.length}</div>
           <div style="font-family: inherit; text-align: inherit"><br></div>
           <div style="font-family: inherit; text-align: inherit"><br></div>

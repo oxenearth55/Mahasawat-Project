@@ -90,7 +90,7 @@ const getShopInfo = shopId => {
         }
         setRun(!run);     
         //    console.log('res is '+ getFakkhawShip().providerName)
-        //    console.log(JSON.stringify(getFakkhawShip()))
+           console.log(JSON.stringify(shippingProvider1))
       };
 
       const checkAvilable = () =>{
@@ -139,7 +139,7 @@ const getShopInfo = shopId => {
                         shippingProvider.map((res, i) => {
                        if(res.available!==false){
                         return(
-                            <option key={i} value={res.shippingCost}>
+                            <option key={i} value={JSON.stringify(res)}>
                                 {res.providerName}
                             </option>
       )}})}

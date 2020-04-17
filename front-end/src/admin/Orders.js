@@ -23,9 +23,10 @@ const Orders = ({match}) => {
     const [photo , setPhoto] = useState([]);
     
     //NOTE checkibng already update shipping cost or not
-    const [success, setSuccess] = useState(false)
-    const [successUp, setSuccessUp] = useState(false)
-    const [updatetext, setUpdateText] = useState([])
+    const [success, setSuccess] = useState(false);
+    const [successUp, setSuccessUp] = useState(false);
+    const [updatetext, setUpdateText] = useState([]);
+    const [shippingProvider,setShippingProvider] = useState([]);
 
     const [error, setError] = useState(false)
 
@@ -112,6 +113,7 @@ const Orders = ({match}) => {
                 setOrder(data)
                 setProducts(data.products)
                 setAddress(data.address)
+                setShippingProvider(data.shippingProvider)
                 setPhoto(data.photo)
                 setValues({
                     ...values,                   
@@ -262,13 +264,16 @@ const Orders = ({match}) => {
                             </li>
 
                             <li className="list-group-item">
-                                ราคาสินค้า: ฿ {order.amount}
+                                ราคาทั้งหมด: ฿ {order.amount}
                             </li>
 
-                            {/* <li className="list-group-item">
-                                ราคาค่าส่ง: ฿ {order.shippingCost} 
+                            <li className="list-group-item">
+                                ขนส่งด้วย: {shippingProvider.providerName}
                             </li>
-                          */}
+                            <li className="list-group-item">
+                                ค่าส่ง: ฿ {shippingProvider.shippingCost} 
+                            </li>
+                         
                             
 {/*                 
                             <li className="list-group-item">

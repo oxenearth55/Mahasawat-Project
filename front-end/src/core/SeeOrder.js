@@ -27,6 +27,8 @@ const SeeOrder = (props) => {
     const [empty , setEmpty] = useState(true);
     const [shopInfo,setShopInfo] = useState([]);
     const [bankAccount, setBankAccount] = useState([]);
+    const [shippingProvider,setShippingProvider] = useState([]);
+
 
 //NOTE Calculate Total price (Shop cost and total product price)
 // const [amount, setAmount] = useState(0)
@@ -160,6 +162,7 @@ const handleChange = name => event => {
                 setOrder(data)
                 setProducts(data.products)
                 setAddress(data.address)
+                setShippingProvider(data.shippingProvider)
                 setValues({
                     ...values,                   
                     formData: new FormData()
@@ -375,18 +378,22 @@ const handleChange = name => event => {
                         </li>
                         
                         <li className="list-group-item">
-                                ราคาสินค้า: ฿ {order.amount}
+                                ราคาทั้งหมด: ฿ {order.amount}
                             </li>
 
-                            {/* <li className="list-group-item">
-                                ราคาค่าส่ง: ฿ {order.shippingCost} 
+
+                            <li className="list-group-item">
+                                ขนส่งด้วย: {shippingProvider.providerName}
                             </li>
-                         
+
+                            <li className="list-group-item">
+                                ค่าขนส่ง: ฿ {shippingProvider.shippingCost}
+                            </li>
+
+                        
                             
                 
-                            <li className="list-group-item">
-                                ราคาทั้งหมด: ฿ {showPrice()}
-                            </li> */}
+                           
                         <li className="list-group-item">
                         รายการของ: {user.name}
                         </li>

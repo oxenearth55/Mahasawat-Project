@@ -55,7 +55,7 @@ app.use('/api', shopRoutes);
 app.use('/api', braintreeRoutes);
 
 
-const port = process.env.PORT || 49153; // NOTE 49153 is DEFAULT PORT
+const port = process.env.PORT || 49154; // NOTE 49153 is DEFAULT PORT
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
