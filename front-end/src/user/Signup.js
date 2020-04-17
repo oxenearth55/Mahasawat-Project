@@ -1,11 +1,11 @@
 import React, {useState} from 'react'; 
 import Layout from '../core/Layout';
-import {API} from '../config';
+// import {API} from '../config';
 import './Signup.css';
 // import { signup } from '../auth';
 import { Link } from 'react-router-dom';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
-
+import {signup} from './apiUser';
 
 const Signup = () => {
   
@@ -26,22 +26,22 @@ const Signup = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const signup = user => {
-    return fetch(`${API}/signup`, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => {
-            console.log(err);
-        });
-};
+//   const signup = user => {
+//     return fetch(`${API}/signup`, {
+//         method: 'POST',
+//         headers: {
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(user)
+//     })
+//         .then(response => {
+//             return response.json();
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         });
+// };
 
   const clickSubmit = event => {
     // NOTE Prevent reload of this page adter submit btn was clicked
