@@ -22,7 +22,7 @@ const PopUpCart = () => {
      <div class="modal-content">
        {/* <!--Header--> */}
        <div class="modal-header">
-         <p class="heading">Product in the cart
+         <p class="heading">รถเข็น
          </p>
  
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -50,10 +50,10 @@ const PopUpCart = () => {
        {/* <!--Footer--> */}
        <div class="modal-footer justify-content-center">
        <Link to ="/cart" >    
-         <a type="button" class="btn btn-info">Go to cart</a>
+         <a type="button" class="btn btn-info">ไปที่รถเข็น</a>
          </Link>
  
-         <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancel</a>
+         <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">ดูสินค้าอื่นต่อ</a>
        </div>
      </div>
      {/* <!--/.Content--> */}

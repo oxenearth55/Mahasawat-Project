@@ -175,6 +175,7 @@ if(fakkhawProducts[0] !=undefined){
         } else {
 
             setData({...data, success: true}) 
+            setSuccess(true)
 
 
         }
@@ -484,8 +485,8 @@ const showError = error => (
 const showSuccess = () => {
   if(data.success==true){
   return(
-    <div class="alert alert-success text-center" role="alert">
-        ทำรายการสั่งซื้อเรียบร้อย 
+    <div class="alert alert-success text-center mb-4" role="alert">
+        <h4>ทำรายการสั่งซื้อเรียบร้อย </h4>
   </div>
 
   )
@@ -499,18 +500,34 @@ const exute =() =>(
 
 )
 
+const showMessage = () => {
+  if(success){
+  return(
+    <>
+    ขอบคุณที่ทำรายการสั่งซื้อกับเรา
+    </>
+  )
+  }else if(!success){
+    return(
+      <>
+      รถเข็นของคุณว่างอยู่
+      </>
+    )
+  }
+}
+
 const noItemsMessage = () => {
   if(itemtotal <=0){
   return(    
     <div>
       <h2>
-          รถเข็นของคุณว่างอยู่ <br /> 
+      {showMessage()} <br /> 
       </h2>
       <div className="row">
 <Link to="/shop/:searchResult/:search">
 <br/>
 <br/>
-<h3>โปรดเลือกสินค้าที่ท่านต้องการ</h3></Link>
+<h3>ท่านสามารถเลือกสินค้าเพิ่มเติมได้ที่นี่</h3></Link>
 <br/>  
 
 

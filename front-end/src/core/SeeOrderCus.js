@@ -46,9 +46,11 @@ const SeeOrderCus = () => {
         }
     
         if(res.user._id === user._id){
-        rows.push({orderId:res._id,name:res.shop.name, status:res.status,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
-        ลบ
-    </div>})
+        rows.push({orderId:res._id,name:res.shop.name, status:res.status,slip:slipStatus,click:seeOrder(res)
+    //     ,delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
+    //     ลบ
+    // </div>
+})
         }
     })
     
@@ -84,12 +86,12 @@ const SeeOrderCus = () => {
             width: 200
           } , 
     
-          {
-            label: 'ลบรายการ',
-            field: 'delete',
-            sort: 'asc',
-            width: 200
-          }    
+        //   {
+        //     label: 'ลบรายการ',
+        //     field: 'delete',
+        //     sort: 'asc',
+        //     width: 200
+        //   }    
     
         
         ]}

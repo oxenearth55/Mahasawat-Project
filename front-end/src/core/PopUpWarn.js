@@ -14,7 +14,7 @@ const PopUpWarn = ({checkout}) => (
      <div class="modal-content">
        {/* <!--Header--> */}
        <div class="modal-header">
-         <p class="heading lead">คำเตือน</p>
+         <p class="heading lead">คำแนะนำ</p>
 
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true" class="white-text">&times;</span>

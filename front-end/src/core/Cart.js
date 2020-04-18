@@ -12,6 +12,8 @@ import { isAuthenticated } from '../auth';
 import {getSpecificShop} from '../admin/apiAdmin'
 import Shipping from './Shipping'
 import PopUpWarn from './PopUpWarn';
+import PopUpSuggest from './PopUpSuggest';
+
 
 
 
@@ -450,10 +452,16 @@ const diplayFakkhawProducts = () =>{
             className="container-fluid"
             headerImg="cartImgLayout"
         >
+<div className="container">
+  <div className="row">
+    <div className="col  justify-content-end">
+    <button type="button"  data-toggle="modal" data-target="#centralModalInfo" class="btn btn-lg  mb-4  btn btn-outline-info waves-effect">วิธีการชำระเงิน</button>
 
-<button type="button"  data-toggle="modal" data-target="#centralModalWarning" class="btn btn-lg btn-block mb-4 btn-deep-orange ">คำเตือน</button>
-
-  
+<button type="button"  data-toggle="modal" data-target="#centralModalWarning" class="btn btn-lg  mb-4  btn-outline-warning waves-effect ">คำแนะนำ</button>
+</div>
+</div>
+</div>
+  <PopUpSuggest/>
 
 <PopUpWarn/>
         {displayNabuaProducts()}
