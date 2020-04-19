@@ -52,9 +52,12 @@ orders.map(res=>{
     }
 
     if(user.shop === res.shop._id){
-    rows.push({orderId:res._id,name:res.user.name,slip:slipStatus,click:seeOrder(res),delete: <div  onClick={() => {destroy(res._id); setLoading(true)}} className="btn btn-danger btn-sm">
-    ลบ
-</div>})
+    rows.push({orderId:res._id,name:res.user.name,status:res.status,slip:slipStatus,click:seeOrder(res)
+//     ,delete: <div  onClick={() => {destroy(res._id); setLoading(true)}} className="btn btn-danger btn-sm">
+//     ลบ
+// </div>
+
+})
     }
 })
 
@@ -70,6 +73,13 @@ orders.map(res=>{
         sort: 'asc',
         width: 200
       },  
+
+      {
+        label: 'สถานะ',
+        field: 'status',
+        sort: 'asc',
+        width: 200
+      }, 
    
       {
         label: 'หลักฐานการโอนเงิน',
@@ -85,12 +95,7 @@ orders.map(res=>{
         width: 200
       } , 
 
-      {
-        label: 'ลบรายการ',
-        field: 'delete',
-        sort: 'asc',
-        width: 200
-      }    
+      
 
     
     ]}

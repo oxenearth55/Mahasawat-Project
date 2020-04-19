@@ -8,7 +8,7 @@ import { read, updateOther, updateUser } from '../user/apiUser';
 
 
 
-const UpdateMer = props =>{
+const UpdatePer = props =>{
     
     const {user,token} = isAuthenticated();
     const [shopObject, setShopObject] = useState([])
@@ -247,4 +247,4 @@ const preventPermission = () => {
     );
 }
 
-export default UpdateMer; 
+export default UpdatePer; 

@@ -50,13 +50,7 @@ const productSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        rating: [{
-            userId: {type: ObjectId},
-            rate: {
-                type: Number,
-                default: 0
-            }
-        }],
+      
 
         comments: [{
             userName: {type: String},

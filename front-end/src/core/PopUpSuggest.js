@@ -3,6 +3,16 @@ import { Link} from 'react-router-dom';
 import suggestion1 from './Suggestion/suggest1.png'
 import suggestion2 from './Suggestion/suggest2.png'
 import suggestion3 from './Suggestion/suggest3.png'
+import suggestion4 from './Suggestion/suggest4.png'
+import suggestion5 from './Suggestion/suggest5.png'
+import suggestion6 from './Suggestion/suggest6.png'
+import suggestion7 from './Suggestion/suggest7.png'
+import suggestion8 from './Suggestion/suggest8.png'
+
+
+
+
+
 
 
 
@@ -36,16 +46,49 @@ const PopUpSuggest = () => (
            </p>
            <img src={suggestion1} 
               alt="slip" class="img-fluid" />
-                  <p className="mb-5 mt-5">2. คุณสามารถเห็นรายการสั่งซื้อทั้งหมดได้จากหน้านี้
+              <hr/>
+                  <p className="mb-5 mt-5">2. จากนั้นคุณจะเห็นรายการสั่งซื้อทั้งหมดได้จากหน้านี้
            </p>
            <img src={suggestion2} 
               alt="slip" class="img-fluid" />
+              <hr/>
 
-<p className="mb-5 mt-5">3. กดปุ่ม 'คลิก' เพื่อเข้าสู่ หน้ารายการสั่งซื้อของท่าน
-           </p>
+<p className="mb-5 mt-5">3. กดปุ่ม 'คลิก' เพื่อเข้าสู่ หน้ารายการสั่งซื้อของท่าน</p>
 
            <img src={suggestion3} 
               alt="slip" class="img-fluid" />
+                            <hr/>
+
+                            <p className="mb-5 mt-5">4. จากนั้น ให้คุณคลิกปุ่ม 'คลิกเพื่อโอนเงิน'</p>
+
+                            <img src={suggestion4} 
+              alt="slip" class="img-fluid" />
+                            <hr/>
+
+                            <p className="mb-5 mt-5">5. ให้คุณโอนเงินไปบัญชีที่กำหนด หรือ ทำการแสกน QR code</p>
+                    <img src={suggestion5} 
+                    alt="slip" class="img-fluid" />
+                    <hr/>
+
+                    <p className="mb-5 mt-5">6.หลังจากที่คุณโอนเงินเรียบร้อย ให้คุณคลิกไปที่ปุ่ม 'อัพโหลดหลักฐานการโอนเงิน'</p>
+                    <img src={suggestion6} 
+                    alt="slip" class="img-fluid" />
+                    <hr/>
+
+
+                    <p className="mb-5 mt-5">7. จากนั้นให้คุณทำการอัพโหลด หลักฐานการโอนเงิน</p>
+                    <img src={suggestion7} 
+                    alt="slip" class="img-fluid" />
+                    <hr/>
+
+                    <p className="mb-5 mt-5">8. หลังจากนั้น คุณจะได้รับ ใบเสร็จ ผ่านทางอีเมลของท่าน</p>
+                    <img src={suggestion8} 
+                    alt="slip" class="img-fluid" />
+                    <hr/>
+
+
+
+
          </div>
 
        

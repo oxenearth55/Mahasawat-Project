@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
-import { listOrders, getStatusValues, decreaseProductAmount,updateOrderStatus } from "./apiAdmin";
+import { Link, Redirect } from "react-router-dom";
+import { deleteOrder, getStatusValues, decreaseProductAmount,updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
 import { uploadDeliver } from "./apiAdmin";
-
+import PopUpDelete from '../core/PopUpDelete';
 
 
 
@@ -45,63 +45,37 @@ const Orders = ({match}) => {
 
     const {costShipping,formData} =  values; 
 
-// const showCostInput = () => {
-//     if(order.shippingConfirm==false && !success){
-//         return(
-//             <>
-//             <div className="alert alert-warning" role="alert">
-//             <h5 className="text-center">กรุณาใส่ค่าส่งสินค้า</h5>
-//             </div>
-//             {inputCost()}
-//             </>
-//         )
-
-        
-//     }else if(success){
-//        return(
-//        <div className="alert alert-success" role="alert">
-//             <h5 className="text-center">ระบบได้ส่งค่าส่งให้ลูกค้าเรียบร้อย</h5>
-//         </div>
-//        )
-
-//     }
-// }
-
-    const inputCost = () => (
-    <form className="mb-3" onSubmit={clickSubmit} >
-            
-            <div className="row">
-
-            <div className="col-3">
-                <input type="number" onChange={handleChange('shippingCost')} id="exampleForm2" class="form-control"/>
-            </div>
-
-            <div className="col-6">
-
-    <button className="btn btn-outline-primary"><span><i class="fas fa-upload mr-2" aria-hidden="true"></i>ยืนยัน</span></button>
-    </div>
-    </div>
-
-    </form>
-    )
-
+    
     const clickSubmit = event =>{
         event.preventDefault();   
-        uploadDeliver(order._id,user._id, token, formData).then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-                setSuccess(true);
-              }
-        })
+       
+        const decreaseProduct ={ //NOTE keep it as Object before storing in Datase
+            products: products
+        
+            
+        };
+         
+        if(updatetext=='กำลังขนส่ง'){
+        updateOrderStatus(user._id, token, order._id, updatetext)
+        decreaseProductAmount(user._id, token,decreaseProduct).then(
+            data => {
+                if (data.error) {
+                    console.log("Status update failed");
+                } else {
+                    console.log('photo is '+order.photo)
+                    setSuccessUp(true)
+
+
+                }
+            }
+        );
+        }else{
+            updateOrderStatus(user._id, token, order._id, updatetext)
+            setSuccessUp(true)
+        }
     
     }
 
-    const handleChange = name => event => {       
-        formData.set(name, event.target.value);
-        formData.set('shippingConfirm', true);
-    }
-    
     
 
     const loadOrder = orderId => {
@@ -167,30 +141,11 @@ const Orders = ({match}) => {
 
     //NOTE orderId is used to check which order that we're going to set status
     const handleStatusChange = (e) => {
-        const decreaseProduct ={ //NOTE keep it as Object before storing in Datase
-            products: products
-        
-            
-        };
         setUpdateText(e.target.value)
-        if(e.target.value=='ยืนยันรายการเรียบร้อย'){
-        updateOrderStatus(user._id, token, order._id, e.target.value)
-        decreaseProductAmount(user._id, token,decreaseProduct).then(
-            data => {
-                if (data.error) {
-                    console.log("Status update failed");
-                } else {
-                    console.log('photo is '+order.photo)
-                    setSuccessUp(true)
-
-                }
-            }
-        );
-        }else{
-            updateOrderStatus(user._id, token, order._id, e.target.value)
-            setSuccessUp(true)
-        }
-    };
+        setSuccessUp(false)
+       
+    }
+       
 
     const showSucessUpdate = () =>{
         if(successUp == true){
@@ -206,9 +161,15 @@ const Orders = ({match}) => {
             }
     }
 
+
+//SECTION UPDATE STATUS
+const [showBtn, setShowBtn] = useState(false);
     const showStatus = ()=> (
-        <div className="form-group">
+
+         <form className="my-5  border p-5  " onSubmit={clickSubmit}>
             <h3 className="mark mb-4">สถานะ: {order.status}</h3>
+            <div className="form-group text-center">
+
             <select
                 className="form-control"
                 onChange={e => handleStatusChange(e,order._id)}
@@ -220,25 +181,58 @@ const Orders = ({match}) => {
                     </option>
                 ))}
             </select>
-        </div>
+            <button  className="btn btn-primary mt-3">
+            อัพโหลด
+        </button>
+            </div>
+        </form>
     );
 
+
+const [showFormStatus, setShowFormStatus] = useState(false);
+    const showForm = () =>{
+        if(showFormStatus==true){
+        return(
+            <>
+            {showStatus()}
+            </>
+        )
+        }
+    }
+
+    const showFormBtn = () => (
+        <>
+        {statusBtn()}
+        </>
+    )
+
+    const statusBtn = () => {
+        if(showFormStatus==true){
+            return(
+                <>
+         <button type="button" onClick={()=>setShowFormStatus(false)}class="btn btn-pink">ซ่อน</button>
+
+                </>
+
+            )
+        } if(showFormStatus==false){
+            return(
+            <>
+             <button type="button" onClick={()=>setShowFormStatus(true)} class="btn btn-outline-info waves-effect">อัพเดทสถานะ</button>
+
+            </>)
+        }
+    }
+
     
-    // const showPrice = () => {
-    //     if(order.shippingConfirm == false){
-    //         return(
-    //             <>
-    //             {amount}
-    //             </>
-    //         )
-    //     }else{
-    //         return(
-    //             <>
-    //             {Total}
-    //             </>
-    //         )
-    //     }
-    // }
+const button = () => (
+    <>
+    {showFormBtn()}
+    {showForm()}
+
+
+    </>
+)
 
     const showOrder = () => (
         <div className="row">
@@ -284,6 +278,9 @@ const Orders = ({match}) => {
                                 รายการของ: {user.name}
                             </li>
                             <li className="list-group-item">
+                                อีเมล: {user.email}
+                            </li>
+                            <li className="list-group-item">
                                 สั่งเมื่อ:{" "}
                                 {/* NOTE  use moment to format the date */}
                                 {moment(order.createdAt).fromNow()} 
@@ -324,7 +321,7 @@ const Orders = ({match}) => {
     )
 
     const showAddress = () => (
-        <>
+        <div className="container">
  <h4 className="mt-4">ที่อยู่ของลูกค้า</h4>
 <div className="mb-4 mt-4" style={{  padding: "20px",border: "1px solid indigo"}}
                             >
@@ -341,7 +338,7 @@ const Orders = ({match}) => {
 
 </div>
 
-</>
+</div>
     )
 
     const showSlip = () =>
@@ -372,6 +369,43 @@ const Orders = ({match}) => {
         }
     }
 
+
+//SECTION DELETE order
+const [delectsucc, setDeleteSucc] = useState(false);
+const [redirect, setRedirect] = useState(false);
+const destroy = () => {
+    deleteOrder(match.params.orderID, user._id, token).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            setDeleteSucc(true);
+            setRedirect(true)
+        }
+    });
+};
+
+const redirectUser = () => {
+    if (redirect) {
+        if (!error) {
+            return <Redirect to="/admin/orders"/>;
+        }
+    }
+};
+
+const deleteBtn = () => {
+    return(
+        <div className="container-fluid mb-4">
+            <div className="row">
+                <div className="col justify-content-end">
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#centralModalDanger">ลบรายการนี้</button>
+                </div>
+    <PopUpDelete o={order} destroy={destroy}/>
+</div>
+        </div>
+    )
+}
+
+
     return (
         <Layout
             title="รายการสั่งซื้อ"
@@ -382,7 +416,14 @@ const Orders = ({match}) => {
             headerImg="dashBoardImgLayout"
         >
             {/* {showCostInput()} */}
+            
+
+        {redirectUser()}
+        {deleteBtn()}
+        <div className="mb-4">
            {showSlip()}
+           </div>
+           {/* {button()} */}
            {showOrder()}
          
            {showAddress()}

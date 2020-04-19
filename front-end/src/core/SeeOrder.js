@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
-import { uploadSlip } from "../admin/apiAdmin";
+import { Link, Redirect } from "react-router-dom";
+import { uploadSlip,updateOrderStatus } from "../admin/apiAdmin";
 import moment from "moment";
 import waiting from './Logo/waiting.png'
 import confirm from './Logo/confirmation.png'
@@ -10,6 +10,10 @@ import packaging from './Logo/packaging.png'
 import delivery from './Logo/delivery.png'
 import {readOrder} from './apiCore'
 import PopUpBank from '../core/PopUpBank'
+import PopUpLine from '../core/PopUpLine'
+import PopUpCancle from '../core/PopUpCancle'
+
+
 import {getSpecificShop} from '../admin/apiAdmin'
 
 
@@ -28,6 +32,28 @@ const SeeOrder = (props) => {
     const [shopInfo,setShopInfo] = useState([]);
     const [bankAccount, setBankAccount] = useState([]);
     const [shippingProvider,setShippingProvider] = useState([]);
+    const [showSlip, setShowSlip] = useState(false);
+    const [cancleSuccess, setCancleSuccess] = useState(false);
+ 
+
+//SECTION Cancle Order 
+
+const clickCancle = (orderId) =>{
+
+    updateOrderStatus(user._id, token, orderId, 'ยกเลิก').then(
+        data => {
+            if (data.error) {
+                console.log("Status update failed");
+            } else {
+                setCancleSuccess(true)
+
+
+            }
+        }
+    );
+
+
+}
 
 
 //NOTE Calculate Total price (Shop cost and total product price)
@@ -72,7 +98,7 @@ const SeeOrder = (props) => {
                 <>
                 {checkUpLoad()}
                 {showBankAccount()}
-                {showUpSlip()}
+                {/* {showUpSlip()} */}
                 </>
             )
         
@@ -94,36 +120,96 @@ const SeeOrder = (props) => {
             <h5 className="text-center ">อัพโหลดการยืนยันรายการสำเร็จ</h5>
         </div>
         </>)
-        }else if(empty&& !order.photo &&order.upload==false){
+        }else if(empty&& !order.photo &&order.upload==false && order.status!=='ยกเลิก'){
             return(
         <div className="alert alert-primary" role="alert">
             <h5 className="text-center ">กรุณาอัพโหลดสลิป</h5>
         </div>
 
             )
-        }else if(order.upload == true){
+        }else if(order.upload == true && order.status!=='ยกเลิก'){
             return(
             <div className="alert alert-success" role="alert">
                 <h5 className="text-center ">คุณอัพโหลดรายการนี้ไปแล้ว</h5>
             </div>
             );
         }
+        if(cancleSuccess === true){
+            return(<>
+    <div class="alert alert-success text-center" role="alert">
+              <h5 className="text-center">คุณยกเลิกรายการสำเร็จ</h5>  
+    </div>
+    
+            </>)
+    
+        }
+        
+        if(order.status == "ยกเลิก"){
+            return(<>
+            <div class="alert alert-danger" role="alert">
+  <h5 className="text-center">รายการสั่งซื้อนี้ ถูกยกเลิกแล้ว</h5>
+</div>
+
+            </>)
+        }
+      
+    
     }
 
-
+//SECTION SLIP
     const showUpSlip = () =>
 (
-    <form className="mb-3" onSubmit={clickSubmit}>
-           <label className="btn btn-outline-info waves-effect">
-    <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
+    <form className="my-5  border p-5 " onSubmit={clickSubmit}>
+        <h3 className='text-center'>อัพโหลดหลักฐานการโอนเงิน</h3>
+        
+        <div className="form-group text-center">
+            <label className="btn btn-secondary">
+                <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
             </label>
-    {/* <input onChange={handleChange('address')} type="text" className="form-control"  /> */}
-
-    <button className="btn btn-outline-primary"><span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Upload Slip</span></button>
+       
+        <button  className="btn btn-primary">
+            อัพโหลด
+        </button>
+        </div>
 
 </form>
 
 )
+
+const showUpload = () =>{
+    if(showSlip==true){
+    return(
+        <>
+        {showUpSlip()}
+        </>
+    )
+    }
+}
+
+const showButtonSlip = () => (
+    <>
+    {slipBtn()}
+    </>
+)
+
+const slipBtn = () => {
+    if(showSlip==true){
+        return(
+            <>
+     <button type="button" onClick={()=>setShowSlip(false)}class="btn btn-pink">ซ่อน</button>
+
+            </>
+
+        )
+    } if(showSlip==false){
+        return(
+        <>
+         <button type="button" onClick={()=>setShowSlip(true)} class="btn btn-outline-info waves-effect">อัพโหลดหลักฐานการโอนเงิน</button>
+
+        </>)
+    }
+}
+
 
 const clickSubmit = event =>{
     event.preventDefault();
@@ -308,6 +394,37 @@ const handleChange = name => event => {
                 )
             }
 
+            else if(orderStatus === 'ยกเลิก'){
+                return (
+                    <div className="container-fluid border  border-dark">
+                       
+                    <div className="row mt-4"> 
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus order-status-icon " src={waiting}></img>
+                                <p className="unStatus order-status-text">รอยืนยันรายการ</p>
+                            </div>
+
+                            <div className="col-3 text-center">
+                                <img className ="logo ml-4 unStatus order-status-icon order-confirm-icon" src={confirm}></img>
+                                <p className="unStatus order-status-text">ยืนยันรายการเรียบร้อย</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus order-status-icon" src={packaging}></img>
+                                <p className="unStatus order-status-text">กำลังจัดสินค้า</p>
+                            </div>    
+
+                            <div className="col-3 text-center">
+                                <img className ="logo unStatus order-status-icon" src={delivery}></img>
+                                <p className=" unStatus order-status-text" >กำลังขนส่ง</p>
+                            </div>        
+
+                    </div>
+                </div>
+                )
+            }
+
+
 
 
         }
@@ -357,7 +474,7 @@ const handleChange = name => event => {
                 >
                     {/* <button onClick={clickSubmit} class="btn btn-primary btn-lg btn-block" type="submit">Upload Slip</button> */}
 
-                    <h2 className="mb-5">
+                    {/* <h2 className="mb-5">
                         <span>
                             <div className="row">
                            <div className="border text-white bg-dark order-id-title"> เลขรายการของคุณ : </div>
@@ -366,7 +483,7 @@ const handleChange = name => event => {
                             </div>
                         </span>
                         
-                    </h2>
+                    </h2> */}
                     <h4 className="mb-4">สถานะการสั่งซื้อ</h4>
                     {statusIcon(order.status)}
                     
@@ -376,6 +493,10 @@ const handleChange = name => event => {
                         <li className="list-group-item text-white bg-dark ">
                             <h3 className="text-center ">รายละเอียด </h3>
                         </li>
+
+                        <li className="list-group-item">
+                                เลขรายการ:{order._id}
+                            </li>
                         
                         <li className="list-group-item">
                                 ราคาทั้งหมด: ฿ {order.amount}
@@ -461,13 +582,23 @@ const showAddress = () => (
         return(<>
         
         <button data-toggle="modal" data-target="#centralModalInfo" 
-        class="btn btn-orange">โอนเงินไปที่ 
+        class="btn btn-orange">คลิกเพื่อโอนเงิน 
         <i class="fas  fa-university pl-1"></i>
         
         </button>
 
-        <PopUpBank Total= {order.amount} bank={bankAccount} shopId={shopInfo}/>
+        {showButtonSlip()}
+
         
+        <button type="button"  data-toggle="modal" data-target="#centralModalSuccess" class="btn btn-outline-success waves-effect">ติดต่อทาง Line <i class="fab fa-line green-text"></i></button>
+        <button type="button"  data-toggle="modal" data-target="#centralModalDanger" class="btn btn-danger">ยกเลิกรายการนี้</button>
+
+        {showUpload()}
+
+        <PopUpBank Total= {order.amount} bank={bankAccount} shopId={shopInfo}/>
+        <PopUpLine/>
+        <PopUpCancle o={order} cancle={clickCancle} />
+
         </>)
     }
 
@@ -489,10 +620,13 @@ const showAddress = () => (
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         > 
+                    <div className="container">
+
             {showShopName()}
             {showConfirm()}
             {showOrders()}
             {showAddress()}
+            </div>
             {/* {showStatus()} */}
 
         </Layout>

@@ -25,7 +25,7 @@ const PopUpSlip = ({order}) => (
           {/* <!--Body--> */}
           <div class="modal-body">
             <div class="text-center">
-              <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+              <i class="fas fa-image fa-4x mb-3 animated rotateIn"></i>
               <img src={`${API}/order/slip/${order._id}`} 
               alt="slip" class="img-fluid"/>
             </div>

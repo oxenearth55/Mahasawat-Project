@@ -1,21 +1,13 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import Layout from './Layout';
-import { getCart, getNabuaProducts,getfakkhawProducts,getFakkhaw,getNabua,itemTotal} from './cartHelpers';
+import { getFakkhaw,getNabua,itemTotal} from './cartHelpers';
 import {removeFakkhaw,removeNabua,getFakkhawShip,getNabuaShip,emptyFakkhaw,emptyNabua} from './cartHelpers'; 
-import Card from './Card';
 import Checkout from './Checkout';
 import {API} from '../config' 
 import CartAdjust from './CartAdjust'
-import Footer from './Footer'
-import { isAuthenticated } from '../auth';
-import {getSpecificShop} from '../admin/apiAdmin'
 import Shipping from './Shipping'
 import PopUpWarn from './PopUpWarn';
 import PopUpSuggest from './PopUpSuggest';
-
-
-
 
 const Cart = () => {
     //NOTE items contain products that was selected from local storage
@@ -29,13 +21,6 @@ const Cart = () => {
 
     const [nabuaShip, setNabuaShip] = useState(); 
     const [fakkhawShip, setFakkhawShip] = useState(); 
-
-
-
-
-    
-
-
 
     //SECTION useEffect 
     useEffect(() => {
