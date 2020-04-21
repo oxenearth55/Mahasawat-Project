@@ -11,7 +11,7 @@ exports.signup = (req, res) => {
         if (err) {
             return res.status(400).json({
                 // error: errorHandler(err)
-                error: 'Email is taken'
+                error: 'อีเมลนี้ถูกใช้งานแล้ว'
             });
         }
         user.salt = undefined;

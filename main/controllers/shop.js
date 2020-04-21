@@ -4,9 +4,6 @@ const formidable = require('formidable');
 const fs = require('fs');
 const _ = require('lodash');
 
-
-
-
 exports.shopById = (req, res, next, id) => {
     Shop.findById(id)
         .exec((err, shop) => {

@@ -9,6 +9,8 @@ import Layout from './Layout'
 import {Link} from 'react-router-dom'
 import Slide from './slide'
 import Intro from './Home-components/intro'
+import Intro2 from './Home-components/intro2'
+
 
 import BlogPage from './Home-components/blog'
 import EcommercePage from './Home-components/ShowCard'
@@ -18,6 +20,8 @@ import CardList from './Home-components/cardList'
 import ShowExample from './Home-components/Example'
 import ShowShop from './Home-components/ShowShop'
 import AllShop from './AllShop'
+import Example from './Home-components/Example'
+
 
 
 
@@ -188,7 +192,16 @@ const firstSection = () =>(
 <Intro photo={'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'}/>
         {/* <Slide/> */}
         {/* <Test2/> */}
-        {/* <AllShop/> */}
+        <div className="pb-5">
+
+        <Example/>
+
+        </div>
+        <div className="mt-5 mb-4">
+
+        <Intro2/>
+        </div>
+        <CardList/>
         <ShowShop/>
         {/* <ShowExample/> */}
         <BlogPage/>

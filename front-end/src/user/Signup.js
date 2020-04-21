@@ -1,7 +1,6 @@
 import React, {useState} from 'react'; 
 import Layout from '../core/Layout';
 // import {API} from '../config';
-import './Signup.css';
 // import { signup } from '../auth';
 import { Link } from 'react-router-dom';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
@@ -16,11 +15,11 @@ const Signup = () => {
         password: '', 
         error: '',
         success: false, 
-        role:1
+        role:1,
+        repeatePassword:''
   });
-
-  const { name, email , password, success, error } = values; // Grab these values from useState
-
+  const { name, email , password, repeatePassword, success, error } = values; // Grab these values from useState
+  const [errorPass, setErrorPass] = useState(false);
   // NOTE  Get value from input (name, email and password) from a user
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -47,8 +46,9 @@ const Signup = () => {
     // NOTE Prevent reload of this page adter submit btn was clicked
     event.preventDefault();
     setValues({ ...values, error: false });
-    // Send Object which contains property (name, email and, password) to method signup as user
-    // And grab data as a Jason to check error from a user input
+    if(password == repeatePassword){
+    // NOTE Send Object which contains property (name, email and, password) to method signup as user
+    // NOTE And grab data as a Jason to check error from a user input
     signup({ name, email, password }).then(data => {
         if (data.error) {
           // Set error and success if found error from user input
@@ -61,10 +61,15 @@ const Signup = () => {
                 email: '',
                 password: '',
                 error: '',
+                repeatePassword:'',
                 success: true,
             });
+            setErrorPass(false);
         }
     });
+  }else{
+    setErrorPass(true);
+  }
 };
 
 
@@ -84,7 +89,10 @@ const signUpformNew = () => (
             success="right" />
           {/* <MDBInput label="Confirm your email" icon="exclamation-triangle" group type="text" validate
             error="wrong" success="right" /> */}
-          <MDBInput onChange = {handleChange('password')} label="รหัส" icon="lock" group type="password" validate />
+
+            <MDBInput onChange = {handleChange('password')} label="รหัส" icon="lock" group type="password" validate />
+
+          <MDBInput onChange = {handleChange('repeatePassword')} label="ยืนยันรหัสอีกครั้ง" icon="lock" group type="password" validate />
         </div>
         <div className="text-center">
           <MDBBtn onClick = {clickSubmit} color="primary">สมัครบัญชี</MDBBtn>
@@ -97,68 +105,34 @@ const signUpformNew = () => (
 
 );
 
-  const signUpForm = () => ( 
-   
-
-      <form className ="container my-5">
-          <div className = "row">
-            
-              <div className ="col-md-6 col-sm-12 two-input">
-              {/* <label className = "text-muted">First Name</label> */}
-              <input onChange = {handleChange('name')} type = "text" className = "form-control" 
-              placeholder ="First Name" value={name}/>
-              </div> 
-
-              <div className ="col-md-6 col-sm-12 two-input">
-              {/* <label className = "text-muted">Last Name</label> */}
-              <input onChange = {handleChange('')} type = "text" className = "form-control" 
-              placeholder ="Last Name" />
-              </div> 
-          </div>
-
-          <div className = "row"> 
-            {/* <label className = "text-muted">Email</label> */}
-            <div className ="col-md-12 col-sm-12 one-input">
-            <input onChange = {handleChange('email')} type = "email" className = "form-control"  
-            placeholder ="Email" value={email} />
-            </div>
-          </div>
-
-          <div className = "row"> 
-            {/* <label className = "text-muted">Password</label> */} 
-            <div className="col-md-6 col-sm-12 two-input">
-              <input onChange = {handleChange('password')} type = "password" className = "form-control" 
-              placeholder ="Password" value={password} />
-              </div>
-         
-
-            {/* <label className = "text-muted">Password</label> */} 
-            <div className="col-md-6 col-sm-12 two-input">
-              <input onChange = {handleChange('')} type = "password" className = "form-control" 
-              placeholder ="Repeat Password"  />
-              </div>
-             
-            
-          <button onClick = {clickSubmit} className = "btn btn-outline-secondary btn-block mt-4">Submit</button>
-            </div>
-        
-
-      </form>
-  );
   // SECTION  Show result after click submit btn
   // NOTE  Check error from user input
-  const showError = () => (
-    <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
+  const showError = () => {
+    if(error){
+      return(
+    <div className="alert alert-danger text-center">
         {/* Show type of error on the screen after user types wrong a condition */}
         {error} 
     </div>
-);
+      )
+      }
+      if(errorPass == true && !error){
+        return(
+          <div className="alert alert-danger text-center">
+          โปรดกรอกรหัสผ่านให้ตรงกัน 
+          </div>
+  
+        )
+      }
+      }
+
+  
 
 // NOTE  Check Success Sign Up 
 const showSuccess = () => (
-    <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
+    <div className="alert alert-info text-center" style={{ display: success ? '' : 'none' }}>
       {/* Display this comment to the user */}
-        New account is created. Please <Link to="/signin">Signin</Link>
+        บัญชีของคุณ ถูกสร้าง เรียบร้อยแล้ว, คุณสามารถเข้าสู่ระบบ <Link to="/signin">ได้ที่นี่</Link>
     </div>
 );
   
@@ -173,9 +147,7 @@ const showSuccess = () => (
   {/* NOTE  Call Method above */}
     {showSuccess()}
     {showError()}
-    {/* {signUpForm()} */}
     {signUpformNew()}
-    {/* {JSON.stringify(values)} */}
   </Layout>
    );
 };

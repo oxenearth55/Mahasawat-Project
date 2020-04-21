@@ -1,128 +1,118 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 //ANCHOR Photo
-import magnet from '../../photo/magnet1.png'
+import fruitGarden from '../../photo/fruitGarden.jpg'
+import flower from '../../photo/flower.jpg'
+import banFakk from '../../photo/banFakk.jpg'
+import nabua from '../../photo/nabua.jpg'
+import kaotang from '../../photo/kaotang.jpg'
+
+
+
+
 import tea from '../../photo/tea.png'
 
 
 
 const Example = () => {
   return (
-    <div class="container my-5 py-5 ">
+    <div class="container-fluid  mt-5">
 
 
     {/* <!--Section: Content--> */}
-    <section class="text-center">
+    <section class="dark-grey-text text-center">
+      
+      {/* <!-- Section heading --> */}
+      <h3 class="font-weight-bold mb-4 pb-2">ร้านค้าในชุมชนมหาสวัสดิ์</h3>
+      {/* <!-- Section description --> */}
+      <p class="grey-text w-responsive mx-auto mb-5">ชุมชนของเรามีแหล่งค้าขายสินค้าหลักๆ 5 สถานที่ด้วยกัน</p>
+  
+      {/* <!-- Grid row --> */}
+      <div class="row justify-content-lg-center">
+  
+        {/* <!-- Grid column --> */}
+        <div class="col-lg-2 col-md-6 mb-4">
+          {/* <!-- Collection card --> */}
+          <div class="card collection-card z-depth-1-half">
+            {/* <!-- Card image --> */}
+              <img src={fruitGarden} class="img-fluid"
+                alt="" style={{height : '20rem'}}/>
+            
+            <p className="mt-2">สวนผลไม้ลุงบุญเลิศ</p>
 
-
-      {/* <!--Grid row--> */}
-      <div class="row">
-
-        {/* <!--Grid column--> */}
-        <div class="col-lg-4 col-md-12 mb-4">
-
-          <Link to="/" className="waves-effect waves-light mb-3 "><img
-              src={magnet} class="img-fluid"
-              style={{width:'50%'}}
-              alt=""/></Link>
-
-          <div class="card">
-            <div class="card-body">
-
-              <p class="mb-1"><a href="" class="font-weight-bold black-text">JBL DX-320</a></p>
-
-              <p class="mb-1"><small class="mr-1"><s>$599</s></small><strong>$199</strong></p>
-
-              <div class="amber-text fa-xs mb-1">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-              </div>
-
-              <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-              <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
-
-            </div>
+            {/* <!-- Card image --> */}
           </div>
-
-
-
+          {/* <!-- Collection card --> */}
         </div>
-        {/* <!--Grid column--> */}
-
-        {/* <!--Grid column--> */}
-        <div class="col-lg-4 col-md-6 mb-4">
-
-        <Link to="/" className="waves-effect waves-light mb-3 "><img
-              src={tea} class="img-fluid"
-              style={{width:'78.7%'}}
-              alt=""/></Link>
-
-          <div class="card">
-            <div class="card-body">
-
-              <p class="mb-1"><a href="" class="font-weight-bold black-text">Huawei P40</a></p>
-
-              <p class="mb-1"><small class="mr-1"><s>$599</s></small><strong>$399</strong></p>
-
-              <div class="amber-text fa-xs mb-1">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-
-              <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-              <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
-
-            </div>
+        {/* <!-- Grid column --> */}
+  
+        {/* <!-- Grid column --> */}
+        <div class="col-lg-2 col-md-6 mb-4">
+          {/* <!-- Collection card --> */}
+          <div class="card collection-card z-depth-1-half">
+            {/* <!-- Card image --> */}
+            <img src={kaotang} class="img-fluid"
+                alt="" style={{height : '20rem'}}/>
+            
+            <p className="mt-2">บ้านข้าวตังศาลาดิน</p>
+            {/* <!-- Card image --> */}
           </div>
-
+          {/* <!-- Collection card --> */}
         </div>
-        {/* <!--Grid column--> */}
-
-        {/* <!--Grid column--> */}
-        <div class="col-lg-4 col-md-6 mb-4">
-        <Link to="/" className="waves-effect waves-light mb-3 "><img
-              src={magnet} class="img-fluid"
-              style={{width:'50%'}}
-              alt=""/></Link>
-
-          <div class="card">
-            <div class="card-body">
-
-              <p class="mb-1"><a href="" class="font-weight-bold black-text">Sony RX-410</a></p>
-
-              <p class="mb-1"><small class="mr-1"><s>$599</s></small><strong>$299</strong></p>
-
-              <div class="amber-text fa-xs mb-1">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-
-              <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-              <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
-
-            </div>
+        {/* <!-- Grid column --> */}
+  
+        {/* <!-- Grid column --> */}
+        <div class="col-lg-2 col-md-6 mb-4 ">
+          {/* <!-- Collection card --> */}
+          <div class="card collection-card z-depth-1-half ">
+            {/* <!-- Card image --> */}
+            <img src={flower} class="img-fluid"
+                alt="" style={{height : '20rem'}}/>
+            
+            <p className="mt-2">ฟาร์มกล้วยไม้คุณสร้อย</p>
+            {/* <!-- Card image --> */}
           </div>
-
+          {/* <!-- Collection card --> */}
         </div>
-        {/* <!--Grid column--> */}
+        {/* <!-- Grid column --> */}
+  
+        {/* <!-- Fourth column --> */}
+        <div class="col-lg-2 col-md-6 mb-4">
+          {/* <!-- Collection card --> */}
+          <div class="card collection-card z-depth-1-half">
+            {/* <!-- Card image --> */}
+            <img src={banFakk} class="img-fluid"
+                alt="" style={{height : '20rem'}}/>
+            
+            <p className="mt-2">บ้านฟักข้าว</p>
+            {/* <!-- Card image --> */}
+          </div>
+          {/* <!-- Collection card --> */}
+        </div>
+        {/* <!-- Fourth column --> */}
 
+          {/* <!-- Five column --> */}
+          <div class="col-lg-2 col-md-6 mb-4">
+          {/* <!-- Collection card --> */}
+          <div class="card collection-card z-depth-1-half">
+            {/* <!-- Card image --> */}
+            <img src={nabua} class="img-fluid"
+                alt="" style={{height : '20rem'}}/>
+            
+            <p className="mt-2">นาบัวลุงแจ่ม</p>
+            {/* <!-- Card image --> */}
+          </div>
+          {/* <!-- Collection card --> */}
+        </div>
+        {/* <!-- Five column --> */}
+  
       </div>
-      {/* <!--Grid row--> */}
-
-
+      {/* <!-- Grid row --> */}
+  
     </section>
     {/* <!--Section: Content--> */}
-
-
+  
+  
   </div>
   );
 }

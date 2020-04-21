@@ -10,30 +10,18 @@ import {list} from './apiCore'
 import { getCategory } from '../admin/apiAdmin';
 import ShowProduct from './Home-components/ShowProduct';
 import { Link, Redirect } from 'react-router-dom';
-
 import { isAuthenticated } from "../auth";
 import AllShop from './AllShop';
  
 
-
-
-
-
 const Shop = props => {
-
-    
     const { user, token } = isAuthenticated();
-
-    //SECTION State 
-
     //ANCHOR Filter
-
     const [myFilters, setMyFilters] = useState({ // NOTE This State contain one property which is filters
         //NOTE filters contains one properties which is categories  as array (sub properties of filters)
         filters: {category: [], shop:[]} 
 
     });
-
     const [categories, setCategories] = useState([])
     const [error, setError] = useState(false)
     const [limit, setLimit] = useState() //NOTE limit product number at 6

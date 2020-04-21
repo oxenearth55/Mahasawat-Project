@@ -20,7 +20,7 @@ import {
 import Menu from '../Menu';
 
 import {Link} from 'react-router-dom' 
-import IntroPic from '../../photo/maha2.jpg' 
+import IntroPic from '../../photo/intro.jpg' 
 
 
 

@@ -49,14 +49,6 @@ const Routes = () => {
             <Route path="/order" exact component={SeeOrderCus}></Route>
             <Route path="/select/shop" exact component={SelectShop}></Route>
 
-
-
-
-
-
-
-
-
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
             if not, user must go to sign in page */}
           

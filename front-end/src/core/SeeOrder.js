@@ -12,12 +12,7 @@ import {readOrder} from './apiCore'
 import PopUpBank from '../core/PopUpBank'
 import PopUpLine from '../core/PopUpLine'
 import PopUpCancle from '../core/PopUpCancle'
-
-
 import {getSpecificShop} from '../admin/apiAdmin'
-
-
-
 
 const SeeOrder = (props) => {
 
@@ -108,9 +103,7 @@ const clickCancle = (orderId) =>{
 
 
     const checkUpLoad = () =>
-    {
-        
-        
+    {   
         if(success){
         // setEmpty(false);
         return(
