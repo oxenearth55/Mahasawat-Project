@@ -12,15 +12,17 @@ const EcommercePage = () => {
 
   //SECTION State
   //NOTE These state is used to display shop contents
-  const [showFruitGarden, setShowFruitGarden] = useState(false);
-  const [showKaoTang, setShowKaoTang] = useState(false);
-  const [showFarm, setShowFarm] = useState(false);
+  // const [showFruitGarden, setShowFruitGarden] = useState(false);
+  // const [showKaoTang, setShowKaoTang] = useState(false);
+  // const [showFarm, setShowFarm] = useState(false);
 
   const [showCondition, setShowCondition] = useState({
-
-
+    showFruitGarden:false,
+    showKaoTang:false,
+    showFarm:false
     
   })
+  const {showFruitGarden,showKaoTang,showFarm} = showCondition
 
 
   const showCard = () => (
@@ -46,7 +48,7 @@ const EcommercePage = () => {
           <p class="card-text">สวนคุณลุงบุญเลิศ และกลุ่มแม่บ้านเกษตรกรชุมชนวัดสุวรรณเป็นศูนย์ปรัชญาเศรษฐกิจพอเพียง 
           มีการนำผลิตภัณฑ์ทางการเกษตรมาแปรรูปเป็นอาหาร และผลไม้
             </p>
-          <button class="btn btn-unique" onClick={() => setShowFruitGarden(true)}>ดูสินค้า</button>
+          <button class="btn btn-unique" onClick={() => setShowCondition({...showCondition,showFruitGarden:true, showKaoTang:false, showFarm:false })} >ดูสินค้า</button>
           <button class="btn btn-unique">ติดต่อ</button>
         </div>
         {/* <!--/.Card content--> */}
@@ -104,7 +106,10 @@ const EcommercePage = () => {
           ฟาร์มกล้วยไม้คุณสร้อย ได้จัดบรรยากาศเป็นฟาร์มเปิดซึ่งทำให้นักท่องเที่ยวได้ชมและถ่ายรูปในสวนกล้วยไม้ได้อย่างอิสระ 
           และสามารถติดต่อซื้อกลับบ้านได้ภายหลังการเยี่ยมชม
           </p>
-          <button class="btn btn-unique" onClick={() => setShowFarm(true)}>ดูสินค้า</button>
+          <button class="btn btn-unique" onClick={() => 
+            setShowCondition({...showCondition,showFarm:true, showFruitGarden:false, showKaoTang:false })}>
+              ดูสินค้า
+              </button>
           <button class="btn btn-unique">ติดต่อ</button>
         </div>
         {/* <!--/.Card content--> */}  
@@ -113,23 +118,35 @@ const EcommercePage = () => {
     </div>  
     </div> 
   )
-
-  
-  const displayProducts = () => {    
-   if(showFruitGarden && !showFarm ){
-    return(
-      <>
-      <FruitProducts/>   
-      </>
-    )
-   }
-   if(showFarm && !showFruitGarden){
+const disPlayFarm = () => {
+   if(showFarm==true){
     return(
       <>
       <FarmProducts/>   
       </>
     )
    }
+}
+const displayFruit = () => {
+  if(showFruitGarden==true ){
+    return(
+      <>
+      <FruitProducts/>   
+      </>
+    )
+   }
+
+}
+  
+  const displayProducts = () => {    
+
+   return(
+     <>
+     {disPlayFarm()}
+     {displayFruit()}
+     </>
+   )
+  
   }
   return (
       <>

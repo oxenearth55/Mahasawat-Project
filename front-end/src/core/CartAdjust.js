@@ -15,7 +15,10 @@ const CartAdjust = ({product, productPrice,
  const handleChangeNabua = productId => event => {
     setRun(!run); //NOTE run useEffect in parent Cart
     //NOTE Make sure that value don't contain negative value
-  
+    if(event.target.value >= ''){
+      updateItemNabua(productId, 1)
+      setCount(1)
+    }
     
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if(event.target.value >= 1 && event.target.value<product.quantity){
@@ -39,8 +42,6 @@ const CartAdjust = ({product, productPrice,
     if(event.target.value >= 1){
         updateItemFakkhaw(productId, event.target.value)
     }
-
-  
 
     if(event.target.value >= product.quantity){
       updateItemFakkhaw(productId, product.quantity)
