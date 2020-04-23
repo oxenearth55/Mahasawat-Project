@@ -5,6 +5,8 @@ import banKaoTang from '../../photo/banKaoTang.jpg'
 import suan from '../../photo/suan.JPG'
 import FruitProducts from './FruitGarden/FruitProducts'
 import FarmProducts from './Farm/FarmProducts'
+import KaotangeProducts from './KaoTang/KaotangProducts'
+
 
 
 
@@ -77,8 +79,9 @@ const EcommercePage = () => {
           บ้านศาลาดิน เป็นชื่อชุมชนที่ได้ชื่อว่าเป็นแหล่งเรียนรู้เชิงนิเวศตามแนวทางเศรษฐกิจพอเพียง มีการนำข้าวกล้องและข้าวไรท์เบอรี่ที่ตากแห้ง 
           มาแปรรูปเป็นข้าวตัง
           </p>
-          <a class="btn btn-unique">ดูสินค้า</a>
-          <a class="btn btn-unique">ติดต่อ</a>
+          <button  onClick={() => 
+            setShowCondition({...showCondition,showKaoTang:true,showFarm:false, showFruitGarden:false })} class="btn btn-unique">ดูสินค้า</button>
+          <button class="btn btn-unique">ติดต่อ</button>
         </div>
         {/* <!--/.Card content--> */}
       </div>
@@ -135,7 +138,15 @@ const displayFruit = () => {
       </>
     )
    }
-
+}
+const diplayKaoTang = () => {
+  if(showKaoTang == true){
+    return(
+      <>
+      <KaotangeProducts/>
+      </>
+    )
+  }
 }
   
   const displayProducts = () => {    
@@ -144,6 +155,7 @@ const displayFruit = () => {
      <>
      {disPlayFarm()}
      {displayFruit()}
+     {diplayKaoTang()}
      </>
    )
   
