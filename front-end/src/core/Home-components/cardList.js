@@ -6,6 +6,8 @@ import suan from '../../photo/suan.JPG'
 import FruitProducts from './FruitGarden/FruitProducts'
 import FarmProducts from './Farm/FarmProducts'
 import KaotangeProducts from './KaoTang/KaotangProducts'
+import ContactFruit from './FruitGarden/ContactFruit'
+import ContactKao from './KaoTang/ContactKao'
 
 
 
@@ -21,11 +23,12 @@ const EcommercePage = () => {
   const [showCondition, setShowCondition] = useState({
     showFruitGarden:false,
     showKaoTang:false,
-    showFarm:false
-    
+    showFarm:false,
+    showContactFruit:false,
+    showContactKao:false,
+    showContactFarm:false    
   })
-  const {showFruitGarden,showKaoTang,showFarm} = showCondition
-
+  const {showFruitGarden,showKaoTang,showFarm,showContactKao,showContactFarm,showContactFruit} = showCondition
 
   const showCard = () => (
     <div class="row">    
@@ -50,8 +53,16 @@ const EcommercePage = () => {
           <p class="card-text">สวนคุณลุงบุญเลิศ และกลุ่มแม่บ้านเกษตรกรชุมชนวัดสุวรรณเป็นศูนย์ปรัชญาเศรษฐกิจพอเพียง 
           มีการนำผลิตภัณฑ์ทางการเกษตรมาแปรรูปเป็นอาหาร และผลไม้
             </p>
-          <button class="btn btn-unique" onClick={() => setShowCondition({...showCondition,showFruitGarden:true, showKaoTang:false, showFarm:false })} >ดูสินค้า</button>
-          <button class="btn btn-unique">ติดต่อ</button>
+          <button class="btn btn-unique"
+           onClick={() => setShowCondition({...showCondition,showFruitGarden:true, showKaoTang:false, 
+           showFarm:false,showContactFarm:false,showContactFruit:false,showContactKao:false })}
+            >ดูสินค้า</button>
+
+          <button class="btn btn-unique" 
+            onClick={() => setShowCondition({...showCondition,showFruitGarden:false, showKaoTang:false, 
+              showFarm:false,showContactFarm:false,showContactFruit:true,showContactKao:false })}
+          
+          >ติดต่อ</button>
         </div>
         {/* <!--/.Card content--> */}
       </div>
@@ -80,8 +91,13 @@ const EcommercePage = () => {
           มาแปรรูปเป็นข้าวตัง
           </p>
           <button  onClick={() => 
-            setShowCondition({...showCondition,showKaoTang:true,showFarm:false, showFruitGarden:false })} class="btn btn-unique">ดูสินค้า</button>
-          <button class="btn btn-unique">ติดต่อ</button>
+            setShowCondition({...showCondition,showKaoTang:true,showFarm:false, showFruitGarden:false,
+            showContactFarm:false,showContactFruit:false,showContactKao:false })} class="btn btn-unique">ดูสินค้า</button>
+          <button class="btn btn-unique" 
+            onClick={() => setShowCondition({...showCondition,showFruitGarden:false, showKaoTang:false, 
+              showFarm:false,showContactFarm:false,showContactFruit:false,showContactKao:true })}
+          
+          >ติดต่อ</button>
         </div>
         {/* <!--/.Card content--> */}
       </div>
@@ -110,10 +126,14 @@ const EcommercePage = () => {
           และสามารถติดต่อซื้อกลับบ้านได้ภายหลังการเยี่ยมชม
           </p>
           <button class="btn btn-unique" onClick={() => 
-            setShowCondition({...showCondition,showFarm:true, showFruitGarden:false, showKaoTang:false })}>
+            setShowCondition({...showCondition,showFarm:true, showFruitGarden:false, showKaoTang:false,
+            showContactFarm:false,showContactFruit:false,showContactKao:false })}>
               ดูสินค้า
               </button>
-          <button class="btn btn-unique">ติดต่อ</button>
+          <button class="btn btn-unique"
+            onClick={() => setShowCondition({...showCondition,showFruitGarden:true, showKaoTang:false, 
+              showFarm:false,showContactFarm:true,showContactFruit:false,showContactKao:false })}
+          >ติดต่อ</button>
         </div>
         {/* <!--/.Card content--> */}  
       </div>
@@ -121,6 +141,8 @@ const EcommercePage = () => {
     </div>  
     </div> 
   )
+
+  //SECTION Display products 
 const disPlayFarm = () => {
    if(showFarm==true){
     return(
@@ -150,7 +172,6 @@ const diplayKaoTang = () => {
 }
   
   const displayProducts = () => {    
-
    return(
      <>
      {disPlayFarm()}
@@ -158,12 +179,39 @@ const diplayKaoTang = () => {
      {diplayKaoTang()}
      </>
    )
-  
   }
+//SECTION Display Contact 
+
+const displayFruitContact = () => {
+  if(showContactFruit == true){
+    return(
+    <ContactFruit/>
+  
+    )}
+}
+
+const displayKaoContact = () => {
+  if(showContactKao == true){
+    return(
+    <ContactKao/>
+  
+    )}
+}
+
+
+
+const disPlayContact = () => (
+  <>
+  {displayFruitContact()}
+  {displayKaoContact()}
+  </>
+)
+  
   return (
       <>
       {showCard()}  
       {displayProducts()}
+      {disPlayContact()}
       </>   
   );
 }

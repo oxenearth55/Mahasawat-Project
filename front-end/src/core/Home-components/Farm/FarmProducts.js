@@ -4,6 +4,12 @@ import pinkMogka from './Photo/มอคคาร่าชมพู.jpg'
 import redMogka from './Photo/มอคคาร่าแดง.jpg'
 import yellowMogka from './Photo/มอคคาร่าเหลือง.jpg'
 import wai from './Photo/หวาย.jpg'
+import redMog from './Photo/มอคแดง.JPG'
+import yellowMog from './Photo/มอคเหลือง.JPG'
+import pinkMog from './Photo/มอคชมพู.JPG'
+
+
+
 
 
 
@@ -141,7 +147,8 @@ const FarmProducts = () => {
                           <div class="col-md-6">
                               
                               <div class="view rounded-right">
-                                  <img class="img-fluid" src={redMogka} alt="Sample image"/>
+                                  <img class="img-fluid" src={redMog} alt="Sample image"
+                                   style={{height:'30rem'}}/>
                               </div>
                               
                           </div>
@@ -210,7 +217,7 @@ const FarmProducts = () => {
                           <div class="col-md-6">
                               
                               <div class="view rounded-right">
-                                  <img class="img-fluid" src={yellowMogka} alt="Sample image" 
+                                  <img class="img-fluid" src={yellowMog} alt="Sample image" 
                                   style={{height:'30rem'}}
                                   />
                               </div>
@@ -281,7 +288,7 @@ const FarmProducts = () => {
                           <div class="col-md-6">
                               
                               <div class="view rounded-right">
-                                  <img class="img-fluid" src={pinkMogka} alt="Sample image" 
+                                  <img class="img-fluid" src={pinkMog} alt="Sample image" 
                                   style={{height:'30rem'}}
                                   />
                               </div>

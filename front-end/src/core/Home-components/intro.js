@@ -23,8 +23,6 @@ import {Link} from 'react-router-dom'
 import IntroPic from '../../photo/intro.jpg' 
 
 
-
-
 const Intro = () => (
   // 'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'
 
