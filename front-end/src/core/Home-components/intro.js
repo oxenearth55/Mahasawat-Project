@@ -1,17 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBNavbarToggler,
-  MDBCollapse,
   MDBMask,
   MDBRow,
   MDBCol,
-  MDBFormInline,
   MDBBtn,
   MDBView,
   MDBContainer,
@@ -26,7 +18,7 @@ import IntroPic from '../../photo/intro.jpg'
 const Intro = () => (
   // 'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'
 
-<MDBView  src={IntroPic}>
+<MDBView  src={IntroPic} className="fix-bg">
           <MDBMask className='rgba-black-light' />
           <Menu/>
 

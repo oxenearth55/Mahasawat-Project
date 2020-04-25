@@ -1,33 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBNavbarToggler,
-  MDBCollapse,
   MDBMask,
   MDBRow,
   MDBCol,
-  MDBFormInline,
-  MDBBtn,
   MDBView,
   MDBContainer,
   MDBAnimation
 } from 'mdbreact';
 import Menu from '../Menu';
-
-import sapan from '../../photo/sapan.jpg' 
-
-
+import boat from '../../photo/boat.jpg' 
 
 
 const Intro = () => (
-
-<MDBView  src={sapan} className="fix-bg" >
-          <MDBMask className='rgba-black-light'  />
+<MDBView  src={boat} className="fix-bg">
+          <MDBMask className='rgba-black-light' />
           <Menu/>
 
           <MDBContainer
@@ -40,11 +26,11 @@ const Intro = () => (
               <MDBAnimation reveal type="fadeInUp">
 
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                ท่านสามารถเดินทางมาซื้อผลิตภัณฑ์จากหน้าร้านได้
+                 แม้ว่าคุณจะอยู่บ้าน เราก็พร้อมส่งตรงความสุขให้กับคุณ 
                 </h1>
                 <hr className='hr-light my-4' />
                 <h5 className='text-uppercase mb-4 white-text '>
-                  <strong>เพื่อสัมผัสกับธรรมชาติท่ามกลางชุมชน</strong>
+                  <strong>เพราะเราใส่ใจทุกขั้นตอน</strong>
                 </h5>
              
             

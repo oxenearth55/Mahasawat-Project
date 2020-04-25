@@ -1,16 +1,10 @@
 import React from "react";
-import {Link} from 'react-router-dom'
 //ANCHOR Photo
 import fruitGarden from '../../photo/fruitGarden.jpg'
 import flower from '../../photo/flower.jpg'
 import banFakk from '../../photo/banFakk.jpg'
 import nabua from '../../photo/nabua.jpg'
 import kaotang from '../../photo/kaotang.jpg'
-
-
-
-
-import tea from '../../photo/tea.png'
 
 
 

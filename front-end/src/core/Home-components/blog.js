@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBIcon, MDBView, MDBBtn } from "mdbreact";
-// import location1 from '../location1.jpg';
 import Handwash from './picture/handwash.jpg';
 import tea from './picture/tea.jpg';
+import soap from '../../photo/soap.jpg';
+import grass from '../../photo/หญ้า.jpg';
+
 
 
 
@@ -13,15 +15,15 @@ import Nabualo from '../location1.jpg';
 
 const BlogPage = () => {
   return (
-    <MDBCard className="my-5 px-5 pb-5">
-      <MDBCardBody>
+    <MDBCard className="my-5 px-5 pb-5 " >
+      <MDBCardBody  >
         <h2 className="h1-responsive font-weight-bold text-center my-5">
           สินค้าของเราผลิตมากจากธรรมชาติ
         </h2>
         <p className="text-center w-responsive mx-auto mb-5">
           พวกเราชาวชุมชนมหาสวัสดิ์ใส่ใจทุกขั้นตอนการผลิต เพื่อสร้างสรรค์สิ่งที่ดีที่สุดให้กับผู้บริโภค        
         </p>
-        <MDBRow>
+        <MDBRow >
           <MDBCol lg="5">
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
               <img
@@ -57,7 +59,7 @@ const BlogPage = () => {
             </p>
          <Link to ='product/5e747ef041341508681a4661'>
          <button type="button" class="btn px-3 py-2  btn-default">
-              Read more
+              ดูเพิ่มเติม
             </button>
           </Link>
           </MDBCol>
@@ -88,7 +90,7 @@ const BlogPage = () => {
           
             <Link to ='product/5e74cc6b87d18b1180d8d7f2'>
          <button type="button" class="btn px-3 py-2 btn-danger">
-              Read more
+              ดูเพิ่มเติม
             </button>
           </Link>
           </MDBCol>
@@ -96,7 +98,7 @@ const BlogPage = () => {
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
               <img
                 className="img-fluid"
-                src="https://scontent.fbkk8-2.fna.fbcdn.net/v/t1.0-9/83770871_2438456216394846_5412847996389818368_n.jpg?_nc_cat=107&_nc_sid=110474&_nc_oc=AQmd06vMG4IHLhUxTrbpnb5Kyo_dAJzxjErpVLa4pQ00MkRW2L6wIFMj6RsD14uEvPpb0NtiiMbVr0FNUdeqW5jc&_nc_ht=scontent.fbkk8-2.fna&oh=3b4c09baa295597acc3993070d15c315&oe=5E99A0B3"
+                src={soap}
                 alt=""
               />
               <a href="#!">
@@ -144,7 +146,7 @@ const BlogPage = () => {
           
             <Link to='product/5e73a300706ed211419762a1'>
             <button type="button" class="btn px-3 py-2  btn-info">
-              Read more
+              ดูเพิ่มเติม
             </button>
           </Link>
 

@@ -14,7 +14,7 @@ const KaotangProducts = () => {
 
     return(
         <>
-        <div class="container my-5">
+        <div class="container my-5 " >
 
 {/* <!-- Section --> */}
 <section>
@@ -576,10 +576,10 @@ const KaotangProducts = () => {
 
 
 
-  <h5 class="font-weight-bold text-center grey-text text-uppercase  mb-4">สินค้า</h5>
-  <h3 class="font-weight-bold text-center dark-grey-text pb-2">บ้านศาลาดิน</h3>
+  <h5 class="font-weight-bold text-center white-text text-uppercase  mb-4">สินค้า</h5>
+  <h3 class="font-weight-bold text-center white-text pb-2">บ้านศาลาดิน</h3>
   <hr class="w-header my-4"/>
-  <p class="lead text-center text-muted pt-2 mb-5">สินค้าตัวอย่างจากทางบ้านศาลาดิน</p>
+  <p class="lead text-center text-muted white-text pt-2 mb-5">สินค้าตัวอย่างจากทางบ้านศาลาดิน</p>
       
   {/* <!--First row--> */}
   <div class="row">

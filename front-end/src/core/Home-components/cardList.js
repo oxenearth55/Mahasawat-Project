@@ -8,6 +8,7 @@ import FarmProducts from './Farm/FarmProducts'
 import KaotangeProducts from './KaoTang/KaotangProducts'
 import ContactFruit from './FruitGarden/ContactFruit'
 import ContactKao from './KaoTang/ContactKao'
+import wood from '../../photo/wood.jpg'
 
 
 
@@ -208,11 +209,11 @@ const disPlayContact = () => (
 )
   
   return (
-      <>
+      <div className="pb-5 " style={{backgroundImage:'linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)),'+ "url("+wood+")"}}>
       {showCard()}  
       {displayProducts()}
       {disPlayContact()}
-      </>   
+      </div>   
   );
 }
 

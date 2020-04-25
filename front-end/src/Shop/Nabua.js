@@ -58,7 +58,9 @@ const Nabua = () => {
 
     return(
         <>
+        <Menu/>
         {intro()}
+        <Footer/>
         </>
 
     )

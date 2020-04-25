@@ -45,7 +45,6 @@ const Routes = () => {
             <Route path="/profile/:userId" exact component={Profile}></Route>
             <Route path="/shop/banfakkhaw" exact component={BanFakkhaw}></Route>
             <Route path="/shop/nabua" exact component={Nabua}></Route>
-
             <Route path="/order" exact component={SeeOrderCus}></Route>
             <Route path="/select/shop" exact component={SelectShop}></Route>
 

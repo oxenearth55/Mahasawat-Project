@@ -12,6 +12,10 @@ html{
     text-rendering: optimizeLegibility;
 }
 
+.font18{
+  font-size:18px;
+}
+
 /* ANCHOR  Home page */
 .headerImg { 
     /* https://wi-images.condecdn.net/image/jjAAGJWy79x/crop/1620/f/pigbrain.jpg */

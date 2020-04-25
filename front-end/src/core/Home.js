@@ -1,26 +1,19 @@
 import React, {useState, useEffect} from 'react'; 
 import './Style.css';
-import Menu from './Menu';
 import Footer from './Footer';
 import {getProducts} from './apiCore';
-import ProductImage from './ProductImage';
-import ShowProduct from './Home-components/ShowProduct'
-import Layout from './Layout'
-import {Link} from 'react-router-dom'
-import Slide from './slide'
 import Intro from './Home-components/intro'
 import Intro2 from './Home-components/intro2'
-
-
-import BlogPage from './Home-components/blog'
-import EcommercePage from './Home-components/ShowCard'
-import { MDBRow ,MDBCol} from 'mdbreact';
-
+import Intro3 from './Home-components/intro3'
+import grass from '../photo/หญ้า.jpg';
+import wheat from '../photo/wheat.jpg';
+import ShowBestProducts from './Home-components/ShowBestProducts'
+import ShowNewProducts from './Home-components/ShowNewProducts'
+import { MDBRow} from 'mdbreact';
 import CardList from './Home-components/cardList'
-import ShowExample from './Home-components/Example'
 import ShowShop from './Home-components/ShowShop'
-import AllShop from './AllShop'
 import Example from './Home-components/Example'
+import Content from './Home-components/Content'
 
 
 
@@ -70,159 +63,76 @@ const Home = () => {
     }, []);
 
 
-const headerIntro = () => (
 
-    <div className="headerImg container-fluid img-fluid ">
-  
-
-     <section>
-
-        <div className="row">
-            <div className="col-12 intro-text">
-                <h1 className="heading-font">Mahasawat Shopping</h1> 
-            </div>
-        </div>
-
-        <div className="row">
-            <div className="col-6 intro-text">
-                <p className="detail-font">Our products are produced from natural material</p>
-            </div>
-        </div>     
-    
-        <div className="row mt-5">
-              
-                {/* <div className="col-md-2 col-sm-12">
-               
-                <Link to= {`/shop/:searchResult/:search`}>
-                <button type="button" class="btn-text btn btn-danger btn-rounded py-2">Shop now</button>
-                </Link>
-            </div> */}
-        </div> 
-           
-    
-    </section> 
-    </div>
-        );
-
-const firstSection = () =>( 
-    <section className ="container-fluid mx-auto">
-
-        <div className ="row">
-            <div className = "head-section col-sm-12 col-12 center-align"><h2>Get the best experiance</h2></div> 
-        </div>
-
-         <div className="row">
-             <div className="col-12">
-                <p className = "section1-intro center-align mt-4 mb-5"> 
-                        No time for shopping or traveling at Mahasawat by yourself. 
-                        Please let us take care of that, we’re really good at it, we promise!
-                </p>
-
-              </div>
-          </div>  
-         
-        <div className="container section-icon" >
-                    
-            <div className="row">
-                
-                <div className="col-md-3 col-sm-12 mb-sm-4">
-                <i class=" fas fa-mobile-alt fa-3x "></i>
-                    <div className="icon-intro"> <h4>Support Mobile</h4></div> 
-                    <p className="content-intro">You can see our product via mobile phone easily. 
-                        Just access Mahasawat-Shopping.com
-                    </p>
-                               
-                </div>
-
-
-                <div className="col-md-3 col-sm-12 mb-sm-4">
-                <i class=" far fa-clock fa-3x"></i>
-                    <div className="icon-intro"> <h4>24 hours</h4></div> 
-                    <p className="content-intro">Our service always open 24 hours. 
-                        You can visit our website everytime.
-                    </p>
-                               
-                </div>
-
-                
-                <div className="col-md-3 col-sm-12  mb-sm-4">
-                <i class=" fas fa-shipping-fast fa-3x"></i>
-                    <div className="icon-intro"> <h4>Shipping Serivce</h4></div> 
-                    <p className="content-intro">You can get product at your home or your location
-                        that you selected.
-                    </p>
-                               
-                </div>
-                
-                
-                <div className="col-md-3 col-sm-12" >
-                <i class="far fa-star fa-3x " ></i>
-                    <div className="icon-intro center-block"> <h4>Product Review</h4></div> 
-                    <p className="content-intro">You can see product rating that was provided 
-                    by other customers. This can encourage you to decide 
-                    a product that you interested in.</p>
-                               
-                </div>
-                </div>
-
-            </div>
-    </section>
-    );
-
-   
+   const showNewArrival = () => (
+    <MDBRow >
+    {productsByArrival.map((product,i) => (
+    <ShowNewProducts key={i} product={product}/>   
+          ))}
+</MDBRow>
+   )
     const showBestSeller = () => (
-    <MDBRow>
+    <MDBRow >
         {productsBySell.map((product,i) => (
-        <EcommercePage key={i} product={product}/>
-   
+        <ShowBestProducts key={i} product={product}/>   
               ))}
-
 </MDBRow>
 
     )
-
     
-
+const cardListHeader = () => (
+    <div class=" my-5">
+    {/* <!--Section: Content--> */}
+    <section class="px-md-5 mx-md-5 py-5 text-center white-text elegant-color z-depth-1 rounded">
+    <h4 class="">คุณสามารถติดต่อร้านเหล่านี้ <i class="fas fa-store orange-text mx-1"></i> เพื่อสอบถามรายละเอียดเพิ่มเติม</h4>
+    </section>
+    {/* <!--Section: Content--> */}
+    </div>
+)
 
     return(
         <div>
-        
-
-        {/* <Menu/> */}
-<Intro photo={'https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg'}/>
-        {/* <Slide/> */}
-        {/* <Test2/> */}
+        <Intro/>
         <div className="pb-5">
-
         <Example/>
-
         </div>
-        <div className="mt-5 mb-4">
-
+        <div className="mt-5 mb-0">
         <Intro2/>
         </div>
+        <Content/>
+        {cardListHeader()}
         <CardList/>
+        <div className="m">
+        <Intro3/>
+        </div>
         <ShowShop/>
-        {/* <ShowExample/> */}
-        <BlogPage/>
-        {/* <CardList/> */}
-
-        <section className="text-center my-5">
+{/*SECTION Show BESTSELLER and NEW ARRIVAL */}
+        <section className="text-center pb-5 fix-bg" style={{backgroundImage:'linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)),'+ "url("+grass+")",color:'white'}}>
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         สินค้าขายดี
       </h2>
-      <p className="grey-text text-center w-responsive mx-auto mb-5">
+      <h4 className=" text-center w-responsive mx-auto mb-5 white-text">
         สินค้าของเราเป็นที่ชื่นชอบมากทั้งในหมู่คนไทยและคนต่างชาติ เพราะสินค้าที่นี่ ผลิตจาก ธรรมชาติ
-      </p>
-    
+      </h4>   
   {/* NOTE show best sellers */}
+  <div className="pb-5">
     {showBestSeller()}
-      
-
+    </div>
         </section>
 
-       
 
+        <section className="text-center pb-5 fix-bg" style={{backgroundImage:'linear-gradient(rgba(0, 0, 0, 0.39), rgba(0, 0, 0, 0.7)),'+ "url("+wheat+")",color:'white'}}>
+      <h2 className="h1-responsive font-weight-bold text-center my-5">
+        สินค้ามาใหม่
+      </h2>
+      <h4 className=" text-center w-responsive mx-auto mb-5 white-text">
+        สินค้าใหม่ พร้อมให้คุณได้เป็นเจ้าของแล้ววันนี้
+      </h4>   
+  {/* NOTE show best sellers */}
+  <div className="pb-5">
+    {showNewArrival()}
+    </div>
+        </section>
         <Footer/>
         </div>
      );

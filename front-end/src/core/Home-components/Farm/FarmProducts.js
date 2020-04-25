@@ -10,11 +10,6 @@ import pinkMog from './Photo/มอคชมพู.JPG'
 
 
 
-
-
-
-
-
 const FarmProducts = () => {
 
     return(
@@ -387,10 +382,10 @@ const FarmProducts = () => {
 
 
 
-  <h5 class="font-weight-bold text-center grey-text text-uppercase  mb-4">สินค้า</h5>
-  <h3 class="font-weight-bold text-center dark-grey-text pb-2">ฟาร์มกล้วยไม้คุณสร้อย</h3>
+  <h5 class="font-weight-bold text-center white-text text-uppercase  mb-4">สินค้า</h5>
+  <h3 class="font-weight-bold text-center white-text pb-2">ฟาร์มกล้วยไม้คุณสร้อย</h3>
   <hr class="w-header my-4"/>
-  <p class="lead text-center text-muted pt-2 mb-5">สินค้าตัวอย่างจากทางฟาร์มกล้วยไม้คุณสร้อย</p>
+  <p class="lead text-center text-muted white-text pt-2 mb-5">สินค้าตัวอย่างจากทางฟาร์มกล้วยไม้คุณสร้อย</p>
       
   {/* <!--First row--> */}
   <div class="row">

@@ -255,33 +255,7 @@ return(
 
     {showFilterByShop()}
 
-            
-
-
-        {/* <h4 className="text-white bg-dark">
-                Related Shop   
-             </h4> 
-           <div className="bg-light text-dark">
-         
-          
-        <Link to= {`/shop/banfakkhaw`}>       
-            บ้านฟักข้าว
-        </Link>
-
-       
-       
-        </div>
-
-        <Link to= {`/shop/nabua`}>       
-            นาบัวลุงแจ่ม
-        </Link> */}
-    
-        {/* {triggerSearch(trigger)} */}
-
-
-         {/* {shopDisplay(data.results)} */}
-
-
+      
          {showLoading()}
 
     {show(trigger)}

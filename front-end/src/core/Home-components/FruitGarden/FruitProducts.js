@@ -359,10 +359,10 @@ const FruitProducts = () => {
 
 
 
-  <h5 class="font-weight-bold text-center grey-text text-uppercase  mb-4">สินค้า</h5>
-  <h3 class="font-weight-bold text-center dark-grey-text pb-2">สวนผลไม้ลุงบุญเลิศ</h3>
+  <h5 class="font-weight-bold text-center white-text text-uppercase  mb-4">สินค้า</h5>
+  <h3 class="font-weight-bold text-center white-text pb-2">สวนผลไม้ลุงบุญเลิศ</h3>
   <hr class="w-header my-4"/>
-  <p class="lead text-center text-muted pt-2 mb-5">สินค้าตัวอย่างจากทางสวนผลไม้ลุงบุญเลิศ</p>
+  <p class="lead text-center text-muted white-text pt-2 mb-5">สินค้าตัวอย่างจากทางสวนผลไม้ลุงบุญเลิศ</p>
       
   {/* <!--First row--> */}
   <div class="row">
