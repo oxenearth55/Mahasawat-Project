@@ -44,13 +44,14 @@ const productSchema = new mongoose.Schema(
         },
         photo: {
             data: Buffer,
-            contentType: String
+            contentType: String,
+
         },
-        shipping: {
+
+        content: {
             type: String,
-            required: true
-        },
-      
+            default:'ไม่มี'
+          },
 
         comments: [{
             userName: {type: String},

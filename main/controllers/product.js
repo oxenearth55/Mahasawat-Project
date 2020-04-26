@@ -35,11 +35,11 @@ exports.create = (req, res) => {
             });
         }
         // check for all fields
-        const { name, description, price, category, quantity, shipping, shop,detail} = fields;
+        const { name, description, price, category, quantity,shop,detail} = fields;
 
-        if (!name || !description || !price || !category || !quantity || !shipping || !shop ||!detail) {
+        if (!name || !description || !price || !category || !quantity || !shop ||!detail) {
             return res.status(400).json({
-                error: 'All fields are required'
+                error: 'กรุณากรอกข้อมูลให้ครบ'
             });
         }
 

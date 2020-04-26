@@ -14,14 +14,13 @@ const AddProduct = () => {
         categories: [],
         category: '',
         detail:'',
-        shipping: '',
         quantity: '',
         photo: '',
         loading: false,
         error: '',
         createdProduct: '',
         redirectToProfile: false,
-        shopObject: [],
+        
         formData: ''
     });
     //NOTE grab user info and token from admin
@@ -32,21 +31,18 @@ const AddProduct = () => {
         description,
         price,
         categories,
-        category,
-        shipping,
         quantity,
         loading,
         error,
         createdProduct,
-        redirectToProfile,
         detail,
-        // shopObject,
         formData
     } = values;
 
     //NOTE State for shop selection
     const [shopObject, setShopObject] = useState([])
 
+    //SECTION DISPLAY SHOP NAME
     const getShopObject = () => {
         getShop(user._id,token).then(data => {
             if (data.error) {
@@ -57,6 +53,22 @@ const AddProduct = () => {
             }
         });
     };
+    const showShopName = () => {
+        return(
+        shopObject.map((res,index)=>{ 
+            if(user.shop == res._id){
+                return(
+                    <>
+                    <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                    </>
+                )
+            }
+        })
+        )
+    }
+
+    //SECTION USEEFFECT
+
 
     //NOTE load categories and set form data
     const init = () => {
@@ -76,12 +88,12 @@ const AddProduct = () => {
 
     
     };
-
     useEffect(() => {
         init();
         getShopObject();
     }, []);
 
+    //SECTION CREATE PRODUCT
 
     const handleChange = name => event => {
         // NOTE Check input (Grab data from photo must use different method like target,files)
@@ -93,6 +105,7 @@ const AddProduct = () => {
 
     const clickSubmit = event => {
         event.preventDefault();
+        formData.set('shop',user.shop)
         setValues({ ...values, error: '', loading: true });
 
         createProduct(user._id, token, formData).then(data => {
@@ -148,18 +161,7 @@ const AddProduct = () => {
                 <input onChange={handleChange('price')} type="number" className="form-control" value={price} />
             </div>
 
-            <div className="form-group">
-                <label className="text-muted">ร้านค้า</label>
-                <select onChange={handleChange('shop')} className="form-control">
-                    <option>เลือก</option>
-                    {shopObject &&
-                        shopObject.map((s, i) => (
-                            <option key={i} value={s._id}>
-                                {s.name}
-                            </option>
-                        ))}
-                </select>
-            </div>
+           
 
             <div className="form-group">
                 <label className="text-muted">ประเภท</label>
@@ -194,7 +196,7 @@ const AddProduct = () => {
 
     const showSuccess = () => (
         <div className="alert alert-info" style={{ display: createdProduct ? '' : 'none' }}>
-            <h2>{`${createdProduct}`} ถูกสร้างเรียบร้อย!</h2>
+            <h2 className="text-center">{`${createdProduct}`} ถูกสร้างเรียบร้อย!</h2>
         </div>
     );
 
@@ -210,6 +212,8 @@ const AddProduct = () => {
         headerImg="dashBoardImgLayout">
             <div className="row">
                 <div className="col-md-8 offset-md-2">
+                {showShopName()}
+
                     {showLoading()}
                     {showSuccess()}
                     {showError()}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
-import {addShipping,getSpecificShop} from './apiAdmin'
+import {addShipping,getSpecificShop, getShop} from './apiAdmin'
 import { isAuthenticated } from '../auth';
 
 
@@ -39,6 +39,7 @@ const ManageShipping = (props) =>
      useEffect(() => {
         const shopId = props.match.params.shopId;
         getShopInfo(shopId);
+        getShopObject();
     }, []);
 
 
@@ -165,54 +166,6 @@ const clickSubmit3 = event => {
         }
         });
 };
-
-
-
-
-
-
-
-
-
-// const addProviderForm = () => (
-//     <form onSubmit={clickSubmit}>
-//         <h3>เพิ่มตัวเลือกการขนส่ง</h3>
-//         <div className="form-group">
-//             <label className="text-muted">ชื่อผู้ให้บริการ</label>
-//             <input type="text" onChange={handleChange('providerName')} className="form-control"  />
-//         </div>
-//         <div className="form-group">
-//             <label className="text-muted">ราคา</label>
-//             <input type="text" onChange={handleChange('shippingCost')} className="form-control" />
-//         </div>
-
-
-//         <button  className="btn btn-primary">
-//             ยืนยัน
-//         </button>
-//     </form>
-// );
-
-// const dropdowns = (res) =>{
-    
-//     if(res.avilable == true){
-//     return(
-//         <>
-//         <select onChange={handleChange('avilable')} className="form-control" >
-//                     <option value={true}>ใช้</option>
-//                     <option value={false}>ไม่ใช้</option>
-//         </select>
-//         </>
-//     )
-//     }else if(res.avilable == false){
-//         return(
-//             <>
-
-//             </>
-//         )
-//     }
-// }
-
 const showAvalible = (res) => {
     
     if(res == true){
@@ -230,10 +183,6 @@ const showAvalible = (res) => {
      )
     }
 }
-
-
-
-
 
 const displayProvider1 = () => {
     return(
@@ -263,10 +212,6 @@ const displayProvider1 = () => {
                     <option value={true}>ใช้</option>
 
     </select>
-
-   
-
-
          </div>
 
          <div class="col-md-2 mb-2 mx-5 mt-4">
@@ -325,20 +270,13 @@ const displayProvider2 = () => {
     
     </div>
          <button onClick={clickSubmit2} class="btn btn-primary btn-sm px-3 my-3" type="submit">อัพเดท</button>
-
   </div>
   <hr/>
-
-
-
         </>
     )
 } 
-
-
 const displayProvider3 = () => {
     return(
-
         <>
               <h5>ผู้ให้บริการ3</h5>
 
@@ -400,7 +338,29 @@ const showSuccess = () => {
 }
 
 
+//SECTION Update Shop for Admin only
+const [shopObject, setShopObject] = useState([]);
+const getShopObject = () => {
+    getShop().then(data => {
+      
+            setShopObject(data);
+        
+    });
+};
 
+const showShopName = () => {
+    return(
+    shopObject.map((res,index)=>{ 
+        if(user.shop == res._id){
+            return(
+                <>
+                <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                </>
+            )
+        }
+    })
+    )
+}
 
     return(
         <>
@@ -413,13 +373,12 @@ const showSuccess = () => {
         >
 
 <div className="container">
-
+{showShopName()}
 <h3 className="text-center mb-5">การให้บริการขนส่ง</h3>
 {showSuccess()}
           {displayProvider1()}
           {displayProvider2()}
           {displayProvider3()}
-
 
             </div>
         </Layout>

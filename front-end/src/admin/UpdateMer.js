@@ -238,10 +238,11 @@ const preventPermission = () => {
     >
 
         {preventPermission()}
-
+<div className="container">
 <h2 className="mb-4">อัพเดทสิทธิ์การเข้าถึง</h2>
             {profileUpdate(name, email, role)}
             {redirectUser(success)}
+            </div>
         </Layout>
 
     );

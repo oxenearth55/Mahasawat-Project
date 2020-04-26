@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { getShopList,createShop } from "../admin/apiAdmin";
+import { getShopList,createShop,getShop } from "../admin/apiAdmin";
 import { MDBListGroup, MDBListGroupItem, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 
 const AdminDashboard = () => {
     const {
-        user: { _id, name, email, role,token,shop }
+        user: { _id, name, email, role,shop }
     } = isAuthenticated();
 
 
@@ -19,11 +19,11 @@ const AdminDashboard = () => {
             )}
             else if(role === 1){
                 return(
-                <div>คนขาย</div>
+                <div>หน้าที่: คนขาย</div>
                 )}
                 else if(role === 2){
                     return(
-                        <div>ผู้ดูแล</div>
+                        <div>หน้าที่: ผู้ดูแล</div>
                     )
                 }else{
                     return(
@@ -33,22 +33,34 @@ const AdminDashboard = () => {
     
             };
 
-    const [shopName, setShopName] = useState([])
+            //SECTION SHOW SHOP NAME
 
-    const loadShopList = () => {
-        getShopList(_id, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                setShopName(data);
+            const [shopObject, setShopObject] = useState([]);
+            const getShopObject = () => {
+                getShop().then(data => {
+                  
+                        setShopObject(data);
+                    
+                });
+            };
+            
+            const showShopName = () => {
+                return(
+                shopObject.map((res,index)=>{ 
+                    if(shop == res._id){
+                        return(
+                            <>
+                            ร้านค้าของคุณ: {res.name}
+                            </>
+                        )
+                    }
+                })
+                )
             }
-        });
-    };
-
 
     useEffect(() => {
-        // loadShopList();
-    }, []);
+        getShopObject();
+        }, []);
 
 
  
@@ -74,9 +86,11 @@ const info = () =>(
 <MDBContainer>
   <MDBListGroup >
     <MDBListGroupItem  className="bg-dark text-white">ข้อมูลผู้ใช้</MDBListGroupItem>
-    <MDBListGroupItem  ><p className="dash-info">{name}</p></MDBListGroupItem>
-    <MDBListGroupItem   ><p className="dash-info">{email}</p></MDBListGroupItem>
+    <MDBListGroupItem  ><p className="dash-info">ชื่อ: {name}</p></MDBListGroupItem>
+    <MDBListGroupItem   ><p className="dash-info">อีเมล: {email}</p></MDBListGroupItem>
     <MDBListGroupItem   ><p className="dash-info">{showRole(role)}</p></MDBListGroupItem>
+    <MDBListGroupItem   ><p className="dash-info">{showShopName()}</p></MDBListGroupItem>
+
   </MDBListGroup>
 </MDBContainer>
 );
@@ -90,8 +104,8 @@ const links = () => (
 
 
     <MDBListGroupItem hover >  
-        <Link className="nav-link textDash" to="/create/category">
-            เพิ่มประเภทสินค้า
+        <Link className="nav-link textDash" to="/manage/category">
+            จัดการประเภทสินค้า
         </Link>
                         
     </MDBListGroupItem>

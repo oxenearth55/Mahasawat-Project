@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { getProducts, deleteProduct } from "./apiAdmin";
+import { getProducts, deleteProduct, getShop } from "./apiAdmin";
 import { MDBDataTable } from 'mdbreact';
 
 
@@ -37,6 +37,7 @@ const ManageProducts = () => {
 
     useEffect(() => {
         loadProducts();
+        getShopObject();
     }, []);
 
     //SECTION TABLE WITH FILTER 
@@ -105,6 +106,29 @@ const ManageProducts = () => {
     
     dataColum.rows =rows
 
+      //SECTION Update Shop for Admin only
+      const [shopObject, setShopObject] = useState([]);
+      const getShopObject = () => {
+          getShop().then(data => {
+            
+                  setShopObject(data);
+              
+          });
+      };
+      
+      const showShopName = () => {
+          return(
+          shopObject.map((res,index)=>{ 
+              if(user.shop == res._id){
+                  return(
+                      <>
+                      <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                      </>
+                  )
+              }
+          })
+          )
+      }
     return (
         <Layout
             title="จัดการสินค้า"
@@ -114,8 +138,11 @@ const ManageProducts = () => {
 
 
         >
-           <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
+            <div className="container-fluid">
+            {showShopName()}
 
+           <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
+</div>
         </Layout>
     );
 };

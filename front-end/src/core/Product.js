@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Menu from './Menu'
 import Footer from './Footer'
-import { read, listRelated,getCategories,getAllProducts, uploadComment} from './apiCore';
-import Card from './Card';
-import ProductImage from './ProductImage';
-import {addNabuaItem,addFakkhawItem, updateItem,removeItem} from './cartHelpers'; 
-import { Link, Redirect } from 'react-router-dom';
+import { read, listRelated,getAllProducts} from './apiCore';
+import {addNabuaItem,addFakkhawItem} from './cartHelpers'; 
 import CardProduct from './CardProduct'
 import RelatedProduct from './RelatedProduct'
 
@@ -23,8 +20,6 @@ import SoapTea from '../Shop/Nabua/Story/SoapTea'
 
 
 import { isAuthenticated } from '../auth';
-import { MDBInput } from "mdbreact";
-import moment from "moment";
 import Comment from './Comment';
 import Pagination from './Pagination';
 
@@ -36,6 +31,7 @@ const Product = (props) => {
     const [allProducts,setAllProducts] = useState([]);
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
+    const [productContent, setProductContent] = useState('');
     const [productCat, setProductCat] = useState('');
     const [productShop, setProductShop] = useState([]);
     const [getComments, setGetcomments] = useState([]);
@@ -57,7 +53,7 @@ const Product = (props) => {
     }
     const showStory = () => {
     //SECTION Fakkhaw Story 
-        if(productCat == 'เจลล้างมือ' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+        if(productContent == 'เจลล้างมือฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             // if(1==1){
             return(
                 <>
@@ -66,7 +62,7 @@ const Product = (props) => {
             )
         
         }
-        if(productCat == 'สบู่ฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+        if(productContent == 'สบู่ฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             return(
                 <>
                 <FakkSoap/>
@@ -75,7 +71,7 @@ const Product = (props) => {
         
         }
 
-        if(productCat == 'โลชั่นฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+        if(productContent == 'โลชั่นฟักข้าว' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             return(
                 <>
                 <Lotion/>
@@ -85,7 +81,7 @@ const Product = (props) => {
         }
 
 
-        if(productCat == 'ถุงผ้า' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
+        if(productContent == 'ถุงผ้า' && productShop == 'บ้านฟักข้าวคุณขนิษฐา'){
             return(
                 <>
                 <Bag/>
@@ -93,7 +89,7 @@ const Product = (props) => {
             )
         
         }
-        if(productCat=='ชาเกษรดอกบัว' && productShop == 'นาบัวลุงแจ่ม'){
+        if(productContent=='ชาเกษรดอกบัว' && productShop == 'นาบัวลุงแจ่ม'){
             return(
                 <>
                 <Tea/>
@@ -101,7 +97,7 @@ const Product = (props) => {
             )
         }
 
-        if(productCat=='สบู่เกษรดอกบัว' && productShop == 'นาบัวลุงแจ่ม'){
+        if(productContent=='สบู่เกษรดอกบัว' && productShop == 'นาบัวลุงแจ่ม'){
             return(
                 <>
                 <SoapTea/>
@@ -117,6 +113,7 @@ const Product = (props) => {
                 setError(data.error);
             } else {
                 setProduct(data);
+                setProductContent(data.content);
                 setProductCat(data.category.name);
                 setProductShop(data.shop.name);
                 setGetcomments(data.comments); //NOTE Grab comments array of obeject from this product
@@ -167,7 +164,7 @@ const showRelated = () => (
          <div class="row">
    
          {allProducts.map((p, i) => {
-             if(productCat=== p.category.name && product._id != p._id ){
+             if(productCat === p.category.name && product._id != p._id ){
              
            return(
            <>

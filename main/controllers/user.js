@@ -18,7 +18,9 @@ exports.signup = (req, res) => {
 };
 
 exports.userById = (req, res, next, id) => {
-    User.findById(id).exec((err, user) => {
+    User.findById(id)
+    .populate('shop', 'name')
+    .exec((err, user) => {
         if (err || !user) {
             return res.status(400).json({
                 error: 'User not found'
@@ -39,7 +41,6 @@ exports.read = (req, res) => {
 exports.list = (req, res) => {
     User.find()
     .populate('shop', 'name')
-
     .exec((err, data) => {
         if (err) {
             return res.status(400).json({

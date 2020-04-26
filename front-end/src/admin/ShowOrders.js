@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { listOrders, deleteOrder,getShop,uploadSlip} from "./apiAdmin";
-import moment from "moment";
+import { listOrders, deleteOrder,getShop} from "./apiAdmin";
 import { MDBDataTable } from 'mdbreact';
 
 
@@ -17,7 +16,7 @@ const ShowOrders = () => {
 
     const { user, token } = isAuthenticated();
     
-    const [error,setError] =useState('');
+    const [error,setError] = useState('');
 
     const [deleteSucc,setDeleteSucc] = useState(false)
     
@@ -53,10 +52,6 @@ orders.map(res=>{
 
     if(user.shop === res.shop._id){
     rows.push({orderId:res._id,name:res.user.name,status:res.status,slip:slipStatus,click:seeOrder(res)
-//     ,delete: <div  onClick={() => {destroy(res._id); setLoading(true)}} className="btn btn-danger btn-sm">
-//     ลบ
-// </div>
-
 })
     }
 })
@@ -133,6 +128,21 @@ const getShopObject = () => {
     });
 };
 
+const showShopName = () => {
+    return(
+    shopObject.map((res,index)=>{ 
+        if(user.shop == res._id){
+            return(
+                <>
+                <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                </>
+            )
+        }
+    })
+    )
+}
+
+
 
     //SECTION useEffect
     useEffect(() => {
@@ -144,17 +154,7 @@ const getShopObject = () => {
     
 
 
-//NOTE DELETE order
-const destroy = (orderId) => {
-    deleteOrder(orderId, user._id, token).then(data => {
-        if (data.error) {
-            console.log(data.error);
-        } else {
-            loadOrders();
-            setDeleteSucc(true);
-        }
-    });
-};
+
 
 const showAleart = () =>{
     if(deleteSucc){
@@ -213,6 +213,7 @@ const showLoading = () => {
         >
         {showLoading()}
         {showAleart()}
+        {showShopName()}
          <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
 

@@ -7,7 +7,7 @@ import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './user/UserDashboard'
 import AdminRoute from './auth/AdminRoute'
 import AdminDashboard from './user/AdminDashboard'
-import AddCategory from './admin/AddCategory'
+import ManageCategory from './admin/ManageCategory'
 import AddProduct from './admin/AddProduct'
 import Shop from './core/Shop'
 import Product from'./core/Product'
@@ -27,7 +27,7 @@ import SeeOrderCus from './core/SeeOrderCus'
 import SelectShop from './Shop/SelectShop'
 import ManageBank from './admin/ManageBank'
 import ManageShipping from './admin/ManageShipping'
-
+import UpdateCat from './admin/UpdateCat' 
 
 
 const Routes = () => {
@@ -58,38 +58,18 @@ const Routes = () => {
 
             {/* SECTION Admin */}
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
-
-            <AdminRoute path="/create/category" exact component={AddCategory} />
-
+            <AdminRoute path="/manage/category" exact component={ManageCategory} />
             <AdminRoute path="/create/product" exact component={AddProduct} />
-
             <AdminRoute path="/admin/order/:orderID" exact component={Orders} />
-
             <AdminRoute path="/admin/orders" exact component={ShowOrders} />
-
-
             <AdminRoute path="/admin/products" exact component={ManageProducts} />
-
             <AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct} />
-
             <AdminRoute path="/admin/manage/permission" exact component={ManagePermission} />
-
             <AdminRoute path="/admin/update/:userId" exact component={UpdateMer} />
-
-
             <AdminRoute path="/admin/create/shop" exact component={CreateShop} />
-
-
-
             <AdminRoute path="/admin/manage/bank" exact component={ManageBank}/>
             <AdminRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
-
-
-
-
-
-
-
+            <AdminRoute path="/update/category/:catId" exact component={UpdateCat}/>
 
         </Switch>
 

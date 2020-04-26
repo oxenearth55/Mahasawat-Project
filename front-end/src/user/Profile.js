@@ -140,10 +140,12 @@ const Profile = ({ match }) => {
         <Layout title="โปรไฟล์" description="คุณสามารถอัพเดทโปรไฟล์ได้ที่นี่" className="container-fluid"
         headerImg="dashBoardImgLayout"
         >
+            <div className="container">
             <h2 className="mb-4">อัพเดทโปรไฟล์</h2>
             {profileUpdate(name, email, password)}
 
             {redirectUser(success)}
+            </div>
           
         </Layout>
     );

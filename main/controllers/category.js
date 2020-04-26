@@ -51,7 +51,8 @@ exports.remove = (req, res) => {
     Product.find({ category }).exec((err, data) => {
         if (data.length >= 1) {
             return res.status(400).json({
-                message: `Sorry. You cant delete ${category.name}. It has ${data.length} associated products.`
+                message: `ขอโทษ. คุณไม่สามารถลบ ${category.name}ได้ เพราะ ประเภทสินค้านี้ ${data.length} มีสินค้าที่่เกี่ยวข้องอยู่`
+                
             });
         } else {
             category.remove((err, data) => {

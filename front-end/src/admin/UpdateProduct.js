@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link, Redirect } from 'react-router-dom';
-import { getProduct, getCategories, updateProduct } from './apiAdmin';
+import { getProduct, getCategories, updateProduct,getShop } from './apiAdmin';
 
 const UpdateProduct = ({ match }) => {
     const [values, setValues] = useState({
@@ -10,6 +10,7 @@ const UpdateProduct = ({ match }) => {
         description: '',
         price: '',
         categories: [],
+        content:'',
         category: '',
         shipping: '',
         quantity: '',
@@ -29,7 +30,7 @@ const UpdateProduct = ({ match }) => {
         name,
         description,
         price,
-        // categories,
+        content,
         category,
         shipping,
         quantity,
@@ -37,16 +38,11 @@ const UpdateProduct = ({ match }) => {
         loading,
         error,
         createdProduct,
-        redirectToProfile,
-      
+        redirectToProfile,    
         formData
     } = values;
 
-    const [comments,setComments] = useState({
-        comment:'',
-        userName:user.name
- 
-    })
+
 
     // NOTE get product from backend by senind product ID from params
     const init = productId => {
@@ -64,6 +60,7 @@ const UpdateProduct = ({ match }) => {
                     category: data.category._id,
                     shipping: data.shipping,
                     quantity: data.quantity,
+                    content:data.content,
                     formData: new FormData()
                 });
                 // load categories
@@ -85,6 +82,7 @@ const UpdateProduct = ({ match }) => {
 
     useEffect(() => {
         init(match.params.productId);
+        getShopObject();
     }, []);
 
     const handleChange = name => event => {
@@ -118,6 +116,7 @@ const UpdateProduct = ({ match }) => {
             }
         });
     };
+  
 
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
@@ -163,6 +162,24 @@ const UpdateProduct = ({ match }) => {
                 </select>
             </div>
 
+            <div className="form-group">
+                <label className="text-muted">เรื่องราวสินค้า</label>
+                <select onChange={handleChange('content')} className="form-control" value={content}>
+                    <option>โปรดเลือก</option>
+                    <option value="เจลล้างมือฟักข้าว">เจลล้างมือฟักข้าว</option>
+                    <option value="สบู่ฟักข้าว">สบู่ฟักข้าว</option>
+                    <option value="โลชั่นฟักข้าว">โลชั่นฟักข้าว</option>
+                    <option value="ถุงผ้า">ถุงผ้า</option>
+                    <option value="ชาเกษรดอกบัว">ชาเกษรดอกบัว</option>
+                    <option value="สบู่เกษรดอกบัว">สบู่เกษรดอกบัว</option>
+                    <option value="ไม่มี">ไม่มี</option>
+
+
+
+                  
+                </select>
+            </div>
+
           
 
             <div className="form-group">
@@ -201,12 +218,37 @@ const UpdateProduct = ({ match }) => {
         }
     };
 
+    //SECTION Update Shop for Admin only
+    const [shopObject, setShopObject] = useState([]);
+const getShopObject = () => {
+    getShop().then(data => {
+      
+            setShopObject(data);
+        
+    });
+};
+
+const showShopName = () => {
+    return(
+    shopObject.map((res,index)=>{ 
+        if(user.shop == res._id){
+            return(
+                <>
+                <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                </>
+            )
+        }
+    })
+    )
+}
+
     return (
         <Layout title="แก้ไขสินค้า" description={` ท่านสามารถแก้ไขสินค้าได้ที่นี่`} headerImg="dashBoardImgLayout"
         >
             <div className="row">
                 <div className="col-md-8 offset-md-2">
-                    
+                {showShopName()}
+
                     {showLoading()}
                     {showSuccess()}
                     {showError()}

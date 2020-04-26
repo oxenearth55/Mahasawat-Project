@@ -54,6 +54,23 @@ const ManageBank = () => {
         });
     };
 
+    //SECTION Update Shop for Admin only
+ 
+
+    const showShopName = () => {
+        return(
+        shopObject.map((res,index)=>{ 
+            if(user.shop == res._id){
+                return(
+                    <>
+                    <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                    </>
+                )
+            }
+        })
+        )
+    }
+
      // NOTE get the shop from backend
      const getShopInfo = shopId => {
         getSpecificShop(shopId).then(data => {
@@ -260,6 +277,7 @@ const ManageBank = () => {
     headerImg="dashBoardImgLayout"
 >
     <div className="container">
+    {showShopName()}
     {showSuccess(success)}
     {setShowQr()}
     {showQR()}
