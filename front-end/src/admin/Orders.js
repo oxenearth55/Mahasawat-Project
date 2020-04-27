@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { deleteOrder, getStatusValues, decreaseProductAmount,updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
-import { uploadDeliver } from "./apiAdmin";
 import PopUpDelete from '../core/PopUpDelete';
 
 
@@ -25,7 +24,7 @@ const Orders = ({match}) => {
     //NOTE checkibng already update shipping cost or not
     const [success, setSuccess] = useState(false);
     const [successUp, setSuccessUp] = useState(false);
-    const [updatetext, setUpdateText] = useState([]);
+    const [updatetext, setUpdateText] = useState('');
     const [shippingProvider,setShippingProvider] = useState([]);
 
     const [error, setError] = useState(false)
@@ -43,18 +42,14 @@ const Orders = ({match}) => {
         formData: ''
     });
 
-    const {costShipping,formData} =  values; 
 
-    
+    const [upError,setUpError] = useState(false);
     const clickSubmit = event =>{
-        event.preventDefault();   
-       
+        event.preventDefault();         
         const decreaseProduct ={ //NOTE keep it as Object before storing in Datase
-            products: products
-        
-            
+            products: products          
         };
-         
+         if(updatetext !== 'เลือกอัพเดทสถานะที่นี่' && updatetext !== ''){
         if(updatetext=='กำลังขนส่ง'){
         updateOrderStatus(user._id, token, order._id, updatetext)
         decreaseProductAmount(user._id, token,decreaseProduct).then(
@@ -64,8 +59,6 @@ const Orders = ({match}) => {
                 } else {
                     console.log('photo is '+order.photo)
                     setSuccessUp(true)
-
-
                 }
             }
         );
@@ -73,16 +66,30 @@ const Orders = ({match}) => {
             updateOrderStatus(user._id, token, order._id, updatetext)
             setSuccessUp(true)
         }
+    }else{
+        setUpError(true);
+    }
     
     }
 
-    
+    const showUpdateError = () => {
+        if(upError){
+            return(
+                <div className="alert alert-warning" role="alert">
+
+        <h5 className="text-center order-aleart-slip">กรุณาเลือกสถานะเพื่อทำการอัพเดท</h5>
+        </div>
+
+            )
+        }
+    }
 
     const loadOrder = orderId => {
         //NOTE Get orders from backend
         readOrder(orderId).then(data => {
             if (data.error) {
                 console.log(data.error);
+                setError(data.error);
             } else {
                 setOrder(data)
                 setProducts(data.products)
@@ -143,6 +150,7 @@ const Orders = ({match}) => {
     const handleStatusChange = (e) => {
         setUpdateText(e.target.value)
         setSuccessUp(false)
+        setUpError(false)
        
     }
        
@@ -167,14 +175,14 @@ const [showBtn, setShowBtn] = useState(false);
     const showStatus = ()=> (
 
          <form className="my-5  border p-5  " onSubmit={clickSubmit}>
-            <h3 className="mark mb-4">สถานะ: {order.status}</h3>
+            <h3 className="mark mb-4 status-text">สถานะ: {order.status}</h3>
             <div className="form-group text-center">
 
             <select
                 className="form-control"
                 onChange={e => handleStatusChange(e,order._id)}
             >
-                <option>เลือกอัพเดทสถานะที่นี่</option>
+                <option value="เลือกอัพเดทสถานะที่นี่">เลือกอัพเดทสถานะที่นี่</option>
                 {statusValues.map((status, index) => (
                     <option key={index} value={status}>
                         {status}
@@ -238,6 +246,7 @@ const button = () => (
         <div className="row">
         <div className="col-md-8 offset-md-2">
        {showSucessUpdate()}
+       {showUpdateError()}
          
                     <div
                         className="mt-5"
@@ -371,33 +380,32 @@ const button = () => (
 
 
 //SECTION DELETE order
-const [delectsucc, setDeleteSucc] = useState(false);
+const [deleteSuccess, setDeleteSuccess] = useState(false);
 const [redirect, setRedirect] = useState(false);
 const destroy = () => {
     deleteOrder(match.params.orderID, user._id, token).then(data => {
         if (data.error) {
             console.log(data.error);
         } else {
-            setDeleteSucc(true);
-            setRedirect(true)
+            setDeleteSuccess(true);
         }
     });
 };
 
-const redirectUser = () => {
-    if (redirect) {
-        if (!error) {
-            return <Redirect to="/admin/orders"/>;
-        }
-    }
-};
+
 
 const deleteBtn = () => {
     return(
         <div className="container-fluid mb-4">
             <div className="row">
+
+           
+
                 <div className="col justify-content-end">
-                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#centralModalDanger">ลบรายการนี้</button>
+                {displaySlipBtn()}
+
+
+                    <button type="button" class="btn btn-danger btn-sm ml-5" data-toggle="modal" data-target="#centralModalDanger">ลบรายการนี้</button>
                 </div>
     <PopUpDelete o={order} destroy={destroy}/>
 </div>
@@ -405,6 +413,84 @@ const deleteBtn = () => {
     )
 }
 
+const showOrderInfo = () => {
+    if(!deleteSuccess && !error){
+        return(
+            <>
+                    {deleteBtn()}
+
+            <div className='container'>
+
+        <div className="mb-4">
+           </div>
+           {displaySlip()}
+           {showOrder()}         
+           {showAddress()}
+            </div>
+            </>
+        )
+
+    }
+}
+
+const showDeleteSuccess = () => {
+    if(deleteSuccess){
+    return(
+        <div class="alert alert-success text-center" role="alert">
+        รายการ "{order._id}" ถูกลบเรียบร้อยแล้ว
+      </div>
+    )
+    }if(error){
+        return(
+        <div class="alert alert-warning text-center" role="alert">
+        {error}
+      </div>
+        )
+    }
+}
+
+const goBack = () => {
+    if(deleteSuccess || error){
+    return(
+    <div className="mt-5 mb-5 pb-5">
+        <Link to="/admin/orders" className="text-warning mb-5">
+           <h4> กลับไปที่หน้า รายการสั่งซื้อทั้งหมด </h4>
+        </Link>
+    </div>
+);
+    }
+    }
+
+    const [triggerSlip, setTriggerShowSlip] = useState(false);
+    const displaySlipBtn = () =>{
+        if(triggerSlip){
+        return(
+            <>
+         <button type="button" onClick={()=>setTriggerShowSlip(false)}class="btn btn-pink mb-4">ปิด</button>
+            </>
+        )
+        }
+        if(!triggerSlip){
+            return(
+            <>
+             <button type="button" onClick={()=>setTriggerShowSlip(true)} class="btn btn-outline-info btn-lg waves-effect mb-4">ดูหลักฐานการโอนเงิน <i class="fas ml-2 fa-plus"></i></button>
+    
+            </>)
+        }
+        }
+    
+
+const displaySlip = () => {
+    if(triggerSlip){
+        return(
+            <>
+            {showSlip()}
+            </>
+        )
+    }
+
+}
+    
 
     return (
         <Layout
@@ -415,19 +501,11 @@ const deleteBtn = () => {
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
-            {/* {showCostInput()} */}
             
-
-        {redirectUser()}
-        {deleteBtn()}
-        <div className="mb-4">
-           {showSlip()}
-           </div>
-           {/* {button()} */}
-           {showOrder()}
-         
-           {showAddress()}
-
+            {showDeleteSuccess()}
+        {showOrderInfo()}
+        
+       {goBack()}
            
              </Layout>
     );

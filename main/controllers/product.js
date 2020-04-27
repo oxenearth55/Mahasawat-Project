@@ -12,7 +12,7 @@ exports.productById = (req, res, next, id) => {
         .exec((err, product) => {
             if (err || !product) {
                 return res.status(400).json({
-                    error: 'Product not found'
+                    error: 'ไม่มีสินค้านี้อยู่'
                 });
             }
             req.product = product;

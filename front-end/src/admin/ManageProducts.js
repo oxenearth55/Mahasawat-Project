@@ -56,9 +56,8 @@ const ManageProducts = () => {
        
     
         if(res.shop._id == user.shop){
-        rows.push({productName:res.name, category:res.category.name, amount:res.price, remain:res.quantity,click:seeOrder(res),delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
-        ลบ
-    </div>})
+        rows.push({productName:res.name, category:res.category.name, amount:res.price, remain:res.quantity,click:seeOrder(res)
+       })
         }
     })
     
@@ -93,13 +92,6 @@ const ManageProducts = () => {
             sort: 'asc',
             width: 200
           } , 
-    
-          {
-            label: 'ลบรายการ',
-            field: 'delete',
-            sort: 'asc',
-            width: 200
-          }    
     
         
         ]}

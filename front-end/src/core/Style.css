@@ -517,6 +517,10 @@ p{
 
     /* SECTION See Order (Customer) */
     .order-aleart-slip{font-size: 12px;}
+  /*SECTION SEE ORDER (VENDER)*/
+  .status-text{
+    font-size:14px;
+  }
 
 
 

@@ -10,9 +10,6 @@ const AddCategory = () => {
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [categories, setCategories] = useState([]);
-    const [showCategories, setShowCategories] = useState(false);
-
-
 
     //NOTE grab user and token from localstorage
     const { user, token } = isAuthenticated();
@@ -128,7 +125,7 @@ const showAddCategory = () =>{
                     required
                 />
             </div>
-            <button className="btn btn-outline-primary">เพิ่ม ประเภทสินค้า</button>
+            <button  className="btn btn-outline-primary">เพิ่ม ประเภทสินค้า</button>
         </form>
     );
 

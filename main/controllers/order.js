@@ -893,7 +893,7 @@ exports.orderById = (req, res, next, id) => {
         .exec((err, order) => {
             if (err || !order) {
                 return res.status(400).json({
-                    error: errorHandler(err)
+                    error: 'ไม่มีรายการนี้อยู่'
                 });
             }
             req.order = order;

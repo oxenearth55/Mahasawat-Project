@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link, Redirect } from 'react-router-dom';
-import { getProduct, getCategories, updateProduct,getShop } from './apiAdmin';
-
+import { getProduct, getCategories, updateProduct,getShop,deleteProduct } from './apiAdmin';
+import PopUpDeleteProduct from './PopUpDeleteProduct';
 const UpdateProduct = ({ match }) => {
     const [values, setValues] = useState({
         name: '',
@@ -192,7 +192,7 @@ const UpdateProduct = ({ match }) => {
     );
 
     const showError = () => (
-        <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
+        <div className="alert alert-danger text-center" style={{ display: error ? '' : 'none' }}>
             {error}
         </div>
     );
@@ -242,6 +242,53 @@ const showShopName = () => {
     )
 }
 
+//SECTION DELETE CATEGORY 
+const [deleteError, setDeleteError] = useState(false)
+const [deleteSuccess, setDeleteSuccess] = useState(false)
+const destroy = () => {
+    deleteProduct(match.params.productId, user._id, token).then(data => {
+        if (data.error) {
+            setDeleteError(true);    
+        } else {
+            setDeleteSuccess(true)
+        }
+    });
+};
+
+const deleteBtn = () => {
+    if(!deleteSuccess && !error){
+    return(
+        <div className="container-fluid mb-4">
+            <div className="row">
+                <div className="col justify-content-end">
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#centralModalDanger">ลบรายการนี้</button>
+                </div>
+    <PopUpDeleteProduct destroy={destroy}/>
+</div>
+        </div>
+    )
+    }
+}
+
+const showDeleteSuccess = () => {
+    if(deleteSuccess){
+    return(
+        <div class="alert alert-success text-center" role="alert">
+        สินค้า "{name}" ถูกลบเรียบร้อยแล้ว
+      </div>
+    )
+    }
+}
+const showForm = () => {
+    if(!deleteSuccess && !error){
+        return(
+            <>
+            {newPostForm()}
+
+            </>
+        )
+    }
+}
     return (
         <Layout title="แก้ไขสินค้า" description={` ท่านสามารถแก้ไขสินค้าได้ที่นี่`} headerImg="dashBoardImgLayout"
         >
@@ -251,8 +298,10 @@ const showShopName = () => {
 
                     {showLoading()}
                     {showSuccess()}
+                    {showDeleteSuccess()}
                     {showError()}
-                    {newPostForm()}
+                    {deleteBtn()}
+                    {showForm()}
                     {redirectUser()}
                 </div>
             </div>

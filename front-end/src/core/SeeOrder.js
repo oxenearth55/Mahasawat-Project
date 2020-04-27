@@ -17,7 +17,6 @@ import {getSpecificShop} from '../admin/apiAdmin'
 const SeeOrder = (props) => {
 
     const { user, token } = isAuthenticated();
-    const [slip,setSlip] =useState('');
     const [error,setError] =useState('');
     const [success,setSuccess] =useState(false);
     const [order,setOrder] =useState([]);
@@ -62,7 +61,7 @@ const clickCancle = (orderId) =>{
         formData: ''
     });
 
-    const {photo,formData,} =  values; 
+    const {photo,formData} =  values; 
 
      // NOTE get the shop from backend
      const getShopInfo = shopId => {
@@ -237,6 +236,7 @@ const handleChange = name => event => {
         readOrder(orderId).then(data => {
             if (data.error) {
                 console.log(data.error);
+                setError(data.error);
             } else {
                 setOrder(data)
                 setProducts(data.products)
@@ -422,6 +422,13 @@ const handleChange = name => event => {
 
         }
 
+        const showError = () => (
+            <div className="alert alert-danger text-center" style={{ display: error ? '' : 'none' }}>
+                {error}
+            </div>
+        );
+    
+
          // NOTE Reuse these style for each products in Order
     const showInput = (key, value) => (
         <div className="input-group mb-2 mr-sm-2">
@@ -606,6 +613,31 @@ const showAddress = () => (
         </div>
     )
 
+    const goBack = () => (
+        <div className="my-5 pb-5">
+            <Link to="/order" className="text-warning mb-5">
+                <h4>กลับไปที่หน้า รายการสั่งซื้อของท่าน</h4>
+            </Link>
+        </div>
+    );
+    const showOrderInfo = () =>{
+            if(!error){
+                return(
+                    <>
+            {showShopName()}
+            {showConfirm()}
+            {showOrders()}
+            {showAddress()}
+                    </>
+                )
+            }else{
+                return(
+                    <>
+                {goBack()}
+                </>
+                )}
+    }
+
     return(
         <Layout
             title="รายการสั่งซื้อของคุณ"
@@ -615,12 +647,10 @@ const showAddress = () => (
         > 
                     <div className="container">
 
-            {showShopName()}
-            {showConfirm()}
-            {showOrders()}
-            {showAddress()}
+{showError()}
+           
+{showOrderInfo()}
             </div>
-            {/* {showStatus()} */}
 
         </Layout>
 
