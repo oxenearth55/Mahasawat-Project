@@ -131,8 +131,8 @@ const Signin = () => {
 
     return (
         <Layout
-            title="Signin"
-            description="You can log in if you have an account."
+            title="เข้าสู่ระบบ"
+            description="คุณสามารถลงชื่อเข้าใช้ได้ที่นี่"
             className="container col-md-8 offset-md-2"
             headerImg="dashBoardImgLayout"
         >

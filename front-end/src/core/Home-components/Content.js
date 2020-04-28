@@ -7,7 +7,7 @@ import boat from '../../photo/boat.jpg'
 const Content = () => (
 
     <>
-    <div class=" mb-5 p-5 pb-5 z-depth-1 unique-color-dark">
+    <div id='products'class=" mb-5 p-5 pb-5 z-depth-1 unique-color-dark">
 
 
 {/* <!--Section: Content--> */}

@@ -10,7 +10,7 @@ import kaotang from '../../photo/kaotang.jpg'
 
 const Example = () => {
   return (
-    <div class="container-fluid  mt-5">
+    <div  class="container-fluid  mt-5">
 
 
     {/* <!--Section: Content--> */}

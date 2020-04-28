@@ -18,7 +18,7 @@ import nabua from '../../photo/nabua.jpg'
 const ShowShop = () => {
 
     const blog = () =>(
-        <div class="container my-5">
+        <div id='shop' class="container my-5">
 
 
   {/* <!--Section: Content--> */}

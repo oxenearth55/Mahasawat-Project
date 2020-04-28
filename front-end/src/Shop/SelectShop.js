@@ -10,13 +10,7 @@ import {
     MDBAnimation
   } from 'mdbreact';
   import Menu from '../core/Menu';
-  import Footer from '../core/Footer'
-  import Layout from '../core/Layout'
-  import nabuaPhoto from '../photo/nabuaLocation.jpeg'
-  import fakkhawPhoto from '../photo/fakkhawLocation.jpg'
-  import intropic from '../photo/intropic.jpg' 
-  import test2 from '../photo/maha1.jpeg' 
-
+  import pic from '../photo/สะพาน.jpg' 
 
 
   const SelectShop = () => {
@@ -25,57 +19,20 @@ import {
       window.scrollTo(0, 0)     
   }, []);
     
-const headerViedeo = () => (
-
-        // <!-- Full Page Intro -->
-
-        <div class="views">
-
-          <video autoplay ="autoplay" loop='loop' mute class="video-intro" poster="https://mdbootstrap.com/img/Photos/Others/background.jpg" >
-            <source src='' type="video/mp4"/>
-          </video>
-          {/* <!-- Mask & flexbox options--> */}
-          <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-            {/* <!-- Content --> */}
-            <div class="container px-md-3 px-sm-0">
-              {/* <!--Grid row--> */}
-              <div class="row wow fadeIn">
-                {/* <!--Grid column--> */}
-                <div class="col-md-12 mb-4 white-text text-center wow fadeIn">
-                  <h3 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Creative Agency</h3>
-                  <hr class="hr-light my-4 w-75"/>
-                  <h4 class="subtext-header mt-2 mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti consequuntur nihil.</h4>
-                  <a href="#!" class="btn btn-rounded btn-outline-white">
-                    <i class="fa fa-home"></i> Visit us
-                  </a>
-                </div>
-                {/* <!--Grid column--> */}
-              </div>
-              {/* <!--Grid row--> */}
-            </div>
-            {/* <!-- Content --> */}
-          </div>
-          {/* <!-- Mask & flexbox options--> */}
-        </div>
-
-      
-    );
 
 const intro = () => (
         
-<MDBView src={test2} >
-
-<MDBMask className='rgba-black-light' />
+<MDBView src={pic}  >
+<MDBMask className='rgba-black-light' 
+/>
 <Menu/>   
           <MDBContainer
             className='d-flex justify-content-center align-items-center '
             style={{ height: '100%', width: '100%', paddingTop: '2rem' }}
           >
-
-            <MDBRow className=" mb-5  ">
+            <MDBRow className=" mb-5 ">
               <MDBCol md='12' className='mb-4 white-text text-center'>
               <MDBAnimation reveal type="">
-
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 text-head '>
                   คุณสามารถเลือกดูร้านค้าจากชุมชนมหาสวัสดิ์ได้ที่นี่
                 </h1>
@@ -84,26 +41,16 @@ const intro = () => (
                   <strong>ชุมชนมหาสวัสดิ์</strong>
                 </h5>
                 <ul class="smooth-scroll list-unstyled text-head">
-              
-
-
                 <Link to ='/shop/banfakkhaw'>
                 <MDBBtn  outline color='white' className="shop-button">
                  <div className="text-white button-text">บ้านฟักข้าว</div>             
                  </MDBBtn>
-                 </Link>  
-
-                 
+                 </Link>               
                 <Link to ='/shop/nabua'>
-                <MDBBtn outline color='white' className="shop-button" >
-                
+                <MDBBtn outline color='white' className="shop-button" >              
                 <div className="text-white button-text">นาบัวลุงแจ่ม</div>
                 </MDBBtn>
                 </Link>
-               
-              
-              
-
                 </ul>
                 </MDBAnimation>
               </MDBCol>
@@ -112,143 +59,10 @@ const intro = () => (
         </MDBView>
         
     )
-
-const nabuaShop = () => (
-        <>
-        <MDBView src={nabuaPhoto}   >
-
-<MDBMask className='rgba-black-light' />
-
-          <MDBContainer id="nabua"
-            className='d-flex justify-content-center align-items-center '
-            style={{ height: '100%', width: '100%', paddingTop: '2rem' }}
-          >
-
-            <MDBRow className=" mb-5  ">
-              <MDBCol md='12' className='mb-4 white-text text-center'>
-              <MDBAnimation reveal type="fadeInUp">
-
-                <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                    นาบัวลุงแจ่ม
-                </h1>
-                <hr className='hr-light my-4' />
-                <h5 className='text-uppercase mb-4 white-text '>
-                  <strong>รับชมสินค้าจากทางร้าน</strong>
-                </h5>
-                <Link to="/shop/nabua">
-                <MDBBtn outline color='white'>
-                <div className="text-white">รับชมสินค้า</div>
-              
-                </MDBBtn>
-                </Link>
-              
-                </MDBAnimation>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-        </MDBView>
-        
-
-        </>
-    )
-
-
-    const allShop = () => (
-        <>
-        <MDBView src='https://d2d3n9ufwugv3m.cloudfront.net/w1200-h900-cfill/topics/yJj8K-_MG_9878.jpg' >
-
-<MDBMask className='rgba-black-light' />
-
-          <MDBContainer id="others"
-            className='d-flex justify-content-center align-items-center '
-            style={{ height: '100%', width: '100%', paddingTop: '2rem' }}
-          >
-
-            <MDBRow className=" mb-5  ">
-              <MDBCol md='12' className='mb-4 white-text text-center'>
-              <MDBAnimation reveal type="fadeInUp">
-
-                <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                    สินค้าทั้งหมด
-                </h1>
-                <hr className='hr-light my-4' />
-                <h5 className='text-uppercase mb-4 white-text '>
-                  <strong>รับชมสินค้าของทั้งสอนร้าน</strong>
-                </h5>
-                <Link to="/shop/:searchResult/:search">
-                <MDBBtn outline color='white'>
-                <div className="text-white">รับชมสินค้า</div>
-              
-                </MDBBtn>
-                </Link>
-              
-                </MDBAnimation>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-
-        </MDBView>
-        <Footer/>
-
-        
-
-        </>
-    )
-
-
-
-    const FakkhawShop = () => (
-        <>
-        <MDBView src={fakkhawPhoto}  id="fakkhaw" >
-
-<MDBMask className='rgba-black-light' />
-
-          <MDBContainer
-            className='d-flex justify-content-center align-items-center '
-            style={{ height: '100%', width: '100%', paddingTop: '2rem' }}
-          >
-
-            <MDBRow className=" mb-5  ">
-              <MDBCol md='12' className='mb-4 white-text text-center'>
-              <MDBAnimation reveal type="fadeInUp">
-
-                <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                    บ้านฟักข้าว คุณขนิษฐา
-                </h1>
-                <hr className='hr-light my-4' />
-                <h5 className='text-uppercase mb-4 white-text '>
-                  <strong>รับชมสินค้าจากทางร้าน</strong>
-                </h5>
-              
-                </MDBAnimation>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-          
-        </MDBView>
-        
-
-        </>
-    )
-
-
-
-
-    return(
-    
-       
+    return(      
     <div className='rgba-black-light'>
-
     {intro()}
-    {/* {FakkhawShop()} */}
-
-    {/* {nabuaShop()} */}
-    {/* {allShop()} */}
-    
     </div>
-
-
-
      ) }
 
 

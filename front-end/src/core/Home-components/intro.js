@@ -38,14 +38,27 @@ const Intro = () => (
                 <h5 className='text-uppercase mb-4 white-text '>
                   <strong>ผลิตภัณฑ์ธรรมชาติจากชุมชน</strong>
                 </h5>
-                <Link to="/shop/:searchResult/:search">
+                <a href="#products" >
                 <MDBBtn outline color='white'>
-                <div className="text-white">ร้านค้า</div>
+              สินค้ามหาสวัสดิ์
                 </MDBBtn>
-                </Link>
+                </a>
+                <a href="#shop" >
                 <MDBBtn outline color='white'>
-                   เกี่ยวกับเรา
+               ร้านค้าออนไลน์
                 </MDBBtn>
+                </a>
+
+                <a href="#best" >
+                <MDBBtn outline color='white'>
+                   สินค้าขายดี
+                </MDBBtn>
+                </a>
+                <a href="#new" >
+                <MDBBtn outline color='white'>
+                   สินค้ามาใหม่
+                </MDBBtn>
+                </a>
                 </MDBAnimation>
               </MDBCol>
             </MDBRow>

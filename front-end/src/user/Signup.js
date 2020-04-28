@@ -90,7 +90,7 @@ const signUpformNew = () => (
           {/* <MDBInput label="Confirm your email" icon="exclamation-triangle" group type="text" validate
             error="wrong" success="right" /> */}
 
-            <MDBInput onChange = {handleChange('password')} label="รหัส" icon="lock" group type="password" validate />
+            <MDBInput onChange = {handleChange('password')} label="รหัส (ขั้นต่ำ6ตัวขึ้นไป)" icon="lock" group type="password" validate />
 
           <MDBInput onChange = {handleChange('repeatePassword')} label="ยืนยันรหัสอีกครั้ง" icon="lock" group type="password" validate />
         </div>
@@ -139,8 +139,8 @@ const showSuccess = () => (
   // SECTION render
   return ( 
     <Layout
-    title="Signup"
-    description="Please create your account "
+    title="สร้างบัญชี"
+    description="คุณสามารถสร้างบัญชีได้ที่นี่ "
     className="container col-md-8 offset-md-2"
     headerImg="dashBoardImgLayout"
 >

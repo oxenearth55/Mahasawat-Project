@@ -20,52 +20,50 @@ html{
 .headerImg { 
     /* https://wi-images.condecdn.net/image/jjAAGJWy79x/crop/1620/f/pigbrain.jpg */
     
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://i.ytimg.com/vi/__CuYb8gciw/maxresdefault.jpg);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://i.ytimg.com/vi/__CuYb8gciw/maxresdefault.jpg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url('../photo/หัวหน้า.jpg');
     height: 100%;
     background-size: cover;
 	background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 
 
 }
 
 .shopImgLayout {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://www.nairobroo.com/wp-content/uploads/2018/07/%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B9%8C-cover.jpg);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://i.ytimg.com/vi/tqAmKoYPYuU/maxresdefault.jpg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url('../photo/หัวหน้า.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url('../photo/หัวหน้า.jpg');
     height: 35vh;
     background-size: cover;
 	background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 
 }
 
 .dashBoardImgLayout{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://wallpaperaccess.com/full/1143856.jpg);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://i.ytimg.com/vi/tqAmKoYPYuU/maxresdefault.jpg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))),url('../photo/หัวหน้า.jpg');
     height: 35vh;
     background-size: cover;
 	background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 
 }
 
 .productImgLayout{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://images.unsplash.com/photo-1468495244123-6c6c332eeece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1468495244123-6c6c332eeece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url('../photo/หัวหน้า.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url('../photo/หัวหน้า.jpg');
     height: 35vh;
     background-size: cover;
 	background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 }
 
 .cartImgLayout{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url(https://d3qukb8gcg5mr5.cloudfront.net/wp-content/uploads/2019/10/E-commerce....-1200x600.jpg);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url(https://i.ytimg.com/vi/tqAmKoYPYuU/maxresdefault.jpg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.29)), to(rgba(0, 0, 0, 0.7))), url('../photo/หัวหน้า.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)), url('../photo/หัวหน้า.jpg');
     height: 35vh;
     background-size: cover;
 	background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixesd; */
 }
 .img-card{
     width: 100vh; /* You can set the dimensions to whatever you want */
@@ -417,9 +415,7 @@ p{
   .rgba-stylish-strong {
     background-color: rgba(62, 69, 81, .5);
   }
-  .fix-bg{
-  background-attachment: fixed;
-  }
+  
 
   /* SECTION TEXT AREA */
   .active-pink-textarea.md-form label.active {
@@ -492,6 +488,18 @@ p{
     margin-top: 80px;
   }
 
+  /* SECTION STICKY */
+  .stickys {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 400px;
+    background-color: yellow;
+    margin-top:50vh;
+    padding: 50px;
+    font-size: 20px;
+  }
+
+
 /* Extra small devices (phones, up to 480px) */
 @media screen and (max-width: 767px) {
     /* SECTION Dashboard */
@@ -522,7 +530,7 @@ p{
     font-size:14px;
   }
 
-
+  
 
 }
 /* Small devices (tablets, 768px and up) */
@@ -537,15 +545,22 @@ p{
         padding: 8px 15px;
         margin: 1px;
       }
+      
 
 }
 /* tablets/desktops and up ----------- */
 @media (min-width: 992px) and (max-width: 1199px) {
     .cartPhoto { width: 200px; }
+    .fix-bg{
+      background-attachment: fixed;
+      }
 
 }
 /* large desktops and up ----------- */
 @media screen and (min-width: 1200px) {
     .cartPhoto { width: 250px; }
+    .fix-bg{
+      background-attachment: fixed;
+      }
 
 }

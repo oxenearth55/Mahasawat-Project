@@ -14,6 +14,7 @@ import CardList from './Home-components/cardList'
 import ShowShop from './Home-components/ShowShop'
 import Example from './Home-components/Example'
 import Content from './Home-components/Content'
+import { StickyContainer, Sticky } from 'react-sticky';
 
 
 
@@ -88,11 +89,17 @@ const cardListHeader = () => (
     </section>
     {/* <!--Section: Content--> */}
     </div>
+    
 )
 
     return(
+        
+        
         <div>
+        
+
         <Intro/>
+       
         <div className="pb-5">
         <Example/>
         </div>
@@ -106,6 +113,8 @@ const cardListHeader = () => (
         <Intro3/>
         </div>
         <ShowShop/>
+       
+       
 {/*SECTION Show BESTSELLER and NEW ARRIVAL */}
         <section className="text-center pb-5 fix-bg" style={{backgroundImage:'linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)),'+ "url("+grass+")",color:'white'}}>
       <h2 className="h1-responsive font-weight-bold text-center my-5">
@@ -115,7 +124,7 @@ const cardListHeader = () => (
         สินค้าของเราเป็นที่ชื่นชอบมากทั้งในหมู่คนไทยและคนต่างชาติ เพราะสินค้าที่นี่ ผลิตจาก ธรรมชาติ
       </h4>   
   {/* NOTE show best sellers */}
-  <div className="pb-5">
+  <div id='best'className="pb-5">
     {showBestSeller()}
     </div>
         </section>
@@ -129,7 +138,7 @@ const cardListHeader = () => (
         สินค้าใหม่ พร้อมให้คุณได้เป็นเจ้าของแล้ววันนี้
       </h4>   
   {/* NOTE show best sellers */}
-  <div className="pb-5">
+  <div id='new' className="pb-5">
     {showNewArrival()}
     </div>
         </section>
@@ -137,6 +146,7 @@ const cardListHeader = () => (
         </div>
      );
 
+     
 };
 
 export default Home; 
