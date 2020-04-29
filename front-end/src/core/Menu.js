@@ -60,7 +60,7 @@ const Menu = ({history,handleSearch
                     <>
                       <li className="nav-item mx-2 cart-icon navbar-light nav ">
                 <Link className="nav-link" to="/cart">
-                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 text-light "></i>
+                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 white-text "></i>
                 {/*NOTE Show the number of product beside Cart icon */}
                {showCartTotal()}        
                 </Link>
