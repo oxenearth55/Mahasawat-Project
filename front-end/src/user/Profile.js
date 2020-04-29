@@ -32,7 +32,7 @@ const Profile = ({ match }) => {
     };
 
     const shopName = () => {
-        if(user.role === 1 || user.role === 2){
+        if(user.role === 1){
             return (
             
             shopObject.map((s, i) => {

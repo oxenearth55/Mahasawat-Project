@@ -8,6 +8,7 @@ import FarmProducts from './Farm/FarmProducts'
 import KaotangeProducts from './KaoTang/KaotangProducts'
 import ContactFruit from './FruitGarden/ContactFruit'
 import ContactKao from './KaoTang/ContactKao'
+import ContactFarm from './Farm/ContactFarm'
 import wood from '../../photo/wood.jpg'
 
 
@@ -132,7 +133,7 @@ const EcommercePage = () => {
               ดูสินค้า
               </button>
           <button class="btn btn-unique"
-            onClick={() => setShowCondition({...showCondition,showFruitGarden:true, showKaoTang:false, 
+            onClick={() => setShowCondition({...showCondition,showFruitGarden:false, showKaoTang:false, 
               showFarm:false,showContactFarm:true,showContactFruit:false,showContactKao:false })}
           >ติดต่อ</button>
         </div>
@@ -200,11 +201,21 @@ const displayKaoContact = () => {
 }
 
 
+const displayFarmContact = () => {
+  if(showContactFarm == true){
+    return(
+    <ContactFarm/>
+  
+    )}
+}
+
+
 
 const disPlayContact = () => (
   <>
   {displayFruitContact()}
   {displayKaoContact()}
+  {displayFarmContact()}
   </>
 )
   

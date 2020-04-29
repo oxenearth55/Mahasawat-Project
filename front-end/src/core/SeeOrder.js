@@ -10,12 +10,12 @@ import packaging from './Logo/packaging.png'
 import delivery from './Logo/delivery.png'
 import {readOrder} from './apiCore'
 import PopUpBank from '../core/PopUpBank'
-import PopUpLine from '../core/PopUpLine'
+import PopUpLineFakk from './PopUpLineFakk'
+import PopUpLineNabua from './PopUpLineNabua'
 import PopUpCancle from '../core/PopUpCancle'
 import {getSpecificShop} from '../admin/apiAdmin'
 
 const SeeOrder = (props) => {
-
     const { user, token } = isAuthenticated();
     const [error,setError] =useState('');
     const [success,setSuccess] =useState(false);
@@ -596,7 +596,7 @@ const showAddress = () => (
         {showUpload()}
 
         <PopUpBank Total= {order.amount} bank={bankAccount} shopId={shopInfo}/>
-        <PopUpLine/>
+        <PopUpLineFakk/>
         <PopUpCancle o={order} cancle={clickCancle} />
 
         </>)

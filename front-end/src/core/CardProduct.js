@@ -3,18 +3,19 @@ import { MDBAnimation } from "mdbreact";
 import {API} from '../config' 
 import {getProducts} from './apiCore';
 import { getShop } from '../admin/apiAdmin';
-import RelatedProduct from './RelatedProduct';
 import PopUpCart from './PopUpCart';
+import {isAuthenticated} from '../auth' 
 
 
 
 
-const CardProduct = ({product,addCart,relatedProduct}) => {
+const CardProduct = ({product,addCart}) => {
 
     const [productsBySell, setProductsBySell] = useState([]);
     const [shopObject, setShopObject] = useState([])
     const [error , setError] = useState([]);
     const [run, setRun] = useState(false);
+    const {user} = isAuthenticated();
 
 
     useEffect(() => {
@@ -56,7 +57,7 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
       if(product.quantity <=0){
       return(
         <>
-        <span class="badge  badge-warning product mb-4 ml-xl-0 ml-4">
+        <span class="badge  badge-danger product mb-4 ml-xl-0 ml-4">
                         สินค้าหมด
                 </span>
 
@@ -72,7 +73,7 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
         {
         productsBySell.map((p,i) => {
             if(p._id === product._id){
-                return(<span class="badge badge-danger product mb-4 ml-xl-0 ml-4">
+                return(<span class="badge badge-secondary product mb-4 ml-xl-0 ml-4">
                         สินค้าขายดี
                 </span>
                 )}
@@ -128,45 +129,23 @@ const CardProduct = ({product,addCart,relatedProduct}) => {
 
     )
 
-//     //SECTION Show related Product 
-// const showRelated = () => (
-//  <div class="container my-5 py-5">
 
-//     {/* <!--Section: Content--> */}
-//     <section class="text-center">
-
-
-//       {/* <!--Grid row--> */}
-//       <div class="row">
-
-//       {relatedProduct.map((r, i) => {
-        
-//         return(
-//         <>
-//           <RelatedProduct r={r}/>
-//         </>
-//       )})}    
-
-// {/* <!--Grid column--> */}
-        
-
-// </div>
-//     </section>
-//     {/* <!--Section: Content--> */}
-
-
-//   </div>
-
-// )
 
    
 const Showbutton = () =>{
-  if(product.quantity>0){
+  if(isAuthenticated()){
+  if(product.quantity>0 && user.role !== 1 && user.role !==2){
     return(<>
      <button type="button" onClick={() => {addCart(product); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
         <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> หยิบลงรถเข็น
         </button></>)
   }
+}else if(isAuthenticated() ==false && product.quantity>0){
+  return(<>
+    <button type="button" onClick={() => {addCart(product); }} data-target="#modalAbandonedCart" class="btn btn-primary btn-rounded" data-toggle="modal">
+       <i class="fas fa-cart-plus mr-2" taria-hidden="true"></i> หยิบลงรถเข็น
+       </button></>)
+}
 }
 
 

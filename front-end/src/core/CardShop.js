@@ -4,12 +4,16 @@ import {API} from '../config'
 import {addItem} from './cartHelpers'; 
 import ShowIcon from './ShowIcon';
 import Search from './Search';
+import { isAuthenticated } from "../auth";
+
 
 const CardShop = ({p,index,filter ,convert,goToDetail,addToCart,goToCart,convert2}) => {
+  const {user} = isAuthenticated();
 
     
 const Showbutton = () =>{
-  if(p.quantity>0){
+  if(isAuthenticated()){
+  if(p.quantity>0 && user.role !== 1 && user.role !==2 ){
     return(<>
      <button  type="button" onClick={() => {addToCart(p); }} data-target={`#${convert2(index)}`}  data-toggle="modal" class=" py-2 btn-block btn btn-outline-info btn-rounded waves-effect px-1" >
         <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> หยิบลงรถเข็น
@@ -20,7 +24,20 @@ const Showbutton = () =>{
         
         )
   }
+}else if(isAuthenticated() ==false && p.quantity>0){
+    return(<>
+     <button  type="button" onClick={() => {addToCart(p); }} data-target={`#${convert2(index)}`}  data-toggle="modal" class=" py-2 btn-block btn btn-outline-info btn-rounded waves-effect px-1" >
+        <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> หยิบลงรถเข็น
+      </button>
+        
+        </>
+        
+        
+        )
+  }
+
 }
+
 
 
   return(

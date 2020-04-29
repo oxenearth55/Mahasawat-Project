@@ -46,4 +46,4 @@ const ContactFruit = () => (
 
 )
 
-export default ContactFruit 
+export default ContactFruit;

@@ -15,12 +15,9 @@ const Orders = ({match}) => {
     const [order, setOrder] = useState([]);
     const [products, setProducts] = useState([]);
     const [statusValues, setStatusValues] = useState([]);
-  
     const { user, token } = isAuthenticated();
-
     const [address , setAddress] = useState([]);
     const [photo , setPhoto] = useState([]);
-    
     //NOTE checkibng already update shipping cost or not
     const [success, setSuccess] = useState(false);
     const [successUp, setSuccessUp] = useState(false);
@@ -453,7 +450,7 @@ const goBack = () => {
     if(deleteSuccess || error){
     return(
     <div className="mt-5 mb-5 pb-5">
-        <Link to="/admin/orders" className="text-warning mb-5">
+        <Link to="/vendor/orders" className="text-warning mb-5">
            <h4> กลับไปที่หน้า รายการสั่งซื้อทั้งหมด </h4>
         </Link>
     </div>

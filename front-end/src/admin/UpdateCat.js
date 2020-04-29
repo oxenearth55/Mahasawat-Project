@@ -9,6 +9,7 @@ import PopUpDelete from './PopUpDelete';
 const UpdateCat = ({match}) => {
     const [name, setName] = useState("");
     const [error, setError] = useState(false);
+    const [empty, setEmpty] = useState(false)
     const [success, setSuccess] = useState(false);
     const [redirect, setRedirect] = useState(false);
     const [category, setCategory] = useState([]);
@@ -28,6 +29,8 @@ const loadCategory = (catId) => {
     getCategory(catId).then(data=>{
         if(data.error){
             setError(data.error);
+            setEmpty(true)
+
         }else{
         setName(data.name);
         setCategory(data);
@@ -101,7 +104,7 @@ const handleChange = e => {
 
     const goBack = () => (
         <div className="my-5 pb-5">
-            <Link to="/manage/category" className="text-warning mb-5">
+            <Link to="/vendor/category" className="text-warning mb-5">
                 <h4>กลับไปที่หน้า การจัดการประเภทสินค้า</h4>
             </Link>
         </div>
@@ -168,6 +171,19 @@ const handleChange = e => {
 
         }
     }
+
+    const cantFind =() => {
+        if(empty == true){
+            return(
+        <>
+         <div className="alert my-4 alert-danger text-center">
+            ไม่มีประเภทสินค้านี้อยู่ในระบบ
+         </div>
+        </>
+            )
+        }
+    }
+    
     
     return (
         <Layout
@@ -178,6 +194,8 @@ const handleChange = e => {
             
             <div className="row">
                 <div className="col-md-8 offset-md-2">
+                {cantFind()}
+
                  {displayForm()}
                     {goBack()}
 

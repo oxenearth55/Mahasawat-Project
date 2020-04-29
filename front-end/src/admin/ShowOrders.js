@@ -21,7 +21,7 @@ const ShowOrders = () => {
     const [deleteSucc,setDeleteSucc] = useState(false)
     
 const seeOrder = (res) => (
-    <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/order/${res._id}`}>
+    <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/vendor/order/${res._id}`}>
     คลิก
 </Link>
 

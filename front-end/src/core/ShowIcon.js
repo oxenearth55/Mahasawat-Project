@@ -32,7 +32,7 @@ const loadProductsBySell = () => {
         if(product.quantity <=0){
         return(
           <>
-          <span class="badge  badge-warning product mb-2 mr-1">
+          <span class="badge  badge-danger product mb-2 mr-1">
                           สินค้าหมด
                   </span>
   
@@ -52,7 +52,7 @@ const loadProductsBySell = () => {
             
              return(
               <>
-                  <span class="badge badge-danger mb-2 mr-1">
+                  <span class="badge badge-secondary mb-2 mr-1">
                     สินค้าขายดี
                     </span>  
               </>

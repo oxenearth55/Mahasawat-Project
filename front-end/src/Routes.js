@@ -5,7 +5,9 @@ import Signin from './user/Signin'
 import Home from './core/Home'
 import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './user/UserDashboard'
+import VendorRoute from './auth/VendorRoute'
 import AdminRoute from './auth/AdminRoute'
+import VendorDashboard from './user/VendorDashboard'
 import AdminDashboard from './user/AdminDashboard'
 import ManageCategory from './admin/ManageCategory'
 import AddProduct from './admin/AddProduct'
@@ -56,20 +58,27 @@ const Routes = () => {
             {/* <PrivateRoute path="/profile/:userId" exact component={Profile}/> */}
 
 
-            {/* SECTION Admin */}
-            <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
-            <AdminRoute path="/manage/category" exact component={ManageCategory} />
-            <AdminRoute path="/create/product" exact component={AddProduct} />
-            <AdminRoute path="/admin/order/:orderID" exact component={Orders} />
-            <AdminRoute path="/admin/orders" exact component={ShowOrders} />
-            <AdminRoute path="/admin/products" exact component={ManageProducts} />
-            <AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct} />
+            {/* SECTION Vendor */}
+            <VendorRoute path="/vendor/dashboard" exact component={VendorDashboard} />
+            <VendorRoute path="/vendor/category" exact component={ManageCategory} />
+            <VendorRoute path="/create/product" exact component={AddProduct} />
+            <VendorRoute path="/vendor/order/:orderID" exact component={Orders} />
+            <VendorRoute path="/vendor/orders" exact component={ShowOrders} />
+            <VendorRoute path="/vendor/products" exact component={ManageProducts} />
+            <VendorRoute path="/vendor/product/update/:productId" exact component={UpdateProduct} />
+            <VendorRoute path="/vendor/manage/bank" exact component={ManageBank}/> 
+            <VendorRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
+            <VendorRoute path="/update/category/:catId" exact component={UpdateCat}/>
+
+
+             {/* SECTION Admin */}
             <AdminRoute path="/admin/manage/permission" exact component={ManagePermission} />
             <AdminRoute path="/admin/update/:userId" exact component={UpdateMer} />
+            <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
             <AdminRoute path="/admin/create/shop" exact component={CreateShop} />
-            <AdminRoute path="/admin/manage/bank" exact component={ManageBank}/>
-            <AdminRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
-            <AdminRoute path="/update/category/:catId" exact component={UpdateCat}/>
+
+
+
 
         </Switch>
 

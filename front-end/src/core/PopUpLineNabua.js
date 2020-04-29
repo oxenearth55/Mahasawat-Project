@@ -6,7 +6,7 @@ import Line from './Suggestion/Line.png'
 
 
 
-const PopUpLine = () => (
+const PopUpLineNabua = () => (
 
     <>
   
@@ -50,4 +50,4 @@ const PopUpLine = () => (
 
    
 )
-export default PopUpLine;
+export default PopUpLineNabua;

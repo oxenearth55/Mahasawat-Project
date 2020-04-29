@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import {API} from '../config' 
 import {addNabuaItem,addFakkhawItem,} from './cartHelpers'; 
 import PopUpCart from './PopUpCart';
+import {isAuthenticated} from '../auth' 
+
 
 
 
 const RelatedProduct = ({r}) => {
     
-    
+  const {user} = isAuthenticated();
 
-    
     const addToCartRelated = (p) => {
         if(p.shop._id =='5e6a17a35c566806d6a101dd'){
           addNabuaItem(p);
@@ -19,6 +20,29 @@ const RelatedProduct = ({r}) => {
         addFakkhawItem(p)
       }
     }
+
+const showAddCartBtn = () => {
+  if(isAuthenticated()){
+    if(user.role !== 1 && user.role !==2 && r.quantity>0){
+        return(
+            <>
+            <button  onClick ={()=>addToCartRelated(r)} data-toggle="modal" data-target="#modalAbandonedCart"  type="button" class="btn btn-black btn-rounded btn-sm px-3">หยิบลงรถเข็น</button>
+       <PopUpCart/>
+            </>
+        )
+        }
+}else if(isAuthenticated() ==false && r.quantity>0){
+    return(
+        <>
+        <button  onClick ={()=>addToCartRelated(r)} data-toggle="modal" data-target="#modalAbandonedCart"  type="button" class="btn btn-black btn-rounded btn-sm px-3">หยิบลงรถเข็น</button>
+       <PopUpCart/>
+        </>
+    )
+
+}
+
+}
+
 
  //SECTION Show related Product 
  const showRelated = () => (
@@ -36,19 +60,9 @@ const RelatedProduct = ({r}) => {
    
          <p class="mb-1"><a href="" class="font-weight-bold black-text">{r.name}</a></p>
    
-         {/* <p class="mb-1"><small class="mr-1"><s>$599</s></small><strong>${r.price}</strong></p> */}
-   
-   
-       {/* <div class="amber-text fa-xs mb-1">
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
-         <i class="far fa-star"></i>
-       </div> */}
-   
-       <button  onClick ={()=>addToCartRelated(r)} data-toggle="modal" data-target="#modalAbandonedCart"  type="button" class="btn btn-black btn-rounded btn-sm px-3">หยิบลงรถเข็น</button>
-       <PopUpCart/>
+
+      {showAddCartBtn()}
+       
 
        <Link to= {`/product/${r._id}`}>
        <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">ดูเพิ่มเติม</button>

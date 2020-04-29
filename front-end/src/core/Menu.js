@@ -5,7 +5,6 @@ import {signout, isAuthenticated} from '../auth'
 import Shop from './Shop'
 import Search from './Search'
 import {itemTotal,getCart} from './cartHelpers'
-import { MDBContainer,MDBRow } from 'mdbreact';
 
 
 
@@ -27,6 +26,7 @@ const Menu = ({history,handleSearch
     const value = useContext(itemTotal());
     const [items,setItems] = ([]);
     const [run, setRun] = useState(false);
+    const {user} = isAuthenticated();
 
 
     // NOTE State to grab search trigger from Search component
@@ -52,96 +52,38 @@ const Menu = ({history,handleSearch
         ) 
     };
 
-    // const setSearch = (searchResult) => {
-    //     const newSearch = {...data}
-    //     newSearch.search = searchResult
-    //     handleSearched(newSearch.search)
-    // }
 
+    const showCart = () => {
+        if(isAuthenticated()){
+            if(user.role !== 1 && user.role !==2){
+                return(
+                    <>
+                      <li className="nav-item mx-2 cart-icon navbar-light nav ">
+                <Link className="nav-link" to="/cart">
+                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 text-light "></i>
+                {/*NOTE Show the number of product beside Cart icon */}
+               {showCartTotal()}        
+                </Link>
+    </li>
+                    </>
+                )}
 
+        }else if(isAuthenticated() ==false){
+            return(
+                <>
+                  <li className="nav-item mx-2 cart-icon navbar-light nav ">
+                <Link className="nav-link" to="/cart">
+                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 text-light "></i>
+                {/*NOTE Show the number of product beside Cart icon */}
+               {showCartTotal()}        
+                </Link>
+    </li>
+                </>
+            )
 
-    const handleSearched = (searchResult) =>{
-        const newSearch = {...data}
-        newSearch.search = searchResult
-        setData({...data, search: newSearch.search})
-        handleSearch(newSearch.search)
-        // setSearch(newSearch.search)
-        console.log("Search result issss"+ newSearch.search)
-    };
-
-    const topMenu = () =>(
-<header className="menu-font">
-    {/*SECTION First-nav */}
-    <div className = "container p-0 h-1">
-        {        console.log("Search result is Menu333 " + data.search)
-}
-
-        <div className="row">
-            <div className = "col-md-4 col-sm-12 col-12 ">
-                <div className = ".btn-grpup">
-                    <button className="btn border dropdown-toggle my-md-4 my-2 text-white"
-                     data-toggle="dropdown"
-                     aria-haspopup="true"
-                     aria-expanded="false">EN</button>
-
-                     <div className="dropdown-menu">
-                         <a href="/" className="dropdown-item">TH - Thai</a>
-                     </div>
-                </div>
-            </div>
-            <div className="col-md-4 col-12 text-center site-title  ">
-                <h3 className="my-md-3 text-white">Mahasawat Store</h3>
-            </div>
-            <div className="col-md-4 col-12 text-right ">
-                <p className="my-md-4 header-links">
-                   {/* NOTE  if user does not login, show SignIn and SignUp btn */}
-                   
-                    {!isAuthenticated() && (
-                        <div>
-                         {/* SECTION  SignIn */}
-                            <Link className="px-2 text" to="/signin">SignIn</Link>
-
-                         {/* SECTION  SignUp */}
-                            <Link className="px-2 text" to="/signup">Create an Account</Link>
-                    
-                        </div>
-
-                    )}
-
-
-                    {/* NOTE if user has already login, show only SignOut btn on nav */}
-                    {isAuthenticated() && (
-                        
-                    <div className="row">   
-                        {/* NOTE Show user's name */}
-                  
-
-                        {/* SECTION  SignOut */}
-                        <div  onClick={() =>
-                            signout(() => {
-                            history.push("/");
-                            })
-                        }
-                         to="/signin" 
-                        style={{ cursor: "pointer", color: "#ffffff" }}>Sign out
-                        </div>
-          
-                    </div>  
-                    )}
-
-  
-                </p>
-            </div>
-           
-        </div>
-
-
-    </div>
-
-</header>
-    );
-
+        }
     
+}
 
 return(
     
@@ -164,7 +106,7 @@ return(
  {/* NOTE For Merchant user (user.role === 1) */}
  {isAuthenticated() && isAuthenticated().user.role === 1 &&(
                         <li class="nav-item">
-                        <Link className="nav-link" to="/admin/dashboard"><div className="text-white">แผงควบคุม</div></Link>
+                        <Link className="nav-link" to="/vendor/dashboard"><div className="text-white">แผงควบคุม</div></Link>
                         </li>
 
                     )}
@@ -202,26 +144,14 @@ return(
                         <li class="nav-item">
                         <Link className="nav-link " to="/user/dashboard"><div className="text-white">โปรไฟล์</div></Link>
                         </li>
-
-                    )}
-
-
-
-    
+                    )}   
     </ul>
-<div className="mx-auto">
+<div className="mx-auto py-2">
 
 <Search/>
 </div>
   
-
-    <li className="nav-item mx-2 cart-icon navbar-light nav ">
-                <Link className="nav-link" to="/cart">
-                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 text-light "></i>
-                {/*NOTE Show the number of product beside Cart icon */}
-               {showCartTotal()}        
-                </Link>
-    </li>
+{showCart()}
 
     <li class="nav-item dropdown mr-auto nav mx-4">
         <a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -231,10 +161,6 @@ return(
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
         
-        
-        
-
-
           {!isAuthenticated() && (
          <>
         <Link class="dropdown-item" to="/signin">
@@ -267,33 +193,12 @@ return(
               
                             </a>
                         )}
-                       
-
+                    
         </div>
       </li>
       </div>
   
 </nav>
-
-
-    {/* NOTE Links to other pages */}
-    {/* <nav >
-        
-         <ul className="nav-links"> 
-         <div className ="row">
-           <li>
-                <Link className="nav-link" style={isActive(history,'/')} to="/">Home</Link>
-            </li>
-            <li >
-                <Link className="nav-link" style={isActive(history,'/signin')}  to="/signin">Sigin</Link>
-            </li>
-            <li>
-                <Link className="nav-link" style={isActive(history,'/signup')}  to="/signup">Signup</Link>
-            </li> 
-            </div>
-        </ul>
-       
-</nav> */}
 </header>
 
 ); };

@@ -27,7 +27,7 @@ const comment = () => {
 
 return(
    <>
-       {isAuthenticated() && (
+       {isAuthenticated() && isAuthenticated().user.role!== 1 && isAuthenticated().user.role!==2 &&(
 
     <form onSubmit={clickSubmit}>
  {/* <!--Textarea with icon prefix--> */}

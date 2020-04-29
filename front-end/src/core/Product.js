@@ -159,7 +159,7 @@ const showRelated = () => (
        {/* <!--Section: Content--> */}
        <section class="text-center">
    
-   
+   <h3 className='mb-5'>สินค้าที่เกี่ยวข้อง</h3>
          {/* <!--Grid row--> */}
          <div class="row">
    

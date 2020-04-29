@@ -44,7 +44,7 @@ const ManageProducts = () => {
   
 
     const seeOrder = (res) => (
-        <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/admin/product/update/${res._id}`}>
+        <Link className="btn btn-warning btn-sm mx-3 text-white" to={`/vendor/product/update/${res._id}`}>
         คลิก
     </Link>
     
