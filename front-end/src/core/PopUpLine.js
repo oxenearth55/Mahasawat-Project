@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import Line from '../photo/linefakk.jpg'
+import {API} from '../config' 
 
 
 
 
 
-const PopUpLineFakk = () => (
+const PopUpLine = ({shopId}) => (
 
     <>
   
@@ -29,7 +28,7 @@ const PopUpLineFakk = () => (
        <div class="modal-body">
          <div class="text-center">
            <i class="fab fa-line fa-4x mb-3 animated rotateIn"></i>
-           <img src={Line} 
+           <img src={`${API}/bankqr/${shopId._id}`} 
               alt="slip" class="img-fluid" />
               <hr/>
          </div>
@@ -50,4 +49,4 @@ const PopUpLineFakk = () => (
 
    
 )
-export default PopUpLineFakk;
+export default PopUpLine;

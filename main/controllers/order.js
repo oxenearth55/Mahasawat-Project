@@ -10,8 +10,6 @@ const _ = require('lodash');
 
 
 
-
-
 exports.readOrder = (req, res) => {
     req.order.photo = undefined;
     return res.json(req.order);
@@ -304,7 +302,7 @@ ${order.products
               <tbody>
                 <tr>
                 <td align="center" bgcolor="#ff6060" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                  <a href="http://localhost:3000/" style="border:1px solid #333333; border-color:#333333; border-radius:6px; border-width:1px; color:#ffffff; display:inline-block; font-weight:normal; letter-spacing:0px; padding:12px 18px 12px 18px; text-align:center; text-decoration:none; border-style:solid; font-size:14px; line-height:normal; background-color:#ff6060;" target="_blank">เข้าชมเว็ปไซต์</a>
+                  <a href="mahasawat.shop/order/${order._id}" style="border:1px solid #333333; border-color:#333333; border-radius:6px; border-width:1px; color:#ffffff; display:inline-block; font-weight:normal; letter-spacing:0px; padding:12px 18px 12px 18px; text-align:center; text-decoration:none; border-style:solid; font-size:14px; line-height:normal; background-color:#ff6060;" target="_blank">ดูรายการของท่าน</a>
                 </td>
                 </tr>
               </tbody>
@@ -408,33 +406,34 @@ ${order.products
         };
 
         const emailDataNabuaAdmin = {
-          to: 'earthlono123@gmail.com',
+          to: order.shop.contact.email,
           from: 'Nabua@Mahasawat.com',
           subject: `ลูกค้าได้อัพโหลดหลักฐานการชำระเงิน`,
           html:`
           <h1>การสั่งซื้อสินค้า</h1>
 
-          <h4>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h4>
-          <h5>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ Mahasawat</h5>
+          <h2>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h2>
+          <h3>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ <a href='mahasawat.shop/order/${order._id}'>คลิกเพื่อดูรายการสั่งซื้อนี้ </a></h3>
 
-          <p>เลขรายการ: ${order._id}</p>  
-          <p>ชื่อ: ${order.user.name}</p>  
-          <p>อีเมลลูกค้า: ${order.user.email}</p>
-          <p>จำนวนสินค้า: ${order.products.length}</p>
-          <p>ราคาทั้งหมด: ${order.amount}</p>
-          <p>ขนส่งด้วย: ${order.shippingProvider.providerName}</p>
-          <p>ค่าขนส่ง: ${order.shippingProvider.shippingCost}</p>
+          <h4>ร้านค้าของ: ${order.shop.name}</h4>  
+          <h4>เลขรายการ: ${order._id}</h4>  
+          <h4>ชื่อ: ${order.user.name}</h4>  
+          <h4>อีเมลลูกค้า: ${order.user.email}</h4>
+          <h4>จำนวนสินค้า: ${order.products.length}</p>
+          <h4>ราคาทั้งหมด: ${order.amount}</p>
+          <h4>ขนส่งด้วย: ${order.shippingProvider.providerName}</h4>
+          <h4>ค่าขนส่ง: ${order.shippingProvider.shippingCost}</h4>
 
 
 
-          <p>Product details:</p>
+          <h3>Product details:</h3>
           <hr />
           ${order.products
               .map(p => {
                   return `<div>
-                      <p>ชื่อสินค้า: ${p.name}</p>
-                      <p>ราคา: ${p.price}</p>
-                      <p>จำนวน: ${p.count}</p>
+                      <h4>ชื่อสินค้า: ${p.name}</h4>
+                      <h4>ราคา: ${p.price}</h4>
+                      <p>จำนวน: ${p.count}</h4>
                       </hr>
               </div>`;
               })}`
@@ -445,33 +444,37 @@ ${order.products
         };
 
         const emailDataFakkhawAdmin = {
-          to: 'earthlono123@gmail.com',
+          to: order.shop.contact.email,
           from: 'Fakkhaw@Mahasawat.com',
           subject: `ลูกค้าได้อัพโหลดหลักฐานการชำระเงิน`,
-          html:`  <h1>การสั่งซื้อสินค้า</h1>
+          html:`   <h1>การสั่งซื้อสินค้า</h1>
 
-          <h4>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h4>
-          <h5>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ Mahasawat</h5>
+          <h2>ลูกค้าได้ทำการสั่งซื้อ และอัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h2>
+          <h3>โปรดไปดูรายการและ อัพเดทสถาณะได้ที่ เว็ปไซต์ <a href=mahasawat.shop/order/${order._id}>คลิกเพื่อดูรายการสั่งซื้อนี้ </a></h3>
 
-          <p>เลขรายการ: ${order._id}</p>  
-          <p>ชื่อ: ${order.user.name}</p>  
-          <p>อีเมลลูกค้า: ${order.user.email}</p>
-          <p>จำนวนสินค้า: ${order.products.length}</p>
-          <p>ราคาทั้งหมด: ${order.amount}</p>
-          <p>ขนส่งด้วย: ${order.shippingProvider.providerName}</p>
-          <p>ค่าขนส่ง: ${order.shippingProvider.shippingCost}</p>
+          <h4>ร้านค้าของ: ${order.shop.name}</h4>  
+          <h4>เลขรายการ: ${order._id}</h4>  
+          <h4>ชื่อ: ${order.user.name}</h4>  
+          <h4>อีเมลลูกค้า: ${order.user.email}</h4>
+          <h4>จำนวนสินค้า: ${order.products.length}</p>
+          <h4>ราคาทั้งหมด: ${order.amount}</p>
+          <h4>ขนส่งด้วย: ${order.shippingProvider.providerName}</h4>
+          <h4>ค่าขนส่ง: ${order.shippingProvider.shippingCost}</h4>
 
-          <p>Product details:</p>
+
+
+          <h3>Product details:</h3>
           <hr />
           ${order.products
               .map(p => {
                   return `<div>
-                      <p>ชื่อสินค้า: ${p.name}</p>
-                      <h3>ราคา: ${p.price}</p>
-                      <p>จำนวน: ${p.count}</p>
+                      <h4>ชื่อสินค้า: ${p.name}</h4>
+                      <h4>ราคา: ${p.price}</h4>
+                      <p>จำนวน: ${p.count}</h4>
                       </hr>
               </div>`;
               })}`
+
 
         };
 
@@ -728,7 +731,7 @@ ${order.products
                 <tbody><tr>
                   <td style="padding:18px 0px 18px 0px; line-height:30px; text-align:inherit;" height="100%" valign="top" bgcolor=""><div><div style="font-family: inherit; text-align: center"><span style="color: #993300; font-family: georgia, serif; font-size: 22px"><strong>ขอให้ท่านมีความสุขกับสินค้าของเรา</strong></span></div><div></div></div></td>
                 </tr>
-              </tbody></table><table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed" width="100%" data-muid="fpvvts1C82XMqQzTjscA1Z"><tbody><tr><td align="center" class="outer-td" style="padding:20px 0px 0px 0px;" bgcolor=""><table border="0" cellpadding="0" cellspacing="0" class="button-css__deep-table___2OZyb wrapper-mobile" style="text-align:center"><tbody><tr><td align="center" bgcolor="#993300" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;"><a style="background-color:#993300; border:1px solid #993300; border-color:#993300; border-radius:0px; border-width:1px; color:#ffffff; display:inline-block; font-family:verdana,geneva,sans-serif; font-size:16px; font-weight:normal; letter-spacing:1px; line-height:30px; padding:12px 20px 12px 20px; text-align:center; text-decoration:none; border-style:solid;" href="http://localhost:3000/" target="_blank">เข้าชมเว็ปไซต์</a></td></tr></tbody></table></td></tr></tbody></table><table class="module" role="module" data-type="spacer" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="51LxsNyTDYV3Xp5k5vET2o">
+              </tbody></table><table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed" width="100%" data-muid="fpvvts1C82XMqQzTjscA1Z"><tbody><tr><td align="center" class="outer-td" style="padding:20px 0px 0px 0px;" bgcolor=""><table border="0" cellpadding="0" cellspacing="0" class="button-css__deep-table___2OZyb wrapper-mobile" style="text-align:center"><tbody><tr><td align="center" bgcolor="#993300" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;"><a style="background-color:#993300; border:1px solid #993300; border-color:#993300; border-radius:0px; border-width:1px; color:#ffffff; display:inline-block; font-family:verdana,geneva,sans-serif; font-size:16px; font-weight:normal; letter-spacing:1px; line-height:30px; padding:12px 20px 12px 20px; text-align:center; text-decoration:none; border-style:solid;" href="mahasawat.shop/order/${order._id}" target="_blank">ดูรายการของท่าน</a></td></tr></tbody></table></td></tr></tbody></table><table class="module" role="module" data-type="spacer" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="51LxsNyTDYV3Xp5k5vET2o">
                 <tbody><tr>
                   <td style="padding:0px 0px 30px 0px;" role="module-content" bgcolor="">
                   </td>
@@ -822,12 +825,12 @@ ${order.products
         `
       };
 
-      if(order.shop == '5e6a17a35c566806d6a101dd'){
+      if(order.shop._id == '5e6a17a35c566806d6a101dd'){
         sgMail.send(emailDataNabua);
         sgMail.send(emailDataNabuaAdmin);
 
 
-    }else if(order.shop == '5e6a17ac5c566806d6a101de'){
+    }else if(order.shop._id == '5e6a17ac5c566806d6a101de'){
         sgMail.send(emailDataFakkhaw);
         sgMail.send(emailDataFakkhawAdmin);
 
@@ -888,7 +891,8 @@ exports.uploadDeliver = (req, res) => {
 exports.orderById = (req, res, next, id) => {
     Order.findById(id)
         .populate('products.product', 'name price')
-        .populate('user')
+        .populate('user', '_id name address email')
+        .populate('shop')
 
         .exec((err, order) => {
             if (err || !order) {
@@ -1421,7 +1425,7 @@ exports.create = (req, res) => {
 
 exports.listOrders = (req, res) => {
     Order.find()
-        .populate('user', '_id name address')
+        .populate('user', '_id name address email')
         .populate('shop')
 
         .sort('-created')

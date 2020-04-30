@@ -304,46 +304,7 @@ exports.decreaseQuantity = (req, res, next) => {
 };
 
 
-exports.rating = (req, res) => {
-    // From form request
-    let rate = req.body;
- 
-    // Checking match user or not?  
-        let matchId = -1;
-        let avaRating = 0;
-        let count = product.rating.length;
-        // for loop to get matchId
-        for(i=0; i<product.rating.count; i++) {
-            if(rate.userIdReq == product.rating[i].userId) {
-                matchId = product.rating[i].rate;
-                break;
-            }
-        }
-        //NOTE user exist
-        if(match!=-1) {
-            product.rating[matchId].rate = rate;
-            avgRating = product.rating.forEach(element => total += element) / count;
-        } else {
-            product.rating[count].rate = rate;
-            let total = 0; 
-            product.rating[count].userId = rate.userId;
-            
-            avgRating = product.rating.forEach(element => total += element) / count;           
-        }
 
-        res.json(product);
-
-        product.save((err, result) => {
-            if (err) {
-                return res.status(400).json({
-                    error: errorHandler(err)
-                });
-            }
-            res.json(result);
-        });
-   
-
-};
 
 
 exports.addComment = (req, res) => {
@@ -374,29 +335,5 @@ exports.addComment = (req, res) => {
         });
     });
 };
-
-
-
-
-// exports.addComment = (req, res, next) => {
-//     let comments = [];
-
-//     req.body.product.comment(item => {
-//         comments.push({
-//             userName: item.name,
-//             content: item.content
-          
-//         });
-//     });
-
-//     Product.findOneAndUpdate({ _id: req.profile._id }, { $push: { comments: comments } }, { new: true }, (error, data) => {
-//         if (error) {
-//             return res.status(400).json({
-//                 error: 'Could not update user purchase history'
-//             });
-//         }
-//         next();
-//     });
-// }
 
 

@@ -27,7 +27,7 @@ const Layout = ({title = "Title", description = "Description", className, childr
                 </div>
                 <div className="row">
                     <div className="col-6 ml-5">
-                        <p className = "description-header"> {description} </p>
+                        <h3 className = "description-header"> {description} </h3>
                     </div>
                     </div>
                 </div>

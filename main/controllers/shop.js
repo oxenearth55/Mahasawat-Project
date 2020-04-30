@@ -139,7 +139,7 @@ exports.getShop = (req, res) => {
 // };
 
 
-exports.update = (req, res) => {
+exports.updateBank = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
     const {bankinfo} = req.body;
     //NOTE findOne is use to check which shop that we are going to update
@@ -167,6 +167,34 @@ exports.update = (req, res) => {
     });
 };
 
+
+exports.updateContact = (req, res) => {
+    // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
+    const {contact} = req.body;
+    //NOTE findOne is use to check which shop that we are going to update
+    Shop.findOne({ _id: req.shop._id },  (err, shop) => {
+      
+        if (!contact) {
+            return res.status(400).json({
+                error: 'contact is required'
+            });
+        } else {
+            shop.contact = contact;
+        }
+
+        shop.save((err, updatedShop) => {
+            if (err) {
+                console.log('USER UPDATE ERROR', err);
+                return res.status(400).json({
+                    error: 'User update failed'
+                });
+            }
+            // updatedUser.hashed_password = undefined;
+            // updatedUser.salt = undefined;
+            res.json(updatedShop);
+        });
+    });
+};
 
 exports.addProviderShip = (req, res) => {
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
@@ -230,7 +258,7 @@ exports.updateShpping = (req, res) => {
 };
 
 
-exports.updateQrCode = (req, res) => {
+exports.updateQrBank = (req, res) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, files) => {
@@ -246,15 +274,15 @@ exports.updateQrCode = (req, res) => {
         // 1kb = 1000
         // 1mb = 1000000
 
-        if (files.photo) {
+        if (files.bankQr) {
             // console.log("FILES PHOTO: ", files.photo);
-            if (files.photo.size > 10000000) {
+            if (files.bankQr.size > 1000000) {
                 return res.status(400).json({
-                    error: 'Image should be less than 10mb in size'
+                    error: 'Image should be less than 1mb in size'
                 });
             }
-            shop.photo.data = fs.readFileSync(files.photo.path);
-            shop.photo.contentType = files.photo.type;
+            shop.bankQr.data = fs.readFileSync(files.bankQr.path);
+            shop.bankQr.contentType = files.bankQr.type;
         }
 
         shop.save((err, result) => {
@@ -268,13 +296,61 @@ exports.updateQrCode = (req, res) => {
     });
 };
 
-exports.photo = (req, res, next) => {
-    if (req.shop.photo.data) {
-        res.set('Content-Type', req.shop.photo.contentType);
-        return res.send(req.shop.photo.data);
+
+exports.updateQrLine = (req, res) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'Image could not be uploaded'
+            });
+        }
+
+        let shop = req.shop;
+        shop = _.extend(shop, fields);
+
+        // 1kb = 1000
+        // 1mb = 1000000
+
+        if (files.lineQr) {
+            // console.log("FILES PHOTO: ", files.photo);
+            if (files.lineQr.size > 1000000) {
+                return res.status(400).json({
+                    error: 'Image should be less than 1mb in size'
+                });
+            }
+            shop.lineQr.data = fs.readFileSync(files.lineQr.path);
+            shop.lineQr.contentType = files.lineQr.type;
+        }
+
+        shop.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                });
+            }
+            res.json(result);
+        });
+    });
+};
+
+exports.bankQr = (req, res, next) => {
+    if (req.shop.bankQr.data) {
+        res.set('Content-Type', req.shop.bankQr.contentType);
+        return res.send(req.shop.bankQr.data);
     }
     next();
 };
+
+exports.lineQr = (req, res, next) => {
+    if (req.shop.lineQr.data) {
+        res.set('Content-Type', req.shop.lineQr.contentType);
+        return res.send(req.shop.lineQr.data);
+    }
+    next();
+};
+
 
 exports.read = (req, res) => {
     return res.json(req.shop);

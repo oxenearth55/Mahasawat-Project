@@ -56,8 +56,21 @@ const shopSchema = new mongoose.Schema({
           
           },
 
+          lineQr: {
+            data: Buffer,
+            contentType: String
+        },
+          
+          contact: {
+            contactName:{type:String,default:''},
+            phoneNumber:Number,
+            email:{type:String,default:''},
+            lineId:{type:String,default:''}, 
+           
+            
+          },
 
-          photo: {
+          bankQr: {
             data: Buffer,
             contentType: String
         },

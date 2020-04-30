@@ -8,11 +8,14 @@ const {
     getShop,
     create,
     listShop,
-    update,
-    updateQrCode,
+    updateBank,
+    updateQrBank,
+    updateQrLine,
     read,
-    photo,
-    addProviderShip
+    bankQr,
+    lineQr,
+    addProviderShip,
+    updateContact
 } = require("../controllers/shop");
 
 router.post(
@@ -23,23 +26,50 @@ router.post(
     create
    
 );
+
+//SECTION used to update shop information
 router.put(
-    "/shop/update/:shopId/:userId",
+    "/bank/update/:shopId/:userId",
     requireSignin,
     isAuth,
     isAdmin,
-    update
+    updateBank
 
 )
 
 router.put(
-    "/update/qrCode/:shopId/:userId",
+    "/contact/update/:shopId/:userId",
     requireSignin,
     isAuth,
     isAdmin,
-    updateQrCode
+    updateContact
 
 )
+
+
+
+
+//SECTION Use to update bank Qr code and shop line Qr (Formidable)
+router.put(
+    "/update/bankqr/:shopId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    updateQrBank
+)
+
+router.put(
+    "/update/lineqr/:shopId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    updateQrLine
+)
+//NOTE GET QR CODE
+router.get("/bankqr/:shopId", bankQr);
+router.get("/lineqr/:shopId", lineQr);
+
+
 
 router.get(
     "/shop/shop-name/:userId",
@@ -49,6 +79,7 @@ router.get(
     getShop
 );
 
+//NOTE get specific shop
 router.get(
     "/shop/:shopId", 
     read
@@ -69,7 +100,6 @@ router.put(
 
 )
 
-router.get("/qr/:shopId", photo);
 
 
 

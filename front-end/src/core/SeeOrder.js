@@ -10,8 +10,8 @@ import packaging from './Logo/packaging.png'
 import delivery from './Logo/delivery.png'
 import {readOrder} from './apiCore'
 import PopUpBank from '../core/PopUpBank'
-import PopUpLineFakk from './PopUpLineFakk'
-import PopUpLineNabua from './PopUpLineNabua'
+import PopUpLine from './PopUpLine'
+import PopUpContact from './PopUpContact'
 import PopUpCancle from '../core/PopUpCancle'
 import {getSpecificShop} from '../admin/apiAdmin'
 
@@ -28,7 +28,7 @@ const SeeOrder = (props) => {
     const [shippingProvider,setShippingProvider] = useState([]);
     const [showSlip, setShowSlip] = useState(false);
     const [cancleSuccess, setCancleSuccess] = useState(false);
- 
+    const [contact, setContact] = useState([])
 
 //SECTION Cancle Order 
 
@@ -72,6 +72,7 @@ const clickCancle = (orderId) =>{
                 // populate the state
                 setShopInfo(data)
                 setBankAccount(data.bankAccount)
+                setContact(data.contact)
                
             }
         });
@@ -247,7 +248,7 @@ const handleChange = name => event => {
                     formData: new FormData()
                     
                 });
-                getShopInfo(data.shop)
+                getShopInfo(data.shop._id)
                 // setAmount(data.amount)
                 // setShipCost(data.shippingCost)
               
@@ -521,7 +522,7 @@ const handleChange = name => event => {
                         <li className="list-group-item">
                         สั่งเมื่อ:{" "}
                             {/* NOTE  use moment to format the date */}
-                            {moment(order.createdAt).fromNow()} 
+                            {moment(order.createdAt).format('YYYY-MM-DD')} 
                         </li>
                        
                     </ul>
@@ -591,12 +592,16 @@ const showAddress = () => (
 
         
         <button type="button"  data-toggle="modal" data-target="#centralModalSuccess" class="btn btn-outline-success waves-effect">ติดต่อทาง Line <i class="fab fa-line green-text"></i></button>
+        <button type="button"  data-toggle="modal" data-target="#centralModalContact" class="btn btn-outline-primary  waves-effect">ข้อมูลการติดต่อ <i class="fas fa-mobile-alt blue-text"></i></button>
+
         <button type="button"  data-toggle="modal" data-target="#centralModalDanger" class="btn btn-danger">ยกเลิกรายการนี้</button>
 
         {showUpload()}
 
         <PopUpBank Total= {order.amount} bank={bankAccount} shopId={shopInfo}/>
-        <PopUpLineFakk/>
+        <PopUpLine  shopId={shopInfo}  />
+        <PopUpContact contact={contact}  />
+        
         <PopUpCancle o={order} cancle={clickCancle} />
 
         </>)

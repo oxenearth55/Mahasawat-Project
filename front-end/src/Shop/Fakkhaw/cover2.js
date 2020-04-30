@@ -28,7 +28,7 @@ const cover2 = () => (
               <MDBAnimation reveal type="fadeInUp">
 
                 <h1 className='h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 '>
-                    ผลฟักข้าวมากคุรประโยชน์
+                    ผลฟักข้าวมากคุณประโยชน์
                 </h1>
               
              

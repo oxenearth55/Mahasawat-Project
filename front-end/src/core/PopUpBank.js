@@ -60,7 +60,7 @@ const PopUpBank = ({bank, Total,shopId}) =>{
             <div className="mt-5">
                     <h4 for="materialSaveFormEmail">QR Code</h4>
 
-                    <img src={`${API}/qr/${shopId._id}`} 
+                    <img src={`${API}/bankqr/${shopId._id}`} 
               alt="slip" class="img-fluid"/>
 
               </div>

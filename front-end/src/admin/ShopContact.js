@@ -1,25 +1,35 @@
 import React, { useState,useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { getShop,updateBankAccount,getSpecificShop,updateShopQrBank } from './apiAdmin';
+import { getShop,updateShopQrLine,getSpecificShop,updateShopContact } from './apiAdmin';
 import { read } from '../user/apiUser';
 
 
 
 
-const ManageBank = () => {
+const ShopContact = () => {
 
-    const [bankinfo, setBankinfo] = useState({
-        personName: '',
-        bankName: '',
-        accountNumber: ''
+    const [contact, setContact] = useState({
+        contactName: '',
+        phoneNumber: '',
+        email: '',
+        lineId:'',
+       
     });
-    const {personName, bankName, accountNumber} = bankinfo;
-    const [shopObject, setShopObject] = useState([]); //NOTE sate stand for shop Arry of Object
+    const {contactName, phoneNumber, email,lineId} = contact;
+
+    const [photo, setPhoto] = useState({
+        lineQr:'',
+        formData:''
+    })
+
+    const {lineQr, formData} = photo
+
     const { user, token } = isAuthenticated(); //NOTE Grab use info from jwt 
     const [shopID, setShopID] = useState([]);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [shopName, setShopName] = useState('');
 
     const [showQrCode, setQrCode] = useState(false);
 
@@ -30,44 +40,26 @@ const ManageBank = () => {
 
     })
 
-    const {photo,formData} = values
-
-
     // const {shopInfo, setShopInfo} = ([]);
 
     //SECTION useEffect
     useEffect(() => {
         // getUserInfo(user._id);
-        getShopObject();
         getShopInfo(user.shop);
     }, []);
 
-    //NOTE grab shop object from database
-    const getShopObject = () => {
-        getShop().then(data => {
-            if (data.error) {
-               setError(true)
-             } 
-            else {
-                setShopObject(data);
-            }
-        });
-    };
+   
 
     //SECTION Update Shop for Admin only
  
 
     const showShopName = () => {
         return(
-        shopObject.map((res,index)=>{ 
-            if(user.shop == res._id){
-                return(
+        
                     <>
-                    <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {res.name}</h4>
+                    <h4 className="mb-5 bg-dark white-text text-center py-3">ร้านค้าของคุณ: {shopName}</h4>
                     </>
-                )
-            }
-        })
+             
         )
     }
 
@@ -77,18 +69,24 @@ const ManageBank = () => {
             if (data.error) {
                 setError(true)
             } else {
-                // populate the state
-                setBankinfo({
-                    ...bankinfo,
-                    personName: data.bankAccount.personName,
-                    bankName: data.bankAccount.bankName,
-                    accountNumber: data.bankAccount.accountNumber                       
+                setShopName(data.name)
+                setContact({
+                    ...contact,
+                    contactName: data.contact.contactName,
+                    phoneNumber: data.contact.phoneNumber,
+                    email: data.contact.email,
+                    lineId: data.contact.lineId,
+                    lineQr:   data.contact.lineQr,
+                    formData: new FormData()                    
                 });
                 setShopID(data._id)
-                setValues({...values,
+                setPhoto({
+                    ...photo,
+                    lineQr:data.contact.lineQr,
                     formData: new FormData()
+
                 })
-        
+
                
             }
         });
@@ -107,76 +105,56 @@ const ManageBank = () => {
     };
 
 
-    //NOTE Display shop name 
-    // const shopName = () => {
-    //     if(user.role === 1 || user.role === 2){
-    //         return (
-            
-    //         shopObject.map((s, i) => {
-    //             if(s._id === user.shop){
-    //                 return(
-    //                 <div className ="row my-4 "> 
-    //                    <h4 className="text-white bg-dark px-3 py-3">ร้านค้าของคุณคือ</h4><h4 className="border px-3 py-3">  {s.name}</h4> 
-    //                    </div>
-    //                 );
-    //             }
-    //         }
-                  
-    //         )
-    //         );
-    // }
-    // }
+   
 
     // SECTION Update Form 
     const handleChange = name => event => {
-
-      console.log('shop id is '+ shopID)
-      if(name=='photo'){
-
-        setBankinfo({ ...bankinfo, [name]: event.target.files[0]  });
-
-      }else{
-        setBankinfo({ ...bankinfo, [name]: event.target.value });
-      }
-
+        const value = name === 'lineQr' ? event.target.files[0] : event.target.value;
+        formData.set(name, value);
+        setContact({ ...contact, [name]: value });     
     };
 
     const clickSubmit = event => {
         event.preventDefault();
-        updateBankAccount(shopID,user._id,token, {bankinfo}).then(data => {
+        updateShopContact(shopID,user._id,token, {contact}).then(data => {
             if (data.error) {
                 // console.log(data.error);
                 alert(data.error);
             } else {              
-                    setBankinfo({
-                        ...bankinfo,
-                        personName: data.personName,
-                        bankName: data.bankName,                     
-                        accountNumber: data.accountNumber
+                    setContact({
+                        ...contact,
+                        contactName: data.contact.contactName,
+                        phoneNumber: data.contact.phoneNumber,
+                        email: data.contact.email,
+                        lineId: data.contact.lineId,
+                        lineQr:   data.contact.lineQr
                     });
                     setSuccess(true);
             }
         });
     };
 
-    const bankUpdate = (personName, bankName, accountNumber) => (
+    const updateForm = () => (
         <form className="my-5" onSubmit={clickSubmit}>
-            <h3>จัดการบัญชี</h3>
-          
+            <h3>ข้อมูลการติดต่อ</h3>          
             <div className="form-group">
-                <label className="text-muted">ชื่อ</label>
-                <input type="text" onChange={handleChange('personName')} className="form-control" value={personName} />
+                <label className="text-muted">ชื่อผู้ติดต่อ</label>
+                <input type="text" onChange={handleChange('contactName')} className="form-control" value={contactName} />
             </div>
             <div className="form-group">
-                <label className="text-muted">ชื่อธนาคาร</label>
-                <input type="text" onChange={handleChange('bankName')} className="form-control" value={bankName} />
+                <label className="text-muted">เบอร์โทรศัพท์</label>
+                <input type="number" onChange={handleChange('phoneNumber')} className="form-control" value={phoneNumber} />
             </div>
 
             <div className="form-group">
-                <label className="text-muted">หมายเลขบัญชี</label>
-                <input type="text" onChange={handleChange('accountNumber')} className="form-control" value={accountNumber} />
+                <label className="text-muted">{`อีเมล (การแจ้งเตือนการซื้อขาย จะถูกส่งไปที่อีเมลนี้)`} </label>
+                <input type="email" onChange={handleChange('email')} className="form-control" value={email} />
             </div>
     
+            <div className="form-group">
+                <label className="text-muted">ไลน์ไอดี </label>
+                <input type="text" onChange={handleChange('lineId')} className="form-control" value={lineId} />
+            </div>
             <button  className="btn btn-primary">
                 ยืนยัน
             </button>
@@ -189,18 +167,20 @@ const ManageBank = () => {
             return(
                 <>
                 <div class="alert alert-success text-center" role="alert">
-                     อัพเดทบัญชีสำเร็จ
+                     อัพเดทการติดต่อสำเร็จ
                 </div>
                 </>
             )
         }
     }
 
+    
+
     //SECTION QR CODE 
     const clickSubmit2 = event => {
         event.preventDefault();
         // NOTE Update changes to backend 
-        updateShopQrBank(shopID, user._id, token, formData).then(data => {
+        updateShopQrLine(shopID, user._id, token, formData).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
@@ -209,18 +189,18 @@ const ManageBank = () => {
         });
     };
 
-
     const handleChange2 = name => event =>{
-        const value = name === 'bankQr' ? event.target.files[0] : event.target.value;
-        formData.set('bankQr',value)
+        const value = name === 'lineQr' ? event.target.files[0] : event.target.value;
+        formData.set('lineQr',value)
     }
+
 
     const formQrCode = () => (
         <form className="my-5  border p-5  " onSubmit={clickSubmit2}>
-        <h3 className='text-center'>อัพโหลด Qr Code เพื่อการโอนเงิน </h3>
+        <h3 className='text-center'>อัพโหลดไลน์ Qr Code ที่นี่</h3>
         <div className="form-group text-center">
             <label className="btn btn-secondary">
-                <input onChange={handleChange2('bankQr')} type="file" name="bankQr" accept="image/*" />
+                <input onChange={handleChange2('lineQr')} type="file" name="lineQr" accept="image/*" />
             </label>
        
         <button  className="btn btn-primary">
@@ -259,7 +239,7 @@ const ManageBank = () => {
         } if(showQrCode==false){
             return(
             <>
-             <button type="button" onClick={()=>setQrCode(true)} class="btn btn-outline-info waves-effect">อัพเดทQrCode</button>
+             <button type="button" onClick={()=>setQrCode(true)} class="btn btn-outline-info waves-effect">อัพเดทไลน์ QrCode</button>
 
             </>)
         }
@@ -278,7 +258,7 @@ const ManageBank = () => {
     {showSuccess(success)}
     {setShowQr()}
     {showQR()}
-    {bankUpdate(personName, bankName, accountNumber)}
+    {updateForm()}
     </div>
                 
 
@@ -288,4 +268,4 @@ const ManageBank = () => {
 
 }
 
-export default ManageBank; 
+export default ShopContact; 

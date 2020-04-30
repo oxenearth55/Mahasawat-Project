@@ -196,8 +196,8 @@ const handleChange = e => {
                 <div className="col-md-8 offset-md-2">
                 {cantFind()}
 
-                 {displayForm()}
-                    {goBack()}
+                {displayForm()}
+                {goBack()}
 
 
                 </div>

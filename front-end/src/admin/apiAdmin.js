@@ -353,8 +353,8 @@ export const deleteOther = (otherId, userId, token) => {
 // };
 
 
-export const updateShop = (shopId,userId, token, bankinfo) => {
-    return fetch(`${API}/shop/update/${shopId}/${userId}`, {
+export const updateBankAccount = (shopId,userId, token, bankinfo) => {
+    return fetch(`${API}/bank/update/${shopId}/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -362,6 +362,23 @@ export const updateShop = (shopId,userId, token, bankinfo) => {
             Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(bankinfo)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+export const updateShopContact = (shopId,userId, token, contact) => {
+    return fetch(`${API}/contact/update/${shopId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(contact)
     })
         .then(response => {
             return response.json();
@@ -408,9 +425,9 @@ export const getSpecificShop = shopId => {
         })
         .catch(err => console.log(err));
 };
-//NOTE Update Banking QrCode
-export const updateQrCode = (shopId, userId, token, QR) => {
-    return fetch(`${API}/update/qrCode/${shopId}/${userId}`, {
+//NOTE Update Banking QrCode and Shop contact
+export const updateShopQrBank = (shopId, userId, token, QR) => {
+    return fetch(`${API}/update/bankqr/${shopId}/${userId}`, {
         method: 'PUT',
         headers: {
             Accept: 'application/json',
@@ -424,6 +441,20 @@ export const updateQrCode = (shopId, userId, token, QR) => {
         .catch(err => console.log(err));
 };
 
+export const updateShopQrLine = (shopId, userId, token, QR) => {
+    return fetch(`${API}/update/lineqr/${shopId}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: QR
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
 //ANCHOR Manage Shipping 
 export const addShipping = (shopId,userId, token, shipping) => {

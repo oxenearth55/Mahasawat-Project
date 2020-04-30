@@ -30,6 +30,7 @@ import SelectShop from './Shop/SelectShop'
 import ManageBank from './admin/ManageBank'
 import ManageShipping from './admin/ManageShipping'
 import UpdateCat from './admin/UpdateCat' 
+import ShopContact from './admin/ShopContact'
 
 
 const Routes = () => {
@@ -69,6 +70,8 @@ const Routes = () => {
             <VendorRoute path="/vendor/manage/bank" exact component={ManageBank}/> 
             <VendorRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
             <VendorRoute path="/update/category/:catId" exact component={UpdateCat}/>
+            <VendorRoute path="/vendor/shop/contact" exact component={ShopContact}/>
+
 
 
              {/* SECTION Admin */}

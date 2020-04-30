@@ -416,7 +416,7 @@ const blog8 = () => (
 {/* <!--Section: Content--> */}
 <section class="px-md-5 mx-md-5 py-5 text-center white-text elegant-color z-depth-1 rounded">
 
-  <h3 class="">งั้นแค่เดินไปล้างมือในห้องน้ำก็สินเรื่อง <i class="fas fa-hand-paper red-text mx-1"></i>  แต่...</h3>
+  <h3 class="">งั้นแค่เดินไปล้างมือในห้องน้ำก็สิ้นเรื่อง <i class="fas fa-hand-paper red-text mx-1"></i>  แต่...</h3>
 
 </section>
 {/* <!--Section: Content--> */}

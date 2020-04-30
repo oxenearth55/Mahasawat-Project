@@ -131,6 +131,13 @@ const links = () => (
     </MDBListGroupItem>
 
     <MDBListGroupItem hover>
+        <Link className="nav-link textDash" to="/vendor/shop/contact">
+            จัดการข้อมูลติดต่อ
+        </Link>      
+    </MDBListGroupItem>
+
+
+    <MDBListGroupItem hover>
         <Link className="nav-link textDash" to="/vendor/manage/bank">
             จัดการบัญชีธนาคาร
         </Link>      

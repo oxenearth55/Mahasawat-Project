@@ -23,6 +23,8 @@ const Orders = ({match}) => {
     const [successUp, setSuccessUp] = useState(false);
     const [updatetext, setUpdateText] = useState('');
     const [shippingProvider,setShippingProvider] = useState([]);
+    const [orderUser,setUser] = useState([]);
+
 
     const [error, setError] = useState(false)
 
@@ -91,6 +93,7 @@ const Orders = ({match}) => {
                 setOrder(data)
                 setProducts(data.products)
                 setAddress(data.address)
+                setUser(data.user)
                 setShippingProvider(data.shippingProvider)
                 setPhoto(data.photo)
                 setValues({
@@ -281,15 +284,15 @@ const button = () => (
                             </li> */}
 
                             <li className="list-group-item">
-                                รายการของ: {user.name}
+                                สั่งซื้อโดย: {orderUser.name}
                             </li>
                             <li className="list-group-item">
-                                อีเมล: {user.email}
+                                อีเมลผู้สั่งซื้อ: {orderUser.email}
                             </li>
                             <li className="list-group-item">
                                 สั่งเมื่อ:{" "}
                                 {/* NOTE  use moment to format the date */}
-                                {moment(order.createdAt).fromNow()} 
+                                {moment(order.createdAt).format('YYYY-MM-DD')} 
                             </li>
                            
                         </ul>

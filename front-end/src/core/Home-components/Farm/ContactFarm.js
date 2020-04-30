@@ -17,7 +17,7 @@ const ContactFarm = () => (
 
        <h4 className='text-center my-4'>ติดต่อฟาร์มกล้วยไม้คุณสร้อย</h4>
        <h5 className='my-4'>คุณ สร้อย ชายวันดี</h5>
-       <h5 className='mb-5'>เบอร์โทรศัพท์: 086 809 3264</h5>
+       <h5 className='mb-5'>เบอร์โทรศัพท์: 086-809-3264</h5>
 
      </div>
      {/* <!--Grid column--> */}
