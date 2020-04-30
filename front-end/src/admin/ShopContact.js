@@ -143,7 +143,7 @@ const ShopContact = () => {
             </div>
             <div className="form-group">
                 <label className="text-muted">เบอร์โทรศัพท์</label>
-                <input type="number" onChange={handleChange('phoneNumber')} className="form-control" value={phoneNumber} />
+                <input type="text" onChange={handleChange('phoneNumber')} className="form-control" value={phoneNumber} />
             </div>
 
             <div className="form-group">

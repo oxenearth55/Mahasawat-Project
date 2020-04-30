@@ -63,7 +63,7 @@ const shopSchema = new mongoose.Schema({
           
           contact: {
             contactName:{type:String,default:''},
-            phoneNumber:Number,
+            phoneNumber:{type:String,default:''},
             email:{type:String,default:''},
             lineId:{type:String,default:''}, 
            
