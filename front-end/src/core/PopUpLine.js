@@ -28,7 +28,7 @@ const PopUpLine = ({shopId}) => (
        <div class="modal-body">
          <div class="text-center">
            <i class="fab fa-line fa-4x mb-3 animated rotateIn"></i>
-           <img src={`${API}/bankqr/${shopId._id}`} 
+           <img src={`${API}/lineqr/${shopId._id}`} 
               alt="slip" class="img-fluid" />
               <hr/>
          </div>
