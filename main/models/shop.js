@@ -62,10 +62,10 @@ const shopSchema = new mongoose.Schema({
         },
           
           contact: {
-            contactName:{type:String,default:''},
-            phoneNumber:{type:String,default:''},
-            email:{type:String,default:''},
-            lineId:{type:String,default:''}, 
+            contactName:{type:String,default:'-'},
+            phoneNumber:{type:String,default:'-'},
+            email:{type:String,default:'-'},
+            lineId:{type:String,default:'-'}, 
            
             
           },

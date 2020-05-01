@@ -17,20 +17,20 @@ const Example = () => {
     <section class="dark-grey-text text-center">
       
       {/* <!-- Section heading --> */}
-      <h3 class="font-weight-bold mb-4 pb-2">ร้านค้าในชุมชนมหาสวัสดิ์</h3>
+      <h3 class="font-weight-bold mb-4 pb-2 homecomponent-head" >ร้านค้าในชุมชนมหาสวัสดิ์</h3>
       {/* <!-- Section description --> */}
-      <p class="grey-text w-responsive mx-auto mb-5">ชุมชนของเรามีแหล่งค้าขายสินค้าหลักๆ 5 สถานที่ด้วยกัน</p>
+      <p class="grey-text w-responsive mx-auto mb-5 homecomponent-sub" >ชุมชนของเรามีแหล่งค้าขายสินค้าหลักๆ 5 สถานที่ด้วยกัน</p>
   
       {/* <!-- Grid row --> */}
       <div class="row justify-content-lg-center">
   
         {/* <!-- Grid column --> */}
-        <div class="col-lg-2 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-6 mb-4 mx-3">
           {/* <!-- Collection card --> */}
-          <div class="card collection-card z-depth-1-half">
+          <div class="card collection-card z-depth-1-half home-card-example" >
             {/* <!-- Card image --> */}
-              <img src={fruitGarden} class="img-fluid"
-                alt="" style={{height : '20rem'}}/>
+              <img src={fruitGarden} class="img-fluid home-img-example"
+                alt="" />
             
             <p className="mt-2">สวนผลไม้ลุงบุญเลิศ</p>
 
@@ -41,12 +41,12 @@ const Example = () => {
         {/* <!-- Grid column --> */}
   
         {/* <!-- Grid column --> */}
-        <div class="col-lg-2 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-6 mb-4 mx-3" >
           {/* <!-- Collection card --> */}
-          <div class="card collection-card z-depth-1-half">
+          <div class="card collection-card z-depth-1-half home-card-example">
             {/* <!-- Card image --> */}
-            <img src={kaotang} class="img-fluid"
-                alt="" style={{height : '20rem'}}/>
+            <img src={kaotang} class="img-fluid home-img-example"
+                alt="" />
             
             <p className="mt-2">บ้านข้าวตังศาลาดิน</p>
             {/* <!-- Card image --> */}
@@ -56,12 +56,12 @@ const Example = () => {
         {/* <!-- Grid column --> */}
   
         {/* <!-- Grid column --> */}
-        <div class="col-lg-2 col-md-6 mb-4 ">
+        <div class="col-lg-2 col-md-6 mb-4 mx-3 ">
           {/* <!-- Collection card --> */}
-          <div class="card collection-card z-depth-1-half ">
+          <div class="card collection-card z-depth-1-half home-card-example "  >
             {/* <!-- Card image --> */}
-            <img src={flower} class="img-fluid"
-                alt="" style={{height : '20rem'}}/>
+            <img src={flower} class="img-fluid home-img-example"
+                alt="" />
             
             <p className="mt-2">ฟาร์มกล้วยไม้คุณสร้อย</p>
             {/* <!-- Card image --> */}
@@ -71,12 +71,12 @@ const Example = () => {
         {/* <!-- Grid column --> */}
   
         {/* <!-- Fourth column --> */}
-        <div class="col-lg-2 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-6 mb-4 mx-3">
           {/* <!-- Collection card --> */}
-          <div class="card collection-card z-depth-1-half">
+          <div class="card collection-card z-depth-1-half home-card-example" >
             {/* <!-- Card image --> */}
-            <img src={banFakk} class="img-fluid"
-                alt="" style={{height : '20rem'}}/>
+            <img src={banFakk} class="img-fluid home-img-example"
+                alt="" />
             
             <p className="mt-2">บ้านฟักข้าว</p>
             {/* <!-- Card image --> */}
@@ -86,12 +86,12 @@ const Example = () => {
         {/* <!-- Fourth column --> */}
 
           {/* <!-- Five column --> */}
-          <div class="col-lg-2 col-md-6 mb-4">
+          <div class="col-lg-2 col-md-6 mb-4 mx-3">
           {/* <!-- Collection card --> */}
-          <div class="card collection-card z-depth-1-half">
+          <div class="card collection-card z-depth-1-half home-card-example" >
             {/* <!-- Card image --> */}
-            <img src={nabua} class="img-fluid"
-                alt="" style={{height : '20rem'}}/>
+            <img src={nabua} class="img-fluid home-img-example"
+                alt=""/>
             
             <p className="mt-2">นาบัวลุงแจ่ม</p>
             {/* <!-- Card image --> */}

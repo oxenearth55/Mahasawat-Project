@@ -25,9 +25,9 @@ const ShowShop = () => {
   <section class="magazine-section dark-grey-text">
 
     {/* <!-- Section heading --> */}
-    <h3 class="text-center font-weight-bold mb-4 pb-2">จุดเริ่มต้นร้านค้าออนไลน์ชุมชน</h3>
+    <h3 class="text-center font-weight-bold mb-4 pb-2 homecomponent-head">จุดเริ่มต้นร้านค้าออนไลน์ชุมชน</h3>
     {/* <!-- Section description --> */}
-    <p class="text-center w-responsive mx-auto mb-5">
+    <p class="text-center w-responsive mx-auto mb-5 homecomponent-sub">
       ร้านค้าออนไลน์ได้ถูกริเริ่มการใช้งานจาก ทางบ้านฟักข้าวคุณขนิษฐา และนาบัวลุงแจ่ม เพื่อเป็นจุดเริ่มต้น การยกระดับ และพัฒนา
       ไปสู่สหกรณ์ของชุมชน ในอนาคตอันใกล้
     

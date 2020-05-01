@@ -10,14 +10,17 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([]);
 
     const { user, token } = isAuthenticated();
+    const [loading, setLoading] = useState(false);
 
     //NOTE Load product from Backend
     const loadProducts = () => {
+        setLoading(true);
         getProducts().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 setProducts(data);
+                setLoading(false)
             }
         });
     };
@@ -33,7 +36,35 @@ const ManageProducts = () => {
         });
     };
 
-    
+    const showLoading = () =>
+        loading && (
+            <div className="text-center">
+            <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+            </div>
+        );
 
     useEffect(() => {
         loadProducts();
@@ -132,6 +163,7 @@ const ManageProducts = () => {
         >
             <div className="container-fluid">
             {showShopName()}
+            {showLoading()}
 
            <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 </div>

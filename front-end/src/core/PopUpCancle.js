@@ -17,7 +17,6 @@ const PopUpCancle = ({o,cancle}) => {
 
 <>
     {redirectUser()}
-
     <div class="modal fade" id="centralModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-notify modal-danger" role="document">
@@ -43,7 +42,7 @@ const PopUpCancle = ({o,cancle}) => {
           {/* <!--Footer--> */}
           <div class="modal-footer justify-content-center">
             <a type="button" data-dismiss="modal" onClick={() => {cancle(o._id);window.location.reload(false);
-}} class="btn btn-danger">เยิกเลิก <i class="far fa-times-circle ml-1 text-white"></i></a>
+}} class="btn btn-danger">ยกเลิก <i class="far fa-times-circle ml-1 text-white"></i></a>
             <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">ไม่ดีกว่า</a>
           </div>
         </div>

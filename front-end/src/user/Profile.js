@@ -11,12 +11,14 @@ const Profile = ({ match }) => {
         name: '',
         email: '',
         password: '',
+        repeatPassword:'',
         error: false,
         success: false     
     });
 
     const { user, token } = isAuthenticated();
-    const { name, email, password, error, success } = values;
+    const [repeatError, setRepeatError] = useState(false);
+    const { name, email, password,repeatPassword, error, success } = values;
     const [shopObject, setShopObject] = useState([])
 
     //SECTION Update Shop for Admin only
@@ -33,8 +35,7 @@ const Profile = ({ match }) => {
 
     const shopName = () => {
         if(user.role === 1){
-            return (
-            
+            return (           
             shopObject.map((s, i) => {
                 if(s._id === user.shop){
                     return(
@@ -45,8 +46,7 @@ const Profile = ({ match }) => {
                 }
 
             }
-         
-         
+        
             )
             );
     }
@@ -74,17 +74,14 @@ const Profile = ({ match }) => {
     }, []);
 
     const handleChange = name => e => {
-        setValues({ ...values, error: false, [name]: e.target.value });
-        // if(name==='shop'){
-        //     setShopObjectID({[name]: e.target.value});
+        setValues({ ...values, error: false,success:false, [name]: e.target.value });
+        setRepeatError(false)
 
-        // }
-
-      
     };
 
     const clickSubmit = e => {
         e.preventDefault();
+    if(repeatPassword === password){
         update(match.params.userId, token, { name, email, password }).then(data => {
             if (data.error) {
                 // console.log(data.error);
@@ -97,19 +94,36 @@ const Profile = ({ match }) => {
                         email: data.email,                     
                         success: true
                     });
-
-                }
-                
+                }                
                 );
             }
         });
-    };
+    }else{
+        setRepeatError(true);
+    }
+}
 
-    const redirectUser = success => {
-        if (success) {
-            return <Redirect to="/" />;
+  
+
+    const showError = () =>{
+        if(repeatError){
+            return(
+        <div class="alert alert-danger text-center" role="alert">
+            กรุณากรอกรหัสให้ตรงกัน
+        </div>
+            )
         }
-    };
+    }
+
+    const showSuccess = () =>{
+        if(success){
+            return(
+        <div class="alert alert-success text-center" role="alert">
+            ทำการเปลี่ยนแปลงโปรไฟล์เรียบร้อย
+        </div>
+            )
+        }
+    }
 
     const profileUpdate = (name, email, password) => (
         <form>
@@ -124,8 +138,13 @@ const Profile = ({ match }) => {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">รหัส</label>
+                <label className="text-muted">รหัสใหม่</label>
                 <input type="password" onChange={handleChange('password')} className="form-control" value={password} />
+            </div>
+
+            <div className="form-group">
+                <label className="text-muted">ยืนยันรหัสใหม่</label>
+                <input type="password" onChange={handleChange('repeatPassword')} className="form-control" />
             </div>
 
             <button onClick={clickSubmit} className="btn btn-primary">
@@ -142,9 +161,10 @@ const Profile = ({ match }) => {
         >
             <div className="container">
             <h2 className="mb-4">อัพเดทโปรไฟล์</h2>
+            {showError()}
+            {showSuccess()}
             {profileUpdate(name, email, password)}
 
-            {redirectUser(success)}
             </div>
           
         </Layout>

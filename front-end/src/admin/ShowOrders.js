@@ -211,9 +211,10 @@ const showLoading = () => {
             className="container-fluid"
             headerImg="dashBoardImgLayout"
         >
-        {showLoading()}
         {showAleart()}
         {showShopName()}
+        {showLoading()}
+
          <MDBDataTable striped bordered small order={['age', 'asc' ]} data={dataColum} />
 
 

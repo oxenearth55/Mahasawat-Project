@@ -35,12 +35,14 @@ const Product = (props) => {
     const [productCat, setProductCat] = useState('');
     const [productShop, setProductShop] = useState([]);
     const [getComments, setGetcomments] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const { user, token } = isAuthenticated();
 
     const [run, setRun] = useState(false);
     const [skip,setSkip] = useState(0);
     const [size,setSize] = useState(0);
+    
 
     
     const addToCart = (p) => {
@@ -106,6 +108,38 @@ const Product = (props) => {
         }
 
     }
+
+
+    const showLoading = () =>
+        loading && (
+            <div className="text-center">
+            <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+            </div>
+        )
+        
     const loadSingleProduct = productId => {
         //NOTE  use read method from apiCore to get single product that related to productId
         read(productId).then(data => {
@@ -125,6 +159,7 @@ const Product = (props) => {
                         setError(data.error);
                     } else {
                         setRelatedProduct(data);
+                        setLoading(false)
                     }
                 });
             }
@@ -215,7 +250,9 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
             {/* {shouldRedirect(redirect)} */}
         
 
+
             <CardProduct product={product} addCart={addToCart} />
+            {showLoading()}
 
             {showRelated()}
             

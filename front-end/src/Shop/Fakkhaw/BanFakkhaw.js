@@ -13,7 +13,7 @@ import Example from './Example'
 import Cover from './ cover'
 import BlogHeader from './BlogHeader';
 import Icon from './Icon';
-import Contract from './Contract';
+import Contact from './Contact';
 import Cover1 from './cover1';
 import Cover2 from './cover2';
 import Cover3 from './cover3';
@@ -34,7 +34,7 @@ const [fakkhawProducts,setFakkhawProducts] = useState([]);
 
 
 
-
+//SECTION LOAD PRODUCTS 
 const loadAllProducts = () =>{
     getAllProducts().then(data => {
         if (data.error) {
@@ -67,8 +67,6 @@ useEffect(()=>{
 },[] )
 
 
-
-
     return(       
 <>
 <Menu/>
@@ -86,7 +84,7 @@ useEffect(()=>{
 <Cover4/>
 <Blog5/>
 <AllShop product={fakkhawProducts} />
-<Contract/>
+<Contact/>
 <Footer/>
 </>
     );

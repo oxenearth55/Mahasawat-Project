@@ -554,6 +554,26 @@ p{
     .fix-bg{
       background-attachment: fixed;
       }
+           /* SECTION HOMECOMPONENT Example.js */
+      .home-card-example{
+        
+        width:10rem;
+      }
+
+      .home-img-example{
+        height:15rem!important;
+        width:13rem!important;
+
+      }
+
+         /* SECTION HOMECOMPONENT HEADER  */
+
+         .homecomponent-head{
+          font-size:35px
+        }
+        .homecomponent-sub{
+          font-size:20px
+        }
 
 }
 /* large desktops and up ----------- */
@@ -563,4 +583,24 @@ p{
       background-attachment: fixed;
       }
 
+      /* SECTION HOMECOMPONENT Example.js */
+      .home-card-example{
+
+        width:15rem;
+      }
+
+      .home-img-example{
+        height:20rem!important;
+        width:15rem!important;
+
+      }
+
+      /* SECTION HOMECOMPONENT HEADER  */
+
+      .homecomponent-head{
+        font-size:35px
+      }
+      .homecomponent-sub{
+        font-size:18px
+      }
 }

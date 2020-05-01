@@ -30,6 +30,44 @@ const SeeOrder = (props) => {
     const [cancleSuccess, setCancleSuccess] = useState(false);
     const [contact, setContact] = useState([])
 
+    const [loading,setLoading] = useState(false);
+
+
+    //SECTION LOADING 
+    const showLoading = () => {
+        if(loading){
+            return(
+                <div className="text-center">
+                <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+                </div>
+            )
+        }
+        }
+        
+
 //SECTION Cancle Order 
 
 const clickCancle = (orderId) =>{
@@ -100,8 +138,6 @@ const clickCancle = (orderId) =>{
 
     }
     
-
-
     const checkUpLoad = () =>
     {   
         if(success){
@@ -116,7 +152,7 @@ const clickCancle = (orderId) =>{
         }else if(empty&& !order.photo &&order.upload==false && order.status!=='ยกเลิก'){
             return(
         <div className="alert alert-primary" role="alert">
-            <h5 className="text-center ">กรุณาอัพโหลดสลิป</h5>
+            <h5 className="text-center ">กรุณาอัพโหลดสลิปโดยคลิกที่ปุ่ม 'อัพโหลดสลิป' ด้านล่าง</h5>
         </div>
 
             )
@@ -150,6 +186,17 @@ const clickCancle = (orderId) =>{
     }
 
 //SECTION SLIP
+
+    const showUploadButton = () => {
+        if(!loading){
+            return(
+            <button  className="btn btn-primary">
+            อัพโหลด
+        </button>
+            )
+
+        }
+    }
     const showUpSlip = () =>
 (
     <form className="my-5  border p-5 " onSubmit={clickSubmit}>
@@ -159,10 +206,8 @@ const clickCancle = (orderId) =>{
             <label className="btn btn-secondary">
                 <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
             </label>
-       
-        <button  className="btn btn-primary">
-            อัพโหลด
-        </button>
+       {showUploadButton()}
+      
         </div>
 
 </form>
@@ -194,10 +239,10 @@ const slipBtn = () => {
             </>
 
         )
-    } if(showSlip==false){
+    } if(showSlip==false && order.status !== 'ยกเลิก'){
         return(
         <>
-         <button type="button" onClick={()=>setShowSlip(true)} class="btn btn-outline-info waves-effect">อัพโหลดหลักฐานการโอนเงิน</button>
+         <button type="button" onClick={()=>setShowSlip(true)} class="btn btn-outline-info waves-effect">อัพโหลดสลิป</button>
 
         </>)
     }
@@ -206,12 +251,14 @@ const slipBtn = () => {
 
 const clickSubmit = event =>{
     event.preventDefault();
+    setLoading(true);
 if(!empty){
     uploadSlip(order._id,user._id, token, formData).then(data => {
         if (data.error) {
             setError(data.error);
         } else {
             setSuccess(true);
+            setLoading(false);
 }
     })
 }else{
@@ -234,6 +281,7 @@ const handleChange = name => event => {
 
     const loadOrder = orderId => {
         //NOTE Get orders from backend
+        setLoading(true);
         readOrder(orderId).then(data => {
             if (data.error) {
                 console.log(data.error);
@@ -249,9 +297,7 @@ const handleChange = name => event => {
                     
                 });
                 getShopInfo(data.shop._id)
-                // setAmount(data.amount)
-                // setShipCost(data.shippingCost)
-              
+                setLoading(false)
 
             }
         });
@@ -579,11 +625,19 @@ const showAddress = () => (
 </>
     );
 
+    const showCancleBtn = () => {
+        if(order.status !== 'ยกเลิก'){
+            return(
+                <button type="button"  data-toggle="modal" data-target="#centralModalDanger" class="btn btn-danger">ยกเลิกรายการนี้</button>
+
+            )
+        }
+    } 
     const showBankAccount = () =>{
         return(<>
         
         <button data-toggle="modal" data-target="#centralModalInfo" 
-        class="btn btn-orange">คลิกเพื่อโอนเงิน 
+        class="btn btn-orange">บัญชีธนาคาร 
         <i class="fas  fa-university pl-1"></i>
         
         </button>
@@ -594,8 +648,7 @@ const showAddress = () => (
         <button type="button"  data-toggle="modal" data-target="#centralModalSuccess" class="btn btn-outline-success waves-effect">ติดต่อทาง Line <i class="fab fa-line green-text"></i></button>
         <button type="button"  data-toggle="modal" data-target="#centralModalContact" class="btn btn-outline-primary  waves-effect">ข้อมูลการติดต่อ <i class="fas fa-mobile-alt blue-text"></i></button>
 
-        <button type="button"  data-toggle="modal" data-target="#centralModalDanger" class="btn btn-danger">ยกเลิกรายการนี้</button>
-
+{showCancleBtn()}
         {showUpload()}
 
         <PopUpBank Total= {order.amount} bank={bankAccount} shopId={shopInfo}/>
@@ -629,7 +682,10 @@ const showAddress = () => (
             if(!error){
                 return(
                     <>
+
             {showShopName()}
+            {showLoading()}
+
             {showConfirm()}
             {showOrders()}
             {showAddress()}
