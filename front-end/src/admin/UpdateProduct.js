@@ -105,12 +105,7 @@ const UpdateProduct = ({ match }) => {
             } else {
                 setValues({
                     ...values,
-                    name: '',
-                    description: '',
-                    photo: '',
-                    price: '',
-                    quantity: '',
-                    detail:'',
+                  
                     loading: false,
                     error: false,
                     createdProduct: data.name
