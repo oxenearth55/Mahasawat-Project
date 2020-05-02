@@ -35,12 +35,13 @@ const addCommentBtn = () => {
 }
 
 const deleteButton = (index) => {
+  if(isAuthenticated()){
   if(isAuthenticated().user.role == 1){
     return(
     <button data-toggle="modal" data-target={`#${convert(index)}`}  class="btn algin-center btn-danger  waves-effect px-3 mb-5"> ลบ</button>
     )
   }
-  
+}
 }
 
 const showLoading = () =>
