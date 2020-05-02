@@ -67,7 +67,7 @@ const blog1 = () =>(
           >
 
             <MDBRow className=" mb-5  ">
-            <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+            <MDBAnimation reveal type="fadeInUp" >
 
               <MDBCol md='12' className='mb-4 white-text text-center'>
 
@@ -76,7 +76,7 @@ const blog1 = () =>(
                 </h1>
 
                 <hr className='hr-light my-4' />
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                <MDBAnimation reveal type="fadeInUp" duration="1000ms" delay="0.7s">
                 <h5 className='text-uppercase mb-4 white-text'>
                   <strong>ถ้าคุณพร้อมแล้ว เรามาเริ่มกันดีกว่า</strong>
                 </h5>
@@ -107,7 +107,7 @@ const blog2 = () => (
           >
 
             <MDBRow className=" mb-5  ">
-            <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="1s">
+            <MDBAnimation reveal type="fadeInUp" >
 
               <MDBCol md='12' className='mb-4 white-text text-center'>
 
@@ -116,7 +116,7 @@ const blog2 = () => (
                 </h1>
 
                 <hr className='hr-light my-4' />
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="2s">
+                <MDBAnimation reveal type="fadeInUp" >
                 <h5 className='text-uppercase mb-4 white-text'>
                   <strong>และแน่นอน มันได้อยู่บนร่างกายคุณเป็นที่เรียบร้อยแล้ว</strong>
                 </h5>
@@ -147,7 +147,7 @@ const blog3 = () => (
           >
 
             <MDBRow className=" mb-5  ">
-            <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="1s">
+            <MDBAnimation reveal type="fadeInUp" >
 
               <MDBCol md='12' className='mb-4 white-text text-center'>
 
@@ -181,7 +181,7 @@ const blog4 =() => (
           >
 
             <MDBRow className=" mb-5  ">
-            <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="1s">
+            <MDBAnimation reveal type="fadeInUp" >
 
               <MDBCol md='12' className='mb-4 white-text text-center'>
 
@@ -216,7 +216,7 @@ const blog5 = () => (
           >
 
             <MDBRow className=" mb-5  ">
-            <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="1s">
+            <MDBAnimation reveal type="fadeInUp" >
 
               <MDBCol md='12' className='mb-4 white-text text-center'>
 
@@ -225,7 +225,7 @@ const blog5 = () => (
                 </h1>
 
                 <hr className='hr-light my-4' />
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                <MDBAnimation reveal type="fadeInUp" >
                 <h5 className='text-uppercase mb-4 white-text'>
                   <strong>คุณก็สงสัยเหมือนกันใช่ไหมล่ะ </strong>
                 </h5>
@@ -761,7 +761,7 @@ const blog13_addition = () => (
           >
 
             <MDBRow className=" mb-5  ">
-            <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="1s">
+            <MDBAnimation reveal type="fadeInUp" >
 
               <MDBCol md='12' className='mb-4 white-text text-center'>
 

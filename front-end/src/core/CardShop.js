@@ -188,7 +188,7 @@ const Showbutton = () =>{
    <div class="modal-content">
      {/* <!--Header--> */}
      <div class="modal-header">
-       <p class="heading">Product in the cart
+       <p class="heading">ตะกร้ารถเข็น
        </p>
 
        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -216,9 +216,9 @@ const Showbutton = () =>{
      {/* <!--Footer--> */}
      <div class="modal-footer justify-content-center " >
      
-       <button type="button" onClick={goToCart} data-dismiss="modal"  class="btn btn-info">Go to cart</button>
+       <button type="button" onClick={goToCart} data-dismiss="modal"  class="btn btn-info">ไปที่รถเข็น</button>
      
-       <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancel</a>
+       <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">ยกเลิก</a>
      </div>
    </div>
    {/* <!--/.Content--> */}

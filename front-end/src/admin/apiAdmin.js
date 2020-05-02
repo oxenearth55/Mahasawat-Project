@@ -472,3 +472,21 @@ export const addShipping = (shopId,userId, token, shipping) => {
         })
         .catch(err => console.log(err));
 };
+
+
+
+export const unComment = (productId,userId, token, comments) => {
+    return fetch(`${API}/uncomment/${productId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(comments)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

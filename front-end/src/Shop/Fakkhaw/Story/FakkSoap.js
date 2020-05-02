@@ -57,7 +57,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -66,7 +66,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" duration="1000ms" delay="0.7s">
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>ถ้าคุณพร้อมแล้ว เรามาเริ่มกันเลย</strong>
                       </h5>
@@ -97,7 +97,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -106,7 +106,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>สิ่งเหล่านี้เป็นภัยร้ายต่อผิวพรรณของเราโดยตรง</strong>
                       </h5>
@@ -136,7 +136,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp">
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -145,7 +145,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>เพื่อที่จะทำสิ่งใหม่ๆอยู่ตลอดเวลา</strong>
                       </h5>
@@ -175,7 +175,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -186,7 +186,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp">
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>แต่คุณกลับลืมคิดถึงบางสิ่งบางอย่างที่สำคัญ...</strong>
                       </h5>
@@ -217,7 +217,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -228,7 +228,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>มันเกิดอะไรขึ้นกัน...คุณอุทานเบาๆ</strong>
                       </h5>
@@ -261,7 +261,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -270,7 +270,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>ผลเสียที่มาจาก...</strong>
                       </h5>
@@ -424,7 +424,7 @@ const FakkSoap = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -433,7 +433,7 @@ const FakkSoap = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>  คุณต้องมองหาตัวช่วยที่สามารถปกป้องคุณจากภัยร้ายเหล่านี้
   </strong>
@@ -523,7 +523,7 @@ const FakkSoap = () => {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp" >
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     

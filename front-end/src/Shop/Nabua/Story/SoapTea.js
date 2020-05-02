@@ -57,7 +57,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp">
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -66,7 +66,7 @@ import {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>ถ้าคุณพร้อมแล้ว มาเริ่มกันเลย</strong>
                       </h5>
@@ -98,7 +98,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -106,7 +106,7 @@ import {
                       ทำไมเราถึงต้องใส่ใจกับการอาบน้ำกันล่ะ
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -137,7 +137,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -145,7 +145,7 @@ import {
                       อะไรคือสิ่งที่คุณคาดหวังจากการอาบน้ำ
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -175,7 +175,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -183,7 +183,7 @@ import {
                       เราลองมาเริ่มดูประโยชน์ของการอาบน้ำกันดีกว่า
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -271,7 +271,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -279,7 +279,7 @@ import {
                       นอกจากประโยชน์แล้ว ยังมีอีกสิ่งหนึ่งที่คุณต้องคำนึง
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -309,7 +309,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -317,7 +317,7 @@ import {
                         นั่นคือ ตัวช่วยในการทำความสะอาดผิวพรรณยังไงล่ะ
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -402,7 +402,7 @@ const blog9_head = () =>(
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -410,7 +410,7 @@ const blog9_head = () =>(
                       ทำความสะอาดผิวหน้า
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -457,7 +457,7 @@ const blog9_head = () =>(
        </h4> 
       
               <p class="font-weight-bold">การผสมผสานของสบู่ และดอกบัวสำหรับล้างหน้า</p>
-              <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
+              <MDBAnimation reveal type="fadeInRight">
       
               <p class="text-muted">
                 ด้วยคุณประโยชน์จากเกษรดอกบัวที่ท่วมท้น สามารถนำมาทำความสะอาดใบหน้า ได้อย่างสะอาดหมดจด
@@ -666,7 +666,7 @@ const blog9_head = () =>(
                     >
           
                       <MDBRow className=" mb-5  ">
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
           
                         <MDBCol md='12' className='mb-4 white-text text-center'>
           
@@ -674,7 +674,7 @@ const blog9_head = () =>(
                           ทำความสะอาดผิวกาย
                           </h1>
           
-                          <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                          <MDBAnimation reveal type="fadeInUp" >
                          
                           </MDBAnimation>
                        

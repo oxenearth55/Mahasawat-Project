@@ -43,7 +43,7 @@ const Bag = () => {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp" >
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     
@@ -52,7 +52,7 @@ const Bag = () => {
                     </h1>
     
                     <hr className='hr-light my-4' />
-                    <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                    <MDBAnimation reveal type="fadeInUp" >
                     <h5 className='text-uppercase mb-4 white-text'>
                       <strong>เพรียบพร้อมด้วยสรรพคุณ</strong>
                     </h5>
@@ -85,7 +85,7 @@ const Bag = () => {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp">
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     
@@ -93,7 +93,7 @@ const Bag = () => {
                     ทำไม​เราถึงต้อง​ดู​แล​สุขภาพ​ของ​ตัว​เอง?
                     </h1>
     
-                    <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                    <MDBAnimation reveal type="fadeInUp" >
                    
                     </MDBAnimation>
                  
@@ -124,7 +124,7 @@ const Bag = () => {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp" >
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     
@@ -132,7 +132,7 @@ const Bag = () => {
                   นี่อาจเป็นคำถามที่หลายคนอาจสงสัย
                     </h1>
     
-                    <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                    <MDBAnimation reveal type="fadeInUp">
                    
                     </MDBAnimation>
                  
@@ -162,7 +162,7 @@ const Bag = () => {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp" >
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     
@@ -170,7 +170,7 @@ const Bag = () => {
                   เรามาหาคำตอบกันดีกว่า
                     </h1>
     
-                    <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                    <MDBAnimation reveal type="fadeInUp" >
                    
                     </MDBAnimation>
                  
@@ -258,7 +258,7 @@ const Bag = () => {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp" >
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     
@@ -266,7 +266,7 @@ const Bag = () => {
                     คุณพร้อมรับสิ่งดีๆเหล่านี้แล้วหรือยังล่ะ?
                     </h1>
     
-                    <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                    <MDBAnimation reveal type="fadeInUp" >
                    
                     </MDBAnimation>
                  
@@ -361,7 +361,7 @@ const Bag = () => {
      </h4> 
     
             <p class="font-weight-bold">ด้วยความลงตัวของชากับดอกบัว</p>
-            <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
+            <MDBAnimation reveal type="fadeInRight">
     
             <p class="text-muted">
               ชาแต่ละประเภทก็มีประโยชน์ กลิ่น และรสสัมผัสที่ต่างกันออกไป แต่ชาดอกบัวเป็นชาที่มีเอกลักษณ์ด้าน กลิ่นที่หอม ชวนหลงใหล

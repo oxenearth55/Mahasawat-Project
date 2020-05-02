@@ -48,7 +48,7 @@ const Lotion = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp">
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -57,7 +57,7 @@ const Lotion = () => {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>ถ้าคุณพร้อมแล้ว เรามาเริ่มกันเลย</strong>
                       </h5>
@@ -89,7 +89,7 @@ const Lotion = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -97,7 +97,7 @@ const Lotion = () => {
                         การพจญภัยเป็นสิ่งหนึ่งที่สำคัญที่สุดในชีวิตของมนุษย์
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" duration="1000ms" delay="0.7s">
                      
                       </MDBAnimation>
                    
@@ -127,7 +127,7 @@ const Lotion = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -135,7 +135,7 @@ const Lotion = () => {
                         ไม่ว่าจะเป็นการออกไปพบปะผู้คน ทำงาน หรือท่องเที่ยวก็ตาม
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -165,7 +165,7 @@ const Lotion = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -173,12 +173,12 @@ const Lotion = () => {
                         เราเข้าใจว่าสิ่งเหล่านี้สำคัญกับคุณมาก
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
 
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>แต่ยังมีอีกสิ่งหนึ่งที่สำคัญพอๆกัน...</strong>
                       </h5>
@@ -210,7 +210,7 @@ const Lotion = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -218,7 +218,7 @@ const Lotion = () => {
                         นั่นคือการดูแลรักษาผิวพรรณของคุณ
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
 
@@ -417,7 +417,7 @@ const Lotion = () => {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -425,7 +425,7 @@ const Lotion = () => {
                         เพราะฉะนั้น การดูแลผิว ปล่อยให้เป็นหน้าที่ของฟักข้าว
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
 

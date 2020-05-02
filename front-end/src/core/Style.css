@@ -551,9 +551,7 @@ p{
 /* tablets/desktops and up ----------- */
 @media (min-width: 992px) and (max-width: 1199px) {
     .cartPhoto { width: 200px; }
-    .fix-bg{
-      background-attachment: fixed;
-      }
+    
            /* SECTION HOMECOMPONENT Example.js */
       .home-card-example{
         

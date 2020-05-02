@@ -38,24 +38,28 @@ const Routes = () => {
     return (<BrowserRouter>
    
         <Switch>
+            {/* SECTION Everyone can access (visitor, customer, vendor, admin) */}
             <Route path="/signin" exact component={Signin}></Route>
             <Route path="/signup" exact component={Signup}></Route>
             <Route path="/" exact component={Home}></Route> 
             <Route path="/product/:productId" exact component={Product}></Route> 
             <Route path="/shop/:searchResult/:search" exact component={Shop}></Route>
             <Route path="/cart" exact component={Cart}></Route>
-            <Route path="/order/:orderId" exact component={SeeOrder}></Route>
-            <Route path="/profile/:userId" exact component={Profile}></Route>
             <Route path="/shop/banfakkhaw" exact component={BanFakkhaw}></Route>
             <Route path="/shop/nabua" exact component={Nabua}></Route>
-            <Route path="/order" exact component={SeeOrderCus}></Route>
             <Route path="/select/shop" exact component={SelectShop}></Route>
 
             {/* NOTE  Use provateRoute method from auth to render dashboard if user can log in 
             if not, user must go to sign in page */}
           
-            {/* SECTION Normal user */}
+            {/* SECTION  user that already log in (customer) */}
             <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
+            <PrivateRoute path="/order/:orderId" exact component={SeeOrder}></PrivateRoute>
+            <PrivateRoute path="/profile/:userId" exact component={Profile}></PrivateRoute>
+            <PrivateRoute path="/order" exact component={SeeOrderCus}></PrivateRoute>
+
+
+
             {/* <PrivateRoute path="/profile/:userId" exact component={Profile}/> */}
 
 

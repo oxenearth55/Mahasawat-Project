@@ -13,6 +13,7 @@ const {
     photo,
     listSearch,
     addComment,
+    uncomment,
     decreaseQuantity
 } = require("../controllers/product");
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
@@ -51,6 +52,16 @@ router.put(
     requireSignin,
     isAuth,
     addComment
+
+)
+
+
+router.put(
+    "/uncomment/:productId/:userId",
+    requireSignin,
+    isAuth,
+    isAdmin,
+    uncomment
 
 )
 

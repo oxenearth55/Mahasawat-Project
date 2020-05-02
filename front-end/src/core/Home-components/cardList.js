@@ -55,16 +55,21 @@ const EcommercePage = () => {
           <p class="card-text">สวนคุณลุงบุญเลิศ และกลุ่มแม่บ้านเกษตรกรชุมชนวัดสุวรรณเป็นศูนย์ปรัชญาเศรษฐกิจพอเพียง 
           มีการนำผลิตภัณฑ์ทางการเกษตรมาแปรรูปเป็นอาหาร และผลไม้
             </p>
+            <a  href="#showContent" >
+
           <button class="btn btn-unique"
            onClick={() => setShowCondition({...showCondition,showFruitGarden:true, showKaoTang:false, 
            showFarm:false,showContactFarm:false,showContactFruit:false,showContactKao:false })}
             >ดูสินค้า</button>
+</a>
+<a  href="#showContent" >
 
           <button class="btn btn-unique" 
             onClick={() => setShowCondition({...showCondition,showFruitGarden:false, showKaoTang:false, 
               showFarm:false,showContactFarm:false,showContactFruit:true,showContactKao:false })}
           
           >ติดต่อ</button>
+          </a>
         </div>
         {/* <!--/.Card content--> */}
       </div>
@@ -92,14 +97,20 @@ const EcommercePage = () => {
           บ้านศาลาดิน เป็นชื่อชุมชนที่ได้ชื่อว่าเป็นแหล่งเรียนรู้เชิงนิเวศตามแนวทางเศรษฐกิจพอเพียง มีการนำข้าวกล้องและข้าวไรท์เบอรี่ที่ตากแห้ง 
           มาแปรรูปเป็นข้าวตัง
           </p>
+          <a  href="#showContent" >
+
           <button  onClick={() => 
             setShowCondition({...showCondition,showKaoTang:true,showFarm:false, showFruitGarden:false,
             showContactFarm:false,showContactFruit:false,showContactKao:false })} class="btn btn-unique">ดูสินค้า</button>
+            </a>
+            <a  href="#showContent" >
+
           <button class="btn btn-unique" 
             onClick={() => setShowCondition({...showCondition,showFruitGarden:false, showKaoTang:false, 
               showFarm:false,showContactFarm:false,showContactFruit:false,showContactKao:true })}
           
           >ติดต่อ</button>
+          </a>
         </div>
         {/* <!--/.Card content--> */}
       </div>
@@ -127,15 +138,21 @@ const EcommercePage = () => {
           ฟาร์มกล้วยไม้คุณสร้อย ได้จัดบรรยากาศเป็นฟาร์มเปิดซึ่งทำให้นักท่องเที่ยวได้ชมและถ่ายรูปในสวนกล้วยไม้ได้อย่างอิสระ 
           และสามารถติดต่อซื้อกลับบ้านได้ภายหลังการเยี่ยมชม
           </p>
+          <a  href="#showContent" >
+
           <button class="btn btn-unique" onClick={() => 
             setShowCondition({...showCondition,showFarm:true, showFruitGarden:false, showKaoTang:false,
             showContactFarm:false,showContactFruit:false,showContactKao:false })}>
               ดูสินค้า
               </button>
+              </a>
+              <a  href="#showContent" >
+
           <button class="btn btn-unique"
             onClick={() => setShowCondition({...showCondition,showFruitGarden:false, showKaoTang:false, 
               showFarm:false,showContactFarm:true,showContactFruit:false,showContactKao:false })}
           >ติดต่อ</button>
+          </a>
         </div>
         {/* <!--/.Card content--> */}  
       </div>
@@ -222,8 +239,10 @@ const disPlayContact = () => (
   return (
       <div className="pb-5 " style={{backgroundImage:'linear-gradient(rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.7)),'+ "url("+wood+")"}}>
       {showCard()}  
+      <div id="showContent">
       {displayProducts()}
       {disPlayContact()}
+      </div>
       </div>   
   );
 }

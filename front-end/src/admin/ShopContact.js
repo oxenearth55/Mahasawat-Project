@@ -24,7 +24,6 @@ const ShopContact = () => {
     })
 
     const {lineQr, formData} = photo
-
     const { user, token } = isAuthenticated(); //NOTE Grab use info from jwt 
     const [shopID, setShopID] = useState([]);
     const [error, setError] = useState(false);

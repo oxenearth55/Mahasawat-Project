@@ -337,3 +337,19 @@ exports.addComment = (req, res) => {
 };
 
 
+exports.uncomment = (req, res) => {
+    let {comments} = req.body;
+    Product.findByIdAndUpdate({ _id: req.product._id }, { $pull: { comments: {_id:comments} } }, { new: true })
+     
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            } else {
+                res.json(result);
+            }
+        });
+};
+
+

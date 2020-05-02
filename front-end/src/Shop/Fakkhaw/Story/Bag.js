@@ -61,7 +61,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -70,7 +70,7 @@ import {
                       </h1>
       
                       <hr className='hr-light my-4' />
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" duration="1000ms" delay="0.7s">
                       <h5 className='text-uppercase mb-4 white-text'>
                         <strong>ถ้าคุณพร้อมแล้ว เรามาเริ่มกันเลย</strong>
                       </h5>
@@ -103,7 +103,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -111,7 +111,7 @@ import {
                     โลก เป็นสถานที่ที่สิ่งมีชีวิตนานาชนิดอาศัยอยู่ร่วมกัน
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -142,7 +142,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -150,7 +150,7 @@ import {
                     ในอดีตกาล สิ่งมีชีวิตทุกชนิด ล้วนใช้ชีวิตอย่างมีความสุขท่ามกลางธรรมชาติอันงดงาม
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -180,7 +180,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -188,7 +188,7 @@ import {
                     แต่เมื่อเวลาผ่านพ้นไปหลายช่วงสหัสวรรษ 
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -218,7 +218,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -226,7 +226,7 @@ import {
                     ธรรมชาติค่อยๆถูกทำลาย สิ่งมีชีวิตต่างๆเริ่มล้มตาย
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -256,7 +256,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -264,7 +264,7 @@ import {
                     ความสมดุลของโลก ได้ถูกทำลายลง โดยสิ่งมีชีวิตที่เรียกตัวเองว่า
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -294,7 +294,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -302,7 +302,7 @@ import {
                         มนุษย์
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -332,7 +332,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp">
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -340,7 +340,7 @@ import {
                         มนุษย์ ได้ช่วงชิงทุกสิ่งทุกอย่างบนโลกนี้
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -497,7 +497,7 @@ import {
                 >
       
                   <MDBRow className=" mb-5  ">
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
       
                     <MDBCol md='12' className='mb-4 white-text text-center'>
       
@@ -505,7 +505,7 @@ import {
                         การกระทำเหล่านี้ ก่อให้เกิด สิ่งที่เรียกว่า 'ภาวะโลกร้อน'
                       </h1>
       
-                      <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                      <MDBAnimation reveal type="fadeInUp" >
                      
                       </MDBAnimation>
                    
@@ -536,7 +536,7 @@ import {
               >
     
                 <MDBRow className=" mb-5  ">
-                <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+                <MDBAnimation reveal type="fadeInUp" >
     
                   <MDBCol md='12' className='mb-4 white-text text-center'>
     
@@ -544,7 +544,7 @@ import {
                       คุณสามารถร่วมเป็นส่วนหนึ่งเพื่อช่วยเหลือโลกของเราได้
                     </h1>
     
-                    <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                    <MDBAnimation reveal type="fadeInUp" >
                    
                     </MDBAnimation>
                  
@@ -576,7 +576,7 @@ import {
             >
   
               <MDBRow className=" mb-5  ">
-              <MDBAnimation reveal type="fadeInUp" duration="1200ms"delay="0.5s">
+              <MDBAnimation reveal type="fadeInUp" >
   
                 <MDBCol md='12' className='mb-4 white-text text-center'>
   
@@ -584,7 +584,7 @@ import {
                     โดยการรณรงค์ใช้ถุงผ้า แทนถุงพลาสติก
                   </h1>
   
-                  <MDBAnimation reveal type="fadeInUp" duration="1200ms" delay="1.5s">
+                  <MDBAnimation reveal type="fadeInUp" >
                  
                   </MDBAnimation>
                
@@ -630,7 +630,7 @@ const blog12 = () => (
  </h4> 
 
         <p class="font-weight-bold">เราคนเดียว ลด หรือ ไม่ใช้ ถุงพลาสติก จะเปลี่ยนแปลงอะไรได้?</p>
-        <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
+        <MDBAnimation reveal type="fadeInRight" >
 
         <p class="text-muted">
         ยิ่งเราใช้ถุงพลาสติกมาเท่าไร ทั้งการเผาไหม้ที่เกิดจากขั้นตอนกระบวนการผลิตถุง และการเผาทำลายถุงพลาสติกก็จะยิ่งมากขึ้นเท่านั้น
@@ -745,7 +745,7 @@ const blog14 = () =>(
  </h4> 
 
       
-        <MDBAnimation reveal type="fadeInRight" duration="1200ms" delay="0.5s">
+        <MDBAnimation reveal type="fadeInRight" >
 
         <p class="text-muted">
         การนำถุงพลาสติกไปใช้ซ้ำอาจทำให้เกิดผลกระทบต่อระบบนิเวศเป็นอย่างมาก โดยเฉพาะการใช้ถุงพลาสติกใส่มูลฝอยจะทำให้เกิดการแปรสภาพมูลฝอยในภาวะที่ขาดอากาศเป็นผลให้เกิดก๊าซชีวภาพที่เป็นต้นเหตุของการเกิดภาวะเรือนกระจก 
