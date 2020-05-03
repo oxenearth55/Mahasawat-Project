@@ -58,26 +58,22 @@ const Menu = ({history,handleSearch
             if(user.role !== 1 && user.role !==2){
                 return(
                     <>
-                      <li className="nav-item mx-2 cart-icon navbar-light nav ">
                 <Link className="nav-link" to="/cart">
-                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 white-text "></i>
+                <i class=" fas fa-2x fa-shopping-cart mx-2 my-2 text-white "></i>
                 {/*NOTE Show the number of product beside Cart icon */}
                {showCartTotal()}        
                 </Link>
-    </li>
                     </>
                 )}
 
         }else if(isAuthenticated() ==false){
             return(
                 <>
-                  <li className="nav-item mx-2 cart-icon navbar-light nav ">
                 <Link className="nav-link" to="/cart">
-                <i class="cart fas fa-2x fa-shopping-cart mx-2 my-2 text-light "></i>
+                <i class="fas fa-2x fa-shopping-cart mx-2 my-2 text-white "></i>
                 {/*NOTE Show the number of product beside Cart icon */}
                {showCartTotal()}        
                 </Link>
-    </li>
                 </>
             )
 
