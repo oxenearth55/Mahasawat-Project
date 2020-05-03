@@ -15,7 +15,7 @@ const Comment = ({getComments,product, setRun = f => f,
    
    const [comments,setComments] = useState({
     comment:'',
-    userName:'',
+    user:'',
     date:''
 
 })
@@ -36,7 +36,7 @@ const addCommentBtn = () => {
 
 const deleteButton = (index) => {
   if(isAuthenticated()){
-  if(isAuthenticated().user.role == 1){
+  if(isAuthenticated().user.role == 1 && !loading && isAuthenticated().user.shop == product.shop._id ){
     return(
     <button data-toggle="modal" data-target={`#${convert(index)}`}  class="btn algin-center btn-danger  waves-effect px-3 mb-5"> ลบ</button>
     )
@@ -106,7 +106,7 @@ const setDate = moment().format('L');
 
 
 const handleChange = name => event => {
- setComments({ ...comments, userName:user.name,date:setDate, [name]: event.target.value });
+ setComments({ ...comments, user:user,date:setDate, [name]: event.target.value });
  console.log('currentPage of comments is '+ currentPage );
 }
 
@@ -185,7 +185,7 @@ com.push(res)
 
    <img class="card-img-100 rounded-circle z-depth-1-half d-flex mr-3" src={`https://api.adorable.io/avatars/285/${rand}.png`} alt="Generic placeholder image"/>
    <div class="media-body">
- <h5 class="user-name font-weight-bold">{res.userName}</h5>
+ <h5 class="user-name font-weight-bold">{res.user.name}</h5>
 
      <div class="card-data">
        <ul class="list-unstyled mb-1">

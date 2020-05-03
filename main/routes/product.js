@@ -36,7 +36,8 @@ router.put(
     isAuth,
     isAdmin,
     update,
-    read
+    read,
+    
 );
 
 router.get("/products", list);

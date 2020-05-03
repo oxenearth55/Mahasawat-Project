@@ -124,6 +124,14 @@ const links = () => (
         
     </MDBListGroupItem>
 
+    <MDBListGroupItem  hover>
+        
+        <Link className="nav-link textDash" to="/vendor/sales/report">
+            ดูยอดขาย
+        </Link>
+        
+    </MDBListGroupItem>
+
     <MDBListGroupItem hover>
         <Link className="nav-link textDash" to="/vendor/products">
             จัดการสินค้า
@@ -178,10 +186,7 @@ const links = () => (
             headerImg="dashBoardImgLayout"
 
         >
-            {/* <div className="row">
-                <div className="col-4">{links()}</div>
-                <div className="col-8">{adminInfo()}</div>
-            </div> */}
+           
 
 <MDBRow>
 <MDBCol size='6'>
@@ -198,11 +203,7 @@ const links = () => (
 
 </MDBRow>
          
-            {/* <div className="row">
-            {shopName.map((n, index) => (
-                   {n}
-                ))}
-            </div> */}
+         
 
         </Layout>
     );

@@ -14,9 +14,9 @@ const ContactFruit = () => (
   {/* <!--Grid column--> */}
   <div class="col-lg-7 text-white">
 
-    <h4 className='text-center my-4'>ติดต่อสวนกล้วยไม้</h4>
-    <h5 className='my-4'>คุณ สร้อย ชายวันดี</h5>
-    <h5 className='mb-5'>เบอร์โทรศัพท์: 086-809-3264</h5>
+    <h4 className='text-center my-4'>ติดต่อสวนผลไม้ลุงบุญเลิศ</h4>
+    <h5 className='my-4'>คุณ บุญเลิศ เศรษฐอำนวย</h5>
+    <h5 className='mb-5'>เบอร์โทรศัพท์: 089-403-6955</h5>
 
   </div>
   {/* <!--Grid column--> */}

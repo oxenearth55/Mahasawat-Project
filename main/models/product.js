@@ -54,7 +54,7 @@ const productSchema = new mongoose.Schema(
           },
 
         comments: [{
-            userName: {type: String},
+            user: {type: ObjectId, ref: "User"},
             comment: {
                 type: String,
                 maxlength: 2000,

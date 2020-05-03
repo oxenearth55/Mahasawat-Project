@@ -205,7 +205,9 @@ const showRelated = () => (
            <>
              <RelatedProduct r={p}/>
            </>
-         )}}) 
+         )}
+        
+        }) 
            }    
    
    {/* <!--Grid column--> */}

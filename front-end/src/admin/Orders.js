@@ -359,8 +359,8 @@ const button = () => (
 
                 <h5 className="text-center order-aleart-slip">ลูกค้าท่านนี้อัพโหลดหลักฐานการโอนเงินเรียบร้อยแล้ว</h5>
             </div>
-            <button class="btn btn-outline-cyan btn-block" data-toggle="modal" data-target="#centralModalInfo">
-                See slip<i class="fas fa-image pl-1"></i>
+            <button class="btn btn-outline-cyan btn-block mb-5" data-toggle="modal" data-target="#centralModalInfo">
+                คลิกเพื่อดูหลักฐานการโอนเงิน<i class="fas fa-image pl-1"></i>
             </button>
             <PopUpSlip order = {order}/>
         </>

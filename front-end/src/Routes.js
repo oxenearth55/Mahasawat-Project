@@ -31,7 +31,7 @@ import ManageBank from './admin/ManageBank'
 import ManageShipping from './admin/ManageShipping'
 import UpdateCat from './admin/UpdateCat' 
 import ShopContact from './admin/ShopContact'
-
+import SalesReport from './admin/SalesReport'
 
 const Routes = () => {
 
@@ -60,7 +60,6 @@ const Routes = () => {
 
 
 
-            {/* <PrivateRoute path="/profile/:userId" exact component={Profile}/> */}
 
 
             {/* SECTION Vendor */}
@@ -75,6 +74,8 @@ const Routes = () => {
             <VendorRoute path="/manage/shipping/:shopId" exact component={ManageShipping}/>
             <VendorRoute path="/update/category/:catId" exact component={UpdateCat}/>
             <VendorRoute path="/vendor/shop/contact" exact component={ShopContact}/>
+            <VendorRoute path="/vendor/sales/report" exact component={SalesReport}/>
+
 
 
 

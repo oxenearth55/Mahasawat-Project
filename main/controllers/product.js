@@ -9,7 +9,12 @@ exports.productById = (req, res, next, id) => {
         .populate('category')
         .populate('shop')
 
-        .exec((err, product) => {
+        //NOTE deep nested populate
+        .populate('comments.user', 'name')
+
+
+       
+    .exec((err, product) => {
             if (err || !product) {
                 return res.status(400).json({
                     error: 'ไม่มีสินค้านี้อยู่'
