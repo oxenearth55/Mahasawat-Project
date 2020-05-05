@@ -112,6 +112,41 @@ const UpdateProduct = ({ match }) => {
         });
     };
   
+    const disPlayContentOption = () =>{
+        if(user.shop =='5e6a17ac5c566806d6a101de'){
+            return(
+                <>
+                 <div className="form-group">
+                <label className="text-muted">เรื่องราวสินค้า</label>
+                <select onChange={handleChange('content')} className="form-control" value={content}>
+                    <option>โปรดเลือก</option>
+                    <option value="เจลล้างมือฟักข้าว">เจลล้างมือฟักข้าว</option>
+                    <option value="สบู่ฟักข้าว">สบู่ฟักข้าว</option>
+                    <option value="โลชั่นฟักข้าว">โลชั่นฟักข้าว</option>
+                    <option value="ถุงผ้า">ถุงผ้า</option>
+                  
+                    <option value="ไม่มี">ไม่มี</option>             
+                </select>
+            </div>
+                </>
+            )
+        }else if(user.shop =='5e6a17a35c566806d6a101dd'){
+            return(
+                <>
+                  <div className="form-group">
+                <label className="text-muted">เรื่องราวสินค้า</label>
+                <select onChange={handleChange('content')} className="form-control" value={content}>
+                    <option>โปรดเลือก</option>
+                    <option value="ชาเกษรดอกบัว">ชาเกษรดอกบัว</option>
+                    <option value="สบู่เกษรดอกบัว">สบู่เกษรดอกบัว</option>
+                    <option value="ไม่มี">ไม่มี</option>             
+                </select>
+            </div>
+                </>
+            )
+        }
+
+    }
 
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
@@ -157,23 +192,7 @@ const UpdateProduct = ({ match }) => {
                 </select>
             </div>
 
-            <div className="form-group">
-                <label className="text-muted">เรื่องราวสินค้า</label>
-                <select onChange={handleChange('content')} className="form-control" value={content}>
-                    <option>โปรดเลือก</option>
-                    <option value="เจลล้างมือฟักข้าว">เจลล้างมือฟักข้าว</option>
-                    <option value="สบู่ฟักข้าว">สบู่ฟักข้าว</option>
-                    <option value="โลชั่นฟักข้าว">โลชั่นฟักข้าว</option>
-                    <option value="ถุงผ้า">ถุงผ้า</option>
-                    <option value="ชาเกษรดอกบัว">ชาเกษรดอกบัว</option>
-                    <option value="สบู่เกษรดอกบัว">สบู่เกษรดอกบัว</option>
-                    <option value="ไม่มี">ไม่มี</option>
-
-
-
-                  
-                </select>
-            </div>
+            {disPlayContentOption()}
 
           
 

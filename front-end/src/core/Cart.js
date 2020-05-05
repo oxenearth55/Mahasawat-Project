@@ -433,7 +433,7 @@ const diplayFakkhawProducts = () =>{
     return (
         <Layout
             title="ตะกร้ารถเข็น"
-            description="สินค้าที่คุณเลือก จะมาอยู่ในตระก้ารถเข็นแห่งนี้"
+            description="สินค้าที่คุณเลือก จะมาอยู่ในตะก้ารถเข็นแห่งนี้"
             className="container-fluid"
             headerImg="cartImgLayout"
         >

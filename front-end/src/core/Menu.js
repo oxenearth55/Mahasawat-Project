@@ -45,7 +45,7 @@ const Menu = ({history,handleSearch
     const showCartTotal = () => {
         return(
             <sub>
-                  <small className="cart-badge text-light ">{itemTotal()}</small>
+                  <small className="cart-badge text-white ">{itemTotal()}</small>
             </sub>
           
 

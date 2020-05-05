@@ -11,6 +11,8 @@ exports.signup = (req, res) => {
                 error
             });
         }
+        user.salt = undefined;
+        user.hashed_password = undefined;
         res.json({
             user
         });
@@ -27,6 +29,7 @@ exports.userById = (req, res, next, id) => {
             });
         }
         req.profile = user;
+        
         next();
     });
 };
