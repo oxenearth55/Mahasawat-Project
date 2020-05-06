@@ -128,6 +128,8 @@ const getShopObject = () => {
     //SECTION useEffect
     useEffect(() => {
         loadOrders();
+        window.scrollTo(0, 0);  
+
         // getShopObject();
     }, []);
 

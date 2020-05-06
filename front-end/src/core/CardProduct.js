@@ -21,6 +21,8 @@ const CardProduct = ({product,addCart}) => {
     useEffect(() => {
         loadProductsBySell();
         getShopObject();
+        window.scrollTo(0, 0)     
+
 
 
     },[run]);

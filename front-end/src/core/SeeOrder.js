@@ -307,6 +307,8 @@ const handleChange = name => event => {
     useEffect(() => {
         const orderId = props.match.params.orderId;
         loadOrder(orderId);
+        window.scrollTo(0, 0);     
+
        
     }, []);
 

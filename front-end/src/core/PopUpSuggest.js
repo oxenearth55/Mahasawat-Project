@@ -32,7 +32,7 @@ const PopUpSuggest = () => (
             <p class="heading lead">วิธีชำระเงิน</p>
    
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" class="dark-text">&times;</span>
+              <span aria-hidden="true" class="white-text">&times;</span>
             </button>
           </div>
    

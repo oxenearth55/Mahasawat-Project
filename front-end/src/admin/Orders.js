@@ -125,6 +125,8 @@ const Orders = ({match}) => {
         loadStatusValues();
         // setAddress({...address, lastName:order.address.lastName})
         console.log('photo is '+photo.contentType)
+        window.scrollTo(0, 0)     
+
 
     }, []);
 

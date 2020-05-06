@@ -251,7 +251,7 @@ const showAddressForm = () => {
           <h2 class="my-5 h2 text-center">โปรดกรอกรายละเอียดที่อยู่</h2>
     
           {/* <!--Grid row--> */}
-          <div class="row">
+          <div class="row justify-content-center">
     
             {/* <!--Grid column--> */}
             <div class="col-md-8 mb-4">
@@ -269,7 +269,7 @@ const showAddressForm = () => {
     
                       {/* <!--firstName--> */}
                       <div class="md-form mb-5">
-                  <p for="name" class="">ชื่อ-สกุล</p>
+                  <p for="name" class="">ชื่อ-สกุล <small className="red-text">*</small></p>
                   <input onChange={handleAddress('name')} type="text" id="name" class="form-control" placeholder="ชื่อ-สกุล" required/>
                   </div>
     
@@ -283,46 +283,46 @@ const showAddressForm = () => {
                   {/* <!--Grid row--> */}
     
                   <div class="md-form mb-5">
-                  <p for="address" class="">เบอร์โทรศัพท์</p>
-                  <input onChange={handleAddress('phoneNumber')} type="text" id="phone" class="form-control" placeholder="08X-" required/>
+                  <p for="address" >เบอร์โทรศัพท์ <small className="red-text">*</small></p>
+                  <input onChange={handleAddress('phoneNumber')} type="text" id="phone" class="form-control" placeholder="เบอร์ติดต่อ" required/>
                   </div>
             
                
                   {/* <!--address--> */}
                   <div class="md-form mb-5">
-                  <p for="address" class="">บ้านเลขที่</p>
-                  <input onChange={handleAddress('houseNumber')} type="text" id="address" class="form-control"required />
+                  <p for="address">บ้านเลขที่ <small className="red-text">*</small></p>
+                  <input onChange={handleAddress('houseNumber')} type="text" id="address" placeholder="บ้านเลขที่" class="form-control"required />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
-                  <p for="address" class="">หมู่บ้าน</p>
-                  <input  onChange={handleAddress('village')} type="text" id="address" class="form-control" required/>
+                  <p for="address">หมู่บ้าน</p>
+                  <input  onChange={handleAddress('village')} type="text" id="address" placeholder="หมู่บ้าน" class="form-control" />
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
-                  <p for="address" class="">ซอย</p>
-                  <input onChange={handleAddress('lane')} type="text" id="address" class="form-control" required/>
+                  <p for="address" >ซอย</p>
+                  <input onChange={handleAddress('lane')} type="text" id="address" placeholder="ซอย" class="form-control" />
                   </div>
 
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
-                  <p for="address" class="">ถนน</p>
-                  <input onChange={handleAddress('streetName')} type="text" id="address" class="form-control" required/>
+                  <p for="address" >ถนน <small className="red-text">*</small></p>
+                  <input onChange={handleAddress('streetName')} type="text" id="address" placeholder="ถนน" class="form-control" required/>
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
-                  <p for="address" class="">ตำบล</p>
-                  <input onChange={handleAddress('subDistrict')} type="text" id="address" class="form-control" required/>
+                  <p for="address" >ตำบล <small className="red-text">*</small></p>
+                  <input onChange={handleAddress('subDistrict')} type="text" id="address" placeholder="ตำบล" class="form-control" required/>
                   </div>
 
                    {/* <!--address--> */}
                    <div class="md-form mb-5">
-                  <p for="address" class="">อำเภอ</p>
-                  <input onChange={handleAddress('district')} type="text" id="address" class="form-control" required/>
+                  <p for="address" >อำเภอ <small className="red-text">*</small></p>
+                  <input onChange={handleAddress('district')} type="text" id="address" placeholder="อำเภอ" class="form-control" required/>
                   </div>
 
               
@@ -335,7 +335,7 @@ const showAddressForm = () => {
                     {/* <!--Grid column--> */}
                     <div class="col-lg-4 col-md-6 mb-4">
     
-                      <label for="state">จังหวัด</label>
+                      <label for="state" >จังหวัด <small className="red-text">*</small></label>
                       <select onChange={handleAddress('province')}  class="custom-select d-block w-100" id="state" required>
                       <option value="" selected>--------- เลือกจังหวัด ---------</option>
           <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
@@ -427,8 +427,8 @@ const showAddressForm = () => {
                     {/* <!--Grid column--> */}
                     <div class="col-lg-4 col-md-6 mb-4">
     
-                      <label for="zip">รหัสไปรษณี</label>
-                      <input onChange={handleAddress('postalNo')} type="text" class="form-control" id="zip" placeholder="" required/>
+                      <label for="zip">รหัสไปรษณีย์ <small className="red-text">*</small></label>
+                      <input onChange={handleAddress('postalNo')} type="text" class="form-control" id="zip" placeholder="รหัสไปรษณีย์" required/>
                       <div class="invalid-feedback">
                         Zip code required.
                       </div>
@@ -445,7 +445,7 @@ const showAddressForm = () => {
                   <hr class="mb-4"/>
 
                   <button class="btn btn-primary btn-lg btn-block text-center" type="submit"
-                  >ทำรายการ</button>
+                  >ทำรายการสั่งซื้อ</button>
                 </form>
                 {/* <PopUpWarn checkout={buy}/> */}
 

@@ -26,14 +26,11 @@ const Cart = () => {
     useEffect(() => {
         // setItems(getCart()); //NOTE get object (cart) from local storage; To show that there are any product in Cart or not
         setEmptyShip()
-
         setNabuaProducts(getNabua());
         setFakkhawProducts(getFakkhaw());
         setItemtotal(itemTotal())
         setFakkhawShip(getFakkhawShip())
-        setNabuaShip(getNabuaShip())
-        
-        
+        setNabuaShip(getNabuaShip())        
     }, [run]);
 
 

@@ -148,6 +148,8 @@ const showShopName = () => {
     useEffect(() => {
         loadOrders();
         getShopObject();
+        window.scrollTo(0, 0)     
+
     }, []);
 
 

@@ -55,7 +55,7 @@ const CartAdjust = ({product, productPrice,
       if(adjustAmoumt && nabua==true){
         return(
         <input type="number" value="2" aria-label="Search" className="form-control"
-        value={count} 
+        value={product.count} 
         onChange={handleChangeNabua(product._id)} 
         style={{width: '100px'}}/>
          
@@ -64,7 +64,7 @@ const CartAdjust = ({product, productPrice,
       }if(adjustAmoumt && fakkhaw==true){
         return(
             <input type="number" value="2" aria-label="Search" className="form-control"
-            value={count} 
+            value={product.count} 
             onChange={handleChangeFakkhaw(product._id)} 
             style={{width: '100px'}}/>
              
