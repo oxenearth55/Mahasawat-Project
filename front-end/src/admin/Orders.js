@@ -24,7 +24,7 @@ const Orders = ({match}) => {
     const [updatetext, setUpdateText] = useState('');
     const [shippingProvider,setShippingProvider] = useState([]);
     const [orderUser,setUser] = useState([]);
-
+    
 
     const [error, setError] = useState(false)
 
@@ -57,19 +57,28 @@ const Orders = ({match}) => {
                     console.log("Status update failed");
                 } else {
                     console.log('photo is '+order.photo)
-                    setSuccessUp(true)
+                  
+
                 }
             }
         );
-        }else{
+        setSuccessUp(true)
+        setHandleStatus(updatetext)
+        setHandleUpdate(true);
+        }
+        
+        else{
             updateOrderStatus(user._id, token, order._id, updatetext)
             setSuccessUp(true)
+            setHandleStatus(updatetext)
+            loadOrder(match.params.orderID);
+            setHandleUpdate(true);
+
         }
     }else{
         setUpError(true);
     }
-    
-    }
+}
 
     const showUpdateError = () => {
         if(upError){
@@ -148,6 +157,7 @@ const Orders = ({match}) => {
     );
 
 
+    
     //NOTE orderId is used to check which order that we're going to set status
     const handleStatusChange = (e) => {
         setUpdateText(e.target.value)
@@ -171,13 +181,31 @@ const Orders = ({match}) => {
             }
     }
 
+    const [handleStatus, setHandleStatus] = useState('');
+    const [handleUpdate, setHandleUpdate] = useState(false);
+
+    const showStatusHeader = () => {
+        if(successUp || handleUpdate ){
+        return(
+            <h3 className="mark mb-4 status-text">สถานะ: {handleStatus}</h3>
+
+        )
+        }
+       else if(!handleUpdate){
+            return(
+                <h3 className="mark mb-4 status-text">สถานะ: {order.status}</h3>
+
+            )
+        }
+
+    }
 
 //SECTION UPDATE STATUS
 const [showBtn, setShowBtn] = useState(false);
     const showStatus = ()=> (
 
          <form className="my-5  border p-5  " onSubmit={clickSubmit}>
-            <h3 className="mark mb-4 status-text">สถานะ: {order.status}</h3>
+             {showStatusHeader()}
             <div className="form-group text-center">
 
             <select

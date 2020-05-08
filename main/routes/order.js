@@ -45,10 +45,7 @@ router.post(
     "/order/create/:userId",
     requireSignin,
     isAuth,
-    // addOrderToUserHistory,
-    
     create
-    // saveImage
 );
 
 router.delete(

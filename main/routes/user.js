@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { requireSignin, isAuth, isAdmin } = require('../controllers/auth');
-const { userById, read, update, purchaseHistory, signup, list,updateRole, updateOther,remove } = require('../controllers/user');
-router.post('/signup', signup);
+const { userById, read, update, list,updateRole, updateOther,remove } = require('../controllers/user');
+// router.post('/signup', signup);
 router.get('/secret', requireSignin, (req, res) => {
     res.json({
         user: 'got here yay'

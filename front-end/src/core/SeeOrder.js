@@ -29,7 +29,6 @@ const SeeOrder = (props) => {
     const [showSlip, setShowSlip] = useState(false);
     const [cancleSuccess, setCancleSuccess] = useState(false);
     const [contact, setContact] = useState([])
-
     const [loading,setLoading] = useState(false);
 
 
@@ -71,7 +70,6 @@ const SeeOrder = (props) => {
 //SECTION Cancle Order 
 
 const clickCancle = (orderId) =>{
-
     updateOrderStatus(user._id, token, orderId, 'ยกเลิก').then(
         data => {
             if (data.error) {
@@ -188,7 +186,7 @@ const clickCancle = (orderId) =>{
 //SECTION SLIP
 
     const showUploadButton = () => {
-        if(!loading){
+        if(!loading && !empty){
             return(
             <button  className="btn btn-primary">
             อัพโหลด
@@ -197,21 +195,16 @@ const clickCancle = (orderId) =>{
 
         }
     }
-    const showUpSlip = () =>
-(
+    const showUpSlip = () =>(
     <form className="my-5  border p-5 " onSubmit={clickSubmit}>
-        <h3 className='text-center'>อัพโหลดหลักฐานการโอนเงิน</h3>
-        
+        <h3 className='text-center'>อัพโหลดหลักฐานการโอนเงิน</h3>       
         <div className="form-group text-center">
             <label className="btn btn-secondary">
                 <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
             </label>
-       {showUploadButton()}
-      
+       {showUploadButton()}      
         </div>
-
 </form>
-
 )
 
 const showUpload = () =>{
@@ -273,10 +266,6 @@ const handleChange = name => event => {
         setEmpty(false)
         formData.set('upload', true);
     }
-
-    console.log('Shop id is'+bankAccount.name)
-
-
 }
 
     const loadOrder = orderId => {

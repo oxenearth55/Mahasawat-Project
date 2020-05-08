@@ -10,15 +10,12 @@ import PopUpWarn from './PopUpWarn';
 import PopUpSuggest from './PopUpSuggest';
 
 const Cart = () => {
-    //NOTE items contain products that was selected from local storage
-    const [items, setItems] = useState([]);
     //NOTE useEffect will only update component when run state changes 
     const [run, setRun] = useState(false);
     const [nabuaProducts,setNabuaProducts] = useState([]);
     const [fakkhawProducts,setFakkhawProducts] = useState([]);
     const [shop,setShop] = useState('');
     const [itemtotal,setItemtotal] = useState(0);
-
     const [nabuaShip, setNabuaShip] = useState(); 
     const [fakkhawShip, setFakkhawShip] = useState(); 
 
@@ -49,16 +46,11 @@ const Cart = () => {
    const showItemsFakkhaw = (items) =>{
     return (
         <div class="container my-5 py-3 z-depth-1 rounded">
-
-        
         {/* <!--Section: Content--> */}
-        <section class="dark-grey-text">
-      
+        <section class="dark-grey-text">   
           {/* <!-- Shopping Cart table --> */}
-          <div class="table-responsive">
-      
-            <table class="table product-table mb-0">
-      
+          <div class="table-responsive">    
+            <table class="table product-table mb-0">   
               {/* <!-- Table head --> */}
               <thead class="mdb-color lighten-5">
                 <tr>
@@ -83,15 +75,11 @@ const Cart = () => {
                   <th></th>
                 </tr>
               </thead>
-              {/* <!-- /.Table head --> */}
-      
-              {/* <!-- Table body --> */}
-             
-        
+              {/* <!-- /.Table head --> */} 
+              {/* <!-- Table body --> */}           
         {/* //ANCHOR Table body */}
         <tbody>
-            {items.map((product, i) => {  
-              
+            {items.map((product, i) => {              
                 return(
         <tr>
         <th scope="row">
@@ -102,31 +90,22 @@ const Cart = () => {
             <strong class="mt-3">{product.name}</strong>
           </h5>
           {/* <p class="text-muted">Apple</p> */}
-        </td>
-       
-        
+        </td>     
         <td>฿{product.price}</td>
         <td>
     <CartAdjust product={product} productPrice={product.price} adjustAmoumt={true}
     setRun={setRun} run={run} fakkhaw={true}
 />           
 </td>
-
 <td>{product.quantity}</td>
-
         {/* <td class="font-weight-bold">
-            <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}
-    
+            <strong>฿ <CartAdjust product={product} productPrice={product.price} showEachTotal={true}  
 />           </strong>
         </td> */}
-        <td>
-            
+        <td>          
           <button onClick = {() => {removeFakkhaw(product._id); setRun(!run);}} type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
             title="Remove item">X
           </button>
-          
-
-
         </td>
       </tr>      
                 )})}
@@ -315,50 +294,16 @@ const Cart = () => {
 
         );
     };
-//NOTE if not have anything in localsotage (cart)
+
+
+
+
+
    
-          
-
-
-          
-
-//SECTION Display shop related to product.shop  
-const [showNabua,setShowNabua] =useState (false); // use to display shop if it is valid
-const [showfakkhawProducts,setShowFakkhawProducts] =useState(false);
-
-
-
-
- 
-
-
-//SECTION show total from each shop
-
-const showTotal = () => {
-    //Nbbua
-    if(shop === 'nabua'){
-        return(
-            <>
-            {getTotalNabua()}
-            </>
-        )
-        //Fakkhaw
-    }else if(shop === 'fakkhaw'){
-            return(
-                <>
-                {getTotalFakkhaw()}
-                </>
-            )
-    }
-}
-   
-
-
-const calculateNabuaPrice = () => {
-       
+  //SECTION Calculate total price
+const calculateNabuaPrice = () => {     
   return nabuaProducts.reduce((currentValue, nextValue) => { // NOTE reduce method will calculate every products in Cart
     return currentValue + nextValue.count * nextValue.price // NOTE return value of each product from caculating
-
     }, 0)
 }
 
@@ -380,7 +325,6 @@ else{
 }
 }
 }
-
 const getTotalNabua = () => {
   let total = calculateNabuaPrice() 
   if(nabuaShip !==undefined){

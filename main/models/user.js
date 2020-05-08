@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema(
         },
         hashed_password: {
             type: String,
-            required: true
+            required: true,
+            
         },
 
         shop: {
@@ -33,7 +34,9 @@ const userSchema = new mongoose.Schema(
             type: String,
             trim: true
         },
-        salt: String,
+        salt:{ 
+            type:String,
+            },
         role: {
             type: Number,
             default: 0
