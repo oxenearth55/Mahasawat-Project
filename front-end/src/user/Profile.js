@@ -72,11 +72,13 @@ const Profile = ({ match }) => {
         init(match.params.userId); //NOTE grab userID from URL (Route)
         getShopObject();
     }, []);
+    
+    //const [newPassword, setNewPassword] = useState(false)
 
     const handleChange = name => e => {
         setValues({ ...values, error: false,success:false, [name]: e.target.value });
-        setRepeatError(false)
-
+        setRepeatError(false);
+       
     };
 
     const clickSubmit = e => {

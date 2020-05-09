@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const uuidv1 = require('uuid/v1');
 const { ObjectId } = mongoose.Schema;
+//NOTE Hiden property in mongo schema plugIn 
+let mongooseHidden = require('mongoose-hidden')({ defaultHidden: {hashed_password: true, salt:true } } , )
 
 const userSchema = new mongoose.Schema(
     {
@@ -21,6 +23,7 @@ const userSchema = new mongoose.Schema(
         hashed_password: {
             type: String,
             required: true,
+            // hideJSON: true 
             
         },
 
@@ -36,6 +39,7 @@ const userSchema = new mongoose.Schema(
         },
         salt:{ 
             type:String,
+            // hideJSON: true 
             },
         role: {
             type: Number,
@@ -45,6 +49,8 @@ const userSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+userSchema.plugin(mongooseHidden)
 
 // virtual field
 userSchema
