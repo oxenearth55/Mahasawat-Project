@@ -83,7 +83,6 @@ const Profile = ({ match }) => {
 
     const clickSubmit = e => {
         e.preventDefault();
-    if(repeatPassword === password){
         update(match.params.userId, token, { name, email, password }).then(data => {
             if (data.error) {
                 // console.log(data.error);
@@ -100,9 +99,7 @@ const Profile = ({ match }) => {
                 );
             }
         });
-    }else{
-        setRepeatError(true);
-    }
+    
 }
 
   
@@ -118,7 +115,7 @@ const Profile = ({ match }) => {
     }
 
     const showSuccess = () =>{
-        if(success){
+        if(success == true){
             return(
         <div class="alert alert-success text-center" role="alert">
             ทำการเปลี่ยนแปลงโปรไฟล์เรียบร้อย
@@ -144,10 +141,10 @@ const Profile = ({ match }) => {
                 <input type="password" onChange={handleChange('password')} className="form-control" value={password} />
             </div>
 
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label className="text-muted">ยืนยันรหัสใหม่</label>
                 <input type="password" onChange={handleChange('repeatPassword')} className="form-control" />
-            </div>
+            </div> */}
 
             <button onClick={clickSubmit} className="btn btn-primary">
                 ยืนยัน
