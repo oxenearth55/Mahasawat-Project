@@ -296,7 +296,7 @@ p{
     background-color: rgba(247, 247, 247, 0.959);
 }
 
-
+/* SECTION CHECKBOX  */
 
 /*SECTION  Cart badge*/
 
@@ -555,7 +555,7 @@ p{
            /* SECTION HOMECOMPONENT Example.js */
       .home-card-example{
         
-        width:10rem;
+        width:12rem;
       }
 
       .home-img-example{
@@ -564,6 +564,11 @@ p{
 
       }
 
+      .cardMargin{
+        margin-left: 15px!important;
+        margin-right: 15px!important;
+
+      }
          /* SECTION HOMECOMPONENT HEADER  */
 
          .homecomponent-head{
@@ -583,13 +588,18 @@ p{
 
       /* SECTION HOMECOMPONENT Example.js */
       .home-card-example{
-
-        width:15rem;
+        width:16.5rem;
       }
 
       .home-img-example{
-        height:20rem!important;
-        width:15rem!important;
+        height:19.5rem!important;
+        width:16.5rem!important;
+
+      }
+
+      .cardMargin{
+        margin-left: 20px!important;
+        margin-right: 20px!important;
 
       }
 

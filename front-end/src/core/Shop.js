@@ -222,10 +222,10 @@ return(
 
  
     <div className="mb-5">
-<h4 className="text-white text-center rgba-stylish-strong">
-               คัดกรอง โดย ชื่อร้าน
+<h4 className="text-white text-center p-2 unique-color-dark">
+               คัดกรอง โดย ชื่อร้านค้าออนไลน์
              </h4> 
-                <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
+                <div className="mb-4 p-4 mb-2 stylish-color   ">
              <Checkbox products={shopObject} ifShop={true}
              handleFilters={filters => handleFilters(filters,"shop")
             }     
@@ -243,17 +243,18 @@ return(
     headerImg = "shopImgLayout"
     >
      
-         <h4 className="text-white text-center rgba-stylish-strong">
+     {showFilterByShop()}
+
+         <h4 className="text-white text-center  unique-color-dark p-2">
                คัดกรอง โดย ชนิดของสินค้า
              </h4> 
-                <div className="mb-4 p-4 mb-2 rgba-blue-grey-slight border ">
+                <div className="mb-4 p-4 mb-2 stylish-color border ">
              <Checkbox categories={categories} ifCategory={true}
              handleFilters={filters => handleFilters(filters,"category")
             }     
     />
     </div>
 
-    {showFilterByShop()}
 
       
          {showLoading()}

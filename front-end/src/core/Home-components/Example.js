@@ -22,10 +22,10 @@ const Example = () => {
       <p class="grey-text w-responsive mx-auto mb-5 homecomponent-sub" >ชุมชนของเรามีแหล่งค้าขายสินค้าหลักๆ 5 สถานที่ด้วยกัน</p>
   
       {/* <!-- Grid row --> */}
-      <div class="row justify-content-lg-center">
+      <div class="row justify-content-lg-l">
   
         {/* <!-- Grid column --> */}
-        <div class="col-lg-2 col-md-6 mb-4 mx-3">
+        <div class="col-lg-2 col-md-6 mb-4 cardMargin">
           {/* <!-- Collection card --> */}
           <div class="card collection-card z-depth-1-half home-card-example" >
             {/* <!-- Card image --> */}
@@ -41,7 +41,7 @@ const Example = () => {
         {/* <!-- Grid column --> */}
   
         {/* <!-- Grid column --> */}
-        <div class="col-lg-2 col-md-6 mb-4 mx-3" >
+        <div class="col-lg-2 col-md-6 mb-4 cardMargin" >
           {/* <!-- Collection card --> */}
           <div class="card collection-card z-depth-1-half home-card-example">
             {/* <!-- Card image --> */}
@@ -56,7 +56,7 @@ const Example = () => {
         {/* <!-- Grid column --> */}
   
         {/* <!-- Grid column --> */}
-        <div class="col-lg-2 col-md-6 mb-4 mx-3 ">
+        <div class="col-lg-2 col-md-6 mb-4 cardMargin ">
           {/* <!-- Collection card --> */}
           <div class="card collection-card z-depth-1-half home-card-example "  >
             {/* <!-- Card image --> */}
@@ -71,7 +71,7 @@ const Example = () => {
         {/* <!-- Grid column --> */}
   
         {/* <!-- Fourth column --> */}
-        <div class="col-lg-2 col-md-6 mb-4 mx-3">
+        <div class="col-lg-2 col-md-6 mb-4 cardMargin ">
           {/* <!-- Collection card --> */}
           <div class="card collection-card z-depth-1-half home-card-example" >
             {/* <!-- Card image --> */}
@@ -86,7 +86,7 @@ const Example = () => {
         {/* <!-- Fourth column --> */}
 
           {/* <!-- Five column --> */}
-          <div class="col-lg-2 col-md-6 mb-4 mx-3">
+          <div class="col-lg-2 col-md-6 mb-4 cardMargin">
           {/* <!-- Collection card --> */}
           <div class="card collection-card z-depth-1-half home-card-example" >
             {/* <!-- Card image --> */}

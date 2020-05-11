@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { deleteOrder, getStatusValues, decreaseProductAmount,updateOrderStatus } from "./apiAdmin";
+import { deleteOrder, getStatusValues, decreaseProductAmount,updateOrderStatus, updateCheckSold,uploadSlip } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
@@ -24,6 +24,8 @@ const Orders = ({match}) => {
     const [updatetext, setUpdateText] = useState('');
     const [shippingProvider,setShippingProvider] = useState([]);
     const [orderUser,setUser] = useState([]);
+    const [checkSold, setCheckSold] = useState([]); 
+    
     
 
     const [error, setError] = useState(false)
@@ -40,7 +42,7 @@ const Orders = ({match}) => {
         costShipping: '',       
         formData: ''
     });
-
+    const {formData} =  values; 
 
     const [upError,setUpError] = useState(false);
     const clickSubmit = event =>{
@@ -51,6 +53,10 @@ const Orders = ({match}) => {
          if(updatetext !== 'เลือกอัพเดทสถานะที่นี่' && updatetext !== ''){
         if(updatetext=='กำลังขนส่ง'){
         updateOrderStatus(user._id, token, order._id, updatetext)
+        if(checkSold == false){
+            formData.set('checkSold', true);
+            uploadSlip(order._id,user._id, token, formData)
+
         decreaseProductAmount(user._id, token,decreaseProduct).then(
             data => {
                 if (data.error) {
@@ -58,10 +64,10 @@ const Orders = ({match}) => {
                 } else {
                     console.log('photo is '+order.photo)
                   
-
                 }
             }
         );
+        }
         setSuccessUp(true)
         setHandleStatus(updatetext)
         setHandleUpdate(true);
@@ -110,10 +116,9 @@ const Orders = ({match}) => {
                     formData: new FormData()
                     
                 });
+                setCheckSold(data.checkSold);
                 // setAmount(data.amount)
                 // setShipCost(data.shippingCost)
-              
-
             }
         });
     };
@@ -267,8 +272,6 @@ const button = () => (
     <>
     {showFormBtn()}
     {showForm()}
-
-
     </>
 )
 

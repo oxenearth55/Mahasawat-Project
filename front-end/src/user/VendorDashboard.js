@@ -124,13 +124,13 @@ const links = () => (
         
     </MDBListGroupItem>
 
-    <MDBListGroupItem  hover>
+    {/* <MDBListGroupItem  hover>
         
         <Link className="nav-link textDash" to="/vendor/sales/report">
             ดูยอดขาย
         </Link>
         
-    </MDBListGroupItem>
+    </MDBListGroupItem> */}
 
     <MDBListGroupItem hover>
         <Link className="nav-link textDash" to="/vendor/products">

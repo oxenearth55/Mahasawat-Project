@@ -12,7 +12,8 @@ const {
     uploadImage,
     uploadDeliver,
     readOrder,
-    photo
+    photo,
+    updateCheckSold
     
 } = require("../controllers/order");
 const { decreaseQuantity } = require("../controllers/product");
@@ -22,6 +23,14 @@ router.get(
     "/order/:orderId",
 readOrder
 );
+
+
+//SECTION used to update shop information
+router.put(
+    "/checkSold/:orderId/:userId",
+    
+    updateCheckSold
+)
 
 
 

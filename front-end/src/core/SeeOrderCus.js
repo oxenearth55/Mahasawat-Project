@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders, deleteOrder,getShop,updateOrderStatus} from "../admin/apiAdmin";
 import { MDBDataTable } from 'mdbreact';
+import moment from "moment";
 
 
 
@@ -46,7 +47,7 @@ const SeeOrderCus = () => {
         }
     
         if(res.user._id === user._id){
-        rows.push({orderId:res._id,name:res.shop.name, status:res.status,slip:slipStatus,click:seeOrder(res)
+        rows.push({orderId:res._id,time:moment(res.createdAt).format('YYYY-MM-DD'),name:res.shop.name, status:res.status,slip:slipStatus,click:seeOrder(res)
     //     ,delete: <div  onClick={() => destroy(res._id)} className="btn btn-danger btn-sm">
     //     ลบ
     // </div>
@@ -60,6 +61,12 @@ const SeeOrderCus = () => {
             sort: 'asc',
             width: 150
           },
+          {
+            label: 'สั่งเมื่อ',
+            field: 'time',
+            sort: 'asc',
+            width: 200
+          }, 
           {
             label: 'ชื่อร้านค้า',
             field: 'name',

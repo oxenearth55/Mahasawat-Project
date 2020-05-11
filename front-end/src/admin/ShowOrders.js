@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders, deleteOrder,getShop} from "./apiAdmin";
 import { MDBDataTable } from 'mdbreact';
+import moment from "moment";
 
 
 const ShowOrders = () => {
@@ -51,7 +52,7 @@ orders.map(res=>{
     }
 
     if(user.shop === res.shop._id){
-    rows.push({orderId:res._id,name:res.user.name,status:res.status,slip:slipStatus,click:seeOrder(res)
+    rows.push({orderId:res._id,time:moment(res.createdAt).format('YYYY-MM-DD'),name:res.user.name,status:res.status,slip:slipStatus,click:seeOrder(res)
 })
     }
 })
@@ -62,6 +63,12 @@ orders.map(res=>{
         sort: 'asc',
         width: 150
       },
+      {
+        label: 'สั่งเมื่อ',
+        field: 'time',
+        sort: 'asc',
+        width: 200
+      },  
       {
         label: 'ชื่อ',
         field: 'name',

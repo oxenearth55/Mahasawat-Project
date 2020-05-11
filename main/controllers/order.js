@@ -885,6 +885,50 @@ exports.uploadDeliver = (req, res) => {
 };
 
 
+exports.updateCheckSolds = (req, res) => {
+  // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
+  const {checkSold} = req.body;
+  //NOTE findOne is use to check which shop that we are going to update
+  Order.findOne({ _id: req.order._id },  (err, order) => {
+    
+      if (!checkSold) {
+          return res.status(400).json({
+              error: 'checkSold is required'
+          });
+      } else {
+          order.checkSold = checkSold;
+      }
+
+      order.save((err, updatedOrder) => {
+          if (err) {
+              console.log('ORDER UPDATE ERROR', err);
+              return res.status(400).json({
+                  error: 'ORDER update failed'
+              });
+          }
+          // updatedUser.hashed_password = undefined;
+          // updatedUser.salt = undefined;
+          res.json(updatedOrder);
+      });
+  });
+};
+
+
+exports.updateCheckSold = (req, res) => {
+
+  const order = req.body.checkSold;
+  // order.checkSold = req.body.checkSold;
+  order.save((err, data) => {
+      if (err) {
+          return res.status(400).json({
+              error: errorHandler(err)
+          });
+      }
+      res.json(data);
+  });
+};
+
+
 
 exports.orderById = (req, res, next, id) => {
     Order.findById(id)

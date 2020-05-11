@@ -36,7 +36,7 @@ const Checkbox = ({ categories, handleFilters,products, ifCategory=false, ifShop
                 type="checkbox"
                 className="form-check-input ml-4" 
             />
-            <label className="form-check-label ml-5"  >{c.name}</label>
+            <label className="form-check-label ml-5 text-white"  >{c.name}</label>
         </li>
         </div>
         </div>
@@ -45,7 +45,7 @@ const Checkbox = ({ categories, handleFilters,products, ifCategory=false, ifShop
 
     )
     const filterByShop = () => (
-        <div className="row ">
+        <div className="row justify-content-center ">
 
         {products.map((p, i) => {
         
@@ -60,7 +60,7 @@ const Checkbox = ({ categories, handleFilters,products, ifCategory=false, ifShop
                 type="checkbox"
                 className="form-check-input ml-4" 
             />
-            <label className="form-check-label ml-5"  >{p.name}</label>
+            <label className="form-check-label ml-5 text-white"  >{p.name}</label>
         </li>
         </div>
         </div>

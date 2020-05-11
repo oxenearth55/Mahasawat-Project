@@ -49,6 +49,11 @@ const OrderSchema = new mongoose.Schema(
       ref: "Shop"
   },
 
+  checkSold: {
+    type: Boolean,
+    default:false
+  },
+
   photo: {
     data: Buffer,
     contentType: String
