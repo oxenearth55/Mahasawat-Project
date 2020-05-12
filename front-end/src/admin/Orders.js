@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-import { deleteOrder, getStatusValues, decreaseProductAmount,updateOrderStatus, updateCheckSold,uploadSlip } from "./apiAdmin";
+import { deleteOrder, getStatusValues, decreaseProductAmount,updateOrderStatus, updateCheckSold } from "./apiAdmin";
 import moment from "moment";
 import {readOrder} from '../core/apiCore'
 import PopUpSlip from '../core/PopUpSlip'
@@ -54,6 +54,7 @@ const Orders = ({match}) => {
         if(updatetext=='กำลังขนส่ง'){
         updateOrderStatus(user._id, token, order._id, updatetext)
         if(checkSold == false){
+            setCheckSold(true);
             formData.set('checkSold', true);
             updateCheckSold(order._id,user._id, token, formData)
 
