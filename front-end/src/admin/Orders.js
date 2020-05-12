@@ -55,7 +55,7 @@ const Orders = ({match}) => {
         updateOrderStatus(user._id, token, order._id, updatetext)
         if(checkSold == false){
             formData.set('checkSold', true);
-            uploadSlip(order._id,user._id, token, formData)
+            updateCheckSold(order._id,user._id, token, formData)
 
         decreaseProductAmount(user._id, token,decreaseProduct).then(
             data => {

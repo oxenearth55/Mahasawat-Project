@@ -885,46 +885,44 @@ exports.uploadDeliver = (req, res) => {
 };
 
 
-exports.updateCheckSolds = (req, res) => {
-  // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
-  const {checkSold} = req.body;
-  //NOTE findOne is use to check which shop that we are going to update
-  Order.findOne({ _id: req.order._id },  (err, order) => {
-    
-      if (!checkSold) {
-          return res.status(400).json({
-              error: 'checkSold is required'
-          });
-      } else {
-          order.checkSold = checkSold;
-      }
-
-      order.save((err, updatedOrder) => {
-          if (err) {
-              console.log('ORDER UPDATE ERROR', err);
-              return res.status(400).json({
-                  error: 'ORDER update failed'
-              });
-          }
-          // updatedUser.hashed_password = undefined;
-          // updatedUser.salt = undefined;
-          res.json(updatedOrder);
-      });
-  });
-};
 
 
 exports.updateCheckSold = (req, res) => {
 
-  const order = req.body.checkSold;
-  // order.checkSold = req.body.checkSold;
-  order.save((err, data) => {
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
       if (err) {
           return res.status(400).json({
-              error: errorHandler(err)
+              error: 'Image could not be uploaded'
           });
       }
-      res.json(data);
+
+      let order = req.order;
+      order = _.extend(order, fields);
+
+      // 1kb = 1000
+      // 1mb = 1000000
+
+      if (files.photo) {
+          // console.log("FILES PHOTO: ", files.photo);
+          if (files.photo.size > 10000000) {
+              return res.status(400).json({
+                  error: 'Image should be less than 10mb in size'
+              });
+          }
+          order.photo.data = fs.readFileSync(files.photo.path);
+          order.photo.contentType = files.photo.type;
+      }
+
+      order.save((err, result) => {
+          if (err) {
+              return res.status(400).json({
+                  error: errorHandler(err)
+              });
+          }
+          res.json(result);
+      });
   });
 };
 

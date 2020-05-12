@@ -249,6 +249,24 @@ export const uploadSlip = (orderId, userId, token, slip) => {
         .catch(err => console.log(err));
 };
 
+export const updateCheckSold = (orderId,userId, token, checkSold) => {
+    return fetch(`${API}/checkSold/${orderId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: checkSold
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
+
+
 export const uploadDeliver = (orderId, userId, token, slip) => {
     return fetch(`${API}/deliver/${orderId}/${userId}`, {
         method: 'PUT',
@@ -370,20 +388,6 @@ export const updateBankAccount = (shopId,userId, token, bankinfo) => {
 };
 
 
-export const updateCheckSold = (orderId,userId, token, checkSold) => {
-    return fetch(`${API}/checkSold/${orderId}/${userId}`, {
-        method: "PUT",
-        headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`
-        },
-        body: checkSold
-    })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
-};
 
 
 export const updateShopContact = (shopId,userId, token, contact) => {
