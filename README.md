@@ -17,10 +17,10 @@ Structure of code folders:
 	2.4 routes – contains the router files<br/>
 	2.5 validator – contain a validator file<br/>
 
-Programs:
-	Robo3T – use as the mongoDB GUI
-Source: https://robomongo.org/download
-	VSCode – use to write code for the web development.
+Programs:<br/>
+	Robo3T – use as the mongoDB GUI<br/>
+Source: https://robomongo.org/download<br/>
+	VSCode – use to write code for the web development.<br/>
 Source: https://code.visualstudio.com/download
 
 Setting up the project:
