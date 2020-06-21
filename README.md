@@ -30,8 +30,8 @@ Source: https://github.com/oxenearth55/Mahasawat-Project.git<br/>
 		2.1 Install react npm<br/>
 		2.2 Install front-end npm<br/>
 		2.3 Create .env file and write down the code below<br/>
-REACT_APP_API_URL = http://localhost:49154/api 
-SKIP_PREFLIGHT_CHECK = true
+REACT_APP_API_URL = http://localhost:49154/api <br/>
+SKIP_PREFLIGHT_CHECK = true<br/>
 	2.4 Run the command: “npm start”<br/>
 3. Setting up inside the main folder<br/>
 		3.1 Install back-end npm<br/>
