@@ -1,7 +1,7 @@
 # Mahasawat-Project
 
 Structure of code folders:
-1. front-end folder – contains the front-end web development folders
+1. front-end folder – contains the front-end web development folders<br/>
 		1.1 public
 		1.2 src
 			1.2.1 admin – contains the admin files
