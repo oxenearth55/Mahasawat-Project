@@ -24,8 +24,8 @@ Source: https://robomongo.org/download<br/>
 Source: https://code.visualstudio.com/download
 
 Setting up the project:
-1. Clone the git from the Mahasawat Project repository.
-Source: https://github.com/oxenearth55/Mahasawat-Project.git
+1. Clone the git from the Mahasawat Project repository.<br/>
+Source: https://github.com/oxenearth55/Mahasawat-Project.git<br/>
 2. Setting up inside the front-end folder<br/>
 		2.1 Install react npm<br/>
 		2.2 Install front-end npm<br/>
